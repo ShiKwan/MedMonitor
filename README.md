@@ -1,4 +1,5 @@
-# Create React Express App
+# PLEASE REMIND EVERYONE TO EDIT THIS README FILE UPON COMPLETION OF THIS PROJECT
+
 
 ## About This Boilerplate
 
