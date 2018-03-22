@@ -5,13 +5,21 @@ var Schema = mongoose.Schema;
 const PatientSchema = new Schema({
 
     patient: {
-        patient_id: { type: String, required: true},
+        patient: {
+            type: Schema.Types.ObjectId,
+            ref: "Patient"
+        },
 
         Episode: [{
             episode_id: { type: String, required: true},
             start_date: { type: Date, required: true},
-            physician_id: {type: String, required: true},
+            doctor: {
+                type: Schema.Types.ObjectId,
+                ref: "Doctor"
+            },
             end_date: Date,
+            next_appt: Date,
+            comments: String,
 
             medications: [{
                 medication: {type: String, required: true},
