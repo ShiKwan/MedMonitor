@@ -1,3 +1,4 @@
 module.exports = {
-  Book: require("./book")
+  Medication: require("./medication"),
+  Patient: require("./patient")
 };
