@@ -1,7 +1,13 @@
 const router = require("express").Router();
-const bookRoutes = require("./books");
+const doctorRoutes = require("./doctor");
+const patientRoutes = require("./patient");
+const userRoutes = require("./user");
+const medicationRoutes = require("./medication");
 
 // Book routes
-router.use("/books", bookRoutes);
+router.use("/doctor", doctorRoutes);
+router.use("/patient", patientRoutes);
+router.use("/user", userRoutes);
+router.use("/medication", medicationRoutes);
 
 module.exports = router;
