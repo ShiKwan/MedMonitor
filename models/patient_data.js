@@ -66,7 +66,7 @@ const Patient_dataSchema = new Schema({
                     hallucination: Boolean,
                 }],
 
-                side_effects: [{: 
+                side_effects: [{
                     sickness: Number,
                     dizziness: Number,
                     headaches: Number,
