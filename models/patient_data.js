@@ -51,12 +51,12 @@ const Patient_dataSchema = new Schema({
                     tremor: Number,
                     dexterity: Number,
                     stiffness: Number,
-                    moving: Number,
-                    speaking: Number,
+                    initiation: Number,
+                    speach: Number,
                     walking: Number,
                     balance: Number,
                     drooling: Number,
-                    tired: Number,
+                    malaise: Number,
                 }],
 
                 emergencies: [{
