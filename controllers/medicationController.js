@@ -5,7 +5,7 @@ const db = require("../models");
 
 module.exports = {
 
-    // Fetch all medications
+    // Fetch all medications and doses
     // Returns json list of all medications sorted alphabetically by name
     findAll: function(req, res) {
         db.Medication

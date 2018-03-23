@@ -4,18 +4,34 @@ var Schema = mongoose.Schema;
 
 const Patient_dataSchema = new Schema({
 
-    patient_data: {
+        date_created: Date, 
+        timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
+        active: { type: boolean, default: true },
 
-        episode: [{
-            episode_id: { type: String, required: true},
-            start_date: { type: Date, required: true},
-            doctor: {
-                type: Schema.Types.ObjectId,
-                ref: "Doctor"
-            },
-            end_date: Date,
+        doctor: {
+            type: Schema.Types.ObjectId,
+            ref: "Doctor"
+        },
+
+        details: {
+            patient_number: {type: Number, required: true },
+            first_name: { type: String, required: true }, 
+            last_name: { type: String, required: true },
+            dob:  {type: Date, required: true },
+            email: { type: String, required: true },
+            phone: { type: String, required: true }
+        },            
+        
+        appointment: {
             next_appt: Date,
             comments: String,
+            },
+
+        episode: [{
+            timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
+            episode_id: { type: String, required: true},
+            start_date: { type: Date, required: true},
+            doctor: String,
 
             medications: [{
                 medication: {type: String, required: true},
@@ -25,50 +41,44 @@ const Patient_dataSchema = new Schema({
             }],
 
             record: [{
-                day: [{
-                    time: [{
-                        meds_taken: Boolean,
-                        // can add more detailed record of medications taken and notes here 
-                        symptoms: [{
-                            on: { type: Number, notes: String},
-                            off: { type: Number, notes: String},
-                            tremor: { type: Number, notes: String},
-                            dexterity: { type: Number, notes: String},
-                            stiffness: { type: Number, notes: String},
-                            moving: { type: Number, notes: String},
-                            speaking: { type: Number, notes: String},
-                            walking: { type: Number, notes: String},
-                            balance: { type: Number, notes: String},
-                            drooling: { type: Number, notes: String},
-                            tired: { type: Number, notes: String}
-                        }],
+                date: { type: Date, required: true},
+                time: { type: String, required: true},
+                meds_taken: Boolean,
+                // can add more detailed record of medications taken and notes here if required
+                symptoms: [{
+                    on: Number,
+                    off: Number,
+                    tremor: Number,
+                    dexterity: Number,
+                    stiffness: Number,
+                    initiation: Number,
+                    speach: Number,
+                    walking: Number,
+                    balance: Number,
+                    drooling: Number,
+                    malaise: Number,
+                }],
 
-                        emergencies: [{
-                            falls: { type: Number, notes: String},
-                            choking: { type: Number, notes: String},
-                            hallucination: { type: Number, notes: String}
-                        }],
+                emergencies: [{
+                    falls: Number,
+                    choking: Number,
+                    hallucination: Number,
+                }],
 
-                        side_effects: [{
-                            sickness: { type: Number, notes: String},
-                            dizziness: { type: Number, notes: String},
-                            headaches: { type: Number, notes: String},
-                            drymouth: { type: Number, notes: String},
-                            urinating: { type: Number, notes: String},
-                            indegestion: { type: Number, notes: String}
-                        }],
+                side_effects: [{
+                    sickness: Number,
+                    dizziness: Number,
+                    headaches: Number,
+                    drymouth: Number,
+                    urinating: Number,
+                    indegestion: Number,
+                }],
 
-                        comments: String,
+                notes: String,
 
-                    }],
+            }],
 
-                }]
-                
-            }]
-
-        }]
-
-    }
+        }]              
 
 });
 

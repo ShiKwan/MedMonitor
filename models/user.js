@@ -13,11 +13,6 @@ const UserSchema = new Schema({
         ref: "Patient_data"
     },
 
-    patient_info: {
-        type: Schema.Types.ObjectId,
-        ref: "Patient_info"
-    },
-
     doctor: {
         type: Schema.Types.ObjectId,
         ref: "Doctor"

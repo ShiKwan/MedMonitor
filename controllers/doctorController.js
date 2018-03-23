@@ -6,7 +6,7 @@ const db = require("../models");
 module.exports = { 
 
     
-    // Fetch all doctor names and _ids
+    // Fetch all doctor names and _ids (to populate listmenu)
     // Returns json list of doctors names and _ids only (sorted alphabeltically by name
     findAll: function(req, res) {
         db.Doctor
