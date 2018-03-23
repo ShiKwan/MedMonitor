@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-const PatientSchema = new Schema({
+const Patient_dataSchema = new Schema({
 
-    patient: {
-        patient_id: { type: String, required: true},
+    patient_data: {
 
-        Episode: [{
+        episode: [{
             episode_id: { type: String, required: true},
             start_date: { type: Date, required: true},
-            physician_id: {type: String, required: true},
+            doctor: {
+                type: Schema.Types.ObjectId,
+                ref: "Doctor"
+            },
             end_date: Date,
+            next_appt: Date,
+            comments: String,
 
             medications: [{
                 medication: {type: String, required: true},
@@ -20,7 +24,7 @@ const PatientSchema = new Schema({
                 route: String,
             }],
 
-            patient_data: [{
+            record: [{
                 day: [{
                     time: [{
                         meds_taken: Boolean,
@@ -35,20 +39,19 @@ const PatientSchema = new Schema({
                             speaking: { type: Number, notes: String},
                             walking: { type: Number, notes: String},
                             balance: { type: Number, notes: String},
-                            falls: { type: Number, notes: String},
                             drooling: { type: Number, notes: String},
-                            choking: { type: Number, notes: String},
-                            nocturnal: { type: Number, notes: String},
-                            constipation: { type: Number, notes: String},
-                            Mood: { type: Number, notes: String},
                             tired: { type: Number, notes: String}
+                        }],
+
+                        emergencies: [{
+                            falls: { type: Number, notes: String},
+                            choking: { type: Number, notes: String},
+                            hallucination: { type: Number, notes: String}
                         }],
 
                         side_effects: [{
                             sickness: { type: Number, notes: String},
                             dizziness: { type: Number, notes: String},
-                            fainting: { type: Number, notes: String},
-                            confusion: { type: Number, notes: String},
                             headaches: { type: Number, notes: String},
                             drymouth: { type: Number, notes: String},
                             urinating: { type: Number, notes: String},
@@ -69,6 +72,6 @@ const PatientSchema = new Schema({
 
 });
 
-var Patient = mongoose.model("Patient", PatientSchema);
+var Patient_data = mongoose.model("Patient_data", Patient_dataSchema);
 
-module.exports = Patient;
+module.exports = Patient_data;
