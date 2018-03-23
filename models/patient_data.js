@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 const Patient_dataSchema = new Schema({
 
-        date_created: Date, 
+        date_created: {type: Date, default: Date.now},
         timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
         active: { type: boolean, default: true },
 
@@ -17,7 +17,7 @@ const Patient_dataSchema = new Schema({
             patient_number: {type: Number, required: true },
             first_name: { type: String, required: true }, 
             last_name: { type: String, required: true },
-            dob:  {type: Date, required: true },
+            dob:  {type: String, required: true },
             email: { type: String, required: true },
             phone: { type: String, required: true }
         },            
@@ -38,6 +38,7 @@ const Patient_dataSchema = new Schema({
                 dose: String,
                 form: String,
                 route: String,
+                times: [],
             }],
 
             record: [{
@@ -60,18 +61,18 @@ const Patient_dataSchema = new Schema({
                 }],
 
                 emergencies: [{
-                    falls: Number,
-                    choking: Number,
-                    hallucination: Number,
+                    falls: Boolean,
+                    choking: Boolean,
+                    hallucination: Boolean,
                 }],
 
-                side_effects: [{
+                side_effects: [{: 
                     sickness: Number,
                     dizziness: Number,
                     headaches: Number,
                     drymouth: Number,
                     urinating: Number,
-                    indegestion: Number,
+                    indigestion: Number,
                 }],
 
                 notes: String,
