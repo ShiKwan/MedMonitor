@@ -6,9 +6,7 @@ const MedicationSchema = new Schema({
 
         
     name: { type: String, required: true },
-
-    class: String,
-    
+    type: String,
     doses: [ { dose: String, form: String, route: String} ]
 
 });

@@ -8,9 +8,19 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     role: { type: String, required: true },
 
-    patient: {
+    patient_data: {
         type: Schema.Types.ObjectId,
-        ref: "Patient"
+        ref: "Patient_data"
+    },
+
+    patient_info: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient_info"
+    },
+
+    doctor: {
+        type: Schema.Types.ObjectId,
+        ref: "Doctor"
     }
 
 });

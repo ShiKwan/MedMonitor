@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema;
 
-const Patient_listSchema = new Schema({
+const Patient_infoSchema = new Schema({
 
 patient_number: {type: Number, required: true },
 
@@ -23,9 +23,14 @@ patient_number: {type: Number, required: true },
 
     dob:  {type: Date, required: true },
 
+    patient: {
+        type: Schema.Types.ObjectId,
+        ref: "Patient_data"
+    },
+
 
 });
 
-var Patient_list = mongoose.model("Patient_list", Patient_listSchema);
+var Patient_info = mongoose.model("Patient_info", Patient_infoSchema);
 
-module.exports = Patient_list;
+module.exports = Patient_info;
