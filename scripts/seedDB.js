@@ -208,12 +208,11 @@ const patient_dataSeed = [
 
 // Insert seed data into the respective collections
 
-db.Medication
+db.Meds
   .remove({})
-  .then(() => db.Medication.collection.insertMany(medicationSeed))
+  .then(() => db.Meds.collection.insertMany(medicationSeed))
   .then(data => {
     console.log(data.insertedIds.length + " medication records inserted!");
-    process.exit(0);
   });
 
 db.Doctor
@@ -221,15 +220,15 @@ db.Doctor
   .then(() => db.Doctor.collection.insertMany(doctorSeed))
     .then(data => {
       console.log(data.insertedIds.length + " doctors records inserted!");
-      process.exit(0);
+
   });
 
 db.Patient_data
   .remove({})
-  .then(() => db.Doctor.collection.insertMany(patient_dataSeed))
+  .then(() => db.Patient_data.collection.insertMany(patient_dataSeed))
      .then(data => {
       console.log(data.insertedIds.length + " patient_data records inserted!");
-      process.exit(0);
+
       
   })
   .catch(err => {
