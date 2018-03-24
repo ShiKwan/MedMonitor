@@ -16,6 +16,7 @@ router
     .put(patientController.update)
 
 // Matches with "/api/patient/appointment/:id" A
+router
     .route('/appointment/:id')
     .put(patientController.update)
 

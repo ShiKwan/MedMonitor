@@ -150,7 +150,7 @@ module.exports = {
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $set: {"appointment": req.body} },
+                { $set: {"appointment": req.body} }
             )
             .then(episode => res.json(episode))
             .catch(err => {

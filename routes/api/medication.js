@@ -8,9 +8,12 @@ router.route("/")
 
 // Matches with "/api/books/:id"
 router
-  .route("/:id")
-  .get(medicationController.findById)
+  .route("/dose/:id")
   .put(medicationController.update)
   .delete(medicationController.remove);
+
+router
+    .route("/:id")
+    .delete(medicationController.remove);
 
 module.exports = router;
