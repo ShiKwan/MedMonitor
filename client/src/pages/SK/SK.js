@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import medicationAPI from "../../utils/medicationAPI";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
 import Carousel from "../../components/Carousel";
 import Navbar from "../../components/Navbar";
 import Fade from "../../components/Fade";
@@ -12,7 +12,7 @@ import ModalExample from "../../components/Modals";
 import {Col, Row, Container} from "reactstrap";
 import Progress from "../../components/Progress";
 import Table from "../../components/Table";
-
+import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 class Books extends Component {
   state = {
     books: [],
@@ -20,7 +20,10 @@ class Books extends Component {
     author: "",
     synopsis: "",
     FadeButton : "Fade In/Out",
-    modalLabel : "Modal"
+    modalLabel : "Modal",
+    drugName : "",
+    drugType : "",
+    dosage : ""
   };
 
   componentDidMount() {
@@ -41,11 +44,26 @@ class Books extends Component {
       .catch(err => console.log(err));
   };
 
+  handleNewDrug  = event => {
+      event.preventDefault();
+      if(this.state.drugName && this.state.drugType && this.state.dosage){
+        medicationAPI.newDrug({
+          name : this.state.drugName,
+          type : this.state.drugType,
+          dose : this.state.dosage
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+      }
+      
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
+    console.log(event.target.value);
   };
 
   handleFormSubmit = event => {
@@ -66,6 +84,24 @@ class Books extends Component {
       
 
       <Container>
+        Add new med: 
+        <Form>
+            <FormGroup>
+                <Label >Drug name: </Label>
+                <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName}  />
+            </FormGroup>
+            <FormGroup>
+                <Label> Drug Type: </Label>
+                <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange}  value={this.state.drugType} />
+            </FormGroup>
+            <FormGroup>
+                <Label>Dosage: </Label>
+                <Input type="text" name="dosage" placeholder="dosage" onChange={this.handleInputChange} value={this.state.dosage} />
+            </FormGroup>
+            <Button onClick={this.handleNewDrug}>Submit</Button>
+        </Form>
+
+
         Example of navbar: 
         <Navbar />  
         Example of Carousel: 
@@ -137,7 +173,7 @@ class Books extends Component {
                 name="author"
                 placeholder="Author (required)"
               />
-              <TextArea
+             {/* <TextArea
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
@@ -146,9 +182,10 @@ class Books extends Component {
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
-              >
+             
                 Submit Book
               </FormBtn>
+              > */}
             </form>
           </Col>
           <Col size="md-6 sm-12">
