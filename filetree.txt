@@ -12,7 +12,7 @@ Project 3
             index.html
             manifest.json
         - src
-            - components (more to come)
+            - components
                 - Card
                     index.js
                     Card.js
