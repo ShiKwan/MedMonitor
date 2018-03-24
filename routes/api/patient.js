@@ -37,7 +37,7 @@ router
 // Matches with "/api/patient/forPatient/episode/:id" 
 router
     .route('/forPatient/episode/:id')
-    .get(patientController.findById); //A
+    .get(patientController.findById) //A
     .put(patientController.update); //A
 
 module.exports = router;
