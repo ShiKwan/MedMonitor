@@ -59,7 +59,7 @@ const doctorSeed = [
 const patient_dataSeed = [
   {
     date_created: Date.now,
-    // timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' }
+    
     active: true,
     //doctor: to be populated with _id from doctors collection
     details: {
@@ -75,7 +75,6 @@ const patient_dataSeed = [
         comments: "Look forward to seeying Ya"
     },
       episode: [{
-        //timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
         episode_id: "001",
         start_date: Date.now,
         doctor: "Dr John Heyworth",
@@ -94,8 +93,8 @@ const patient_dataSeed = [
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
             symptoms: [{
-                on: 3,
-                off: 1,
+                ontime: 3,
+                offtime: 1,
                 tremor: 4,
                 dexterity: 4,
                 stiffness: 3,
@@ -127,12 +126,13 @@ const patient_dataSeed = [
       }],
 
     }],
+    // timestamps: {'created_at', 'updated_at' }
 
   },
   // new patient
   {
     date_created: Date.now,
-    // timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' }
+
     active: true,
     //doctor: to be populated with _id from doctors collection
     details: {
@@ -148,7 +148,6 @@ const patient_dataSeed = [
         comments: "TAKE THOSE MEDS YOUNG MAN!"
     },
       episode: [{
-        //timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
         episode_id: "001",
         start_date: Date.now,
         doctor: "Dr melanie kopff",
@@ -167,8 +166,8 @@ const patient_dataSeed = [
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
             symptoms: [{
-                on: 2,
-                off: 3,
+                ontime: 2,
+                offtime: 3,
                 tremor: 2,
                 dexterity: 4,
                 stiffness: 4,
@@ -200,9 +199,11 @@ const patient_dataSeed = [
       }],
 
     }],
+     // timestamps: {'created_at', 'updated_at' }
 
   },
-   
+  
+
 ];
 
 // Insert seed data into the respective collections

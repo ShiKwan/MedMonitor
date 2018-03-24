@@ -51,7 +51,7 @@ module.exports = {
     // Remove a doctor
     // To be sent req.params.id of doctro to be deleted
     // Returns ?_id of deleted doctor
-    delete: function(req, res) {
+    remove: function(req, res) {
         db.Doctor
             .findById({ _id: req.params.id })
             .then(doctor => doctor.remove())

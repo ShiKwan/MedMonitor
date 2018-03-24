@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 const Patient_dataSchema = new Schema({
 
         date_created: {type: Date, default: Date.now},
-        timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
-        active: { type: boolean, default: true },
+        active: { type: Boolean, default: true },
 
         doctor: {
             type: Schema.Types.ObjectId,
@@ -28,7 +27,6 @@ const Patient_dataSchema = new Schema({
             },
 
         episode: [{
-            timestamps: {createdAt: 'created_at', updatedAt: 'updated_at' },
             episode_id: { type: String, required: true},
             start_date: { type: Date, required: true},
             doctor: String,
@@ -47,8 +45,8 @@ const Patient_dataSchema = new Schema({
                 meds_taken: Boolean,
                 // can add more detailed record of medications taken and notes here if required
                 symptoms: [{
-                    on: Number,
-                    off: Number,
+                    ontime: Number,
+                    offtime: Number,
                     tremor: Number,
                     dexterity: Number,
                     stiffness: Number,
@@ -81,8 +79,12 @@ const Patient_dataSchema = new Schema({
 
         }]              
 
-});
+    },
+
+    { timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'} }
+
+);
 
 var Patient_data = mongoose.model("Patient_data", Patient_dataSchema);
 
-module.exports = Patient_data;
+module.exports = Patient_data;      
