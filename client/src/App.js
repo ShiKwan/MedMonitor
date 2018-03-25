@@ -11,10 +11,16 @@ import New_Patient from "./pages/New_Patient";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
+// import Nav from "./components/Nav";
+// import Navbar from "./components/Navbar";
+import BSNavbar from "./components/BSNavbar";
+
+
 
 const App = () => (
   <Router>
     <div>
+      <BSNavbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/sk" component={SK} />
