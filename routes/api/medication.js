@@ -9,12 +9,12 @@ router.route("/")
 // Matches with "/api/medication/dose/:id"
 router
   .route("/dose/:id")
-  .put(medicationController.update)
-  .delete(medicationController.remove);
+  .put(medicationController.updateDose)
+  .delete(medicationController.removeDose);
 
 // Matches with "/api/medication/:id"
 router
     .route("/:id")
-    .delete(medicationController.remove);
+    .delete(medicationController.removeDrug);
 
 module.exports = router;
