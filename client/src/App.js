@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Detail from "./pages/Detail";
 import SK from "./pages/SK";
 import MH from "./pages/MH";
 import BS from "./pages/BS";
@@ -12,12 +11,10 @@ import New_Patient from "./pages/New_Patient";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 
 const App = () => (
   <Router>
     <div>
-      <Nav />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/sk" component={SK} />
