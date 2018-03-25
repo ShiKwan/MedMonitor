@@ -8,6 +8,7 @@ module.exports = {
     // Fetch all medications and doses
     // Returns json list of all medications sorted alphabetically by name
     findAll: function(req, res) {
+        console.log("findAll")
         db.Meds
             .find()
             .sort( {name: 1} )
@@ -38,7 +39,8 @@ module.exports = {
     // To be sent req.params.id with _id of medication and req.body with doses object {dose, form, route }
     // Note $addToSet only adds the new item if it is doesn't already exist (avoids duplicates)
     // Returns ?
-    update: function(req, res) {
+    updateDose: function(req, res) {
+        console.log("req " +  req.params.id + " : " + req.body)
         db.Meds
             .findOneAndUpdate(
                 { _id: req.params.id },
@@ -55,7 +57,7 @@ module.exports = {
     // Delete a medication
     // To be sent req.params.id with _id of medication to be deleted
     // Returns ?_id of medication deleted
-    remove: function(req, res) {
+    removeDrug: function(req, res) {
         db.Meds
             .findById({ _id: req.params.id })
             .then(medication => medication.remove())
@@ -71,7 +73,7 @@ module.exports = {
     // To be sent req.params.id with _id of medication and req.body with doses object {dose, form, route } to be removed
     // Note $pull will remove an element from an array where that element matches a supplied element, in this case a doses object
     // Returns ?
-    update: function(req, res) {
+    removeDose: function(req, res) {
         db.Meds
             .findOneAndUpdate(
                 { _id: req.params.id },

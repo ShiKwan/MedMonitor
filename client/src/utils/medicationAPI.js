@@ -9,7 +9,7 @@ export default {
         return axios.post("/api/medication", drugInfo);
     },
 
-    editDose: function(id, doseInfo){
+    newDose: function(id, doseInfo){
         return axios.put("/api/medication/dose/"+id, doseInfo);
     },
 
