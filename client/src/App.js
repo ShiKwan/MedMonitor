@@ -11,11 +11,9 @@ import New_Patient from "./pages/New_Patient";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
-// import Navbar from "./components/Navbar";
+import Admin_Report from "./pages/Admin_Report";
+import Admin_Episode from "./pages/Admin_Episode";
 import BSNavbar from "./components/BSNavbar";
-
-
 
 const App = () => (
   <Router>
@@ -30,6 +28,8 @@ const App = () => (
         <Route exact path="/episode" component={Episode} />
         <Route exact path="/patient" component={Patient} />
         <Route exact path="/admin" component={Admin} />
+        <Route exact path="/admin/report" component={Admin_Report} />
+        <Route exact path="/admin/episode" component={Admin_Episode} />
         <Route exact path="/appointment" component={Appointment} />
         <Route exact path="/new_patient" component={New_Patient} />
         <Route component={NoMatch} />
