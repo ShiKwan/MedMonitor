@@ -267,7 +267,7 @@ class Books extends Component {
                     indigestion: 2
                 }],
 
-                notes: "new  234 record!!!!!"
+                notes: "does this really work??"
             })
 
         .then(res => console.log(res))
