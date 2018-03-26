@@ -1,1 +1,1 @@
-export { default } from "./BS.js";
+export { default } from "./BS";

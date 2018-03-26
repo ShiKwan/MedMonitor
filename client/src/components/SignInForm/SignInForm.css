@@ -6,7 +6,8 @@
     max-width: 980px;
 }
 
-.form-group {
+.signInName,
+.signInPword {
     margin-left: 250px;
     margin-right: 250px;
 }
@@ -14,10 +15,6 @@
 .signin-form {
     margin: 100px auto;
     padding: 25px;
-}
-
-input.form-control {
-    padding-right: 25px;
 }
 
 #userName,

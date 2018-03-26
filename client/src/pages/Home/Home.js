@@ -1,4 +1,20 @@
 import React, { Component } from "react";
+import Header from "../../components/Header";
+import SignInForm from "../../components/SignInForm";
+
+import {
+    Nav,
+    Navbar,
+    NavItem,
+    NavLink,
+    Input,
+    Form,
+    FormGroup,
+    Label,
+    Button,
+    Container
+} from 'reactstrap';
+
 import './Home.css';
 
 class Home extends Component {
@@ -7,10 +23,13 @@ class Home extends Component {
     };
     render() {
         return (
-            <div>
-                Home Page
-            </div>
-        )
+        <Container fluid>
+            <Header />
+            <Container>
+                <SignInForm />
+            </Container>
+        </Container>
+        );
     }
 }
 

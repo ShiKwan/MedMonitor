@@ -13,12 +13,11 @@ import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
 import Admin_Report from "./pages/Admin_Report";
 import Admin_Episode from "./pages/Admin_Episode";
-import BSNavbar from "./components/BSNavbar";
+import Header from "./components/Header";
 
 const App = () => (
   <Router>
     <div>
-      <BSNavbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/sk" component={SK} />

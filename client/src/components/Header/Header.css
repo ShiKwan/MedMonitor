@@ -13,7 +13,7 @@ a.nav-link.active {
     text-align: center;
 }
 
-a.color-home.nav-link.active:hover{
+a.color-home.nav-link.active:hover {
     background-color: limegreen;
 }
 
@@ -23,8 +23,4 @@ a.color-app.nav-link.active:hover {
 
 a.color-logout.nav-link.active:hover {
     background-color: orangered;
-}
-
-.form-control {
-    margin-bottom: 10px;
 }
