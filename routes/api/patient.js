@@ -8,37 +8,37 @@ router.route("/all")
 // Matches with "/api/patient/contact/:id" A
 router
     .route('/contact/:id')
-    .put(patientController.update)
+    .put(patientController.updateContact)
 
-// Matches with "/api/patient/disable/:id" A
+// Matches with "/api/patient/inactivate/:id" A
 router
-    .route('/disable/:id')
-    .put(patientController.update)
+    .route('/inactivate/:id')
+    .put(patientController.updateInactivate)
 
 // Matches with "/api/patient/appointment/:id" A
 router
     .route('/appointment/:id')
-    .put(patientController.update)
+    .put(patientController.updateAppointment)
 
 // Matches with "/api/patient/forDoctor/:id"
 router
-    .route("/forDoctor/:id")
-    .get(patientController.findById) //A
+    .route("/forAdmin/:id")
+    .get(patientController.findByIdForAdmin) //A
 
 // Matches with "/api/patient/forPatient/:id" A
 router 
     .route('/forPatient/:id')
-    .get(patientController.findById);
+    .get(patientController.findByIdForPatient);
 
 // Matches with "/api/patient/forDoctor/episode/:id" 
     router 
     .route('/forDoctor/episode/:id')
-    .put(patientController.update); //A
+    .put(patientController.updateEpisode); //A
 
 // Matches with "/api/patient/forPatient/episode/:id" 
-router
+    router
     .route('/forPatient/episode/:id')
-    .get(patientController.findById) //A
-    .put(patientController.update); //A
+    .get(patientController.patientMeds) //A
+    .put(patientController.addRecord); //A
 
 module.exports = router;

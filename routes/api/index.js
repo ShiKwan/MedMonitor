@@ -4,7 +4,7 @@ const patientRoutes = require("./patient");
 const userRoutes = require("./user");
 const medicationRoutes = require("./medication");
 
-// Book routes
+//  routes
 router.use("/doctor", doctorRoutes);
 router.use("/patient", patientRoutes);
 router.use("/medication", medicationRoutes);
