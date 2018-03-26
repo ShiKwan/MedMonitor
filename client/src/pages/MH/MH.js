@@ -1,246 +1,375 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import medicationAPI from "../../utils/medicationAPI";
+import doctorAPI from "../../utils/doctorAPI";
+import patientAPI from "../../utils/patientAPI";
 import { Link } from "react-router-dom";
-import { List, ListItem } from "../../components/List";
-import Carousel from "../../components/Carousel";
-import Navbar from "../../components/Navbar";
-import Fade from "../../components/Fade";
-import ModalExample from "../../components/Modals";
 import {Col, Row, Container} from "reactstrap";
-import Progress from "../../components/Progress";
-import Table from "../../components/Table";
 import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 
 class Books extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: "",
-    FadeButton : "Fade In/Out",
-    modalLabel : "Modal",
-    drugName : "",
-    drugType : "",
-    dosage : "",
-    id: "5ab80f2c1c4aca497064cd25"
-    
+    id: "5ab8fa3e07428662bc98caf4"
   };
 
   componentDidMount() {
-    //this.loadAllDrugs();
+    this.loadAllDoctors();
   }
 
-// load all drugs
-loadAllDrugs = () => {
-    medicationAPI.findAll({})
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  };  
+
+    // -----------------------
+    // Medications route tests
+    // -----------------------
+
+    // load all drugs
+    loadAllDrugs = () => {
+        medicationAPI.findAll({})
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };  
 
 
-  // add a new drug
-  addNewDrug = event => {
-    event.preventDefault();
-    if(this.state.drugName && this.state.drugType && this.state.dosage) {
-        medicationAPI.newDrug({
-          name : this.state.drugName,
-          type : this.state.drugType,
-          dose : this.state.dosage
-      })
+    // add a new drug
+    addNewDrug = event => {
+        event.preventDefault();
+            medicationAPI.newDrug({
+            name : "Sinemet",
+            type : "dopamine agonist",
+            doses : {
+                dose: "10/150mg",
+                form: "tablet", 
+                route: "oral"
+            }
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
+
+
+    // delete a drug
+    deleteDrug = event => {
+        event.preventDefault();
+        medicationAPI.deleteMedication(this.state.id)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
-  };
 
-  // delete drug
-  deleteDrug = () => {
-    medicationAPI.deleteMedication(this.state.id)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
 
-// add new dose to existing medication
-// addNewDose = event => {
-//     event.preventDefault();
-//     medicationAPI.newDose(this.state.id,  {
-//             dose: "100/10mg",
-//             form: "tablet",
-//             route: "oral"
-//     })
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err));
+    // add new dose to existing medication
+    addNewDose = event => {
+        event.preventDefault();
+        medicationAPI.newDose(this.state.id,  {
+                dose: "100/10mg",
+                form: "tablet",
+                route: "oral"
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
 
-// };
+    };
 
-// delete a dose from existing medication
-deleteDose = event => {
+
+    // delete a dose from existing medication
+    // note dose object must exactly match the dose object to be deleted fromt the document
+    deleteDose = event => {
+        event.preventDefault();
+        medicationAPI.deleteDose(this.state.id,  {
+                dose: "100/10mg",
+                form: "tablet",
+                route: "oral"
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+
+    // Form handlers
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+        [name]: value
+        });
+        console.log(event.target.value);
+    };
+
+
+    // --------------------
+    // Doctor routes tests
+    // --------------------
+
+    // load all doctors
+    loadAllDoctors = () => {
+        doctorAPI.findAll({})
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };  
+
+
+    // find doctor by id
+    findDoctor = event => {
+        event.preventDefault();
+        doctorAPI.findOne(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };  
+
+    // Delete doctor by id
+    deleteDoctor = event => {
+        event.preventDefault();
+        doctorAPI.remove(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+     // add a new doctor
+     addNewDoctor = event => {
+        event.preventDefault();
+            doctorAPI.create({
+            name : {
+                first: "Peter",
+                last:  "Willis",
+                },
+            office : "Clevealnd Clinic, Downtown plaza 1",
+            email : "peter@thegreat.com",
+            phone: "254-456-8254"
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
+
+    // update a doctors details 
+    updateDoctor = event => {
     event.preventDefault();
-    medicationAPI.deleteDose(this.state.id,  {
-            dose: "100/10mg",
-            form: "tablet",
-            route: "oral"
+        doctorAPI.update(this.state.id, {
+        name : {
+            first: "General",
+            last:  "Mo",
+        },
+        office : "UH, Downtown  1",
+        email : "Mo@mo.com",
+        phone: "254-456-11111"
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
 
+
+    // ------------------------
+    // Patient_data route tests
+    // ------------------------
+
+    // load personal details of all patients (alphabetical by last name) ^^
+    loadAllPatients = () => {
+        patientAPI.findAll({})
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };  
+
+
+    // find patient data by id for Admin ^^
+    findPatientInfoForAdmin = event => {
+        event.preventDefault();
+        patientAPI.findPatientInfoForAdmin(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };  
+
+
+    // find patient data by id for Patient use ^^
+    findPatientInfoForPatient = event => {
+        event.preventDefault();
+        patientAPI.findPatientInfoForPatient(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }; 
+
+
+    // fetch patient medications ^^
+    findPatientMeds = event => {
+        event.preventDefault();
+        patientAPI.findPatientMeds(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+
+    // make patient inactive (leaves care of doctor) ^^
+    recordPatientInactive = event => {
+        event.preventDefault();
+        patientAPI.inactivatePatient(this.state.id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+
+
+    // update patient details (email and phone) ^^
+    updatePatientContactDetails = event => {
+        event.preventDefault();
+        patientAPI.updateContact(this.state.id, {
+            email: "patientemail@patient.com",
+            phone: "123-456-7890"
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+
+
+    // update next appointment
+    updatePatientAppointment = event => {
+        event.preventDefault();
+        patientAPI.updateAppointment(this.state.id, {
+            next_appt: Date(),
+            comments: "dont be late"
+            })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+    
+
+    // create a new patient record with data entered by patient
+    createNewRecord = event => {
+        event.preventDefault();
+        patientAPI.createNewRecord(this.state.id, {
+
+                date: Date(),
+                time: "0830",
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                symptoms: [{
+                    ontime: 1,
+                    offtime: 2,
+                    tremor: 4,
+                    dexterity: 4,
+                    stiffness: 2,
+                    initiation: 2,
+                    speach: 1,
+                    walking: 1,
+                    balance: 2,
+                    drooling: 1,
+                    malaise: 2
+                }],
+
+                emergencies: [{
+                    falls: false,
+                    choking: false,
+                    hallucination: false
+                }],
+
+                side_effects: [{
+                    sickness: 1,
+                    dizziness: 1,
+                    headaches: 1,
+                    drymouth: 1,
+                    urinating: 1,
+                    indigestion: 2
+                }],
+
+                notes: "new  234 record!!!!!"
+            })
+
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+
+
+    // create a new episode by doctor
+   createNewEpisode = event => {
+        event.preventDefault();
+        patientAPI.createNewEpisode (this.state.id, {
+
+            episode_id: "002",
+            start_date: Date(),
+            doctor: "my doctor",
+
+            medications: [{
+                medication: "Sinemet",
+                dose: "100mg/10mg",
+                form: "tablet",
+                route: "oral",
+                times: ["0800", "1600", "2000"]
+            }],
+
+            record: [{
+                date: Date.now,
+                time: 1200,
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                symptoms: [{
+                    ontime: 1,
+                    offtime: 1,
+                    tremor: 2,
+                    dexterity: 3,
+                    stiffness: 3,
+                    initiation: 3,
+                    speach: 2,
+                    walking: 3,
+                    balance: 1,
+                    drooling: 1,
+                    malaise: 1
+                }],
+
+                emergencies: [{
+                    falls: false,
+                    choking: false,
+                    hallucination: false
+                }],
+
+                side_effects: [{
+                    sickness: 2,
+                    dizziness: 1,
+                    headaches: 1,
+                    drymouth: 1,
+                    urinating: 1,
+                    indigestion: 1
+                }],
+
+                notes: "First record filled in with doctor"
+
+            }],
+
+        })
+
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+
+
+// ------
+// Render
+// ------
+
+    render() {
+        return (
+        
+            <Container>
+                Add new med: 
+                <Form>
+                    <FormGroup>
+                        <Label >Drug name: </Label>
+                        <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName}  />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label> Drug Type: </Label>
+                        <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange}  value={this.state.drugType} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Dosage: </Label>
+                        <Input type="text" name="dosage" placeholder="dosage" onChange={this.handleInputChange} value={this.state.dosage} />
+                    </FormGroup>
+                    <Button onClick={this.loadAllPatients}>loadall</Button>
+                    <Button onClick={this.createNewRecord}>record</Button>
+                    <Button onClick={this.createNewEpisode}>episode</Button>
+                    <Button onClick={this.findPatientMeds}>delete</Button>
+                    <Button onClick={this.recordPatientInactive}>findOne</Button>
+
+                    
+                </Form>
+            </Container>
+        )   
+    };
 };
-
-
-
-// Form handlers
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-    console.log(event.target.value);
-  };
-
-
-
-
-  render() {
-    return (
-      
-
-      <Container>
-        Add new med: 
-        <Form>
-            <FormGroup>
-                <Label >Drug name: </Label>
-                <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName}  />
-            </FormGroup>
-            <FormGroup>
-                <Label> Drug Type: </Label>
-                <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange}  value={this.state.drugType} />
-            </FormGroup>
-            <FormGroup>
-                <Label>Dosage: </Label>
-                <Input type="text" name="dosage" placeholder="dosage" onChange={this.handleInputChange} value={this.state.dosage} />
-            </FormGroup>
-            <Button onClick={this.addNewDrug}>Submit</Button>
-            <Button onClick={this.deleteDose}>NewDose</Button>
-
-            
-        </Form>
-
-
-        Example of navbar: 
-        <Navbar />  
-        Example of Carousel: 
-        <Carousel />
-
-        Example of Fade: 
-        <Fade FadeButton= {this.state.FadeButton}>
-          Potato?
-        </Fade>
-
-        Example of Container, Row, and Col:
-        <Container>
-          <Row>
-            <Col sm='4'> 4 col </Col>
-            <Col sm='8'> 8 col </Col>
-          </Row>
-        </Container>
-        Example of Fluid Container, Row, and Col:
-        <Container fluid>
-          <Row>
-            <Col sm='4'> 4 col </Col>
-            <Col sm='8'> 8 col </Col>
-          </Row>
-          <Row>
-            <Col sm='2'> 2 col </Col>
-            <Col sm='2'> 2 col </Col>
-            <Col sm='2'> 2 col </Col>
-            <Col sm='2'> 2 col </Col>
-            <Col sm='2'> 2 col </Col>
-            <Col sm='2'> 2 col </Col>
-          </Row>
-        </Container>
-        <br />
-        Example of Modal:
-        <ModalExample buttonLabel={this.state.modalLabel}/>
-
-        Example of Progress : 
-        <div className="text-center">25%</div>
-        <Progress value="25" />
-        <div className="text-center">Multiple bars </div>
-        <Progress multi>
-          <Progress bar color="success" value="50" />
-          <Progress bar color="danger" value='5' />
-          <Progress bar color='warning' value="45" />
-        </Progress>
-
-        <br />
-        Example of Table : 
-        <h1>Patient Information</h1>
-        <Table></Table>
-
-        <div style={{height: "1000px"}}></div>
-        <h1 style={{color: 'red'}}className="danger">KEEP THIS FOR REFERENCE</h1>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-             {/* <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-             
-                Submit Book
-              </FormBtn>
-              > */}
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
 
 export default Books;
