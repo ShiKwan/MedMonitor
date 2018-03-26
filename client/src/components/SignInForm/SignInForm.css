@@ -6,11 +6,11 @@
     max-width: 980px;
 }
 
-.signInName,
+/* .signInName,
 .signInPword {
     margin-left: 250px;
     margin-right: 250px;
-}
+} */
 
 .signin-form {
     margin: 100px auto;
