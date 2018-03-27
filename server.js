@@ -11,15 +11,15 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const {google} = require('googleapis');
+const mailer = require("./mailer");
+
 require('dotenv').config();
-
-
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
 
 app.use(session({
   secret: process.env.SESSION_SECRET,

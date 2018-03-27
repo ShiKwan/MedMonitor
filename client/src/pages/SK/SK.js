@@ -2,12 +2,24 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import medicationAPI from "../../utils/medicationAPI";
 import userAPI from "../../utils/userAPI";
+import nodeMailerAPI from "../../utils/nodemailerAPI";
 import { Link } from "react-router-dom";
 import {} from "reactstrap";
 import Carousel from "../../components/Carousel";
 import { Redirect } from 'react-router'
+import {Google} from 'react-oauth2';
+import reactMoment from "react-moment";
+import moment from "moment";
+import {GoogleLogin } from 'react-google-login';
+
+import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
 import { Alert, Button, Form, FormGroup, Label, Input, FormText, Col, Row, Container, Navbar} from 'reactstrap';
-class Books extends Component {
+let client_ID = { CLIENT_ID };
+let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+let SCOPES = "https://www.googleapis.com/auth/calendar";
+let GoogleAuth;
+
+class SK extends Component {
   state = {
     drugName : "",
     drugType : "",
@@ -20,11 +32,34 @@ class Books extends Component {
     redirect : false,
     messageCenter : "",
     messageStatus : "",
+    contactEmail: "",
+    contactName : "",
+    contactMessage : "",
+    id : "",
+    name : "",
+    email : "", 
+    gender : "",
+
+  };
+responseGoogle = (response) => {
+    console.log(response);
+    this.setState({
+        googleId : response.googleId,
+        accessToken : response.tokenObj.access_token,
+        tokenId : response.tokenId
+    })
+}
+  google = (err, res) =>{
+      if(!err){
+          console.log(res);
+      }else{
+          console.log(err);
+      }
   };
 
   componentDidMount() {
     //this.loadBooks();
-  }
+  };
 
   handleNewDrug  = event => {
       event.preventDefault();
@@ -42,7 +77,7 @@ class Books extends Component {
 
             console.log(err);}); 
       }
-  }
+  };
 
 
   handleCreatePatient = event => {
@@ -128,6 +163,22 @@ class Books extends Component {
     console.log(event.target.value);
   };
 
+  handleEmail = event => {
+      event.preventDefault();
+      nodeMailerAPI.sendMail({
+          name : this.state.contactName,
+          email : this.state.contactEmail,
+          message : this.state.contactMessage
+      })
+      .then(res =>{
+          console.log(res);
+          console.log("mail man work real hard!");
+      })
+      .catch(err => {
+          console.log(err);
+      })
+  }
+
   render() {
 
 
@@ -138,6 +189,34 @@ class Books extends Component {
         : 
             null 
         }
+        <Container>
+            <label><h1>Google Authentication:</h1></label>
+            <GoogleLogin
+                clientId={CLIENT_ID}
+                buttonText="Login"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+            />
+        </Container>
+        <Container>
+        <label><h1>Node Mailer</h1></label>
+            <Form>
+                <FormGroup>
+                    <Label>Contact Name</Label>
+                    <Input type="text" name="contactName" placeholder="Name" onChange={this.handleInputChange} value={this.state.contactName} />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Email Address: </Label>
+                        <Input type="text" name="contactEmail" placeholder="Email" onChange={this.handleInputChange} value={this.state.contactEmail} />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Message: </Label>
+                    <Input type="text" name="contactMessage" placeholder="Message.. " onChange={this.handleInputChange} value={this.state.contactMessage} />
+                </FormGroup>
+                <Button onClick={this.handleEmail}>Submit Message</Button>
+            </Form>
+        </Container>
+
         <Container>
             <Label><h1>Register:</h1></Label>
                 <br />March-24-18
@@ -211,4 +290,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default SK;

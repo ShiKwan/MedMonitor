@@ -5,19 +5,19 @@ import medicationAPI from "../../utils/medicationAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import patientAPI from "../../utils/patientAPI";
 import { Link } from "react-router-dom";
-import {Col, Row, Container} from "reactstrap";
-import {Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Container } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 
 class Books extends Component {
-  state = {
-    id: "5ab8fa3e07428662bc98caf4"
-  };
+    state = {
+        id: "5ab8fa3e07428662bc98caf4"
+    };
 
-  componentDidMount() {
-    this.loadAllDoctors();
-  }
+    componentDidMount() {
+        this.loadAllDoctors();
+    }
 
 
     // -----------------------
@@ -27,20 +27,20 @@ class Books extends Component {
     // load all drugs
     loadAllDrugs = () => {
         medicationAPI.findAll({})
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };  
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
 
     // add a new drug
     addNewDrug = event => {
         event.preventDefault();
-            medicationAPI.newDrug({
-            name : "Sinemet",
-            type : "dopamine agonist",
-            doses : {
+        medicationAPI.newDrug({
+            name: "Sinemet",
+            type: "dopamine agonist",
+            doses: {
                 dose: "10/150mg",
-                form: "tablet", 
+                form: "tablet",
                 route: "oral"
             }
         })
@@ -53,21 +53,21 @@ class Books extends Component {
     deleteDrug = event => {
         event.preventDefault();
         medicationAPI.deleteMedication(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
 
 
     // add new dose to existing medication
     addNewDose = event => {
         event.preventDefault();
-        medicationAPI.newDose(this.state.id,  {
-                dose: "100/10mg",
-                form: "tablet",
-                route: "oral"
+        medicationAPI.newDose(this.state.id, {
+            dose: "100/10mg",
+            form: "tablet",
+            route: "oral"
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
 
     };
 
@@ -76,13 +76,13 @@ class Books extends Component {
     // note dose object must exactly match the dose object to be deleted fromt the document
     deleteDose = event => {
         event.preventDefault();
-        medicationAPI.deleteDose(this.state.id,  {
-                dose: "100/10mg",
-                form: "tablet",
-                route: "oral"
+        medicationAPI.deleteDose(this.state.id, {
+            dose: "100/10mg",
+            form: "tablet",
+            route: "oral"
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
 
 
@@ -90,7 +90,7 @@ class Books extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-        [name]: value
+            [name]: value
         });
         console.log(event.target.value);
     };
@@ -103,37 +103,37 @@ class Books extends Component {
     // load all doctors
     loadAllDoctors = () => {
         doctorAPI.findAll({})
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };  
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
 
     // find doctor by id
     findDoctor = event => {
         event.preventDefault();
         doctorAPI.findOne(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };  
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
     // Delete doctor by id
     deleteDoctor = event => {
         event.preventDefault();
         doctorAPI.remove(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
 
-     // add a new doctor
-     addNewDoctor = event => {
+    // add a new doctor
+    addNewDoctor = event => {
         event.preventDefault();
-            doctorAPI.create({
-            name : {
+        doctorAPI.create({
+            name: {
                 first: "Peter",
-                last:  "Willis",
-                },
-            office : "Clevealnd Clinic, Downtown plaza 1",
-            email : "peter@thegreat.com",
+                last: "Willis",
+            },
+            office: "Clevealnd Clinic, Downtown plaza 1",
+            email: "peter@thegreat.com",
             phone: "254-456-8254"
         })
             .then(res => console.log(res))
@@ -142,18 +142,18 @@ class Books extends Component {
 
     // update a doctors details 
     updateDoctor = event => {
-    event.preventDefault();
+        event.preventDefault();
         doctorAPI.update(this.state.id, {
-        name : {
-            first: "General",
-            last:  "Mo",
-        },
-        office : "UH, Downtown  1",
-        email : "Mo@mo.com",
-        phone: "254-456-11111"
-    })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            name: {
+                first: "General",
+                last: "Mo",
+            },
+            office: "UH, Downtown  1",
+            email: "Mo@mo.com",
+            phone: "254-456-11111"
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
 
 
@@ -164,35 +164,35 @@ class Books extends Component {
     // load personal details of all patients (alphabetical by last name) ^^
     loadAllPatients = () => {
         patientAPI.findAll({})
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };  
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
 
     // find patient data by id for Admin ^^
     findPatientInfoForAdmin = event => {
         event.preventDefault();
         patientAPI.findPatientInfoForAdmin(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    };  
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
 
     // find patient data by id for Patient use ^^
     findPatientInfoForPatient = event => {
         event.preventDefault();
         patientAPI.findPatientInfoForPatient(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    }; 
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
 
 
     // fetch patient medications ^^
     findPatientMeds = event => {
         event.preventDefault();
         patientAPI.findPatientMeds(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
 
 
@@ -200,8 +200,8 @@ class Books extends Component {
     recordPatientInactive = event => {
         event.preventDefault();
         patientAPI.inactivatePatient(this.state.id)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     }
 
 
@@ -212,8 +212,8 @@ class Books extends Component {
             email: "patientemail@patient.com",
             phone: "123-456-7890"
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     }
 
 
@@ -223,62 +223,62 @@ class Books extends Component {
         patientAPI.updateAppointment(this.state.id, {
             next_appt: Date(),
             comments: "dont be late"
-            })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     }
-    
+
 
     // create a new patient record with data entered by patient
     createNewRecord = event => {
         event.preventDefault();
         patientAPI.createNewRecord(this.state.id, {
 
-                date: Date(),
-                time: "0830",
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                symptoms: [{
-                    ontime: 1,
-                    offtime: 2,
-                    tremor: 4,
-                    dexterity: 4,
-                    stiffness: 2,
-                    initiation: 2,
-                    speach: 1,
-                    walking: 1,
-                    balance: 2,
-                    drooling: 1,
-                    malaise: 2
-                }],
+            date: Date(),
+            time: "0830",
+            meds_taken: true,
+            // can add more detailed record of medications taken and notes here if required
+            symptoms: [{
+                ontime: 1,
+                offtime: 2,
+                tremor: 4,
+                dexterity: 4,
+                stiffness: 2,
+                initiation: 2,
+                speach: 1,
+                walking: 1,
+                balance: 2,
+                drooling: 1,
+                malaise: 2
+            }],
 
-                emergencies: [{
-                    falls: false,
-                    choking: false,
-                    hallucination: false
-                }],
+            emergencies: [{
+                falls: false,
+                choking: false,
+                hallucination: false
+            }],
 
-                side_effects: [{
-                    sickness: 1,
-                    dizziness: 1,
-                    headaches: 1,
-                    drymouth: 1,
-                    urinating: 1,
-                    indigestion: 2
-                }],
+            side_effects: [{
+                sickness: 1,
+                dizziness: 1,
+                headaches: 1,
+                drymouth: 1,
+                urinating: 1,
+                indigestion: 2
+            }],
 
-                notes: "new  234 record!!!!!"
-            })
+            notes: "new  234 record!!!!!"
+        })
 
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     }
 
 
     // create a new episode by doctor
-   createNewEpisode = event => {
+    createNewEpisode = event => {
         event.preventDefault();
-        patientAPI.createNewEpisode (this.state.id, {
+        patientAPI.createNewEpisode(this.state.id, {
 
             episode_id: "002",
             start_date: Date(),
@@ -332,28 +332,28 @@ class Books extends Component {
 
         })
 
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     }
 
 
-// ------
-// Render
-// ------
+    // ------
+    // Render
+    // ------
 
     render() {
         return (
-        
+
             <Container>
-                Add new med: 
+                Add new med:
                 <Form>
                     <FormGroup>
                         <Label >Drug name: </Label>
-                        <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName}  />
+                        <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName} />
                     </FormGroup>
                     <FormGroup>
                         <Label> Drug Type: </Label>
-                        <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange}  value={this.state.drugType} />
+                        <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange} value={this.state.drugType} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Dosage: </Label>
@@ -365,10 +365,10 @@ class Books extends Component {
                     <Button onClick={this.findPatientMeds}>delete</Button>
                     <Button onClick={this.recordPatientInactive}>findOne</Button>
 
-                    
+
                 </Form>
             </Container>
-        )   
+        )
     };
 };
 
