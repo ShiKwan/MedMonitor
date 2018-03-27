@@ -12,7 +12,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class Books extends Component {
     state = {
-        id: "5ab8fa3e07428662bc98caf4"
+    id: "5ab9ca8deeb04b6754f900bf"
     };
 
     componentDidMount() {
@@ -86,15 +86,7 @@ class Books extends Component {
     };
 
 
-    // Form handlers
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
             [name]: value
-        });
-        console.log(event.target.value);
-    };
-
 
     // --------------------
     // Doctor routes tests
@@ -202,7 +194,7 @@ class Books extends Component {
         patientAPI.inactivatePatient(this.state.id)
             .then(res => console.log(res))
             .catch(err => console.log(err));
-    }
+    };
 
 
     // update patient details (email and phone) ^^
@@ -214,7 +206,7 @@ class Books extends Component {
         })
             .then(res => console.log(res))
             .catch(err => console.log(err));
-    }
+    };
 
 
     // update next appointment
@@ -226,7 +218,7 @@ class Books extends Component {
         })
             .then(res => console.log(res))
             .catch(err => console.log(err));
-    }
+    };
 
 
     // create a new patient record with data entered by patient
@@ -267,12 +259,12 @@ class Books extends Component {
                 indigestion: 2
             }],
 
-            notes: "new  234 record!!!!!"
+                notes: "does this really work??"
         })
 
             .then(res => console.log(res))
             .catch(err => console.log(err));
-    }
+    };
 
 
     // create a new episode by doctor
@@ -280,7 +272,7 @@ class Books extends Component {
         event.preventDefault();
         patientAPI.createNewEpisode(this.state.id, {
 
-            episode_id: "002",
+            episode_id: "001",
             start_date: Date(),
             doctor: "my doctor",
 
@@ -293,8 +285,8 @@ class Books extends Component {
             }],
 
             record: [{
-                date: Date.now,
-                time: 1200,
+                date: Date(),
+                time: "1200",
                 meds_taken: true,
                 // can add more detailed record of medications taken and notes here if required
                 symptoms: [{
@@ -334,7 +326,67 @@ class Books extends Component {
 
             .then(res => console.log(res))
             .catch(err => console.log(err));
-    }
+    };
+
+
+    // add a new patient
+    addNewPatient = event => {
+        event.preventDefault();
+        patientAPI.createNewPatient ({
+
+            date_created: Date(),
+            active: true,
+            //doctor: to be populated with _id from doctors collection,
+
+            details: {
+                patient_number: "hosp0017",
+                first_name: "Billy", 
+                last_name: "Thekid",
+                dob:  "02/30/1965",
+                email: "billytk@what.com",
+                phone: "258-562-8765",
+            },            
+            
+            appointment: {
+                next_appt: Date(),
+                comments: "next appt fixed",
+                },
+
+            episode: [{
+                episode_id: "000",
+                start_date: Date(),
+                doctor: "my doctor",
+
+                medications: [{
+                    medication: "tbc",
+                }],
+
+                record: [{
+                    date: Date(),
+                    time: "1200",
+                    meds_taken: true,
+                    // can add more detailed record of medications taken and notes here if required
+                }],
+
+            }],
+            // timestamps: {'created_at', 'updated_at' }
+        })
+
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
+
+
+    
+    // Form handlers
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+        [name]: value
+        });
+        console.log(event.target.value);
+    };
 
 
     // ------
@@ -362,7 +414,7 @@ class Books extends Component {
                     <Button onClick={this.loadAllPatients}>loadall</Button>
                     <Button onClick={this.createNewRecord}>record</Button>
                     <Button onClick={this.createNewEpisode}>episode</Button>
-                    <Button onClick={this.findPatientMeds}>delete</Button>
+                    <Button onClick={this.addNewPatient}>add</Button>
                     <Button onClick={this.recordPatientInactive}>findOne</Button>
 
 

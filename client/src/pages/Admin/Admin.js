@@ -1,5 +1,18 @@
 import React, { Component } from "react";
+import HomeHeader from "../../components/HomeHeader";
 import './Admin.css';
+import {
+    Nav,
+    Navbar,
+    NavItem,
+    NavLink,
+    Input,
+    Form,
+    FormGroup,
+    Label,
+    Button,
+    Container
+} from 'reactstrap';
 
 class Admin extends Component {
     state = {
@@ -7,9 +20,12 @@ class Admin extends Component {
     };
     render() {
         return (
-            <div>
+        <div>
+            <Container fluid>
+            <HomeHeader />
                 Admin Page
-            </div>
+            </Container>
+        </div>
         )
     }
 }

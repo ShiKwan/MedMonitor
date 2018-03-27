@@ -1,17 +1,8 @@
 import React, { Component } from "react";
-import Header from "../../components/Header";
+import HomeHeader from "../../components/HomeHeader";
 import SignInForm from "../../components/SignInForm";
 
 import {
-    Nav,
-    Navbar,
-    NavItem,
-    NavLink,
-    Input,
-    Form,
-    FormGroup,
-    Label,
-    Button,
     Container
 } from 'reactstrap';
 
@@ -24,7 +15,7 @@ class Home extends Component {
     render() {
         return (
         <Container fluid>
-            <Header />
+            <HomeHeader />
             <Container>
                 <SignInForm />
             </Container>

@@ -26,12 +26,196 @@ const medicationSeed = [
   },
 
   {
+    name: "Sinemet CR extended release (carbidopa/levodopa)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "25mg/100mg", form: "tablet", route: "oral"},
+      {dose: "50mg/200mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Parcopa (carbidopa/levodopa)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "10mg/100mg", form: "tablet disintegrating", route: "oral"},
+      {dose: "25mg/100mg", form: "tablet disintegrating", route: "oral"},
+      {dose: "25mg/250mg", form: "tablet disintegrating", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Rytary extended release (carbidopa/levodopa)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "23.75mg/95mg", form: "capsule", route: "oral"},
+      {dose: "36.25mg/145mg", form: "capsule", route: "oral"},
+      {dose: "48.75mg/195mg", form: "capsule", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Duopa extended release (carbidopa/levodopa)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "4.63mg/20mg", form: " single use cassette", route: "enteral suspension"},
+    ]
+  },
+
+  {
+    name: "Mirapex (pramipexole)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "0.25mg", form: "tablet", route: "oral"},
+      {dose: "0.55mg", form: "tablet", route: "oral"},
+      {dose: "1.05mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Mirapex ER extended release (pramipexole)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "1.5mg", form: "tablet", route: "oral"},
+      {dose: "3.0mg", form: "tablet", route: "oral"},
+      {dose: "4.5mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Requip (ropinirole)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "1mg", form: "tablet", route: "oral"},
+      {dose: "2g", form: "tablet", route: "oral"},
+      {dose: "5mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Requip XL extended release (ropinirole)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "2mg", form: "tablet", route: "oral"},
+      {dose: "4mg", form: "tablet", route: "oral"},
+      {dose: "8mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Gocovri  (amantadine)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "100mg", form: "tablet", route: "oral"},
+      {dose: "50mg/ml", form: "syrup", route: "oral"},
+    ]
+  },
+
+  {
+    name: "Neupro (rotigotine)",
+    type: "Dopamine agonist",
+    doses: [
+      {dose: "1mg/24hr", form: "patch", route: "transdermal"},
+      {dose: "4mg/24hr", form: "patch", route: "transdermal"},
+      {dose: "8mg/24hr", form: "patch", route: "transdermal"}
+    ]
+  },
+
+  {
     name: "Apokyn(Apomorphine)",
     type: "Dopamine agonist",
     doses: [
       {dose: "2mg", form: "injection", route: "sub cutaneous"}
     ]
+  },
+
+  {
+    name: "Cogentin (benztropine)",
+    type: "anticholinergic",
+    doses: [
+      {dose: "0.5mg", form: "tablet", route: "oral"},
+      {dose: "1.0g", form: "tablet", route: "oral"},
+      {dose: "2.0mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Zelapar (selegiline)",
+    type: "MAO-B inhibitor",
+    doses: [
+      {dose: "1.25mg", form: "tablet/capsule", route: "oral"},
+      {dose: "1.0g", form: "tablet/capsule", route: "oral"},
+    ]
+  },
+
+  {
+    name: "Azilect (rasagiline)",
+    type: "MAO-B inhibitor",
+    doses: [
+      {dose: "0.5mg", form: "tablet", route: "oral"},
+      {dose: "1.0mg", form: "tablet", route: "oral"},
+    ]
+  },
+
+  {
+    name: "Aricept (donepezil)",
+    type: "Anticholinesterase",
+    doses: [
+      {dose: "5mg", form: "tablet", route: "oral"},
+      {dose: "10mg", form: "tablet", route: "oral"},
+      {dose: "23mg", form: "tablet", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Exelon (rivastigmine)",
+    type: "Anticholinesterase",
+    doses: [
+      {dose: "1.5mg", form: "tablet", route: "oral"},
+      {dose: "3.0", form: "tablet", route: "oral"},
+      {dose: "6.0mg", form: "tablet", route: "oral"},
+      {dose: "9.5mg", form: "patch", route: "transdermal"}
+    ]
+  },
+
+  {
+    name: "Razadyne (galantamine)",
+    type: "Anticholinesterase",
+    doses: [
+      {dose: "4mg", form: "tablet", route: "oral"},
+      {dose: "8mg", form: "tablet", route: "oral"},
+      {dose: "4mg", form: "solution", route: "oral"}
+    ]
+  },
+
+  {
+    name: "Namenda (Memantine)",
+    type: "NMDA Antagonist",
+    doses: [
+      {dose: "5mg", form: "tablet", route: "oral"},
+      {dose: "10mg", form: "tablet", route: "oral"},
+    ]
+  },
+
+  {
+    name: "Comtan (entacopone)",
+    type: "COMT inhibitor",
+    doses: [
+      {dose: "200mg", form: "tablet", route: "oral"},
+    ]
+  },
+
+  {
+    name: "Stalevo (carbidopa/levodopa/entacapone)",
+    type: "Anticholinesterase",
+    doses: [
+      {dose: "50mg/12.5mg/200mg", form: "tablet", route: "oral"},
+      {dose: "100mg/25mg/200mg", form: "tablet", route: "oral"},
+      {dose: "200mg/50mg/200mg", form: "tablet", route: "oral"}
+    ]
   }
+
+
 ];
 
 // Doctor collection seeds
@@ -58,7 +242,7 @@ const doctorSeed = [
 
 const patient_dataSeed = [
   {
-    date_created: Date.now,
+    date_created: Date(),
     
     active: true,
     //doctor: to be populated with _id from doctors collection
@@ -71,7 +255,7 @@ const patient_dataSeed = [
       phone: "123-534-5673",
     },
       appointment: {
-        next_appt: Date.now,
+        next_appt: Date(),
         comments: "Look forward to seeying Ya"
     },
       episode: [{
@@ -88,7 +272,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date.now,
+            date: Date(),
             time: "1000",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
@@ -131,8 +315,7 @@ const patient_dataSeed = [
   },
   // new patient
   {
-    date_created: Date.now,
-
+    date_created: Date(),
     active: true,
     //doctor: to be populated with _id from doctors collection
     details: {
@@ -144,12 +327,12 @@ const patient_dataSeed = [
       phone: "123-994-4532",
     },
       appointment: {
-        next_appt: Date.now,
+        next_appt: Date(),
         comments: "TAKE THOSE MEDS YOUNG MAN!"
     },
       episode: [{
         episode_id: "001",
-        start_date: Date.now,
+        start_date: Date(),
         doctor: "Dr melanie kopff",
 
         medications: [{
@@ -161,7 +344,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date.now,
+            date: Date(),
             time: "1200",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
@@ -196,9 +379,9 @@ const patient_dataSeed = [
             }],
 
           notes: "its worse than normal this am",
-      }],
+        }],
 
-    }],
+      }],
      // timestamps: {'created_at', 'updated_at' }
 
   },

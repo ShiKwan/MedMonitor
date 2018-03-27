@@ -10,6 +10,11 @@ router
     .route('/contact/:id')
     .put(patientController.updateContact)
 
+// Matches with "/api/patient/new" A
+router
+    .route('/new')
+    .post(patientController.create)
+
 // Matches with "/api/patient/inactivate/:id" A
 router
     .route('/inactivate/:id')

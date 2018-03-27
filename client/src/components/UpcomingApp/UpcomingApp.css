@@ -1,0 +1,11 @@
+.appCard {
+    margin-top: 25px;
+}
+
+.appCard .upcomingAppCard {
+    text-align: center;
+}
+
+.appCard .appRemindBtn {
+    margin-top: 20px;
+}

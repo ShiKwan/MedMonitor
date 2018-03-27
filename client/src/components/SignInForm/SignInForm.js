@@ -26,11 +26,11 @@ export default class SignInForm extends React.Component {
                         </Container>
                         <FormGroup row className="signInName">
                             <Label size="lg">User Name</Label>
-                            <Input type="email" name="email" id="userName" placeholder="user name" bsSize="lg" />
+                            <Input type="text" name="enterUser" id="enterUser" placeholder="user name" bsSize="lg" />
                         </FormGroup>
                         <FormGroup row className="signInPword">
                             <Label className="signin-label" size="lg">Password</Label>
-                            <Input type="email" name="email" id="userPassword" placeholder="password" bsSize="lg" />
+                            <Input type="password" name="userPassword" id="userPassword" placeholder="password" bsSize="lg" />
                         </FormGroup>
                         <Button className="submit-button" color="success">Submit</Button>{' '}
                     </Form>
