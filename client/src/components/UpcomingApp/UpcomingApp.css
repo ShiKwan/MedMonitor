@@ -4,8 +4,9 @@
 
 .appCard .upcomingAppCard {
     text-align: center;
+    margin-bottom: 35px;
 }
 
 .appCard .appRemindBtn {
-    margin-top: 20px;
+    margin-top: 22px;
 }

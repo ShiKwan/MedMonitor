@@ -6,6 +6,7 @@
 .physInfoCard .physInfoHeader,
 .physInfoCard .physInfoHours {
     text-align: center;
+    margin-bottom: 35px;
 }
 
 .physInfoCard .physInfoOffHr {
@@ -13,6 +14,6 @@
     margin-bottom: 10px;
 }
 
-.AppointmentCards {
+.AppointmentCard {
     margin-bottom: 25px;
 }
