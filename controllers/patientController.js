@@ -69,13 +69,27 @@ module.exports = {
     },
 
 
+    // Adda new patient document
+    // To be sent req.body with new patient object {see model}
+    // Returns json object of new doctor
+    create: function(req, res) {
+        //console.log("here: " + req.body.episode[0].record[0].time);
+        db.Patient_data.collection
+            .insert(req.body)
+            .then(patient => res.json(patient))
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+    },
+
+
 
     // Add new episode (for doctor use)
     // To be sent req.params.id with _id of patient and req.body with new episode object {see model}
     // $push pushes new element (in this case a episode object) into array (episode array)
     // Returns ?
     updateEpisode: function(req, res) {
-        console.log("req :" + req.params.id + "|" + req.body.time)
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
@@ -89,24 +103,16 @@ module.exports = {
     },
 
 
+
     // Add new record to episode (for patient use)
     // To be sent req.params.id with _id of patient and req.body with new record object {see model}
     // Note application frontend will need to deal with setting date and time of the record
-    // $push pushes new element (in this case a record object) into array (episode.record array)
+    // Also MongoDb doesn't allow pushing to nested arrays
+    // So we have to get the episode array, find its last item, 
+    //   --> push a new record onto the last episode's record array, 
+    //   --> then replace the old record array with the new one with the new record appended, 
+    //   --> then pop off the old episode and push the new one back to the episodes array!
     // Returns ?
-    // updateRecord: function(req, res) {
-    //     db.Patient_data
-    //         .findOneAndUpdate(
-    //             { _id: req.params.id },
-    //             { "episode.$.record": {$push: req.body} } 
-    //         )
-    //         .then(record => res.json(record))
-    //         .catch(err => {
-    //             console.log('CONTROLLER ERROR: ${err}');
-    //             res.status(422).json(err);
-    //         })
-    // },
-
     addRecord: function(req,res) {
         db.Patient_data
             .findOne({
@@ -115,11 +121,8 @@ module.exports = {
             .then(result => {
                     let lastEpisode = result.episode[result.episode.length-1]
                     let rec = lastEpisode.record;
-                        //console.log(rec);
                     rec.push(req.body);
-                        //console.log(rec);
                     lastEpisode.record = rec;
-                        //console.log(lastEpisode)
 
                      db.Patient_data
                      .findOneAndUpdate(
@@ -141,7 +144,7 @@ module.exports = {
                 res.status(422).json(err);
             })
     },  
- //console.log(req.params.id + "|" + lastEpisode)
+
 
     // Update patient email or phone number (other details are generally immutable) (for doctor or patient use)
     // To be sent req.params.id of patient to be updated and req.body with patint email and phone

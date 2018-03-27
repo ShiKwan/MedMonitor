@@ -6,6 +6,9 @@ export default {
     updateContact: function(id, objContact){
         return axios.put("/api/patient/contact/"+id, objContact);
     },
+    createNewPatient: function(objPatient){
+        return axios.post("/api/patient/new", objPatient);
+    },
     inactivatePatient: function(id){
         return axios.put("/api/patient/inactivate/"+id);
     },
