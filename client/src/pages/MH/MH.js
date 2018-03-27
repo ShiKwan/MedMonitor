@@ -28,7 +28,7 @@ class Books extends Component {
     loadAllDrugs = () => {
         medicationAPI.findAll({})
         .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     };  
 
 
