@@ -2,6 +2,7 @@ import React from 'react';
 import "./UpcomingApp.css";
 
 import { 
+    Container,
     Card, 
     Button, 
     CardTitle, 
@@ -16,33 +17,33 @@ import {
 const UpcomingApp = (props) => {
 
     return (
-        <div>
-            <Card className="appCard" body outline color="secondary">
-                <CardTitle>Upcoming Appointments</CardTitle>
+        <Container className="AppointmentCards">
+            <Card className="appCard" body outline color="warning">
+                <CardTitle className="upcomingAppCard">Upcoming Appointment</CardTitle>
                 <Form>
                     <Label for="appDate">Date</Label>
-                    <Input type="date" name="date" id="appDate" placeholder="date placeholder" />
+                    <Input type="text" size="lg" name="date" id="appDate" placeholder="date" />
 
                     <Label for="appTime">Time</Label>
-                    <Input type="time" name="time" id="appTime" placeholder="time placeholder" />
+                    <Input type="text" size="lg" name="time" id="appTime" placeholder="time" />
 
-                    <Label for = "exampleEmail">Doctor:</Label>
-                    <Input type = "email" name = "email" id = "doctorName" placeholder = "doctors name" />
+                    <Label for="appDocName">Doctor</Label>
+                    <Input type="text" size="lg" name="email" id="appDoctorName" placeholder="doctors name" />
 
-                    <Label for = "exampleEmail">Address:</Label>
-                    <Input type = "email" name = "email" id = "appAddress" placeholder = "app address" />
+                    <Label for="appAddress">Address</Label>
+                    <Input type="text" size="lg" name="email" id="appAddress" placeholder="app address" />
 
-                    <Label for = "exampleEmail">City</Label>
-                    <Input type = "email" name = "email" id = "appCity" placeholder = "app city" />
+                    <Label for="appCity">City</Label>
+                    <Input type="text" size="lg" name="email" id="appCity" placeholder="app city" />
 
-                    <Label for = "exampleEmail">Phone #</Label>
-                    <Input type = "email" name = "email" id = "officNum" placeholder = "app phone number" />
+                    <Label for="appPhNum">Phone #</Label>
+                    <Input type="text" size="lg" name="email" id="officNum" placeholder="app phone number" />
 
                 </Form>
-                <CardText>Add this Appointment to your Calander.</CardText>
-                <Button className="appRemind-button" color="success">Remind Me!</Button>{' '}
+                {/* <CardText className="addCalNote">Add This Appointment To Your Calander.</CardText> */}
+                <Button className="appRemindBtn" color="success">Remind Me!</Button>{' '}
             </Card>
-        </div>
+        </Container>
     );
 };
 
