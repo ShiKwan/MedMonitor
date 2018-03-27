@@ -85,9 +85,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
-            [name]: value
-
     // --------------------
     // Doctor routes tests
     // --------------------
