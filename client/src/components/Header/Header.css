@@ -3,8 +3,8 @@
 }
 
 .navbar {
-    background-color: #e8dcc9;
-    border-bottom: 5px solid #b38b4d;
+    background-color: #c2d6d6;
+    border-bottom: 5px solid #669999;
     box-shadow: 0px 0px 10px #bab9b9;
 }
 
@@ -13,14 +13,14 @@ a.nav-link.active {
     text-align: center;
 }
 
-a.color-home.nav-link.active:hover {
-    background-color: limegreen;
+a.color-home.nav-link.active,
+a.color-app.nav-link.active,
+a.color-logout.nav-link.active {
+    background-color: grey;
 }
 
-a.color-app.nav-link.active:hover {
-    background-color: orchid;
-}
-
+a.color-home.nav-link.active:hover,
+a.color-app.nav-link.active:hover,
 a.color-logout.nav-link.active:hover {
-    background-color: orangered;
+    background-color: green;
 }

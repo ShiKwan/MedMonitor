@@ -1,0 +1,16 @@
+.patSurveyCard {
+    margin-top: 25px;
+    height: 350px;
+}
+
+.patSurveyCard .patSurveyHeader {
+    text-align: center;
+    margin-bottom: 35px;
+    color: black;
+    background-color: #c2d6d6;
+}
+
+.surveyQuestions {
+    color: black;
+    padding: 25px;
+}

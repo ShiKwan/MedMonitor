@@ -6,6 +6,7 @@ import {
     Card, 
     Button, 
     CardTitle, 
+    CardHeader,
     CardText,
     Form,
     FormGroup,
@@ -18,8 +19,10 @@ const UpcomingApp = (props) => {
 
     return (
         <Container className="AppointmentCards">
-            <Card className="appCard" body outline color="warning">
-                <CardTitle className="upcomingAppCard">Upcoming Appointment</CardTitle>
+            <Card className="upcomingAppCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+            {/* <Card className="upcomingAppCard" body outline color="info"> */}
+                <CardHeader tag="h4" className="upcomingAppHeader">Upcoming Appointment</CardHeader>
+                <Card className="appCardInfo">
                     <Label className="appDate" for="appDate">Date:</Label>
                     <br>
                     </br>
@@ -36,8 +39,10 @@ const UpcomingApp = (props) => {
                     <br>
                     </br>
                     <Label className="appNum" for="appPhNum">Phone Number:</Label>
-
-                <Button className="appRemindBtn" color="success">Remind Me!</Button>{' '}
+                    <br>
+                    </br>
+                    <Button className="appRemindBtn">Remind Me!</Button>{' '}
+                </Card>
             </Card>
         </Container>
     );

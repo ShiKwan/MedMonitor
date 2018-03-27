@@ -1,12 +1,32 @@
-.appCard {
+.upcomingAppCard {
     margin-top: 25px;
 }
 
-.appCard .upcomingAppCard {
+.upcomingAppCard .upcomingAppHeader {
     text-align: center;
     margin-bottom: 35px;
+    color: black;
+    background-color: #c2d6d6;
 }
 
-.appCard .appRemindBtn {
-    margin-top: 22px;
+/* .physInfoCard .physInfoHeader {
+    color: black;
+    background-color: #c2d6d6;
+} */
+
+.upcomingAppCard .appRemindBtn {
+    margin-top: 6px;
+    color: white;
+    background-color: grey;
+}
+
+.upcomingAppCard .appCardInfo {
+    color: black;
+    padding: 10px;
+}
+
+.upcomingAppCard .appRemindBtn:hover {
+    margin-top: 6px;
+    color: white;
+    background-color: green;
 }
