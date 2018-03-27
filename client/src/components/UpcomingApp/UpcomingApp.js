@@ -20,27 +20,23 @@ const UpcomingApp = (props) => {
         <Container className="AppointmentCards">
             <Card className="appCard" body outline color="warning">
                 <CardTitle className="upcomingAppCard">Upcoming Appointment</CardTitle>
-                <Form>
-                    <Label for="appDate">Date</Label>
-                    <Input type="text" size="lg" name="date" id="appDate" placeholder="date" />
+                    <Label className="appDate" for="appDate">Date:</Label>
+                    <br>
+                    </br>
+                    <Label className="appTime" for="appTime">Time:</Label>
+                    <br>
+                    </br>
+                    <Label className="appDoctorName" for="appDocName">Doctor:</Label>
+                    <br>
+                    </br>
+                    <Label className="appAddress" for="appAddress">Address:</Label>
+                    <br>
+                    </br>
+                    <Label className="appCity" for="appCity">City:</Label>
+                    <br>
+                    </br>
+                    <Label className="appNum" for="appPhNum">Phone Number:</Label>
 
-                    <Label for="appTime">Time</Label>
-                    <Input type="text" size="lg" name="time" id="appTime" placeholder="time" />
-
-                    <Label for="appDocName">Doctor</Label>
-                    <Input type="text" size="lg" name="email" id="appDoctorName" placeholder="doctors name" />
-
-                    <Label for="appAddress">Address</Label>
-                    <Input type="text" size="lg" name="email" id="appAddress" placeholder="app address" />
-
-                    <Label for="appCity">City</Label>
-                    <Input type="text" size="lg" name="email" id="appCity" placeholder="app city" />
-
-                    <Label for="appPhNum">Phone #</Label>
-                    <Input type="text" size="lg" name="email" id="officNum" placeholder="app phone number" />
-
-                </Form>
-                {/* <CardText className="addCalNote">Add This Appointment To Your Calander.</CardText> */}
                 <Button className="appRemindBtn" color="success">Remind Me!</Button>{' '}
             </Card>
         </Container>
