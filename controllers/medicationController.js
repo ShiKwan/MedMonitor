@@ -25,8 +25,8 @@ module.exports = {
     // Returns added medication 
     create: function(req, res) {
         console.log("req", req.body);
-        db.Meds
-            .create(req.body)
+        db.Meds.collection
+            .insert(req.body)
             .then(medication => res.json(medication))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');

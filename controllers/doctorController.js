@@ -39,8 +39,8 @@ module.exports = {
     // To be sent req.body with object of doctor data to be added
     // Returns json of new doctor details
     create: function(req, res) {
-        db.Doctor
-            .create(req.body)
+        db.Doctor.collection
+            .insert(req.body)
             .then(doctor => res.json(doctor))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');

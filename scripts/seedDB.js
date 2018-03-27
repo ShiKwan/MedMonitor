@@ -242,7 +242,7 @@ const doctorSeed = [
 
 const patient_dataSeed = [
   {
-    date_created: Date.now,
+    date_created: Date(),
     
     active: true,
     //doctor: to be populated with _id from doctors collection
@@ -255,7 +255,7 @@ const patient_dataSeed = [
       phone: "123-534-5673",
     },
       appointment: {
-        next_appt: Date.now,
+        next_appt: Date(),
         comments: "Look forward to seeying Ya"
     },
       episode: [{
@@ -272,7 +272,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date.now,
+            date: Date(),
             time: "1000",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
@@ -315,8 +315,7 @@ const patient_dataSeed = [
   },
   // new patient
   {
-    date_created: Date.now,
-
+    date_created: Date(),
     active: true,
     //doctor: to be populated with _id from doctors collection
     details: {
@@ -328,12 +327,12 @@ const patient_dataSeed = [
       phone: "123-994-4532",
     },
       appointment: {
-        next_appt: Date.now,
+        next_appt: Date(),
         comments: "TAKE THOSE MEDS YOUNG MAN!"
     },
       episode: [{
         episode_id: "001",
-        start_date: Date.now,
+        start_date: Date(),
         doctor: "Dr melanie kopff",
 
         medications: [{
@@ -345,7 +344,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date.now,
+            date: Date(),
             time: "1200",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
@@ -380,9 +379,9 @@ const patient_dataSeed = [
             }],
 
           notes: "its worse than normal this am",
-      }],
+        }],
 
-    }],
+      }],
      // timestamps: {'created_at', 'updated_at' }
 
   },
