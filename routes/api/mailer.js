@@ -7,7 +7,6 @@ router.route("/contact")
             console.log("email : ", email);
             console.log("name : ", name);
             console.log("message : " , message);
-            console.log(mailer.test);
             mailer.send({ email, name, text: message }).then(() => {
             console.log(`Sent the message "${message}" from <${name}> ${email}.`);
             res.redirect('/#success');
