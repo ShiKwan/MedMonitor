@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import medicationAPI from "../../utils/medicationAPI";
 import userAPI from "../../utils/userAPI";
+import googleAPI from "../../utils/googleAPI";
 import nodeMailerAPI from "../../utils/nodemailerAPI";
 import { Link } from "react-router-dom";
 import {} from "reactstrap";
@@ -10,7 +11,7 @@ import { Redirect } from 'react-router'
 import {Google} from 'react-oauth2';
 import reactMoment from "react-moment";
 import moment from "moment";
-import {GoogleLogin } from 'react-google-login';
+import {GoogleAPI } from 'react-google-login';
 
 import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
 import { Alert, Button, Form, FormGroup, Label, Input, FormText, Col, Row, Container, Navbar} from 'reactstrap';
@@ -18,6 +19,29 @@ let client_ID = { CLIENT_ID };
 let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 let SCOPES = "https://www.googleapis.com/auth/calendar";
 let GoogleAuth;
+
+
+const reminder = {
+    'summary': 'Google I/O 2018',
+  'location': '800 Howard St., San Francisco, CA 94103',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2018-04-11T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+  'end': {
+    'dateTime': '2015-04-11T17:00:00-08:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+   'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'email', 'minutes': 24 * 60},
+      {'method': 'popup', 'minutes': 10},
+    ],
+  },
+}
+
 
 class SK extends Component {
   state = {
@@ -179,6 +203,70 @@ responseGoogle = (response) => {
       })
   }
 
+
+
+  handleoAuth2TokenGet = event => {
+      event.preventDefault();
+  // TODO: First try to get the token from sessionStorage here
+
+  // Build the oauth request url
+  const responseType = 'token';
+  const clientId = CLIENT_ID;
+  const redirectUri = "http://localhost:3000/";
+  const scope = 'https://www.googleapis.com/auth/calendar';
+  const prompt = 'consent';
+  const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=${prompt}`;
+
+  // Open a new window
+  const win = window.open(url, 'name', 'height=600,width=450');
+  if (win) win.focus();
+
+  const pollTimer = window.setInterval(() => {
+    try {
+      if (!!win && win.location.href.indexOf(redirectUri) !== -1) {
+        window.clearInterval(pollTimer);
+
+        // Get the URL hash with your token in it
+        const hash = win.location.hash;
+        win.close();
+
+        // Parse the string hash and convert to object of keys and values
+        const result = hash.substring(1)
+          .split('&')
+          .map(i => i.split('='))
+          .reduce((prev, curr) => ({
+            ...prev,
+            [curr[0]]: curr[1],
+          }), {});
+
+        // Calculate when the token expires and store in the result object
+        result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
+
+        console.log(result);
+        localStorage.setItem("access_token", result.access_token);
+
+        if(localStorage.getItem("access_token")){
+            console.log("event : ", reminder);
+            googleAPI.createEvent(localStorage.getItem("access_token"), reminder);
+        }
+        /* var request = window.gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event
+        });
+        request.execute(function(resp) {
+        console.log(resp);
+        });   */
+
+        
+
+        //  TODO: Persist result in sessionStorage here
+      }
+    } catch (err) {
+      // do something or nothing if window still not redirected after login
+    }
+  }, 100);
+}
+
   render() {
 
 
@@ -191,12 +279,9 @@ responseGoogle = (response) => {
         }
         <Container>
             <label><h1>Google Authentication:</h1></label>
-            <GoogleLogin
-                clientId={CLIENT_ID}
-                buttonText="Login"
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}
-            />
+
+            <Button onClick={this.handleoAuth2TokenGet}>Authorize from Google</Button>
+            
         </Container>
         <Container>
         <label><h1>Node Mailer</h1></label>

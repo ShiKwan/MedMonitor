@@ -29,7 +29,6 @@ router.post('/register', function (req, res) {
         }else {
             userController.createUser(newUser, function (err, user) {
             if (err) throw err
-            //req.flash('success_msg', 'You are registered and can now login')
             res.redirect('/sk')
           })
         }
