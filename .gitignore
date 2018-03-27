@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# keys and passwords
+client/src/config/*.js
