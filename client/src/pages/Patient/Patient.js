@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 import './Patient.css';
+import Header from "../../components/Header";
+import PatSurvey from "../../components/PatSurvey";
+
+
+import {
+    Container,
+    Row,
+    Col,
+} from 'reactstrap';
 
 class Patient extends Component {
     state = {
@@ -7,11 +16,20 @@ class Patient extends Component {
     };
     render(){
         return (
-            <div>
-                Patient Page
-            </div>
+            <Container fluid>
+                <Header />
+                <Container>
+                    <Row>
+                        <Col size='md-8'>
+                            <PatSurvey />
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
         )
     }
 }
 
 export default Patient;
+
+

@@ -1,5 +1,4 @@
-.physInfoCard,
-.physInfoHours {
+.physInfoCard {
     margin-top: 25px;
 }
 
@@ -9,11 +8,21 @@
     margin-bottom: 35px;
 }
 
+.physInfoCard .physInfoHeader {
+    color: black;
+    background-color: #c2d6d6;
+}
+
 .physInfoCard .physInfoOffHr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.AppointmentCard {
+.physCard {
     margin-bottom: 25px;
+}
+
+.physInfoCard .docCardInfo {
+    color: black;
+    padding: 10px;
 }
