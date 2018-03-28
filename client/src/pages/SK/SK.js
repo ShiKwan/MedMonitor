@@ -207,7 +207,7 @@ class SK extends Component {
 
   handleCreateEvent = event => {
       event.preventDefault();
-       
+        gapi.client.load('calendar', 'v3', function(){
           var request = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource': reminder
@@ -216,6 +216,7 @@ class SK extends Component {
           return request.execute(function (resp) {
             console.log(resp);
           }); 
+        });
   }
 
   handleoAuth2TokenGet = event => {
