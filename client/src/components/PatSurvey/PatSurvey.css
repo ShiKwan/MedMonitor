@@ -1,11 +1,21 @@
-.patSurveyCard {
+.patSurvey {
+    margin-bottom: 25px;
+}
+
+.patSurveyCard,
+.introSuvCard {
     margin-top: 25px;
-    height: 350px;
 }
 
 .patSurveyCard .patSurveyHeader {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
+    color: black;
+    background-color: #c2d6d6;
+}
+
+.introSuvCard .introSuvCardHeader {
+    text-align: center;
     color: black;
     background-color: #c2d6d6;
 }
@@ -13,4 +23,43 @@
 .surveyQuestions {
     color: black;
     padding: 25px;
+}
+
+button.suvRadBtn,
+button.suvChkBtn,
+button.suvChkBtnOrange,
+button.suvRadBtnOrange {
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 15px 25px 15px 25px;
+}
+
+button.suvRadBtn:hover,
+button.suvChkBtn:hover,
+button.suvChkBtnOrange:hover,
+button.suvRadBtnOrange:hover {
+    color: black;
+}
+
+h5,
+.surveyQandA,
+.radSelected,
+.chkSelected {
+    text-align: center;
+}
+
+.suvRadGroup,
+.suvChkGroup {
+    margin: 0 auto;
+}
+
+button.questSubmitBtn {
+    padding: 25px 0px 25px 0px;
+}
+
+.suvChkBtnOrange,
+.suvRadBtnOrange {
+    background-color: #ff6600;
 }
