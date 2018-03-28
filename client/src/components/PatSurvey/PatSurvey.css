@@ -32,7 +32,6 @@ button.suvRadBtnOrange {
     color: white;
     margin-right: 10px;
     margin-left: 10px;
-    margin-top: 10px;
     padding: 15px 25px 15px 25px;
 }
 
@@ -62,4 +61,9 @@ button.questSubmitBtn {
 .suvChkBtnOrange,
 .suvRadBtnOrange {
     background-color: #ff6600;
+}
+
+.suvChkGroup,
+.suvRadGroup {
+    display: grid;
 }
