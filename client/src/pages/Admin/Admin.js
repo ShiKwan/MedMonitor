@@ -99,7 +99,7 @@ class Admin extends Component {
                         <Card style={{display: this.state.workspaceCard? "block" : "none"}}>
                             <CardBody style={{height: 630}}>
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Workspace</CardTitle>
-                                <CardText> 
+                                <CardText>
                                     <div>Select patient</div>
                                 </CardText>
                             </CardBody>
