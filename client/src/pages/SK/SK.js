@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
 import medicationAPI from "../../utils/medicationAPI";
 import userAPI from "../../utils/userAPI";
 import googleAPI from "../../utils/googleAPI";
 import gapi from "gapi-client";
 import nodeMailerAPI from "../../utils/nodemailerAPI";
 import { Link } from "react-router-dom";
-import Carousel from "../../components/Carousel";
 import { Redirect } from 'react-router'
 import reactMoment from "react-moment";
 import moment from "moment";
 import {GoogleAPI } from 'react-google-login';
-import { GOOGLE_API_KEY, CALENDAR_ID, CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
+import {CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
 import { Alert, Button, Form, FormGroup, Label, Input, FormText, Col, Row, Container, Navbar} from 'reactstrap';
 
 gapi.load('client:auth2', initClient);
@@ -25,6 +23,7 @@ function initClient() {
     // do stuff with loaded APIs 
     console.log(data);
     // reference : https://www.npmjs.com/package/gapi-client
+    
     console.log('it worked');
   });
 }
@@ -36,28 +35,24 @@ let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 
 
 const reminder = {
-  'summary': 'Potato!',
-  'location': 'Case Western Reserve University',
-  'description': 'I got this going',
+    'summary': 'Google I/O 2018',
+  'location': '800 Howard St., San Francisco, CA 94103',
+  'description': 'A chance to hear more about Google\'s developer products.',
   'start': {
-    'dateTime': '2018-03-28T09:00:00-07:00',
-    'timeZone': 'America/Los_Angeles'
+    'dateTime': '2018-04-11T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
   },
   'end': {
-    'dateTime': '2018-03-28T17:00:00-07:30',
-    'timeZone': 'America/Los_Angeles'
+    'dateTime': '2015-04-11T17:00:00-08:00',
+    'timeZone': 'America/Los_Angeles',
   },
-  'attendees': [
-    { 'email': 'lpage@example.com' },
-    { 'email': 'sbrin@example.com' }
-  ],
-  'reminders': {
+   'reminders': {
     'useDefault': false,
     'overrides': [
-      { 'method': 'email', 'minutes': 24 * 60 },
-      { 'method': 'popup', 'minutes': 10 }
-    ]
-  }
+      {'method': 'email', 'minutes': 24 * 60},
+      {'method': 'popup', 'minutes': 10},
+    ],
+  },
 };
 
 
@@ -112,8 +107,8 @@ class SK extends Component {
         userAPI.createAccount({
             username : this.state.username,
             password : this.state.password,
-            email : "test@gmail.com",
-            role : "Patient"
+            email: "mel.kopffh@doctor.com",
+            role : "Admin"
         })
         .then(res => {
             console.log(res);
@@ -165,7 +160,9 @@ class SK extends Component {
               localStorage.setItem("email", res.data.email);
               localStorage.setItem("role", res.data.role);
               this.setState({
-                  role : res.data.role
+                  role : res.data.role,
+                  email: res.data.email,
+                  username : res.data.username
               })
           })
           .catch(err => {
@@ -173,7 +170,7 @@ class SK extends Component {
               console.log("setting redirect to true");
               console.log(err.response)
               this.setState({
-                  messageCenter: "Login failed!",
+                  messageCenter: "Invalid username or password",
                   messageStatus: "danger"
               });  
             }
@@ -207,16 +204,14 @@ class SK extends Component {
 
   handleCreateEvent = event => {
       event.preventDefault();
-        gapi.client.load('calendar', 'v3', function(){
-          var request = gapi.client.calendar.events.insert({
+        var request = gapi.calendar.events.insert({
             'calendarId': 'primary',
             'resource': reminder
-          });
-          console.log("here");
-          return request.execute(function (resp) {
-            console.log(resp);
-          }); 
         });
+        console.log("here");
+        return request.execute(function(resp) {
+        console.log(resp);
+        }); 
   }
 
   handleoAuth2TokenGet = event => {

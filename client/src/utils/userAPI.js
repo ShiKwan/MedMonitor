@@ -8,5 +8,8 @@ export default {
     },
     logout : function(){
         return axios.get("/api/user/logout");
+    },
+    isLoggedIn: function(){
+        return axios.get("/api/user/isLoggedIn");
     }
 }
