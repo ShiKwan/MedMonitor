@@ -36,24 +36,28 @@ let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 
 
 const reminder = {
-    'summary': 'Google I/O 2018',
-  'location': '800 Howard St., San Francisco, CA 94103',
-  'description': 'A chance to hear more about Google\'s developer products.',
+  'summary': 'Potato!',
+  'location': 'Case Western Reserve University',
+  'description': 'I got this going',
   'start': {
-    'dateTime': '2018-04-11T09:00:00-07:00',
-    'timeZone': 'America/Los_Angeles',
+    'dateTime': '2018-03-28T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles'
   },
   'end': {
-    'dateTime': '2015-04-11T17:00:00-08:00',
-    'timeZone': 'America/Los_Angeles',
+    'dateTime': '2018-03-28T17:00:00-07:30',
+    'timeZone': 'America/Los_Angeles'
   },
-   'reminders': {
+  'attendees': [
+    { 'email': 'lpage@example.com' },
+    { 'email': 'sbrin@example.com' }
+  ],
+  'reminders': {
     'useDefault': false,
     'overrides': [
-      {'method': 'email', 'minutes': 24 * 60},
-      {'method': 'popup', 'minutes': 10},
-    ],
-  },
+      { 'method': 'email', 'minutes': 24 * 60 },
+      { 'method': 'popup', 'minutes': 10 }
+    ]
+  }
 };
 
 
@@ -203,14 +207,15 @@ class SK extends Component {
 
   handleCreateEvent = event => {
       event.preventDefault();
-        var request = gapi.calendar.events.insert({
+       
+          var request = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource': reminder
-        });
-        console.log("here");
-        return request.execute(function(resp) {
-        console.log(resp);
-        }); 
+          });
+          console.log("here");
+          return request.execute(function (resp) {
+            console.log(resp);
+          }); 
   }
 
   handleoAuth2TokenGet = event => {
