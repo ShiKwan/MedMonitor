@@ -30,9 +30,7 @@ const send = ({ email, name, text }) => {
     )
   })
 }
-const test = "potato";
 
 module.exports = {
-    send,
-    test
+    send
 }
