@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
 import HomeHeader from "../../components/HomeHeader";
 import SignInForm from "../../components/SignInForm";
 import {Container, Alert} from 'reactstrap';
@@ -42,6 +42,9 @@ class Home extends Component {
                     messageCenter: "Login successfully!",
                     messageStatus: "success"
                 })
+                console.log("here after setting state")
+                this.props.getBackMessage(this.state.messageCenter);
+                this.props.getBackMessageStatus(this.state.messageStatus);
                 console.log("username : ", this.state.username);
                 console.log("local storage: ", localStorage.getItem("username"));
                 console.log("going to redirect");
@@ -57,12 +60,16 @@ class Home extends Component {
                 console.log("fail");
                 console.log("setting redirect to true");
                 console.log(err)
+                
                 this.setState({
                     messageCenter: "Invalid username or password",
                     messageStatus: "danger"
                 });
                 localStorage.setItem("messageCenter", "Invalid username or password");
                 localStorage.setItem("messageStatus", "danger");
+                this.props.getBackMessage(this.state.messageCenter);
+                this.props.getBackMessageStatus(this.state.messageStatus);
+                
             }
             );
         }
@@ -75,9 +82,12 @@ class Home extends Component {
         console.log([name] + ", " + event.target.value);
     };
     render() {
+        let sendBackMessage = this.props.getBackMessage;
+        let getBackMessageStatus = this.props.getBackMessageStatus;
+        
         return (
         <Container fluid>
-            <Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>
+            {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
             <HomeHeader />
             <Container>
                     <SignInForm onClick={this.handleLogin} onChange={this.handleInputChange} username={this.props.username} password={this.state.password} />
@@ -87,4 +97,4 @@ class Home extends Component {
     }
 };
 
-export default Home;
+export default withRouter(Home);

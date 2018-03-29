@@ -48,13 +48,32 @@ const PrivateAdminRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 class App extends Component {
-  state = {
-    username : "",
-    role :"",
-    email : "",
-    messageCenter : "",
-    messageStatus : ""
+  constructor(props){
+    super(props);
+    this.state = {
+      username: "",
+      role: "",
+      email: "",
+      messageCenter: "",
+      messageStatus: ""
+    }
+    this.getBackMessage = this.getBackMessage.bind(this)
+    this.getBackMessageStatus = this.getBackMessageStatus.bind(this)
+
   }
+  getBackMessage(messageCenter){
+    console.log("here getting back message")
+    this.setState({
+      messageCenter : messageCenter
+    })
+  }
+
+  getBackMessageStatus(messageStatus){
+    this.setState({
+      messageStatus : messageStatus
+    })
+  }
+  
   componentDidMount(){
     userAPI.isLoggedIn().then( res => {
       console.log(res);
@@ -88,10 +107,10 @@ class App extends Component {
   return(
   <Router>
     <div>
-        {/*localStorage.getItem("messageCenter") ? <Alert color={localStorage.getItem("messageStatus")} className="text-center">{localStorage.getItem("messageCenter")}</Alert> : null */}
+        {localStorage.getItem("messageCenter") ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
       <Switch>
-        <Route exact path="/" component={Home} render= {() => (this.state.username ? (<Redirect to = "/patient" />) : null)} />
-        <Route exact path="/home" component={Home} />
+          <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
+          <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
         <Route exact path="/sk" component={SK} />
         <Route exact path="/mh" component={MH} />
         <Route exact path="/bs" component={BS} />
