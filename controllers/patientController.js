@@ -14,7 +14,7 @@ module.exports = {
         .find( {}, {details: 1} )
         .populate("doctor")
         .sort( {"details.last_name": 1} )
-        .then(doctorList=> res.json(doctorList))
+        .then(patientList=> res.json(patientList))
         .catch(err => {
             console.log('CONTROLLER ERROR: ${err}');
             res.status(422).json(err);
