@@ -13,7 +13,7 @@ const Patient_dataSchema = new Schema({
         },
 
         details: {
-            patient_number: {type: Number, required: true },
+            patient_number: {type: String, required: true },
             first_name: { type: String, required: true }, 
             last_name: { type: String, required: true },
             dob:  {type: String, required: true },
@@ -44,7 +44,7 @@ const Patient_dataSchema = new Schema({
                 time: { type: String, required: true},
                 meds_taken: Boolean,
                 // can add more detailed record of medications taken and notes here if required
-                symptoms: [{
+                symptoms: {
                     ontime: Number,
                     offtime: Number,
                     tremor: Number,
@@ -56,22 +56,22 @@ const Patient_dataSchema = new Schema({
                     balance: Number,
                     drooling: Number,
                     malaise: Number,
-                }],
+                },
 
-                emergencies: [{
+                emergencies: {
                     falls: Boolean,
                     choking: Boolean,
                     hallucination: Boolean,
-                }],
+                },
 
-                side_effects: [{
+                side_effects: {
                     sickness: Number,
                     dizziness: Number,
                     headaches: Number,
                     drymouth: Number,
                     urinating: Number,
                     indigestion: Number,
-                }],
+                },
 
                 notes: String,
 

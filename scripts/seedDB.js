@@ -290,7 +290,7 @@ const patient_dataSeed = [
             time: "1000",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
-            symptoms: [{
+            symptoms: {
                 ontime: 3,
                 offtime: 1,
                 tremor: 4,
@@ -302,23 +302,23 @@ const patient_dataSeed = [
                 balance: 1,
                 drooling: 1,
                 malaise: 2,
-            }],
+            },
 
-            emergencies: [
+            emergencies: 
               {
                 falls: false,
                 choking: false,
                 hallucination: false,
-            }],
+            },
 
-            side_effects: [{
+            side_effects: {
                 sickness: 2,
                 dizziness: 2,
                 headaches: 1,
                 drymouth: 1,
                 urinating: 1,
                 indigestion: 1,
-            }],
+            },
 
           notes: "",
       }],
@@ -362,7 +362,7 @@ const patient_dataSeed = [
             time: "1200",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
-            symptoms: [{
+            symptoms: {
                 ontime: 2,
                 offtime: 3,
                 tremor: 2,
@@ -374,23 +374,23 @@ const patient_dataSeed = [
                 balance: 2,
                 drooling: 1,
                 malaise: 3,
-            }],
+            },
 
-            emergencies: [
+            emergencies: 
               {
                 falls: false,
                 choking: false,
                 hallucination: false,
-            }],
+            },
 
-            side_effects: [{
+            side_effects: {
                 sickness: 1,
                 dizziness: 2,
                 headaches: 3,
                 drymouth: 1,
                 urinating: 1,
                 indigestion: 1,
-            }],
+            },
 
           notes: "its worse than normal this am",
         }],

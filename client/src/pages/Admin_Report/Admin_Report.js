@@ -15,19 +15,26 @@ import {
 } from 'reactstrap';
 
 class Admin_Report extends Component {
-    state = {
+    state = { 
+        patientId: ""
 
     };
+    
+componentDidMount() {
+    this.setState({patientId: window.location.search})
+};
+
     render() {
         return (
             <div>
                 <Container fluid>
                 <HomeHeader />
-                Admin Report Page
+                    Admin Report Page<br />
+                    Patient id: {this.state.patientId}
                 </Container>
             </div>
         )
     }
-}
+};
 
 export default Admin_Report;

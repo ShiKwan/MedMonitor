@@ -12,7 +12,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class Books extends Component {
     state = {
-    id: "5ab9ca8deeb04b6754f900bf"
+    id: "5abbfd955d44324ef49b1bc8"
     };
 
     componentDidMount() {
@@ -227,7 +227,7 @@ class Books extends Component {
             time: "0830",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
-            symptoms: [{
+            symptoms: {
                 ontime: 1,
                 offtime: 2,
                 tremor: 4,
@@ -239,22 +239,22 @@ class Books extends Component {
                 balance: 2,
                 drooling: 1,
                 malaise: 2
-            }],
+            },
 
-            emergencies: [{
+            emergencies: {
                 falls: false,
                 choking: false,
                 hallucination: false
-            }],
+            },
 
-            side_effects: [{
+            side_effects: {
                 sickness: 1,
                 dizziness: 1,
                 headaches: 1,
                 drymouth: 1,
                 urinating: 1,
                 indigestion: 2
-            }],
+            },
 
                 notes: "does this really work??"
         })
@@ -286,7 +286,7 @@ class Books extends Component {
                 time: "1200",
                 meds_taken: true,
                 // can add more detailed record of medications taken and notes here if required
-                symptoms: [{
+                symptoms: {
                     ontime: 1,
                     offtime: 1,
                     tremor: 2,
@@ -298,22 +298,22 @@ class Books extends Component {
                     balance: 1,
                     drooling: 1,
                     malaise: 1
-                }],
+                },
 
-                emergencies: [{
+                emergencies: {
                     falls: false,
                     choking: false,
                     hallucination: false
-                }],
+                },
 
-                side_effects: [{
+                side_effects: {
                     sickness: 2,
                     dizziness: 1,
                     headaches: 1,
                     drymouth: 1,
                     urinating: 1,
                     indigestion: 1
-                }],
+                },
 
                 notes: "First record filled in with doctor"
 
@@ -411,7 +411,7 @@ class Books extends Component {
                     <Button onClick={this.loadAllPatients}>loadall</Button>
                     <Button onClick={this.createNewRecord}>record</Button>
                     <Button onClick={this.createNewEpisode}>episode</Button>
-                    <Button onClick={this.addNewPatient}>add</Button>
+                    <Button onClick={this.addNewPatient}>add pt</Button>
                     <Button onClick={this.recordPatientInactive}>findOne</Button>
 
 
