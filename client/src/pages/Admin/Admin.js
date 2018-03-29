@@ -2,16 +2,12 @@ import React, { Component } from "react";
 import HomeHeader from "../../components/HomeHeader";
 import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
+import doctorAPI from "../../utils/doctorAPI";
 import {
-    Nav,
-    Navbar,
-    NavItem,
-    NavLink,
-    Input,
-    Form,
-    FormGroup, ListGroup, ListGroupItem,
-    Label,
-    Button,
+    Nav, Navbar, NavItem, NavLink, 
+    Form, FormGroup, Label, Input, FormText,
+    Button, 
+    ListGroup, ListGroupItem,
     Container, Row, Col, 
     Card, CardBody, CardTitle, CardSubtitle, CardText,
     Table
@@ -25,9 +21,9 @@ class Admin extends Component {
         notificationCard: true,
         
         selectPatientCard: true,
-        addtPatientCard: false,
-        selectPysicianCard: false,
-        addphysicianCard: false,
+        addPatientCard: false,
+        selectPhysicianCard: false,
+        addPhysicianCard: false,
         selectMedcationCard: false,
         addMedicationtCard: false,
         confirmPatientCard: false,
@@ -40,54 +36,162 @@ class Admin extends Component {
         patientEpisodesStart: [],
         recordsLastPatientEpisode: [],
 
+        pt_firstname: "",
+        pt_lastname: "",
+        pt_hospnum: "",
+        pt_dob: "",
+        pt_email: "",
+        pt_phone: "",
+
+        dr_firstname: "",
+        dr_lastname: "",
+        dr_idnum: "",
+        dr_office: "",
+        dr_dob: "",
+        dr_email: "",
+        dr_phone: "",
+
+        physician_name: "",
+
+
     };
 
-// Call funtion to fetch data required for admin page when Admin component mounts
-componentDidMount() {
-    this.loadAllPatients(); 
-};
+    // Call function to fetch data required for admin page when Admin component mounts
+    componentDidMount() {
+        this.loadAllPatients(); 
+    };
 
 
-loadAllPatients = () => {
-    patientAPI.findAll({})
-        .then(res => { 
-            this.setState({ patients: res.data}); 
-            console.log(this.state.patients)
-         })
+    menuSelect = (menuItem) => {
+        menuItem == "select patient" ? this.setState({selectPatientCard: true}): this.setState({selectPatientCard: false});
+        //menuItem == "confirm patient" ? this.setState({confirmPatientCard: true}) : this.setState({confirmPatientCard: false});
+        menuItem == "add patient" ? this.setState({addPatientCard: true}) : this.setState({addPatientCard: false});
+        menuItem == "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
+        menuItem == "add physician" ? this.setState({addPhysicianCard: true}) : this.setState({addPhysicianCard: false});
+        menuItem == "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedcationCard: false});
+        menuItem == "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
+        this.setState({confirmPatientCard: false});
+        this.setState({successPatientCard: false});
+        this.setState({successPhysicianCard: false});
+    }
+
+
+    loadAllPatients = () => {
+        patientAPI.findAll({})
+            .then(res => { 
+                this.setState({ patients: res.data}); 
+                console.log(this.state.patients)
+            })
+            .catch(err => console.log(err));
+    };
+
+
+    confirmPatient = (id) => {
+        // find patient data by id for Admin ^^
+        patientAPI.findPatientInfoForAdmin(id)
+            .then(res => {
+                this.setState({confirmPatientCard: true});
+                this.setState({selectPatientCard: false});
+                this.setState({patient: res.data});
+                this.setState({patientDetails: this.state.patient.details})
+                this.setState({patientAppointment: this.state.patient.appointment})
+                this.setState({patientEpisodes: this.state.patient.episode})
+                this.setState({patientEpisodesStart: this.state.patientEpisodes[this.state.patientEpisodes.length-1].start_date})
+                this.setState({recordsLastPatientEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1].record.length})
+            })
+            .catch(err => console.log(err));
+    };
+
+
+    // add a new patient
+    enrollPatient = event => {
+        event.preventDefault();
+        patientAPI.createNewPatient ({
+
+            date_created: Date(),
+            active: true,
+
+            //doctor: to be populated with _id from doctors collection,
+
+            details: {
+                patient_number: this.state.pt_hospnum,
+                first_name: this.state.pt_firstname, 
+                last_name: this.state.pt_lastname,
+                dob:  this.state.pt_dob,
+                email: this.state.pt_email,
+                phone: this.state.pt_phone,
+            },            
+            appointment: {
+                next_appt: Date(),
+                comments: "tba",
+            },
+            episode: [{
+                episode_id: "000",
+                start_date: Date(),
+                doctor: "my doctor",
+
+                medications: [{
+                    medication: "tbc",
+                }],
+                record: [{
+                    date: Date(),
+                    time: "1200",
+                    meds_taken: true,
+                    // can add more detailed record of medications taken and notes here if required
+                }],
+            }],
+            // timestamps: {'created_at', 'updated_at' }
+        })
+
+        .then(res => {
+            console.log(res.data.insertedIds);
+            this.setState({addPatientCard: false});
+            this.setState({successPatientCard: true});
+            this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
+        })
         .catch(err => console.log(err));
-};
+    };
 
-confirmPatient = (id) => {
-    // find patient data by id for Admin ^^
-    patientAPI.findPatientInfoForAdmin(id)
-         .then(res => {
-             this.state.confirmPatientCard = true;
-             this.state.selectPatientCard = false;
-             this.setState({patient: res.data});
-             this.setState({ patientDetails: this.state.patient.details})
-             this.setState({ patientAppointment: this.state.patient.appointment})
-             this.setState({ patientEpisodes: this.state.patient.episode})
-             this.setState({ patientEpisodesStart: this.state.patientEpisodes[this.state.patientEpisodes.length-1].start_date})
-             this.setState({ recordsLastPatientEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1].record.length})
-         })
+
+     // add a new doctor
+     addDoctor= event => {
+        event.preventDefault();
+        doctorAPI.create ({
+
+            date_added: Date(),
+            name: { 
+                first: this.state.dr_firstname, 
+                last: this.state.dr_lastname 
+            },
+            id_number:  this.state.dr_idnum,
+            office: this.state.dr_office,
+            email: this.state.dr_email,
+            phone: this.state.dr_phone,
+
+            // timestamps: {'created_at', 'updated_at' }
+        })
+
+        .then(res => {
+            console.log(res.data.insertedIds);
+            this.setState({addPhysicianCard: false});
+            this.setState({successPhysicianCard: true});
+            this.setState({physician_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
+        })
         .catch(err => console.log(err));
-};
-
-episodeRedirect = (id) => {
-    console.log("id: " + id)
-    window.location = '/Episode?id=' + id
-}
+    };
 
 
-menuSelect = (menuItem) => {
-    menuItem = "select patient" ? this.setState({selectPatientCard: true}) : this.setState({selectPatientCard: false});
-    menuItem = "add patient" ? this.setState({addPatientCard: true}) : this.setState({addPatientCard: false});
-    menuItem = "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
-    menuItem = "add physician" ? this.setState({addPysicianCard: true}) : this.setState({addPhysicianCard: false});
-    menuItem = "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedcationCard: false});
-    menuItem = "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
 
-}
+
+
+    // Dynamic form handler
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+        [name]: value
+        });
+        console.log(event.target.value);
+    };
 
 
 
@@ -113,14 +217,14 @@ menuSelect = (menuItem) => {
                             <CardBody>
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Actions</CardTitle>
                                 <CardText> 
-                                    <div style={{fontWeight: this.state.selectPatientCard ? "bold" : ""}}><a onClick={() => this.menuSelect("select patient")}>Select patient</a></div>
-                                    <div style={{fontWeight: this.state.addtPatientCard ? "bold" : ""}}>Add new patient</div>
+                                    <div style={{fontWeight: this.state.selectPatientCard || this.state.confirmPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("select patient")}>Select patient</a></div>
+                                    <div style={{fontWeight: this.state.addPatientCard || this.state.successPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("add patient")}>Enroll new patient</a></div>
                                     <hr />
                                 </CardText>
 
                                 <CardText> 
-                                    <div style={{fontWeight: this.state.selectPysicianCard ? "bold" : ""}}>Select physician</div>
-                                    <div style={{fontWeight: this.state.addphysicianCard ? "bold" : ""}}>Add new physician</div>
+                                    <div style={{fontWeight: this.state.selectPhysicianCard ? "bold" : ""}}>Select physician</div>
+                                    <div style={{fontWeight: this.state.addPhysicianCard || this.state.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.menuSelect("add physician")}>Add new physician</a></div>
                                     <hr />
                                 </CardText>
 
@@ -145,7 +249,7 @@ menuSelect = (menuItem) => {
         
                     <Col sm="6">
 
-                        <Card style={{display: this.state.selectPatientCard? "block" : "none"}}>
+                        <Card style={{display: this.state.selectPatientCard ? "block" : "none"}}>
                             <CardBody style={{minHeight: 550}}>
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Select patient</CardTitle>
                                 <CardText>
@@ -153,18 +257,14 @@ menuSelect = (menuItem) => {
                                     {this.state.patients.length ? (
 
                                         <Table>
-
                                             <tbody>
                                                 {this.state.patients.map(item => (
-
                                                         <tr>
                                                             <a  onClick={() => this.confirmPatient(item._id)}>
                                                                 <td style={{width: 100}}>{item.details.patient_number}</td>
                                                                 <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
-                                                                
                                                             </a>
                                                         </tr>
-
                                                 ))} 
                                             </tbody>
                                         </Table>
@@ -173,59 +273,152 @@ menuSelect = (menuItem) => {
                                     <h3>No Results to Display</h3>
                                     )}
 
-                                   
-                                    
-
                                 </CardText>
                             </CardBody>
                         </Card> 
 
 
-                         <Card style={{display: this.state.confirmPatientCard? "block" : "none"}}>
+                         <Card style={{display: this.state.confirmPatientCard ? "block" : "none"}}>
                             <CardBody style={{minHeight: 550}}>
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
                              
                                 <CardText>
                                     <br />
-                                    Hospital Number: {this.state.patientDetails.patient_number}
-                                    <br />
-                                    Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name}
-                                    <br />
-                                    Date of Birth: {this.state.patientDetails.dob}
-                                    <br /><br />
-                                    Enrolled: {this.state.patient.date_created}
-                                    <br />
-                                    Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"}
-                                    <br />
-                                    Next Appointmant: {this.state.patientAppointment.next_appt}
-                                    <br /><br />
-                                    E-mail: {this.state.patientDetails.email}
-                                    <br />
-                                    Phone: {this.state.patientDetails.phone}
-                                    <br />
-                                    <br />
-                                    Episodes recorded: {this.state.patientEpisodes.length}
-                                    <br />
-                                    Start of last Episode: {this.state.patientEpisodesStart}
-                                    <br />
+                                    Hospital Number: {this.state.patientDetails.patient_number} <br />
+                                    Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name} <br/>
+                                    Date of Birth: {this.state.patientDetails.dob} <br /><br />
+                                    Enrolled: {this.state.patient.date_created} <br />
+                                    Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"} <br />
+                                    Next Appointmant: {this.state.patientAppointment.next_appt} <br /><br />
+                                    E-mail: {this.state.patientDetails.email} <br />
+                                    Phone: {this.state.patientDetails.phone} <br /><br />
+                                    Episodes recorded: {this.state.patientEpisodes.length} <br />
+                                    Start of last Episode: {this.state.patientEpisodesStart} <br />
                                     Records in last episode: {this.state.recordsLastPatientEpisode} 
                                 </CardText>
                                 <br /><br />
-                            
                                 <a href={`/admin/Episode?id=${ this.state.patient._id }`}>
-                               <Button style={{marginRight: 6}}>Create new Episode</Button>
-                               </a>
-                               <a href={`/admin/Report?id=${ this.state.patient._id }`}>
-                               <Button style={{marginRight: 6}}>Report</Button>
-                               </a>
+                                    <Button style={{marginRight: 6}}>Create new Episode</Button>
+                                </a>
+                                <a href={`/admin/Report?id=${ this.state.patient._id }`}>
+                                    <Button style={{marginRight: 6}}>Report</Button>
+                                </a>
                                 <Button style={{marginRight: 6}}>Update details</Button>
                                 <Button style={{marginRight: 6}}>Update appointments</Button>
                                 <Button style={{marginRight: 6}}>Close</Button>
                             </CardBody>
                         </Card>
 
+                         <Card style={{display: this.state.addPatientCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                <CardText>
+                                    <br />
+                          
+                                    <Form>
+                                        <FormGroup row>
+                                            <Label for="name" sm={3}>Name</Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="pt_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.pt_firstname} />
+                                            <Input type="text" name="pt_lastname" id="lastname" placeholder="lastname" onChange={this.handleInputChange} value={this.state.pt_lastname} />
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="hospnum" sm={3}>Hospital number</Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="pt_hospnum" id="hospnum" placeholder="hosp1234" onChange={this.handleInputChange} value={this.state.pt_hospnum} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="dob" sm={3}>Date of birth</Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="pt_dob" id="dob" placeholder="mm/dd/yyyy" onChange={this.handleInputChange} value={this.state.pt_dob} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="email" sm={3}>Contact email</Label>
+                                            <Col sm={9}>
+                                            <Input type="email" name="pt_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.pt_email} />  
+                                            </Col>
+                                            <Label for="phone" sm={3}>Contact phone</Label>
+                                            <Col sm={9}>
+                                            <Input type="phone" name="pt_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.pt_phone} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <br />
+                                        <Button style={{marginRight: 6}} onClick={this.enrollPatient}>Enroll</Button>
+                                        <Button style={{marginRight: 6}}>Cancel</Button>
+                                    </Form>
+                                
+                                </CardText>
+                            </CardBody>
+                        </Card>
 
-                    
+                         <Card style={{display: this.state.successPatientCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                <CardText>
+                                    <br />
+                                    New Patient: {this.state.patient_name} successfully enrolled.
+                                </CardText>
+                            </CardBody>
+                        </Card>
+
+                        <Card style={{display: this.state.addPhysicianCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
+                                <CardText>
+                                    <br />
+                          
+                                    <Form>
+                                        <FormGroup row>
+                                            <Label for="name" sm={3}>Physician name</Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="dr_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.dr_firstname} />
+                                            <Input type="text" name="dr_lastname" id="last-name" placeholder="lastname" onChange={this.handleInputChange} value={this.state.dr_lastname} />
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="idnum" sm={3}>Id number</Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="dr_idnum" id="idnum" placeholder="id1234" onChange={this.handleInputChange} value={this.state.dr_idnum} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="office" sm={3}>Office </Label>
+                                            <Col sm={9}>
+                                            <Input type="text" name="dr_office" id="office" placeholder="office name and address" onChange={this.handleInputChange} value={this.state.dr_office} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label for="email" sm={3}>Contact email</Label>
+                                            <Col sm={9}>
+                                            <Input type="email" name="dr_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.dr_email} />  
+                                            </Col>
+                                            <Label for="phone" sm={3}>Contact phone</Label>
+                                            <Col sm={9}>
+                                            <Input type="phone" name="dr_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.dr_phone} />  
+                                            </Col>
+                                        </FormGroup>
+                                        <br />
+                                        <Button style={{marginRight: 6}} onClick={this.addDoctor}>Add Physician</Button>
+                                        <Button style={{marginRight: 6}}>Cancel</Button>
+                                    </Form>
+
+                                </CardText>
+                            </CardBody>
+                        </Card>
+
+                         <Card style={{display: this.state.confirmPhysicianCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
+                                <CardText>
+                                    <br />
+                                    New Physician: {this.state.physician_name} successfully added.
+                                </CardText>
+                            </CardBody>
+                        </Card>
+
                     </Col>
                     <Col sm="4">
 
@@ -300,7 +493,11 @@ menuSelect = (menuItem) => {
             </Container>
         </div>
         )
-    }
-}
+
+
+    } // close of render
+
+
+} //close of class constructor
 
 export default Admin;
