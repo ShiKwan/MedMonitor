@@ -2,7 +2,7 @@ import React from "react";
 import Jumbotron from "../../components/Jumbotron";
 
 const NoMatch = () => (
-  <div></div>
+  <div>Page not found</div>
 );
 
 export default NoMatch;

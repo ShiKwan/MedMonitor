@@ -25,11 +25,15 @@ router.post('/register', function (req, res) {
         if (user.length > 0) {
           console.log('user exist in database')
           //req.flash('error_msg', 'Username has been taken, pick another one')
-          res.redirect('back')
+          res.status(400).json({
+            message : "Username has been taken, please pick a new username"
+          })
         }else {
             userController.createUser(newUser, function (err, user) {
             if (err) throw err
-            res.redirect('/sk')
+            res.status(200).json({
+              message: "Username created successfully!"
+            })
           })
         }
       }
@@ -72,6 +76,13 @@ passport.deserializeUser(function (id, done) {
     done(err, user)
   })
 })
+router.get("/isLoggedIn", function(req, res){
+  if(!req.user){
+    return res.status(401).json({
+      message: "You are not logged in. Please login to have access to this page."
+    })
+  }
+});
 
 router.post('/login',
   passport.authenticate('local'),
@@ -85,8 +96,9 @@ router.post('/login',
 });
 
 router.get('/logout', function (req, res) {
-  req.logout()
-  res.json("log out successfully!")
+  req.logout();
+  req.session.destroy;
+  res.json("log out successfully!");
 })
 
 module.exports = router;

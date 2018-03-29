@@ -42,7 +42,7 @@ export default class Header extends React.Component {
                         </Nav>
                         <Nav pills className="ml-auto">
                             <NavItem>
-                                <Input type="loginName" name="username" id="userName" placeholder="user name" />
+                                <Label className="loginName" for="appTime"><h4>Hello: Jon Doe</h4></Label>
                                 <NavLink href="#" className="color-logout" active>LOG OUT</NavLink>
                             </NavItem>
                         </Nav>
