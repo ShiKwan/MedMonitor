@@ -1,3 +1,8 @@
+div.row {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
 .patSurvey {
     margin-bottom: 25px;
 }
@@ -9,7 +14,7 @@
 
 .patSurveyCard .patSurveyHeader {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     color: black;
     background-color: #c2d6d6;
 }
@@ -25,6 +30,25 @@
     padding: 25px;
 }
 
+.chkSelected,
+.radSelected {
+    font-size: 25px;
+}
+
+/* //// survey buttons /////////////////////////////////////////////////////////////// */
+
+.suvRadGroup,
+.suvChkGroup {
+    margin: 0 auto;
+    display: grid;
+}
+
+.suvChkBtnOrange,
+.suvRadBtnOrange {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
 button.suvRadBtn,
 button.suvChkBtn,
 button.suvChkBtnOrange,
@@ -36,10 +60,26 @@ button.suvRadBtnOrange {
 }
 
 button.suvRadBtn:hover,
-button.suvChkBtn:hover,
+button.suvChkBtn:hover {
+    color: black;
+}
+
 button.suvChkBtnOrange:hover,
 button.suvRadBtnOrange:hover {
     color: black;
+    background-color: #e65c00;
+    border-color: #e65c00;
+}
+
+.suvChkBtnOrange:not(:disabled):not(.disabled).active,
+.suvRadBtnOrange:not(:disabled):not(.disabled).active,
+.suvChkBtnOrange:not(:disabled):not(.disabled):active,
+.suvRadBtnOrange:not(:disabled):not(.disabled):active,
+.show>.suvChkBtnOrange.dropdown-toggle {
+    color: #212529;
+    background-color: #e65c00;
+    border-color: #e65c00;
+    box-shadow: 0 0 0 0.2rem rgba(204, 102, 0, .5);
 }
 
 h5,
@@ -52,18 +92,9 @@ h5,
 .suvRadGroup,
 .suvChkGroup {
     margin: 0 auto;
+    display: grid;
 }
 
 button.questSubmitBtn {
-    padding: 25px 0px 25px 0px;
-}
-
-.suvChkBtnOrange,
-.suvRadBtnOrange {
-    background-color: #ff6600;
-}
-
-.suvChkGroup,
-.suvRadGroup {
-    display: grid;
+    padding: 15px 0px 15px 0px;
 }

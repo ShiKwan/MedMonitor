@@ -20,7 +20,6 @@ const UpcomingApp = (props) => {
     return (
         <Container className="AppointmentCards">
             <Card className="upcomingAppCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
-            {/* <Card className="upcomingAppCard" body outline color="info"> */}
                 <CardHeader tag="h4" className="upcomingAppHeader">Upcoming Appointment</CardHeader>
                 <Card className="appCardInfo">
                     <Label className="appDate" for="appDate">Date:</Label>

@@ -1,0 +1,16 @@
+.medReminder,
+.medTook {
+    margin-right: 15px;
+}
+
+.nextMedBtn {
+    margin: 0 auto;
+}
+
+button.medReminder:hover {
+    background-color: green;
+}
+
+button.medTook:hover {
+    background-color: goldenrod;
+}

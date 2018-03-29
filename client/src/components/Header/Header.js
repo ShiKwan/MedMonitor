@@ -37,7 +37,7 @@ export default class Header extends React.Component {
                         <Nav pills>
                             <NavItem>
                                 <NavLink href="/" className="color-home" active>HOME</NavLink>
-                                <NavLink href="#" className="color-app" active>APPOINTMENT</NavLink>
+                                <NavLink href="appointment" className="color-app" active>APPOINTMENT</NavLink>
                             </NavItem>
                         </Nav>
                         <Nav pills className="ml-auto">
