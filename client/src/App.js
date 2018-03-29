@@ -15,38 +15,10 @@ import Admin_Report from "./pages/Admin_Report";
 import Admin_Episode from "./pages/Admin_Episode";
 import userAPI from "./utils/userAPI";
 import {Alert } from 'reactstrap';
+import openSocket from 'socket.io-client';
 
-const PrivatePatientRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-      console.log(localStorage.getItem("role")),
-      localStorage.getItem("role").toLowerCase()==="patient"
-      ? (
-        localStorage.removeItem("messageCenter"),
-        localStorage.removeItem("messageStatus"),
-        <Component {...props} />
-        )
-      : (
-        localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
-        localStorage.setItem("messageStatus", "danger"),
-        <Redirect to={{
-          pathname: '/notfound'
-        }} />
-        )
-  )} />
-)
-const PrivateAdminRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    localStorage.getItem("role").toLowerCase() === "admin"
-      ? <Component {...props} />
-      : (
-        localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
-        localStorage.setItem("messageStatus", "danger"),
-          <Redirect to={{
-          pathname: '/notfound'
-          }} />
-        )
-  )} />
-)
+const socket = openSocket();
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -55,10 +27,24 @@ class App extends Component {
       role: "",
       email: "",
       messageCenter: "",
-      messageStatus: ""
+      messageStatus: "",
+      alertIncident : [],
     }
-    this.getBackMessage = this.getBackMessage.bind(this)
-    this.getBackMessageStatus = this.getBackMessageStatus.bind(this)
+    this.getBackMessage = this.getBackMessage.bind(this);
+    this.getBackMessageStatus = this.getBackMessageStatus.bind(this);
+    this.getBackAlertIncident = this.getBackAlertIncident.bind(this);
+    
+    socket.on("alertAdmin", message =>{
+        const newAlertIncident = this.state.alertIncident;
+        newAlertIncident.push(message);
+        console.log(newAlertIncident);
+        this.setState({
+            alertIncident : newAlertIncident
+        })
+        console.log(this.state.alertIncident);
+    })
+
+
 
   }
   getBackMessage(messageCenter){
@@ -73,6 +59,55 @@ class App extends Component {
       messageStatus : messageStatus
     })
   }
+
+  getBackAlertIncident(alertIncident){
+    console.log("getting back alert incident");
+    this.setState({
+      alertIncident : alertIncident
+    })
+    console.log("Alert incident : " , this.state.alertIncident);
+  }
+
+
+  PrivatePatientRoute = ({ component: Component, ...rest }) => (
+    <Route { ...rest} render={(props) => (
+      console.log(localStorage.getItem("role")),
+      localStorage.getItem("role").toLowerCase() === "patient"
+        ? (
+          localStorage.removeItem("messageCenter"),
+          localStorage.removeItem("messageStatus"),
+          <Component {...props} test='hi there' getBackAlertIncident = {this.getBackAlertIncident} handleIncident = {this.handleIncident}/>
+        )
+        : (
+          localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
+          localStorage.setItem("messageStatus", "danger"),
+          this.setState({
+            messageCenter: "You do not have the proper credential to access that page.",
+            messageStatus: "danger"
+          }),
+          <Redirect to={{
+            pathname: '/notfound'
+          }} />
+        )
+    )} />
+  )
+  PrivateAdminRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+      localStorage.getItem("role").toLowerCase() === "admin"
+        ? <Component {...props} />
+        : (
+          localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
+          localStorage.setItem("messageStatus", "danger"),
+          this.setState({
+            messageCenter: "You stumble upon a page where you do not have access to...",
+            messageStatus: "danger"
+          }),
+          <Redirect to={{
+            pathname: '/notfound'
+          }} />
+        )
+    )} />
+  )
   
   componentDidMount(){
     userAPI.isLoggedIn().then( res => {
@@ -103,31 +138,39 @@ class App extends Component {
     })
   }
   
+  handleIncident =  e => {
+      e.preventDefault();
+      socket.emit('alertAdmin');
+      
+  }
+
   render(){
   return(
   <Router>
     <div>
-        {localStorage.getItem("messageCenter") ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
+        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
       <Switch>
           <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
           <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
-        <Route exact path="/sk" component={SK} />
+          <Route exact path="/sk" render={props => <SK alertIncident={this.state.alertIncident}>  </SK>} />
+        
         <Route exact path="/mh" component={MH} />
         <Route exact path="/bs" component={BS} />
         <Route exact path="/jm" component={JM} />
-        <PrivateAdminRoute exact path="/episode" component={Episode} />        
-        <PrivatePatientRoute exact path="/patient" component={Patient} />
-        <PrivateAdminRoute exact path="/admin" component={Admin} />
-        <PrivateAdminRoute exact path="/admin/report" component={Admin_Report} />
-        <PrivateAdminRoute exact path="/admin/episode" component={Admin_Episode} />
-        <PrivatePatientRoute exact path="/appointment" component={Appointment} />
-        <PrivateAdminRoute exact path="/new_patient" component={New_Patient} />
+        <this.PrivateAdminRoute exact path="/episode" component={Episode} />        
+        <this.PrivatePatientRoute exact path="/patient" component={Patient} />
+        <this.PrivateAdminRoute exact path="/admin" component={Admin} />
+        <this.PrivateAdminRoute exact path="/admin/report" component={Admin_Report} />
+        <this.PrivateAdminRoute exact path="/admin/episode" component={Admin_Episode} />
+        <this.PrivatePatientRoute exact path="/appointment" component={Appointment} />
+        <this.PrivateAdminRoute exact path="/new_patient" component={New_Patient} />
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>
     </div>
   </Router>
   )
+  {/* <Route exact path="/sk" component={SK} /> */}
   }
 }
 

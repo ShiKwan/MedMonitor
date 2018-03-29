@@ -13,9 +13,13 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const {google} = require('googleapis');
 const mailer = require("./mailer");
+const http = require('http');
+const cors = require('cors');
+const socketIO = require('socket.io', { transports: ['websocket'] });
 
 require('dotenv').config();
 
+app.use(cors());
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,7 +28,8 @@ app.use(cookieParser());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: false,
-  resave: false
+  resave: false,
+  cookie: {_expires: 600000000 }
 }))
 
 app.use(passport.initialize());
@@ -38,9 +43,6 @@ app.use(express.static("client/build"));
 
 // Add routes, both API and view
 app.use(routes);
-
-console.log("secret is... sshh.... : " + process.env.SESSION_SECRET);
-
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
@@ -78,7 +80,19 @@ app.use(function(req, res, next){
   next();
 });
 
+const server = http.createServer(app);
+const io = socketIO(server);
+
+io.on('connection', socket => {
+  console.log('User connected');
+  socket.on("alertAdmin", data => {
+    io.sockets.emit("alertAdmin", "Patient <name here> reported a risky incident");
+  })
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  })
+})
+
+server.listen(PORT, () => console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`));
+
 // Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});

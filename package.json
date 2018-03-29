@@ -25,6 +25,7 @@
     "bootstrap": "^4.0.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.15.4",
     "express-session": "^1.15.6",
@@ -32,6 +33,7 @@
     "gapi-client": "^0.0.3",
     "google-auth-library": "0.*",
     "googleapis": "^27.0.0",
+    "http": "^0.0.0",
     "moment": "^2.21.0",
     "mongoose": "^4.11.7",
     "nodemailer": "^4.6.3",
@@ -46,6 +48,7 @@
     "react-moment": "^0.7.0",
     "react-oauth2": "^1.0.2",
     "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-beta.3"
+    "reactstrap": "^5.0.0-beta.3",
+    "socket.io": "^2.0.4"
   }
 }

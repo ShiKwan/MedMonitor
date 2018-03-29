@@ -81,6 +81,8 @@ router.get("/isLoggedIn", function(req, res){
     return res.status(401).json({
       message: "You are not logged in. Please login to have access to this page."
     })
+  }else{
+    return res.json(req.user);
   }
 });
 

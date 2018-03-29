@@ -57,6 +57,12 @@ const reminder = {
 
 
 class SK extends Component {
+    constructor(props){
+        super(props);
+        
+        this.props.alertIncident.push("test");
+         this.getBackAlertIncident = this.getBackAlertIncident.bind(this);
+    }
   state = {
     drugName : "",
     drugType : "",
@@ -76,8 +82,18 @@ class SK extends Component {
     name : "",
     email : "", 
     gender : "",
+    alertIncident : this.props.alertIncident
 
   };
+
+  getBackAlertIncident(alertIncident){
+    console.log("getting back alert incident");
+    this.setState({
+      alertIncident : alertIncident
+    })
+    console.log("Alert incident : " , this.state.alertIncident);
+  }
+
   componentDidMount() {
     //this.loadBooks();
   };
@@ -272,15 +288,22 @@ class SK extends Component {
 }
 
   render() {
-
+    let getBackAlertIncident = this.props.getBackAlertIncident;
 
     return (
       <Container>
+        {console.log(this.state.children)}
         {this.state.messageCenter ? 
             <Alert color={this.state.messageStatus} className='text-center'>{this.state.messageCenter} </Alert> 
         : 
             null 
         }
+
+        <Container>
+            <label><h1>Socket IO </h1></label>
+            <Alert>{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
+        </Container>
+
         <Container>
             <label><h1>Google Authentication:</h1></label>
 
