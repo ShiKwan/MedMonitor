@@ -13,4 +13,9 @@ router
   .put(doctorController.update)
   .delete(doctorController.remove);
 
+// Matches with "/api/patient/validateEmail
+router
+  .route('/validateEmail/:email')
+  .get(doctorController.validateEmail);
+
 module.exports = router;

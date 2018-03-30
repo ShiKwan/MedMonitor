@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import './Patient.css';
 import Header from "../../components/Header";
 import PatSurvey from "../../components/PatSurvey";
 import PatMedDue from "../../components/PatMedDue";
+import './Patient.css';
 
 import {
     Button,

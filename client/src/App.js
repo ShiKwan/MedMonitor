@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
+import Header from "./components/Header";
 import SK from "./pages/SK";
 import MH from "./pages/MH";
 import BS from "./pages/BS";
@@ -93,7 +94,7 @@ class App extends Component {
   )
   PrivateAdminRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-      localStorage.getItem("role").toLowerCase() === "admin"
+      localStorage.getItem("role").toLowerCase() === "doctor" || localStorage.getItem("role").toLowerCase() === "admin"
         ? <Component {...props} />
         : (
           localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
@@ -148,6 +149,7 @@ class App extends Component {
   return(
   <Router>
     <div>
+        
         {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
       <Switch>
           <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />

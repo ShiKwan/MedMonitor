@@ -5,6 +5,7 @@ import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
 import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
 import userAPI from '../../utils/userAPI';
+
 import classnames from 'classnames';
 
 import './Home.css';
@@ -18,12 +19,13 @@ class Home extends Component {
             messageStatus : "",
             username : this.props.username,
             role : this.props.role,
-            email : this.props.email
+            email : this.props.email,
+            patientID : "",
+            newAccountEmail : "",
+            activeTab: '1'
         }
         this.toggle = this.toggle.bind(this);
-        this.state = {
-            activeTab: '1'
-        };
+        
     }
 
     toggle(tab) {
@@ -33,7 +35,14 @@ class Home extends Component {
             });
         }
     }
-
+    getBackEmail(newAccountEmail, patientID){
+        console.log("here getting back message")
+        this.setState({
+        newAccountEmail : newAccountEmail,
+        patientID : patientID
+        })
+    }
+    
     handleLogin = event => {
         console.log("here");
         if (this.state.password && this.state.username) {
@@ -88,6 +97,24 @@ class Home extends Component {
         });
         console.log([name] + ", " + event.target.value);
     };
+    getBackRegisterMessage = messageCenter => {
+        console.log("here getting back message")
+        this.setState({
+        messageCenter : messageCenter
+        })
+        this.props.getBackMessage(this.state.messageCenter);
+        
+    }
+
+    getBackRegisterMessageStatus = messageStatus => {
+        this.setState({
+        messageStatus : messageStatus
+        })
+        console.log("state right now : ", this.state);
+        this.props.getBackMessageStatus(this.state.messageStatus);
+    }
+    
+
     render() {
         let sendBackMessage = this.props.getBackMessage;
         let getBackMessageStatus = this.props.getBackMessageStatus;
@@ -126,7 +153,7 @@ class Home extends Component {
                         <TabPane tabId="2">
                             <Row>
                                 <Col sm="12">
-                                   <Registration />
+                                   <Registration onCreateAccount={this.handleCreateAccount} getBackMessage={this.getBackRegisterMessage} getBackMessageStatus={this.getBackRegisterMessageStatus} onValidateEmail={this.handleValidateEmail} onChange={this.handleInputChange} newAccountEmail={this.state.newAccountEmail} newUsername = {this.state.newUsername} newUserPassword= {this.state.newUserPassword}  />
                                 </Col>
                             </Row>
                         </TabPane>

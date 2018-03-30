@@ -39,6 +39,19 @@ module.exports = {
         })
     },
 
+    // Validate email input by user
+    validateEmail: function(req, res){
+        db.Patient_data
+        .find({"details.email": req.params.email})
+        .then(patient => {
+            res.json(patient)
+            console.log("patient: ", patient);
+        })
+        .catch(err => {
+            console.log('CONTROLLER ERROR : ${err}');
+            res.status(422).json(err);
+        })
+    },
 
     // Fetch patient details (for patient use)
     // To be sent req.params.id of patient

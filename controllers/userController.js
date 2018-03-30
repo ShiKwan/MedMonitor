@@ -20,12 +20,27 @@ module.exports = {
     getUserById : function (id, callback) {
         db.User.findById(id, callback)
     },
-
     comparePassword : function (candidatePassword, hash, callback) {
         bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
             if (err) throw err
             callback(null, isMatch)
         })
     },
-    
+    getUserByEmail : function(req, res){
+         db.User
+        .find({email: req.params.email})
+        .then(user => {
+            console.log("user: ", user);
+            if(user.length > 0){
+                res.send("user found in our system");
+            }else{
+                res.send("email is ok for new account");
+            }
+            
+        })
+        .catch(err => {
+            console.log('CONTROLLER ERROR : ${err}');
+            res.status(422).json(err);
+        })
+    },
 };

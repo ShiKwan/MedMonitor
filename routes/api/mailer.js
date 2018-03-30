@@ -9,12 +9,22 @@ router.route("/contact")
             console.log("message : " , message);
             mailer.send({ email, name, text: message }).then(() => {
             console.log(`Sent the message "${message}" from <${name}> ${email}.`);
-            res.redirect('/#success');
+                res.status(200).send("message sent successfully!");
             }).catch((error) => {
             console.log(`Failed to send the message "${message}" from <${name}> ${email} with the error ${error && error.message}`);
-            res.redirect('/#error');
+                res.status(422).send("failed sending message");
             })
 });
+
+router.route("/sendToPatient")
+        .post((req, res) =>{
+            const{email = '', name = '', message = '', subject =''} = req.body
+            mailer.send({email, name, text:message, subject}).then( () => {
+                res.status(200).send("message sent successfully!");
+            }).catch( (err) => {
+                res.status(422).send("failed sending message");
+            })
+        })
 
 
 module.exports = router;

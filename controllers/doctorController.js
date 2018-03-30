@@ -76,6 +76,20 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+    },
+
+    // Validate email input by user
+    validateEmail: function(req, res){
+        db.Doctor
+        .find({email: req.params.email})
+        .then(doctor => {
+            res.json(doctor)
+            console.log("doctor: ", doctor);
+        })
+        .catch(err => {
+            console.log('CONTROLLER ERROR : ${err}');
+            res.status(422).json(err);
+        })
     }
 
 };

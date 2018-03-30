@@ -31,6 +31,24 @@ const send = ({ email, name, text }) => {
   })
 }
 
+const sendToPatient = ({email, name, text, subject}) => {
+  const to = name && email ? `${name} <${email}>` : `${name || email}`
+  const message = {
+    from : 'bscwruproject2@gmail.com',
+    to,
+    subject: subject,
+    text,
+    replyTo : 'bscwruproject2@gmail.com'
+  };
+
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(message, (error, info) =>
+      error ? reject(error) : resolve(info)
+    )
+  })
+}
+
 module.exports = {
-    send
+    send : send,
+    sendToPatient : sendToPatient
 }

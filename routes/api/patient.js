@@ -46,4 +46,9 @@ router
     .get(patientController.patientMeds) //A
     .put(patientController.addRecord); //A
 
+// Matches with "/api/patient/validateEmail
+    router
+    .route('/validateEmail/:email')
+    .get(patientController.validateEmail);
+
 module.exports = router;

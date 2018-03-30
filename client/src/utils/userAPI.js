@@ -11,5 +11,11 @@ export default {
     },
     isLoggedIn: function(){
         return axios.get("/api/user/isLoggedIn");
+    },
+    validateEmail: function(objUser){
+        return axios.get("/api/user/validateEmail");
+    },
+    getUserByEmail  : function(email){
+        return axios.get("/api/user/existingUser/" +email);
     }
 }

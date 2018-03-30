@@ -15,5 +15,8 @@ export default {
     },
     update: function(id, doctorInfo){
         return axios.put("/api/doctor/"+id, doctorInfo);
+    },
+    findDoctorEmail: function(email){
+        return axios.get('/api/doctor/validateEmail/'+email);
     }
 };

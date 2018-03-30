@@ -29,5 +29,8 @@ export default {
     },
     createNewRecord: function(id, objRecord){
         return axios.put("/api/patient/forPatient/episode/"+id, objRecord);
+    },
+    findPatientEmail: function(email){
+        return axios.get('/api/patient/validateEmail/'+email);
     }
 };

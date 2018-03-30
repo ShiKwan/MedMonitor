@@ -45,6 +45,8 @@ router.post('/register', function (req, res) {
     })
 
 })
+
+
 passport.use(new LocalStrategy({passReqToCallback: true},
   function (req,username, password, done) {
     userController.getUserByUsername(username, function (err, user) {
@@ -87,9 +89,14 @@ router.get("/isLoggedIn", function(req, res){
       message: "You are not logged in. Please login to have access to this page."
     })
   }else{
-    return res.json(req.user);
+    return res.status(200).json(req.user);
   }
 });
+// Matches with "/api/patient/forPatient/:id" A
+router 
+    .route('/existingUser/:email')
+    .get(userController.getUserByEmail);
+    
 
 router.post('/login',
   passport.authenticate('local'),
@@ -106,6 +113,7 @@ router.get('/logout', function (req, res) {
   req.logout();
   req.session.destroy;
   res.json("log out successfully!");
-})
+});
+
 
 module.exports = router;
