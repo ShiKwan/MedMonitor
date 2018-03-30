@@ -71,7 +71,7 @@ class Home extends Component {
                 console.log("local storage: ", localStorage.getItem("username"));
                 if(localStorage.getItem("role").toLowerCase()==="patient"){
                     this.props.history.push('/patient');      
-                } else if (localStorage.getItem("role").toLowerCase() === "admin") {
+                } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
                     this.props.history.push('/admin');   
                 }
                 

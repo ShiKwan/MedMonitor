@@ -2,6 +2,7 @@ import React from 'react';
 import patientAPI from '../../utils/patientAPI';
 import doctorAPI from '../../utils/doctorAPI';
 import userAPI from "../../utils/userAPI";
+import mailerAPI from "../../utils/nodemailerAPI";
 import "./Registration.css";
 import {
     Nav,
@@ -54,6 +55,34 @@ export default class Registration extends React.Component {
             console.log(res);
             this.props.getBackMessage(`Account created successfully! Please sign in to access to all the awesome features this application offers!`);
             this.props.getBackMessageStatus("success");
+            if(this.state.role === "patient"){
+                mailerAPI.sendToPatient({
+                    name : this.state.username,
+                    email : this.state.newAccountEmail,
+                    message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
+                })
+                .then(res =>{
+                    console.log(res);
+                    console.log("mail man work real hard!");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            }else{
+                mailerAPI.sendToDoctor({
+                    name : this.state.username,
+                    email : this.state.newAccountEmail,
+                    message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
+                })
+                .then(res =>{
+                    console.log(res);
+                    console.log("mail man work real hard!");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            }
+            
         }).catch(err => {
             console.log("fail");
             console.log(err)
@@ -67,6 +96,7 @@ export default class Registration extends React.Component {
     handleValidateEmail = (email, e) => {
         e.preventDefault();
         userAPI.getUserByEmail(email).then(res =>{
+            console.log(res);
             if(res.data === 'email is ok for new account'){
                 if(this.state.newAccountEmail){
                     patientAPI.findPatientEmail(email,{}).then(res =>{
@@ -102,12 +132,12 @@ export default class Registration extends React.Component {
                                     this.props.getBackMessageStatus("danger");        
                                 }
                             })
-
-                            this.props.getBackMessage("Sorry, we couldn't find your email address from our system, please contact the admin for more information");
-                            this.props.getBackMessageStatus("danger");
                         }
                     })
                 }
+            }else{
+                this.props.getBackMessage("Sorry, this user name has already exist in our system, perhaps you lost your password? Please contact admin for more information");
+                this.props.getBackMessageStatus("danger");   
             }
         })
 

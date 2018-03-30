@@ -19,7 +19,17 @@ router.route("/contact")
 router.route("/sendToPatient")
         .post((req, res) =>{
             const{email = '', name = '', message = '', subject =''} = req.body
-            mailer.send({email, name, text:message, subject}).then( () => {
+            mailer.sendToPatient({email, name, text:message, subject}).then( () => {
+                res.status(200).send("message sent successfully!");
+            }).catch( (err) => {
+                res.status(422).send("failed sending message");
+            })
+        })
+
+router.route("/sendToDoctor")
+        .post((req, res) =>{
+            const{email = '', name = '', message = '', subject =''} = req.body
+            mailer.sendToDoctor({email, name, text:message, subject}).then( () => {
                 res.status(200).send("message sent successfully!");
             }).catch( (err) => {
                 res.status(422).send("failed sending message");

@@ -19,7 +19,7 @@ const send = ({ email, name, text }) => {
   const message = {
     from,
     to: 'sk.tan97@gmail.com',
-    subject: `New message from ${from} at creating-contact-forms-with-nodemailer-and-react`,
+    subject: `New message from ${from}`,
     text,
     replyTo: from
   };
@@ -32,7 +32,24 @@ const send = ({ email, name, text }) => {
 }
 
 const sendToPatient = ({email, name, text, subject}) => {
-  const to = name && email ? `${name} <${email}>` : `${name || email}`
+  const to = name && email ? `${name} <${email}> , bootcamp email <bscwruproject2@gmail.com>` : `${name || email}, bootcamp email <bscwruproject2@gmail.com>`
+  const message = {
+    from : 'bscwruproject2@gmail.com',
+    to,
+    subject: subject,
+    text,
+    replyTo : 'bscwruproject2@gmail.com'
+  };
+
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(message, (error, info) =>
+      error ? reject(error) : resolve(info)
+    )
+  })
+}
+
+const sendToDoctor = ({email, name, text, subject}) => {
+  const to = name && email ? `${name} <${email}> , bootcamp email <bscwruproject2@gmail.com>` : `${name || email}, bootcamp email <bscwruproject2@gmail.com>`
   const message = {
     from : 'bscwruproject2@gmail.com',
     to,
@@ -50,5 +67,6 @@ const sendToPatient = ({email, name, text, subject}) => {
 
 module.exports = {
     send : send,
-    sendToPatient : sendToPatient
+    sendToPatient : sendToPatient,
+    sendToDoctor : sendToDoctor
 }
