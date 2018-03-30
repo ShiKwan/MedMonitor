@@ -9,16 +9,21 @@ router.post('/register', function (req, res) {
     console.log("in register user api routes");
     console.log("req.body: ", req.body);
   //var name = req.body.name
-  const email = req.body.email
   const username = req.body.username;
-  const password = req.body.password;
+  const password = req.body.password; 
+  const email = req.body.email;
+  const role = req.body.role;
+  const patient_id = req.body.patient_id;
+  const doctor_id = req.body.doctor_id;
   //var password2 = req.body.password2
 
     var newUser = new db.User({
       username: username,
       password: password,
-      role : "Patient",
-      email : "test@gmail.com"
+      email : email,
+      role : role,
+      patient_id : patient_id,
+      doctor_id : doctor_id
     })
     db.User.find({username: newUser.username}, function (err, user) {
       if (err) {throw console.error}else {

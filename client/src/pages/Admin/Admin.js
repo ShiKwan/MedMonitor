@@ -3,6 +3,7 @@ import HomeHeader from "../../components/HomeHeader";
 import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
+import userAPI from "../../utils/userAPI";
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -41,7 +42,11 @@ class Admin extends Component {
         pt_hospnum: "",
         pt_dob: "",
         pt_email: "",
-        pt_phone: "",
+        pt_phone: "",   
+        pt_username: "",
+        pt_password: "", 
+        pt_id: "",
+        patient_name: "",
 
         dr_firstname: "",
         dr_lastname: "",
@@ -50,8 +55,12 @@ class Admin extends Component {
         dr_dob: "",
         dr_email: "",
         dr_phone: "",
-
+        dtr_username: "",
+        dr_password: "", 
+        dr_id: "",
         physician_name: "",
+
+     
 
 
     };
@@ -71,7 +80,9 @@ class Admin extends Component {
         menuItem == "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedcationCard: false});
         menuItem == "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
         this.setState({confirmPatientCard: false});
+        this.setState({registerPatientCard: false});
         this.setState({successPatientCard: false});
+        this.setState({registerPhysicianCard: false});
         this.setState({successPhysicianCard: false});
     }
 
@@ -142,15 +153,51 @@ class Admin extends Component {
             }],
             // timestamps: {'created_at', 'updated_at' }
         })
-
         .then(res => {
-            console.log(res.data.insertedIds);
+            console.log(res.data.insertedIds[0]);
             this.setState({addPatientCard: false});
-            this.setState({successPatientCard: true});
+            this.setState({registerPatientCard: true});
             this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
+            this.setState({pt_id: res.data.insertedIds[0]})
         })
         .catch(err => console.log(err));
     };
+
+    registerPatient = event => {
+        event.preventDefault();
+        console.log("pwd: " + this.state.pt_password + " | " + this.state.pt_username)
+        if(this.state.pt_password && this.state.pt_username){
+            userAPI.createAccount({
+                username : this.state.pt_username,
+                password : this.state.pt_password,
+                email: this.state.pt_email,
+                role : "Patient",
+                patient_id: this.state.pt_id,
+                doctor_id: "n/a"
+            })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    messageCenter : "Account created successfully!",
+                    messageStatus: "success"
+                });
+                this.setState({registerPatientCard: false});
+                this.setState({successPatientCard: true});
+                this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
+
+            })
+            .catch(err => {
+                console.log("fail");
+                console.log("setting redirect to true");
+                console.log(err)
+                this.setState({ 
+                    messageCenter : "Invalid input field, please change the field accordingly",
+                    messageStatus : "danger"
+                });  
+            });
+        }
+    }
+
 
 
      // add a new doctor
@@ -170,15 +217,52 @@ class Admin extends Component {
 
             // timestamps: {'created_at', 'updated_at' }
         })
-
         .then(res => {
-            console.log(res.data.insertedIds);
+            console.log(res.data.insertedIds[0]);
             this.setState({addPhysicianCard: false});
-            this.setState({successPhysicianCard: true});
+            this.setState({registerPhysicianCard: true});
             this.setState({physician_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
+            this.setState({dr_id: res.data.insertedIds[0]})
         })
         .catch(err => console.log(err));
     };
+
+
+    registerDoctor = event => {
+        event.preventDefault();
+        console.log("pwd: " + this.state.dr_password + " | " + this.state.dr_username)
+        if(this.state.dr_password && this.state.dr_username){
+            userAPI.createAccount({
+                username : this.state.dr_username,
+                password : this.state.dr_password,
+                email: this.state.dr_email,
+                role : "Admin",
+                doctor_id: this.state.dr_id,
+                patient_id: "n/a"
+
+            })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    messageCenter : "Account created successfully!",
+                    messageStatus: "success"
+                });
+                this.setState({registerPhysicianCard: false});
+                this.setState({successPhysicianCard: true});
+                this.setState({doctor_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
+
+            })
+            .catch(err => {
+                console.log("fail");
+                console.log("setting redirect to true");
+                console.log(err)
+                this.setState({ 
+                    messageCenter : "Invalid input field, please change the field accordingly",
+                    messageStatus : "danger"
+                });  
+            });
+        }
+    }
 
 
 
@@ -207,7 +291,7 @@ class Admin extends Component {
                 <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
             </div>
 
-             <br />
+            <br />
 
             <div>
                 <Row>
@@ -218,13 +302,13 @@ class Admin extends Component {
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Actions</CardTitle>
                                 <CardText> 
                                     <div style={{fontWeight: this.state.selectPatientCard || this.state.confirmPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("select patient")}>Select patient</a></div>
-                                    <div style={{fontWeight: this.state.addPatientCard || this.state.successPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("add patient")}>Enroll new patient</a></div>
+                                    <div style={{fontWeight: this.state.addPatientCard || this.state.registerPatienttCard || this.state.successPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("add patient")}>Enroll new patient</a></div>
                                     <hr />
                                 </CardText>
 
                                 <CardText> 
                                     <div style={{fontWeight: this.state.selectPhysicianCard ? "bold" : ""}}>Select physician</div>
-                                    <div style={{fontWeight: this.state.addPhysicianCard || this.state.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.menuSelect("add physician")}>Add new physician</a></div>
+                                    <div style={{fontWeight: this.state.addPhysicianCard || this.state.registerPhysicianCard ||this.state.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.menuSelect("add physician")}>Add new physician</a></div>
                                     <hr />
                                 </CardText>
 
@@ -354,12 +438,40 @@ class Admin extends Component {
                             </CardBody>
                         </Card>
 
-                         <Card style={{display: this.state.successPatientCard ? "block" : "none"}}>
+                         <Card style={{display: this.state.registerPatientCard ? "block" : "none"}}>
                             <CardBody style={{minHeight: 550}}>
                                 <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
                                 <CardText>
                                     <br />
-                                    New Patient: {this.state.patient_name} successfully enrolled.
+                                    New patient: {this.state.patient_name} successfully enrolled.
+                                    <br /><br />
+                                    You can set a username and password now for this patient now or let the patient rgeister a username and password on first accessing the application. 
+                                    <br /><br />             
+                                    <Form>
+                                        <FormGroup row>
+                                            <Label>UserName</Label>
+                                            <Input type="text" name="pt_username" placeholder="username" onChange={this.handleInputChange} value={this.state.pt_username} />
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label>Password</Label>
+                                            <Input type="text" name="pt_password" placeholder="password" onChange={this.handleInputChange} value={this.state.pt_password} />
+                                        </FormGroup> 
+                                        <br /><br />           
+                                        <Button onClick={this.registerPatient}>Submit</Button>
+                                    </Form>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+
+                        <Card style={{display: this.state.successPatientCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                <CardText>
+                                    <br />
+                                    New Patient: {this.state.patient_name} successfully enrolled and registered.
+                                    <br /><br />
+                                    An email has been sent to {this.state.pt_email} with their username and password so that they can log-in and use the application.
+                                    <br />              
                                 </CardText>
                             </CardBody>
                         </Card>
@@ -409,12 +521,41 @@ class Admin extends Component {
                             </CardBody>
                         </Card>
 
-                         <Card style={{display: this.state.confirmPhysicianCard ? "block" : "none"}}>
+                         
+                         <Card style={{display: this.state.registerPhysicianCard ? "block" : "none"}}>
                             <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
                                 <CardText>
                                     <br />
-                                    New Physician: {this.state.physician_name} successfully added.
+                                    New physician: {this.state.physician_name} successfully enrolled.
+                                    <br /><br />
+                                    You can set a username and password now for this physician now or let the physician rgeister a username and password won first accessing the application. 
+                                    <br /><br />             
+                                    <Form>
+                                        <FormGroup row>
+                                            <Label>UserName</Label>
+                                            <Input type="text" name="dr_username" placeholder="username" onChange={this.handleInputChange} value={this.state.dr_username} />
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Label>Password</Label>
+                                            <Input type="text" name="dr_password" placeholder="password" onChange={this.handleInputChange} value={this.state.dr_password} />
+                                        </FormGroup> 
+                                        <br /><br />           
+                                        <Button onClick={this.registerDoctor}>Submit</Button>
+                                    </Form>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+
+                        <Card style={{display: this.state.successPhysicianCard ? "block" : "none"}}>
+                            <CardBody style={{minHeight: 550}}>
+                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                <CardText>
+                                    <br />
+                                    New Patient: {this.state.doctor_name} successfully enrolled and registered.
+                                    <br /><br />
+                                    An email has been sent to {this.state.dr_email} with their username and password so that they can log-in and use the application.
+                                    <br />              
                                 </CardText>
                             </CardBody>
                         </Card>

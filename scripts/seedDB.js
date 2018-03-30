@@ -223,13 +223,17 @@ const userSeed = [
     username: "john",
     password: "$2a$10$SAvF6U2.nGRTGYe2uIpvYuQW30ZDRz0uofxy3exuYNUYr8GssEri2",
     role: "Admin",
-    email: "john.heworth@doctor.com"
+    email: "john.heworth@doctor.com",
+    patient_id: "n/a",
+    doctor_id: "johnsID"
   },
   {
     username: "melanie",
     password: "$2a$10$3srPp78Me/7mKZa9DSxReOnyYSTi2l7gsvVhCfjmRiDDXfUeqIsfO",
     role: "Admin",
-    email: "mel.kopffh@doctor.com"
+    email: "mel.kopffh@doctor.com",
+    patient_id: "n/a",
+    doctor_id: "melaniesID"
   }
 ]
 // Doctor collection seeds
@@ -417,21 +421,21 @@ db.Doctor
   .then(() => db.Doctor.collection.insertMany(doctorSeed))
     .then(data => {
       console.log(data.insertedIds.length + " doctors records inserted!");
-
   });
+
 db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
     .then(data =>{
       console.log(data.insertedIds.length + " users records inserted!");
     })
+
 db.Patient_data
   .remove({})
   .then(() => db.Patient_data.collection.insertMany(patient_dataSeed))
      .then(data => {
       console.log(data.insertedIds.length + " patient_data records inserted!");
 
-      
   })
   .catch(err => {
     console.error(err);
