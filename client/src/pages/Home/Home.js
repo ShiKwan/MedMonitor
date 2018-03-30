@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
-import HomeHeader from "../../components/HomeHeader";
+import Header from "../../components/Header";
 import SignInForm from "../../components/SignInForm";
 import {Container, Alert} from 'reactstrap';
 import userAPI from '../../utils/userAPI';
@@ -88,7 +88,7 @@ class Home extends Component {
         return (
         <Container fluid>
             {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
-            <HomeHeader />
+            <Header />
             <Container>
                     <SignInForm onClick={this.handleLogin} onChange={this.handleInputChange} username={this.props.username} password={this.state.password} />
             </Container>

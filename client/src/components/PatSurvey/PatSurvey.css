@@ -71,6 +71,13 @@ button.suvRadBtnOrange:hover {
     border-color: #e65c00;
 }
 
+button.suvRadBtn:not(:disabled):not(.disabled).active,
+button.suvChkBtn:not(:disabled):not(.disabled).active,
+button.suvRadBtn:not(:disabled):not(.disabled):active,
+button.suvChkBtn:not(:disabled):not(.disabled):active {
+    color: #212529;
+}
+
 .suvChkBtnOrange:not(:disabled):not(.disabled).active,
 .suvRadBtnOrange:not(:disabled):not(.disabled).active,
 .suvChkBtnOrange:not(:disabled):not(.disabled):active,

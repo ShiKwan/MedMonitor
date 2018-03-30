@@ -35,7 +35,7 @@ const PatMedDue = (props) => {
                     <br>
                     </br>
                     <Card body className="text-center">
-                        <CardTitle>At: 4: PM</CardTitle>
+                        <CardTitle>At: 4:00 PM</CardTitle>
                     </Card>
                     <br>
                     </br>

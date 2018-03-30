@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomeHeader from "../../components/HomeHeader";
+import Header from "../../components/Header";
 import '../Admin/Admin.css';
 import {
     Nav,
@@ -29,7 +29,7 @@ componentDidMount() {
         return (
             <div>
                 <Container fluid>
-                <HomeHeader />
+                <Header />
                     Admin Episode Page<br />
                     Patient id: {this.state.patientId}
                 </Container>

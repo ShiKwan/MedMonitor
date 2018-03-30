@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomeHeader from "../../components/HomeHeader";
+import Header from "../../components/Header";
 import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
@@ -199,7 +199,7 @@ class Admin extends Component {
         return (
         <div>
             <Container fluid>
-            <HomeHeader />
+            <Header />
             
             <div className="clearfix">
             <br />
