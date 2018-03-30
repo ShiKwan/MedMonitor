@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Appointment.css';
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import UpcomingApp from "../../components/UpcomingApp";
 import PhysInfo from "../../components/PhysInfo";
 
@@ -20,7 +20,7 @@ class Appointment extends Component {
     render() {
         return (
             <Container fluid>
-                <Header />
+                {/* <Header /> */}
                 <Container>
                     <Row>
                         <Col size='md-6'>

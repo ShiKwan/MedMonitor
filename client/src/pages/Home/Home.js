@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
 import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
@@ -122,7 +122,7 @@ class Home extends Component {
         return (
         <Container fluid >
             {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
-            <Header />
+            {/* <Header /> */}
                 <Container className="home-container">
                     <Nav tabs>
                         <NavItem>

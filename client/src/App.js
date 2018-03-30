@@ -149,7 +149,7 @@ class App extends Component {
   return(
   <Router>
     <div>
-        
+      <Header />
         {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
       <Switch>
           <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />

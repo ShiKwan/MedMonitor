@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../../components/Header";
 import PatSurvey from "../../components/PatSurvey";
 import PatMedDue from "../../components/PatMedDue";
 import './Patient.css';
@@ -22,7 +21,6 @@ class Patient extends Component {
     render(){
         return (
             <Container fluid>
-                <Header />
                 <Container>
                     <Button onClick={this.props.handleIncident}>Alert Admin</Button>
                     <Row>

@@ -46,6 +46,7 @@ class PatSurvey extends Component {
 
     render() {
         return (
+        
         <Container fluid className="patSurvey">
                 
             <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
@@ -70,7 +71,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                 
                 <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4"  className="patSurveyHeader">INCIDENCES</CardHeader>
@@ -91,7 +91,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">ACTIVITY</CardHeader>
@@ -114,7 +113,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">MOVEMENT</CardHeader>
@@ -137,7 +135,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">OFF TIME</CardHeader>
@@ -159,7 +156,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">TREMORS</CardHeader>
@@ -181,7 +177,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">STIFFNESS</CardHeader>
@@ -203,7 +198,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">WALKING</CardHeader>
@@ -225,7 +219,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">BALANCE</CardHeader>
@@ -247,7 +240,6 @@ class PatSurvey extends Component {
                     </Card>
                 </Card>
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">SPEACH</CardHeader>
