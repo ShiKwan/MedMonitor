@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
 import Header from "../../components/Header";
 import SignInForm from "../../components/SignInForm";
-import {Container, Alert} from 'reactstrap';
+import Registration from "../../components/Registration";
+import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
 import userAPI from '../../utils/userAPI';
+import classnames from 'classnames';
 
 import './Home.css';
 
@@ -17,6 +19,18 @@ class Home extends Component {
             username : this.props.username,
             role : this.props.role,
             email : this.props.email
+        }
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            activeTab: '1'
+        };
+    }
+
+    toggle(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
         }
     }
 
@@ -42,14 +56,11 @@ class Home extends Component {
                     messageCenter: "Login successfully!",
                     messageStatus: "success"
                 })
-                console.log("here after setting state")
                 this.props.getBackMessage(this.state.messageCenter);
                 this.props.getBackMessageStatus(this.state.messageStatus);
                 console.log("username : ", this.state.username);
                 console.log("local storage: ", localStorage.getItem("username"));
-                console.log("going to redirect");
                 if(localStorage.getItem("role").toLowerCase()==="patient"){
-                    console.log("to patient");
                     this.props.history.push('/patient');      
                 } else if (localStorage.getItem("role").toLowerCase() === "admin") {
                     this.props.history.push('/admin');   
@@ -57,10 +68,6 @@ class Home extends Component {
                 
             })
             .catch(err => {
-                console.log("fail");
-                console.log("setting redirect to true");
-                console.log(err)
-                
                 this.setState({
                     messageCenter: "Invalid username or password",
                     messageStatus: "danger"
@@ -86,11 +93,45 @@ class Home extends Component {
         let getBackMessageStatus = this.props.getBackMessageStatus;
         
         return (
-        <Container fluid>
+        <Container fluid >
             {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
             <Header />
-            <Container>
-                    <SignInForm onClick={this.handleLogin} onChange={this.handleInputChange} username={this.props.username} password={this.state.password} />
+                <Container className="home-container">
+                    <Nav tabs>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '1' })}
+                                onClick={() => { this.toggle('1'); }}
+                            >
+                                Sign In
+                             </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '2' })}
+                                onClick={() => { this.toggle('2'); }}
+                            >
+                                Registration
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            <Row>
+                                <Col sm="12">
+                                    <SignInForm onClick={this.handleLogin} onChange={this.handleInputChange} username={this.props.username} password={this.state.password} />
+                                </Col>
+                            </Row>
+                        </TabPane>
+                        <TabPane tabId="2">
+                            <Row>
+                                <Col sm="12">
+                                   <Registration />
+                                </Col>
+                            </Row>
+                        </TabPane>
+                    </TabContent>
+                    
             </Container>
         </Container>
         );
