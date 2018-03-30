@@ -6,18 +6,11 @@ const UserSchema = new Schema({
 
     username: { type: String, required: true },
     password: { type: String, required: true },
-    email: { type: String, required: true},
+    email: { type: String, required: true },
     role: { type: String, required: true },
 
-    patient_data: {
-        type: Schema.Types.ObjectId,
-        ref: "Patient_data"
-    },
-
-    doctor: {
-        type: Schema.Types.ObjectId,
-        ref: "Doctor"
-    }
+    patient_id: { type: String, required: true },
+    doctor_id: { type: String, required: true },
 
 });
 
