@@ -283,358 +283,359 @@ class Admin extends Component {
         return (
         <div>
             <Container fluid>
-            <Header />
+                <Header />
             
-            <div className="clearfix">
-            <br />
-                <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
-                <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
-            </div>
+                <div className="clearfix">
+                <br />
+                    <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
+                    <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
+                </div>
 
-            <br />
+                <br />
 
-            <div>
-                <Row>
-                    <Col sm="2">
-                       
-                        <Card style={{display: this.state.menuCard ? "block" : "none"}}>
-                            <CardBody>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Actions</CardTitle>
-                                <CardText> 
-                                    <div style={{fontWeight: this.state.selectPatientCard || this.state.confirmPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("select patient")}>Select patient</a></div>
-                                    <div style={{fontWeight: this.state.addPatientCard || this.state.registerPatienttCard || this.state.successPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("add patient")}>Enroll new patient</a></div>
-                                    <hr />
-                                </CardText>
+                <div>
+                    <Row>
+                        <Col sm="2">
+                        
+                            <Card style={{display: this.state.menuCard ? "block" : "none"}}>
+                                <CardBody>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Actions</CardTitle>
+                                    <CardText> 
+                                        <div style={{fontWeight: this.state.selectPatientCard || this.state.confirmPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("select patient")}>Select patient</a></div>
+                                        <div style={{fontWeight: this.state.addPatientCard || this.state.registerPatienttCard || this.state.successPatientCard? "bold" : ""}}><a onClick={() => this.menuSelect("add patient")}>Enroll new patient</a></div>
+                                        <hr />
+                                    </CardText>
 
-                                <CardText> 
-                                    <div style={{fontWeight: this.state.selectPhysicianCard ? "bold" : ""}}>Select physician</div>
-                                    <div style={{fontWeight: this.state.addPhysicianCard || this.state.registerPhysicianCard ||this.state.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.menuSelect("add physician")}>Add new physician</a></div>
-                                    <hr />
-                                </CardText>
+                                    <CardText> 
+                                        <div style={{fontWeight: this.state.selectPhysicianCard ? "bold" : ""}}>Select physician</div>
+                                        <div style={{fontWeight: this.state.addPhysicianCard || this.state.registerPhysicianCard ||this.state.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.menuSelect("add physician")}>Add new physician</a></div>
+                                        <hr />
+                                    </CardText>
 
-                                <CardText> 
-                                    <div style={{fontWeight: this.state.selectMedcationCard ? "bold" : ""}}>Select medication</div>
-                                    <div style={{fontWeight: this.state.addMedicationtCard ? "bold" : ""}}>Add new medication</div>
-                                </CardText>
-                            </CardBody>
-                        </Card>
+                                    <CardText> 
+                                        <div style={{fontWeight: this.state.selectMedcationCard ? "bold" : ""}}>Select medication</div>
+                                        <div style={{fontWeight: this.state.addMedicationtCard ? "bold" : ""}}>Add new medication</div>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
 
-                        <Card style={{display: this.state.confirmPateintCard ? "block" : "none"}}>
-                            <CardBody>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Data Mining</CardTitle>
-                                <CardText> 
-                                    <div>Drug data</div>
-                                    <div>Disease data</div>
-                                </CardText>
-                            </CardBody>
-                        </Card> 
+                            <Card style={{display: this.state.confirmPateintCard ? "block" : "none"}}>
+                                <CardBody>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Data Mining</CardTitle>
+                                    <CardText> 
+                                        <div>Drug data</div>
+                                        <div>Disease data</div>
+                                    </CardText>
+                                </CardBody>
+                            </Card> 
 
-                    </Col>
-        
-                    <Col sm="6">
+                        </Col>
+            
+                        <Col sm="6">
 
-                        <Card style={{display: this.state.selectPatientCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Select patient</CardTitle>
-                                <CardText>
+                            <Card style={{display: this.state.selectPatientCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Select patient</CardTitle>
+                                    <CardText>
+                                    <br />
+                                        {this.state.patients.length ? (
+
+                                            <Table>
+                                                <tbody>
+                                                    {this.state.patients.map(item => (
+                                                            <tr>
+                                                                <a  onClick={() => this.confirmPatient(item._id)}>
+                                                                    <td style={{width: 100}}>{item.details.patient_number}</td>
+                                                                    <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
+                                                                </a>
+                                                            </tr>
+                                                    ))} 
+                                                </tbody>
+                                            </Table>
+
+                                        ) : (
+                                        <h3>No Results to Display</h3>
+                                        )}
+
+                                    </CardText>
+                                </CardBody>
+                            </Card> 
+
+
+                            <Card style={{display: this.state.confirmPatientCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
+                                
+                                    <CardText>
+                                        <br />
+                                        Hospital Number: {this.state.patientDetails.patient_number} <br />
+                                        Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name} <br/>
+                                        Date of Birth: {this.state.patientDetails.dob} <br /><br />
+                                        Enrolled: {this.state.patient.date_created} <br />
+                                        Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"} <br />
+                                        Next Appointmant: {this.state.patientAppointment.next_appt} <br /><br />
+                                        E-mail: {this.state.patientDetails.email} <br />
+                                        Phone: {this.state.patientDetails.phone} <br /><br />
+                                        Episodes recorded: {this.state.patientEpisodes.length} <br />
+                                        Start of last Episode: {this.state.patientEpisodesStart} <br />
+                                        Records in last episode: {this.state.recordsLastPatientEpisode} 
+                                    </CardText>
+                                    <br /><br />
+                                    <a href={`/admin/Episode?id=${ this.state.patient._id }`}>
+                                        <Button style={{marginRight: 6}}>Create new Episode</Button>
+                                    </a>
+                                    <a href={`/admin/Report?id=${ this.state.patient._id }`}>
+                                        <Button style={{marginRight: 6}}>Report</Button>
+                                    </a>
+                                    <Button style={{marginRight: 6}}>Update details</Button>
+                                    <Button style={{marginRight: 6}}>Update appointments</Button>
+                                    <Button style={{marginRight: 6}}>Close</Button>
+                                </CardBody>
+                            </Card>
+
+                            <Card style={{display: this.state.addPatientCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                    <CardText>
+                                        <br />
+                            
+                                        <Form>
+                                            <FormGroup row>
+                                                <Label for="name" sm={3}>Name</Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="pt_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.pt_firstname} />
+                                                <Input type="text" name="pt_lastname" id="lastname" placeholder="lastname" onChange={this.handleInputChange} value={this.state.pt_lastname} />
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="hospnum" sm={3}>Hospital number</Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="pt_hospnum" id="hospnum" placeholder="hosp1234" onChange={this.handleInputChange} value={this.state.pt_hospnum} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="dob" sm={3}>Date of birth</Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="pt_dob" id="dob" placeholder="mm/dd/yyyy" onChange={this.handleInputChange} value={this.state.pt_dob} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="email" sm={3}>Contact email</Label>
+                                                <Col sm={9}>
+                                                <Input type="email" name="pt_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.pt_email} />  
+                                                </Col>
+                                                <Label for="phone" sm={3}>Contact phone</Label>
+                                                <Col sm={9}>
+                                                <Input type="phone" name="pt_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.pt_phone} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <br />
+                                            <Button style={{marginRight: 6}} onClick={this.enrollPatient}>Enroll</Button>
+                                            <Button style={{marginRight: 6}}>Cancel</Button>
+                                        </Form>
+                                    
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card style={{display: this.state.registerPatientCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                    <CardText>
+                                        <br />
+                                        New patient: {this.state.patient_name} successfully enrolled.
+                                        <br /><br />
+                                        You can set a username and password now for this patient now or let the patient rgeister a username and password on first accessing the application. 
+                                        <br /><br />             
+                                        <Form>
+                                            <FormGroup row>
+                                                <Label>UserName</Label>
+                                                <Input type="text" name="pt_username" placeholder="username" onChange={this.handleInputChange} value={this.state.pt_username} />
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label>Password</Label>
+                                                <Input type="text" name="pt_password" placeholder="password" onChange={this.handleInputChange} value={this.state.pt_password} />
+                                            </FormGroup> 
+                                            <br /><br />           
+                                            <Button onClick={this.registerPatient}>Submit</Button>
+                                        </Form>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card style={{display: this.state.successPatientCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                    <CardText>
+                                        <br />
+                                        New Patient: {this.state.patient_name} successfully enrolled and registered.
+                                        <br /><br />
+                                        An email has been sent to {this.state.pt_email} with their username and password so that they can log-in and use the application.
+                                        <br />              
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card style={{display: this.state.addPhysicianCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
+                                    <CardText>
+                                        <br />
+                            
+                                        <Form>
+                                            <FormGroup row>
+                                                <Label for="name" sm={3}>Physician name</Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="dr_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.dr_firstname} />
+                                                <Input type="text" name="dr_lastname" id="last-name" placeholder="lastname" onChange={this.handleInputChange} value={this.state.dr_lastname} />
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="idnum" sm={3}>Id number</Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="dr_idnum" id="idnum" placeholder="id1234" onChange={this.handleInputChange} value={this.state.dr_idnum} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="office" sm={3}>Office </Label>
+                                                <Col sm={9}>
+                                                <Input type="text" name="dr_office" id="office" placeholder="office name and address" onChange={this.handleInputChange} value={this.state.dr_office} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label for="email" sm={3}>Contact email</Label>
+                                                <Col sm={9}>
+                                                <Input type="email" name="dr_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.dr_email} />  
+                                                </Col>
+                                                <Label for="phone" sm={3}>Contact phone</Label>
+                                                <Col sm={9}>
+                                                <Input type="phone" name="dr_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.dr_phone} />  
+                                                </Col>
+                                            </FormGroup>
+                                            <br />
+                                            <Button style={{marginRight: 6}} onClick={this.addDoctor}>Add Physician</Button>
+                                            <Button style={{marginRight: 6}}>Cancel</Button>
+                                        </Form>
+
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            
+                            <Card style={{display: this.state.registerPhysicianCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                    <CardText>
+                                        <br />
+                                        New physician: {this.state.physician_name} successfully enrolled.
+                                        <br /><br />
+                                        You can set a username and password now for this physician now or let the physician rgeister a username and password won first accessing the application. 
+                                        <br /><br />             
+                                        <Form>
+                                            <FormGroup row>
+                                                <Label>UserName</Label>
+                                                <Input type="text" name="dr_username" placeholder="username" onChange={this.handleInputChange} value={this.state.dr_username} />
+                                            </FormGroup>
+                                            <FormGroup row>
+                                                <Label>Password</Label>
+                                                <Input type="text" name="dr_password" placeholder="password" onChange={this.handleInputChange} value={this.state.dr_password} />
+                                            </FormGroup> 
+                                            <br /><br />           
+                                            <Button onClick={this.registerDoctor}>Submit</Button>
+                                        </Form>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card style={{display: this.state.successPhysicianCard ? "block" : "none"}}>
+                                <CardBody style={{minHeight: 550}}>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+                                    <CardText>
+                                        <br />
+                                        New Patient: {this.state.doctor_name} successfully enrolled and registered.
+                                        <br /><br />
+                                        An email has been sent to {this.state.dr_email} with their username and password so that they can log-in and use the application.
+                                        <br />              
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                        </Col>
+                        <Col sm="4">
+
+                            <Card style={{display: this.state.notificationCard ? "block" : "none"}}>
+                                <CardBody>
+                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Notifications</CardTitle>
                                 <br />
-                                    {this.state.patients.length ? (
+                                    
+                                    <CardText> 
+                                        <p>You currently have 23 patients using this applicatio.
+                                            <br />
+                                            3 new patients enrolled past 7 days.
+                                        </p>
+
+                                        <br />
+                                        <p style={{fontWeight: "bold"}}>Appointments this week</p>
 
                                         <Table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
-                                                {this.state.patients.map(item => (
-                                                        <tr>
-                                                            <a  onClick={() => this.confirmPatient(item._id)}>
-                                                                <td style={{width: 100}}>{item.details.patient_number}</td>
-                                                                <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
-                                                            </a>
-                                                        </tr>
-                                                ))} 
+                                                <tr>
+                                                    <td style={{padding: 2}}>Mark Smith</td>
+                                                    <td style={{padding: 2}}>hosp00123</td>
+                                                    <td style={{padding: 2}}>03/08/2018</td>
+                                                    <td style={{padding: 2}}>0900</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style={{padding: 2}}>Mark Smith</td>
+                                                    <td style={{padding: 2}}>hosp00123</td>
+                                                    <td style={{padding: 2}}>03/08/2018</td>
+                                                    <td style={{padding: 2}}>0900</td>
+                                                </tr>
                                             </tbody>
                                         </Table>
 
-                                    ) : (
-                                    <h3>No Results to Display</h3>
-                                    )}
-
-                                </CardText>
-                            </CardBody>
-                        </Card> 
-
-
-                         <Card style={{display: this.state.confirmPatientCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
-                             
-                                <CardText>
-                                    <br />
-                                    Hospital Number: {this.state.patientDetails.patient_number} <br />
-                                    Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name} <br/>
-                                    Date of Birth: {this.state.patientDetails.dob} <br /><br />
-                                    Enrolled: {this.state.patient.date_created} <br />
-                                    Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"} <br />
-                                    Next Appointmant: {this.state.patientAppointment.next_appt} <br /><br />
-                                    E-mail: {this.state.patientDetails.email} <br />
-                                    Phone: {this.state.patientDetails.phone} <br /><br />
-                                    Episodes recorded: {this.state.patientEpisodes.length} <br />
-                                    Start of last Episode: {this.state.patientEpisodesStart} <br />
-                                    Records in last episode: {this.state.recordsLastPatientEpisode} 
-                                </CardText>
-                                <br /><br />
-                                <a href={`/admin/Episode?id=${ this.state.patient._id }`}>
-                                    <Button style={{marginRight: 6}}>Create new Episode</Button>
-                                </a>
-                                <a href={`/admin/Report?id=${ this.state.patient._id }`}>
-                                    <Button style={{marginRight: 6}}>Report</Button>
-                                </a>
-                                <Button style={{marginRight: 6}}>Update details</Button>
-                                <Button style={{marginRight: 6}}>Update appointments</Button>
-                                <Button style={{marginRight: 6}}>Close</Button>
-                            </CardBody>
-                        </Card>
-
-                         <Card style={{display: this.state.addPatientCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                                <CardText>
-                                    <br />
-                          
-                                    <Form>
-                                        <FormGroup row>
-                                            <Label for="name" sm={3}>Name</Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="pt_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.pt_firstname} />
-                                            <Input type="text" name="pt_lastname" id="lastname" placeholder="lastname" onChange={this.handleInputChange} value={this.state.pt_lastname} />
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="hospnum" sm={3}>Hospital number</Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="pt_hospnum" id="hospnum" placeholder="hosp1234" onChange={this.handleInputChange} value={this.state.pt_hospnum} />  
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="dob" sm={3}>Date of birth</Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="pt_dob" id="dob" placeholder="mm/dd/yyyy" onChange={this.handleInputChange} value={this.state.pt_dob} />  
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="email" sm={3}>Contact email</Label>
-                                            <Col sm={9}>
-                                            <Input type="email" name="pt_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.pt_email} />  
-                                            </Col>
-                                            <Label for="phone" sm={3}>Contact phone</Label>
-                                            <Col sm={9}>
-                                            <Input type="phone" name="pt_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.pt_phone} />  
-                                            </Col>
-                                        </FormGroup>
                                         <br />
-                                        <Button style={{marginRight: 6}} onClick={this.enrollPatient}>Enroll</Button>
-                                        <Button style={{marginRight: 6}}>Cancel</Button>
-                                    </Form>
-                                
-                                </CardText>
-                            </CardBody>
-                        </Card>
+                                        <p style={{fontWeight: "bold"}}>Emergency notifications</p>
+                                        
+                                        <Table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style={{padding: 2}}>Mary Smythe</td>
+                                                    <td style={{padding: 2}}>hosp00123</td>
+                                                    <td style={{padding: 2}}>03/08/2018</td>
+                                                    <td style={{padding: 2}}>Fall</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style={{padding: 2}}>Mary Smythe</td>
+                                                    <td style={{padding: 2}}>hosp00123</td>
+                                                    <td style={{padding: 2}}>03/08/2018</td>
+                                                    <td style={{padding: 2}}>Choking</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
 
-                         <Card style={{display: this.state.registerPatientCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                                <CardText>
-                                    <br />
-                                    New patient: {this.state.patient_name} successfully enrolled.
-                                    <br /><br />
-                                    You can set a username and password now for this patient now or let the patient rgeister a username and password on first accessing the application. 
-                                    <br /><br />             
-                                    <Form>
-                                        <FormGroup row>
-                                            <Label>UserName</Label>
-                                            <Input type="text" name="pt_username" placeholder="username" onChange={this.handleInputChange} value={this.state.pt_username} />
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label>Password</Label>
-                                            <Input type="text" name="pt_password" placeholder="password" onChange={this.handleInputChange} value={this.state.pt_password} />
-                                        </FormGroup> 
-                                        <br /><br />           
-                                        <Button onClick={this.registerPatient}>Submit</Button>
-                                    </Form>
-                                </CardText>
-                            </CardBody>
-                        </Card>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
 
-                        <Card style={{display: this.state.successPatientCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                                <CardText>
-                                    <br />
-                                    New Patient: {this.state.patient_name} successfully enrolled and registered.
-                                    <br /><br />
-                                    An email has been sent to {this.state.pt_email} with their username and password so that they can log-in and use the application.
-                                    <br />              
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                        <Card style={{display: this.state.addPhysicianCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
-                                <CardText>
-                                    <br />
-                          
-                                    <Form>
-                                        <FormGroup row>
-                                            <Label for="name" sm={3}>Physician name</Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="dr_firstname" id="name" placeholder="firstname" onChange={this.handleInputChange}  value={this.state.dr_firstname} />
-                                            <Input type="text" name="dr_lastname" id="last-name" placeholder="lastname" onChange={this.handleInputChange} value={this.state.dr_lastname} />
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="idnum" sm={3}>Id number</Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="dr_idnum" id="idnum" placeholder="id1234" onChange={this.handleInputChange} value={this.state.dr_idnum} />  
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="office" sm={3}>Office </Label>
-                                            <Col sm={9}>
-                                            <Input type="text" name="dr_office" id="office" placeholder="office name and address" onChange={this.handleInputChange} value={this.state.dr_office} />  
-                                            </Col>
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label for="email" sm={3}>Contact email</Label>
-                                            <Col sm={9}>
-                                            <Input type="email" name="dr_email" id="contact" placeholder="john.smith@mail.com" onChange={this.handleInputChange} value={this.state.dr_email} />  
-                                            </Col>
-                                            <Label for="phone" sm={3}>Contact phone</Label>
-                                            <Col sm={9}>
-                                            <Input type="phone" name="dr_phone" id="phone" placeholder="216-394-2420" onChange={this.handleInputChange} value={this.state.dr_phone} />  
-                                            </Col>
-                                        </FormGroup>
-                                        <br />
-                                        <Button style={{marginRight: 6}} onClick={this.addDoctor}>Add Physician</Button>
-                                        <Button style={{marginRight: 6}}>Cancel</Button>
-                                    </Form>
-
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                         
-                         <Card style={{display: this.state.registerPhysicianCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                                <CardText>
-                                    <br />
-                                    New physician: {this.state.physician_name} successfully enrolled.
-                                    <br /><br />
-                                    You can set a username and password now for this physician now or let the physician rgeister a username and password won first accessing the application. 
-                                    <br /><br />             
-                                    <Form>
-                                        <FormGroup row>
-                                            <Label>UserName</Label>
-                                            <Input type="text" name="dr_username" placeholder="username" onChange={this.handleInputChange} value={this.state.dr_username} />
-                                        </FormGroup>
-                                        <FormGroup row>
-                                            <Label>Password</Label>
-                                            <Input type="text" name="dr_password" placeholder="password" onChange={this.handleInputChange} value={this.state.dr_password} />
-                                        </FormGroup> 
-                                        <br /><br />           
-                                        <Button onClick={this.registerDoctor}>Submit</Button>
-                                    </Form>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                        <Card style={{display: this.state.successPhysicianCard ? "block" : "none"}}>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                                <CardText>
-                                    <br />
-                                    New Patient: {this.state.doctor_name} successfully enrolled and registered.
-                                    <br /><br />
-                                    An email has been sent to {this.state.dr_email} with their username and password so that they can log-in and use the application.
-                                    <br />              
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                    </Col>
-                    <Col sm="4">
-
-                        <Card style={{display: this.state.notificationCard ? "block" : "none"}}>
-                            <CardBody>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Notifications</CardTitle>
-                               <br />
-                                
-                                <CardText> 
-                                    <p>You currently have 23 patients using this applicatio.
-                                        <br />
-                                        3 new patients enrolled past 7 days.
-                                    </p>
-
-                                    <br />
-                                    <p style={{fontWeight: "bold"}}>Appointments this week</p>
-
-                                    <Table>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style={{padding: 2}}>Mark Smith</td>
-                                                <td style={{padding: 2}}>hosp00123</td>
-                                                <td style={{padding: 2}}>03/08/2018</td>
-                                                <td style={{padding: 2}}>0900</td>
-                                            </tr>
-                                            <tr>
-                                                <td style={{padding: 2}}>Mark Smith</td>
-                                                <td style={{padding: 2}}>hosp00123</td>
-                                                <td style={{padding: 2}}>03/08/2018</td>
-                                                <td style={{padding: 2}}>0900</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-
-                                    <br />
-                                    <p style={{fontWeight: "bold"}}>Emergency notifications</p>
-                                    
-                                    <Table>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th><th>Hosp number</th><th>Date</th><th>Type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style={{padding: 2}}>Mary Smythe</td>
-                                                <td style={{padding: 2}}>hosp00123</td>
-                                                <td style={{padding: 2}}>03/08/2018</td>
-                                                <td style={{padding: 2}}>Fall</td>
-                                            </tr>
-                                            <tr>
-                                                <td style={{padding: 2}}>Mary Smythe</td>
-                                                <td style={{padding: 2}}>hosp00123</td>
-                                                <td style={{padding: 2}}>03/08/2018</td>
-                                                <td style={{padding: 2}}>Choking</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                    </Col>
-                </Row>
-            </div>
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         </div>
-        )
 
+
+        ) // render return
 
     } // close of render
 

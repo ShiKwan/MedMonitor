@@ -21,7 +21,8 @@ class Admin_Report extends Component {
     };
     
 componentDidMount() {
-    this.setState({patientId: window.location.search})
+    this.setState({patientId: window.location.search});
+    console.log("patientId: " + this.state.patientId)
 };
 
     render() {
