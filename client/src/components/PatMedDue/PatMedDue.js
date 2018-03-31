@@ -23,20 +23,20 @@ const PatMedDue = (props) => {
     return (
         <Container fluid className="patSurvey">
                 
-            <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
-                <CardHeader tag="h4"  className="patSurveyHeader">WHEN YOUR NEXT MEDS ARE DUE</CardHeader>
+            <Card className="medsDueCard" body fluid inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                <CardHeader tag="h4"  className="medsDueHeader">WHEN YOUR NEXT MEDS ARE DUE</CardHeader>
                 <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>Your Next Medication(s) Is Due</h4></CardText>
                     <br>
                     </br>
-                    <Card body className="text-center">
-                        <CardTitle>In: 2 HOURS</CardTitle>
-                    </Card>
+                    <Label className="text-center medsDueHours">
+                        In: 2 HOURS
+                    </Label>
                     <br>
                     </br>
-                    <Card body className="text-center">
-                        <CardTitle>At: 4:00 PM</CardTitle>
-                    </Card>
+                    <Label className="text-center medsDueTime">
+                        At: 4:00 PM
+                    </Label>
                     <br>
                     </br>
 

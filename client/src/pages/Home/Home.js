@@ -73,8 +73,6 @@ class Home extends Component {
                     this.props.history.push('/patient');      
                 } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
                     this.props.history.push('/admin');   
-                }else {
-                    
                 }
                 
             })
@@ -159,8 +157,7 @@ class Home extends Component {
                                 </Col>
                             </Row>
                         </TabPane>
-                    </TabContent>
-                    
+                    </TabContent>    
             </Container>
         </Container>
         );

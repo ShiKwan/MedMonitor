@@ -282,19 +282,18 @@ class Admin extends Component {
 
     render() {
         return (
-        <Container>
+        // <Container>
             <Container fluid>
-            {/* <Header /> */}
             
-                <div className="clearfix">
-                <br />
-                    <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
-                    <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
-                </div>
+                <Container className="clearfix">
+                    <br />
+                        <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
+                        <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
+                </Container>
 
-                <br />
+                    <br />
 
-                <div>
+                <Container>
                     <Row>
                         <Col sm="2">
                         
@@ -546,10 +545,9 @@ class Admin extends Component {
                                     </CardText>
                                 </CardBody>
                             </Card>
-
                         </Col>
-                        <Col sm="4">
 
+                        <Col sm="4">
                             <Card style={{display: this.state.notificationCard ? "block" : "none"}}>
                                 <CardBody>
                                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Notifications</CardTitle>
@@ -617,9 +615,9 @@ class Admin extends Component {
 
                         </Col>
                     </Row>
-                </div>
+                </Container>
             </Container>
-        </Container>
+        
 
 
         ) // render return

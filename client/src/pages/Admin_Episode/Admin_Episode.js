@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import {
@@ -87,7 +87,8 @@ createNewEpisode= () => {
         return (
             <div>
                 <Container fluid>
-                    <Header />
+                    Admin Episode Page<br />
+                    Patient id: {this.state.patientId}
 
                     <div className="clearfix">
                         <br />
