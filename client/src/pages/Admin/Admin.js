@@ -4,6 +4,7 @@ import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import userAPI from "../../utils/userAPI";
+import ConfirmPatientCard from "../../components/Admin/confirmPatientCard";
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -361,37 +362,23 @@ class Admin extends Component {
                                 </CardBody>
                             </Card> 
 
-
-                            <Card style={{display: this.state.confirmPatientCard ? "block" : "none"}}>
-                                <CardBody style={{minHeight: 550}}>
-                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
+                            <ConfirmPatientCard 
+                                confirmPatientCard = {this.state.confirmPatientCard}
+                                patientNumber = {this.state.patientDetails.patient_number}
+                                firstname = {this.state.patientDetails.first_name}
+                                lastname = {this.state.patientDetails.last_name}
+                                dob = {this.state.patient.date_created}
+                                dateCreated = {this.state.patient.date_created}
+                                active = {this.state.patient.active}
+                                nextAppt = {this.state.patientAppointment.next_appt}
+                                email = {this.state.patientDetails.email}
+                                phone = {this.state.patientDetails.phone} 
+                                patientEpisodesLength = {this.state.patientEpisodes.length}
+                                patientEpisodeStart = {this.state.patientEpisodesStart}
+                                recordsLastPatientEpisode = {this.state.recordsLastPatientEpisode} 
+                                patientId = {this.state.patient_id}
+                            />
                                 
-                                    <CardText>
-                                        <br />
-                                        Hospital Number: {this.state.patientDetails.patient_number} <br />
-                                        Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name} <br/>
-                                        Date of Birth: {this.state.patientDetails.dob} <br /><br />
-                                        Enrolled: {this.state.patient.date_created} <br />
-                                        Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"} <br />
-                                        Next Appointmant: {this.state.patientAppointment.next_appt} <br /><br />
-                                        E-mail: {this.state.patientDetails.email} <br />
-                                        Phone: {this.state.patientDetails.phone} <br /><br />
-                                        Episodes recorded: {this.state.patientEpisodes.length} <br />
-                                        Start of last Episode: {this.state.patientEpisodesStart} <br />
-                                        Records in last episode: {this.state.recordsLastPatientEpisode} 
-                                    </CardText>
-                                    <br /><br />
-                                    <a href={`/admin/Episode?id=${ this.state.patient._id }`}>
-                                        <Button style={{marginRight: 6}}>Create new Episode</Button>
-                                    </a>
-                                    <a href={`/admin/Report?id=${ this.state.patient._id }`}>
-                                        <Button style={{marginRight: 6}}>Report</Button>
-                                    </a>
-                                    <Button style={{marginRight: 6}}>Update details</Button>
-                                    <Button style={{marginRight: 6}}>Update appointments</Button>
-                                    <Button style={{marginRight: 6}}>Close</Button>
-                                </CardBody>
-                            </Card>
 
                             <Card style={{display: this.state.addPatientCard ? "block" : "none"}}>
                                 <CardBody style={{minHeight: 550}}>
