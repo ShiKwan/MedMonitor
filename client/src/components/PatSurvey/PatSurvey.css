@@ -8,15 +8,22 @@ div.patSurvey {
 }
 
 .patSurveyCard,
-.introSuvCard {
+.introSuvCard,
+.medDueCard, {
     margin-top: 25px;
 }
 
-.patSurveyCard .patSurveyHeader {
+.patSurveyCard .patSurveyHeader,
+.medsDueCard .medsDueHeader {
     text-align: center;
     margin-bottom: 35px;
     color: black;
     background-color: #c2d6d6;
+}
+
+.patSurvey .introSuvCard,
+.patSurvey .patSurveyCard {
+    margin-bottom: 25px;
 }
 
 .introSuvCard .introSuvCardHeader {
@@ -57,6 +64,7 @@ button.suvRadBtnOrange {
     margin-right: 10px;
     margin-left: 10px;
     padding: 15px 25px 15px 25px;
+    margin-bottom: 10px;
 }
 
 button.suvRadBtn:hover,
