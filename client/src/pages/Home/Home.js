@@ -157,8 +157,7 @@ class Home extends Component {
                                 </Col>
                             </Row>
                         </TabPane>
-                    </TabContent>
-                    
+                    </TabContent>    
             </Container>
         </Container>
         );

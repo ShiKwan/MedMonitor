@@ -630,9 +630,10 @@ class Admin extends Component {
                     </Row>
                 </Container>
             </Container>
-        // </Container>
-        )
+        
 
+
+        ) // render return
 
     } // close of render
 
