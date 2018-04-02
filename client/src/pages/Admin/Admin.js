@@ -102,6 +102,7 @@ class Admin extends Component {
         // find patient data by id for Admin ^^
         patientAPI.findPatientInfoForAdmin(id)
             .then(res => {
+                console.log("find patient info for admin", res);
                 this.setState({confirmPatientCard: true});
                 this.setState({selectPatientCard: false});
                 this.setState({patient: res.data});
@@ -110,6 +111,8 @@ class Admin extends Component {
                 this.setState({patientEpisodes: this.state.patient.episode})
                 this.setState({patientEpisodesStart: this.state.patientEpisodes[this.state.patientEpisodes.length-1].start_date})
                 this.setState({recordsLastPatientEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1].record.length})
+                //sk added this, patient id was not pass in to state:
+                this.setState({pt_id : res.data._id})
             })
             .catch(err => console.log(err));
     };
@@ -281,11 +284,13 @@ class Admin extends Component {
 
 
     render() {
+        
         return (
         // <Container>
+
             <Container fluid>
-            
                 <Container className="clearfix">
+                    {this.state.patients.map( (x) => console.log(x))}
                     <br />
                         <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
                         <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
@@ -360,7 +365,7 @@ class Admin extends Component {
                                     </CardText>
                                 </CardBody>
                             </Card> 
-
+                            
                             <ConfirmPatientCard 
                                 confirmPatientCard = {this.state.confirmPatientCard}
                                 patientNumber = {this.state.patientDetails.patient_number}
@@ -375,7 +380,7 @@ class Admin extends Component {
                                 patientEpisodesLength = {this.state.patientEpisodes.length}
                                 patientEpisodeStart = {this.state.patientEpisodesStart}
                                 recordsLastPatientEpisode = {this.state.recordsLastPatientEpisode} 
-                                patientId = {this.state.patient_id}
+                                patientId = {this.state.pt_id}
                             />
                                 
 

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 // import Header from "../../components/Header";
+import PatientDetails from "../../components/Admin/episode/PatientDetails"
+import PatientMedications from "../../components/Admin/episode/PatientMedications"
+import PatientNextAppointment from "../../components/Admin/episode/PatientNextAppointment"
+import PatientConfirmEpisode from "../../components/Admin/episode/ConfirmEpisode" 
+import PatientSuccessEpisode from "../../components/Admin/episode/SuccessEpisode" 
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
+import medicationAPI from "../../utils/medicationAPI";
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -11,7 +17,6 @@ import {
     Card, CardBody, CardTitle, CardSubtitle, CardText,
     Table
 } from 'reactstrap';
-
 
 class Admin_Episode extends Component {
     state = { 
@@ -32,6 +37,7 @@ class Admin_Episode extends Component {
         patientEpisodesStart: [],
         patientEpisodesMedications: [],
 
+        medications : []
     };
     
     componentDidMount() {
@@ -39,13 +45,17 @@ class Admin_Episode extends Component {
         this.loadPatient()
     };
 
-
+handleLoadPatient = (e) => {
+    e.preventDefault();
+    console.log("here");
+    this.loadPatient();
+}
 loadPatient = () => {
-
     // find patient data by id for Admin 
     patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
         .then(res => {
-            console.log("res.data" + res.data)
+            console.log("res.data", res.data)
+            this.setState({patientId : res.data._id})
             this.setState({patient: res.data});
             this.setState({patientDoctor: this.state.patient.doctor})
             this.setState({patientDetails: this.state.patient.details})
@@ -54,10 +64,19 @@ loadPatient = () => {
             this.setState({patientLastEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1] })
             this.setState({patientEpisodesStart: this.state.patientLastEpisode.start_date})
             this.setState({patientLastEpisodeMedications: this.state.patientLastEpisode.medications})
-
+            this.loadMedication()
         })
         .catch(err => console.log(err));
 };
+loadMedication = () => {
+    medicationAPI.findAll()
+    .then(res => {
+        this.setState({
+            medications : res.data
+        })
+    })
+    .ctach(err => console.log(err));
+}
 
 enterEpisodeMedications = () => {
     this.setState({addEpisodeMedicationsCard: true});
@@ -88,8 +107,8 @@ createNewEpisode= () => {
             <div>
                 <Container fluid>
                     Admin Episode Page<br />
-                    Patient id: {this.state.patientId}
-
+                    Patient id: {this.state.patientId}<br/>
+                    <Button onClick={this.handleLoadPatient}> Show patient info</Button>
                     <div className="clearfix">
                         <br />
                         <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
@@ -97,121 +116,40 @@ createNewEpisode= () => {
                     </div>
                     <br />
                     <div>
-                        <Row>
-                            <Col sm={4}>
+                        <Row>  
+                            <PatientDetails 
+                                patientDetailsCard = {this.state.patientDetailsCard}
+                                patient_number = {this.state.patientDetails.patient_number}
+                                first_name = {this.state.patientDetails.first_name}
+                                last_name = {this.state.patientDetails.last_name}
+                                dob = {this.state.patientDetails.dob}
+                                date_created = {this.state.patient.date_created}
+                                active = {this.state.patient.active}
+                                email = {this.state.patientDetails.email}
+                                phone = {this.state.patientDetails.phone}
+                                length = {this.state.patientEpisodes.length}
+                                patientEpisodesStart = {this.state.patientEpisodesStart}
+                                enterEpisodeMedications = {this.enterEpisodeMedications}
+                            />
+                            <PatientMedications 
+                                medications = {this.state.medications}
+                                addEpisodeMedicationsCard = {this.state.addEpisodeMedicationsCard}
+                                patientLastEpisode = {this.state.patientLastEpisode}
+                                patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
+                                enterNextAppointment = {this.enterNextAppointment}
+                            />
+                            <PatientNextAppointment
+                                addNextAppointmentCard = {this.state.addNextAppointmentCard}
+                                confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
 
-                                <Card style={{display: this.state.patientDetailsCard ? "block" : "none"}}>
-                                    <CardBody style={{minHeight: 550}}>
-                                        <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review patient details</CardTitle>
-                                    
-                                        <CardText>
-                                            <br />
-                                            Hospital Number: {this.state.patientDetails.patient_number} <br />
-                                            Name :  {this.state.patientDetails.first_name}&nbsp;{this.state.patientDetails.last_name} <br/>
-                                            Date of Birth: {this.state.patientDetails.dob} <br /><br />
-                                            Enrolled: {this.state.patient.date_created} <br />
-                                            Enrollment status: {this.state.patient.active ? "Active" : "Currently inactive"} <br />
-                                            E-mail: {this.state.patientDetails.email} <br />
-                                            Phone: {this.state.patientDetails.phone} <br /><br />
-                                            Episodes recorded: {this.state.patientEpisodes.length} <br />
-                                            Last episode created: {this.state.patientEpisodesStart} <br />
-                                            <br /><br />
-
-                                            { this.state.patient.active ?  "" : 
-                                                "Note, this patient has been marked inactive.\nYou cannot create a new episode for inactive patients."
-                                                 
-                                            }
-                                            
-                                        </CardText>
-
-                                        <br /><br />
-                                        <div style={{display: this.state.patient.active ? "block" : "none"}}>
-                                            <Button style={{marginRight: 6}} onClick={this.enterEpisodeMedications}>Next</Button>
-                                            <a href={"/admin"}>
-                                                <Button style={{marginRight: 6}}>Cancel</Button>
-                                            </a> 
-                                        </div>
-                                        <div style={{display: !this.state.patient.active ? "block" : "none"}}>
-                                            <a href={"/admin"}><Button style={{marginRight: 6}}>Back</Button></a> 
-                                        </div>
-                                        
-                                    </CardBody>
-                                </Card>
-
-                            </Col>
-
-                            <Col sm={4}>
-
-                                <Card style={{display: this.state.addEpisodeMedicationsCard ? "block" : "none"}}>
-                                    <CardBody style={{minHeight: 550}}>
-                                        <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enter patient medications</CardTitle>
-                                    
-                                        <CardText>
-                                           Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
-                                        </CardText>
-
-                                        <br /><br />
-                                        <Button style={{marginRight: 6}} onClick={this.enterNextAppointment}>Next</Button>
-                                        <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
-
-                                    </CardBody>
-                                </Card>
-
-                            </Col>
-
-                            <Col sm={4}>
-
-                            <Card style={{display: this.state.addNextAppointmentCard ? "block" : "none"}}>
-                                <CardBody style={{minHeight: 550}}>
-                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enter next appointment</CardTitle>
-                                
-                                    <CardText>
-                                        Enter the time of this patients next appointment and any commenst for the patient to view.
-                                    </CardText>
-
-                                    <br /><br />
-                                    <Button style={{marginRight: 6}} onClick={this.confirmNewEpisodeDetails}>Next</Button>
-                                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
-                                    
-                                </CardBody>
-                            </Card>
-
-                            </Col>
-                            
-                            <Card style={{display: this.state.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
-                                <CardBody style={{minHeight: 550}}>
-                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Confirm New Episode</CardTitle>
-                                
-                                    <CardText>
-                                        Review new episode details and click submit to creat a new episode
-                                        <br /><br />
-                                    </CardText>
-
-                                    <br /><br />
-                                    <Button style={{marginRight: 6}} onClick={this.createNewEpisode}>Submit</Button>
-                                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Back</Button></a> 
-                                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
-                                    
-                                </CardBody>
-                            </Card>
-
-                            <Card style={{display: this.state.successEpisodeCreatedCard ? "block" : "none", width: "100%"}}>
-                                <CardBody style={{minHeight: 550}}>
-                                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Confirm New Episode</CardTitle>
-                                
-                                    <CardText>
-                                        A new episode has been successfully created for this patient
-                                        <br /><br />
-                                        The patient has been emailed with details
-                                        <br /><br />
-                                        Offer to place medication reminders in pts google calander
-                                    </CardText>
-
-                                    <br /><br />
-                                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Finish</Button></a>
-                                    
-                                </CardBody>
-                            </Card>
+                            />
+                            <PatientConfirmEpisode
+                                confirmNewEpisodeDetailsCard = {this.state.confirmNewEpisodeDetailsCard}
+                                createNewEpisode = {this.createNewEpisode}
+                            />
+                            <PatientSuccessEpisode 
+                                successEpisodeCreatedCard = {this.state.successEpisodeCreatedCard}
+                            />
                         </Row>
                     </div> 
                 </Container>

@@ -18,7 +18,15 @@ module.exports = {
                 res.status(422).json(err);
             })
     },
-
+    
+    //Find drug by name
+    findOne : function(req, res){
+        console.log("findOne")
+        db.Meds
+            .find({name : req.params.id})
+            .then(med => res.json(med))
+            .catch(err => res.status(422).json(err));
+    },
 
     // Add a new medication
     // To be sent req.body object with name(required), type(optional), doses(optional) array ( [dose, form, route] )
