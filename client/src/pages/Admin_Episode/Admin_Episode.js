@@ -75,7 +75,7 @@ loadMedication = () => {
             medications : res.data
         })
     })
-    .ctach(err => console.log(err));
+    .catch(err => console.log(err));
 }
 
 enterEpisodeMedications = () => {

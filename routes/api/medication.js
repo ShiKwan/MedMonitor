@@ -15,7 +15,10 @@ router
 // Matches with "/api/medication/:id"
 router
     .route("/:id")
-    .get(medicationController.findOne)
     .delete(medicationController.removeDrug);
+
+router
+    .route("/:name")
+    .get(medicationController.findOne);
 
 module.exports = router;
