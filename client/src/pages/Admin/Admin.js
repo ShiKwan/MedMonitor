@@ -74,7 +74,7 @@ class Admin extends Component {
 
     // Call function to fetch data required for admin page when Admin component mounts
     componentDidMount() {
-        this.loadAllPatients(); 
+        this.loadPatientData(); 
     };
 
 
@@ -93,7 +93,7 @@ class Admin extends Component {
     }
 
 
-    loadAllPatients = () => {
+    loadPatientData = () => {
         patientAPI.findAll({})
             .then(res => { 
                 this.setState({ patients: res.data}); 
