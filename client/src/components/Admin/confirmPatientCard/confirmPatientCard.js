@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Card, CardBody, CardTitle, CardText,
 } from 'reactstrap';
 import './confirmPatientCard.css';
 
@@ -35,6 +29,7 @@ export default class confirmPatientCard extends React.Component {
                         Start of last Episode: {this.props.patientEpisodesStart} <br />
                         Records in last episode: {this.props.recordsLastPatientEpisode} 
                     </CardText>
+
                     <br />
                     <br />
                     <a href={`/admin/Episode?id=${ this.props.patientId }`}>
@@ -46,7 +41,7 @@ export default class confirmPatientCard extends React.Component {
                     <Button style={{marginRight: 6}}>Update details</Button>
                     <Button style={{marginRight: 6}}>Update appointments</Button>
                     <Button style={{marginRight: 6}}>Close</Button>
-                    
+
                 </CardBody>
             </Card>
 
