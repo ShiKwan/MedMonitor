@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 
-export default class PatientMedication extends React.Component {
+export default class PreviousMedication extends React.Component {
     render () {
         let ddlPreviousTime = [];
         {
