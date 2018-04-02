@@ -46,21 +46,21 @@ export default class Header extends React.Component {
 
     render() {
         return (
-                <Navbar color="nav-color" light expand="md">
+                <Navbar color="navbar" light expand="md">
                     <Container>
-                        <Nav pills>
+                        <Nav pills className="navLogInPills">
                             <NavItem>
-                                <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"  } className="color-home" active>HOME</NavLink>
-                                { localStorage.getItem("username") && localStorage.getItem("username") !=="null" ? <NavLink href="appointment" className="color-app" active>APPOINTMENT</NavLink> : null }
+                                <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"  } className="navHomeBtn" active>HOME</NavLink>
+                                { localStorage.getItem("username") && localStorage.getItem("username") !=="null" ? <NavLink href="appointment" className="navAppBtn" active>APPOINTMENT</NavLink> : null }
                             </NavItem>
                         </Nav>
-                        <Nav pills className="ml-auto">
-                            <NavItem>
-                                <Label className="loginName" for="appTime"><h4>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </h4></Label>
+                        <Nav pills className="navlogOutpills">
+                            <NavItem className="navLogName">
+                                <Label className="loginName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
                                 {localStorage.getItem("username")!== "null"?
-                                <NavLink href="/home" className="color-logout" onClick={this.handleLogout} active>LOG OUT</NavLink>
+                                <NavLink href="/home" className="logOutBtn" onClick={this.handleLogout} active>LOG OUT</NavLink>
                                 :
-                                <NavLink href="/home" className="color-logout" active>LOG IN</NavLink>
+                                <NavLink href="/home" className="logOutBtn" active>LOG IN</NavLink>
                                 }
                             </NavItem>
                         </Nav>

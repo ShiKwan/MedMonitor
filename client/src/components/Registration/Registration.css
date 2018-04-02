@@ -24,7 +24,3 @@ button.submit-button {
     text-align: center;
     margin-bottom: 25px;
 }
-
-a.nav-link.active {
-    margin-bottom : 0px;
-}

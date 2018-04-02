@@ -175,7 +175,7 @@ class PatSurvey extends Component {
         
         <Container fluid className="patSurvey">
                 
-            <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                 <CardHeader tag="h4" className="introSuvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
             </Card>
 
@@ -185,7 +185,7 @@ class PatSurvey extends Component {
             return(
                 x.selectionType  === "radio" ?
                     // create radio button here
-                    <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                    <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
@@ -217,7 +217,7 @@ class PatSurvey extends Component {
                     </Card>           
                 :   
                 
-                    <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                    <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.questions}</h4></CardText>
