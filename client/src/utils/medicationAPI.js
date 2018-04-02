@@ -5,6 +5,8 @@ export default {
         return axios.get("/api/medication");
     }, 
     findOne: function(name) {
+        console.log("here in find one");
+        console.log("name : ", name);
         return axios.get("/api/medication/"+ name);
     },
     newDrug: function(drugInfo) {

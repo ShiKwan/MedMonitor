@@ -8,7 +8,7 @@ module.exports = {
     // Fetch all medications and doses
     // Returns json list of all medications sorted alphabetically by name
     findAll: function(req, res) {
-        console.log("findAll")
+        console.log("findAll");
         db.Meds
             .find()
             .sort( {name: 1} )
@@ -21,10 +21,14 @@ module.exports = {
     
     //Find drug by name
     findOne : function(req, res){
-        console.log("findOne")
+        console.log("findOne");
         db.Meds
-            .find({name : req.params.id})
-            .then(med => res.json(med))
+            .find({name : req.params.name})
+            .then(med => {
+                console.log("here");
+                console.log("med : ", med);
+                res.json(med);
+            })
             .catch(err => res.status(422).json(err));
     },
 

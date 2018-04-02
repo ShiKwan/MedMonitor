@@ -3,7 +3,7 @@ import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import userAPI from "../../utils/userAPI";
-import ConfirmPatientCard from "../../components/Admin/ConfirmPatientCard";
+import ConfirmPatientCard from "../../components/Admin/confirmPatientCard";
 import SelectPatientCard from "../../components/Admin/SelectPatientCard";
 import DataMenuCard from "../../components/Admin/DataMenuCard";
 import MenuCard from "../../components/Admin/MenuCard";
