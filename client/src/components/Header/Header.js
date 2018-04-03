@@ -50,17 +50,17 @@ export default class Header extends React.Component {
                     <Container>
                         <Nav pills className="navLogInPills">
                             <NavItem>
-                                <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"  } className="navHomeBtn" active>HOME</NavLink>
-                                { localStorage.getItem("username") && localStorage.getItem("username") !=="null" ? <NavLink href="appointment" className="navAppBtn" active>APPOINTMENT</NavLink> : null }
+                            <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active>HOME</NavLink>
+                            {localStorage.getItem("username") && localStorage.getItem("username") !== "null" ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null }
                             </NavItem>
                         </Nav>
                         <Nav pills className="navlogOutpills">
                             <NavItem className="navLogName">
                                 <Label className="loginName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
                                 {localStorage.getItem("username")!== "null"?
-                                <NavLink href="/home" className="logOutBtn" onClick={this.handleLogout} active>LOG OUT</NavLink>
+                                <NavLink href="/home" className="logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
                                 :
-                                <NavLink href="/home" className="logOutBtn" active>LOG IN</NavLink>
+                                <NavLink href="/home" className="logOutBtn" size="lg" active>LOG IN</NavLink>
                                 }
                             </NavItem>
                         </Nav>

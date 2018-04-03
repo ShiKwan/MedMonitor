@@ -150,7 +150,7 @@ export default class Registration extends React.Component {
         return (
             <Container>
                 {!role ? (
-                    <Form className="form col-md-12">
+                    <Form className="validation-form col-md-12">
                         <Container>
                             <h2 className="signInMessage">Email Address Validation</h2>
                         </Container>
@@ -158,11 +158,11 @@ export default class Registration extends React.Component {
                             <Label size="lg">Email address</Label>
                             <Input type="text" name="newAccountEmail" placeholder="Please enter your email address here.. " bsSize="lg" value={this.state.newAccountEmail} onChange={this.handleInputChange} />
                         </FormGroup>
-                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleValidateEmail(this.state.newAccountEmail, event)}> Validate Email</Button>{' '}
+                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleValidateEmail(this.state.newAccountEmail, event)}> VALIDATE EMAIL</Button>{' '}
                     </Form>
                 )
                 :(
-                    <Form className="form col-md-12">
+                    <Form className="registration-form col-md-12">
                         <Container>
                             <h2 className="RegisterMessage">Register Your Account</h2>
                         </Container>
@@ -178,7 +178,7 @@ export default class Registration extends React.Component {
                             <Label className="register-label" size="lg">Confirm Password</Label>
                             <Input type="password" name="confirmPassword" placeholder="password" bsSize="lg" value={this.state.confirmPassword} onChange={this.handleInputChange} />
                         </FormGroup>
-                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleCreateAccount(event)}> Submit</Button>{' '}
+                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleCreateAccount(event)}> SUBMIT</Button>{' '}
                     </Form>
                 )}
             </Container>

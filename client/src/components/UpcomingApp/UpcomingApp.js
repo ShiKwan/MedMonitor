@@ -38,9 +38,8 @@ const UpcomingApp = (props) => {
                     <br>
                     </br>
                     <Label className="appNum" for="appPhNum">Phone Number:</Label>
-                    <br>
-                    </br>
-                    <Button className="appRemindBtn">Remind Me!</Button>{' '}
+
+                    <Button className="appRemindBtn" size="lg">Remind Me!</Button>{' '}
                 </Card>
             </Card>
         </Container>

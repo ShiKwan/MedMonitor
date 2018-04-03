@@ -1,9 +1,9 @@
-.patMedInfo {
-    margin-bottom: 25px;
+div.patMedInfo {
+    max-width: 850px;
 }
 
 .patMedInfoCard {
-    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .patMedInfoCard .patMedInfoHeader {
@@ -29,14 +29,20 @@
     display: grid;
 }
 
-button.patMedRemindBtn {
+button.patMedRemindBtn,
+button.somethingBtn1,
+button.somethingBtn2,
+button.somethingBtn3 {
     padding: 15px 25px 15px 25px;
     color: #e3c044;
     font-weight: bold;
     background-color: #2d5366;
 }
 
-button.patMedRemindBtn:hover {
+button.patMedRemindBtn:hover,
+button.somethingBtn1:hover,
+button.somethingBtn2:hover,
+button.somethingBtn3:hover {
     padding: 15px 25px 15px 25px;
     color: #2d5366;
     background-color: #e3c044;

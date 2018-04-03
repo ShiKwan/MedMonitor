@@ -29,9 +29,9 @@ export default class SignInForm extends React.Component {
                         </FormGroup>
                         <FormGroup row className="signInPword">
                             <Label className="signin-label" size="lg">Password</Label>
-                            <Input type="password" name="password" id="userPassword" placeholder="password" bsSize="lg" value={this.props.password} onChange={this.props.onChange} />
+                            <Input type="password" name="password" id="enterPassword" placeholder="password" bsSize="lg" value={this.props.password} onChange={this.props.onChange} />
                         </FormGroup>
-                    <Button className="submit-button" size="lg" color="success" onClick={this.props.onClick}> Submit</Button>{' '}
+                        <Button className="submit-button" size="lg" color="success" onClick={this.props.onClick}> SUBMIT</Button>{' '}
                     </Form>
                 </Container>
            

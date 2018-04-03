@@ -1,6 +1,7 @@
 .home-container {
     margin-top: 20px;
 }
+
 div.container-fluid {
     padding-left: 0px;
     padding-right: 0px;
@@ -40,4 +41,15 @@ button.submit-button {
 .signInMessage {
     text-align: center;
     margin-bottom: 25px;
+}
+
+h4.signInTab,
+h4.registerTab {
+    color: #6d8998;
+    font-weight: bold;
+}
+
+h4.signInTab:hover,
+h4.registerTab:hover {
+    color: #2d5366;
 }

@@ -130,7 +130,7 @@ class Home extends Component {
                                 className={classnames({ active: this.state.activeTab === '1' })}
                                 onClick={() => { this.toggle('1'); }}
                             >
-                                Sign In
+                                <h4 className="signInTab">Sign In</h4>
                              </NavLink>
                         </NavItem>
                         <NavItem>
@@ -138,7 +138,7 @@ class Home extends Component {
                                 className={classnames({ active: this.state.activeTab === '2' })}
                                 onClick={() => { this.toggle('2'); }}
                             >
-                                Registration
+                                <h4 className="registerTab">Registration</h4>
                             </NavLink>
                         </NavItem>
                     </Nav>

@@ -16,14 +16,14 @@
 }
 
 .upcomingAppCard .appRemindBtn {
-    margin-top: 6px;
+    margin-top: 7px;
     color: #e3c044;
     font-weight: bold;
     background-color: #2d5366;
+    padding: 15px 0px 15px 0px;
 }
 
 .upcomingAppCard .appRemindBtn:hover {
-    margin-top: 6px;
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
