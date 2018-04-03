@@ -11,16 +11,19 @@
     padding: 25px;
 }
 
-#userName,
-#userPassword {
+#enterUser,
+#enterPassword {
     margin-top: -10px;
 }
 
-button.submit-button {
+.signin-form .submit-button {
     float: right;
+    font-weight: bold;
+    padding: 15px 25px 15px 25px;
 }
 
-.signInMessage {
+.signin-form .signInMessage {
     text-align: center;
     margin-bottom: 25px;
+    margin-top: -25px;
 }

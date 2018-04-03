@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 
 export default class PatientNextAppointment extends React.Component {
+
     render () {
         return (
             <Card style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
@@ -19,8 +20,7 @@ export default class PatientNextAppointment extends React.Component {
                     <CardText>
                         Enter the time of this patients next appointment and any comments for the patient to view.
                     </CardText>
-
-                    <br /><br />
+                    
                     <Button style={{marginRight: 6}} onClick={() => this.props.confirmNewEpisodeDetails()}>Here Next</Button>
                     <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
                     

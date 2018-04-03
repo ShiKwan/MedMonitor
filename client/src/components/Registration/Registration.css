@@ -6,7 +6,7 @@
     max-width: 980px;
 }
 
-.form {
+.validation-form {
     margin: 100px auto;
     padding: 25px;
 }
@@ -16,15 +16,16 @@
     margin-top: -10px;
 }
 
-button.submit-button {
+.validation-form .submit-button,
+.registration-form .submit-button {
     float: right;
+    font-weight: bold;
+    padding: 15px 25px 15px 25px;
 }
 
-.signInMessage {
+.validation-form .signInMessage,
+.registration-form .signInMessage {
     text-align: center;
     margin-bottom: 25px;
-}
-
-a.nav-link.active {
-    margin-bottom : 0px;
+    margin-top: -25px;
 }

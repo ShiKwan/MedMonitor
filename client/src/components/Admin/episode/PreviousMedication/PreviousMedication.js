@@ -11,79 +11,134 @@ import {
 } from 'reactstrap';
 import medicationAPI from "../../../../utils/medicationAPI";
 
-
+let medFound = {};
+let ddlPreviousDoses = [];
+let ddlDosage = [];
+let selectedPreviousDoses = "";
 export default class PreviousMedication extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            dosage : [],
-            medication: this.props.medication
-        };
+        this.state = ({
+            patientLastEpisodeMedications : [],
+            selectedPreviousDoses : [],
+            medication : "",
+            times : [],
+            allMedications : [],
+            allPreviousDoses : [],
+            dosageValue : "",
+            dosageLabel : ""
+        })
+    }
+    componentWillReceiveProps(newProp){
+        console.log("allMedication", this.props.allMedications);
+        console.log("this med:", this.props.medication);
         
+        this.setState({
+            patientLastEpisodeMedications : this.props.patientLastEpisodeMedications,
+            medication : this.props.medication,
+            times : this.props.previousTimes,
+            allMedications : this.props.allMedications,
+            allTime : this.props.allTime,
+            dosageValue : this.props.value,
+            dosageLabel : this.props.label,
+         })
     }
-    handleDosage = (selectedOption) =>{
-        console.log("selectedOption : " , selectedOption);
-        this.setState({ selectedDosage : `${selectedOption.value}`});
-        console.log("new selected time: ", this.state.selectedDosage);
+
+    removeMedicine = (e) =>{
+        e.preventDefault();
+        this.setState({
+            toRemove: this.props.medication
+        });
+    }
+    editMedicine = (e) => {
+        e.preventDefault();
+        this.setState({
+        })
+    }
+    handleDosage = (selectedPreviousDoses) =>{
+        let newPatientLastEpisodeMedications = this.state.patientLastEpisodeMedications;
+        newPatientLastEpisodeMedications.value  = `${selectedPreviousDoses.value}`,
+        newPatientLastEpisodeMedications.label  = `${selectedPreviousDoses.label}`
+        console.log("selectedOption : " , selectedPreviousDoses);
+        this.setState({
+            patientLastEpisodeMedications : newPatientLastEpisodeMedications,
+            dosageValue : `${selectedPreviousDoses.value}`,
+            dosageLabel : `${selectedPreviousDoses.label}`
+        });
+        console.log("new selected time: ", this.state.dosageValue);
     };
-    ComponentDidMount = () => {
-        medicationAPI.findOne(this.state.medication)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+    handlePreviousTimeChange = (selectedOption) => {
+        console.log("Selected : " , selectedOption);
+        const newSelectedOption = selectedOption
+        this.setState({
+            times : newSelectedOption
+        })
+        console.log(this.state.times);
     }
+    showState = () => {
+        console.log("Show state: " , this.state);
+        console.log("Show comp")
+    }
+    renderState = (value, label) =>{
+        this.setState({
+            selectedValue : value,
+            selectedLabel : label
+        })
+    }
+
     populateDropDown = (item) => {
-        console.log(item);
-        let doses = [];
-        setTimeout(() => {
-        medicationAPI
-            .findOne(item)
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
-            },500)
-        return(
-            
-            <Container>Test</Container>
-        )
+        console.log("in populatedropdown, item" , item);
+        
+        let ddlDosage = [];
+        this.state.allMedications.map((med, index) =>{
+            if(med.name === item){
+                console.log("found med");
+                ddlDosage = med.doses;
+            }
+        } )
+        console.log("ddlDosage state :", ddlDosage);
+        return(ddlDosage)
     }
 
 
-    render () {
-        let ddlPreviousTime = [];
-        console.log("medication : " + this.props.medication);
-        {
-            console.log(this.props.previousTimes)
-            {this.props.previousTimes.map( (item, index) =>
-                {                    
-                    let objPreviousTime = {
-                        value : "",
-                        label : ""
-                    };
-                    objPreviousTime.value = index;
-                    objPreviousTime.label = `${item}`;
-                    ddlPreviousTime.push(objPreviousTime);
-                }   
-            )}            
-        }
-        return (
+    render(){
 
-            <Container>
-            <label>Medication</label> <br/>
-            {this.props.medication}
-            Type: <br />
+            return(
+            this.state.patientLastEpisodeMedications.map( (x,index) =>    
+                <Container key={index} style={{display: this.state.toRemove? "none" : "block"}}>
+                <Button onClick={this.showState}>Show State</Button>
+                <label>Medication</label> <br/>
+                {x.medication}<br />
 
-            <Label>Dose: {this.props.dose}  Form: {this.props.form} Route: {this.props.route}</Label>
-            {this.populateDropDown(this.state.medication)}
-            <Select 
-                name= "previous-medication-intake-time"
-                value = {ddlPreviousTime}
-                placeholder = 'previous medication intake time'
-                onChange = {()=>this.handlePreviousTimeChange()}
-                options= {this.props.allTime}
-                multi= {true}
-            />
-            <Button color="success">Edit</Button>
-            <Button color="danger">Remove</Button>
-            </Container>
+                Doses: <br /> {this.state.label}
+
+                <Label>Dose: {x.dose}  Form: {x.form} Route: {x.route}</Label>
+
+                <Select 
+                    key = {x.medication}
+                    name= {x.medication}
+                    value = {this.state.dosageValue? this.state.dosageValue : x.value}
+                    placeholder = 'previous medication doses'
+                    onChange = {this.handleDosage}
+                    options= {this.populateDropDown(x.medication)}
+                />
+                <Label>Medication intake time:</Label>
+                <Select 
+                    key= {`${x.medication}-times`}
+                    name= {`${x.medication}-times`}
+                    value = {this.state.times? this.state.times : x.times}
+                    placeholder = 'previous medication intake time'
+                    onChange = {this.handlePreviousTimeChange}
+                    options= {this.props.allTime}
+                    multi= {true}
+                />
+                
+                <Button color="success" onClick={()=> this.EditMedicine()}>Edit</Button>
+                <Button color="danger" onClick={()=>this.removeMedicine()}>Remove</Button>
+                </Container>
+            )
+            
         )
+        
     }
 }

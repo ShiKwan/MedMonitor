@@ -21,6 +21,7 @@ import {
 
 
 var questions = [{
+    
     suvHeader: 'MEDICATION',
     question: 'Are You Current With Your Parkinson Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
@@ -175,7 +176,7 @@ class PatSurvey extends Component {
         
         <Container fluid className="patSurvey">
                 
-            <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                 <CardHeader tag="h4" className="introSuvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
             </Card>
 
@@ -185,7 +186,7 @@ class PatSurvey extends Component {
             return(
                 x.selectionType  === "radio" ?
                     // create radio button here
-                    <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                    <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
@@ -194,7 +195,6 @@ class PatSurvey extends Component {
                         {x.answers.map( (answer, index) => {
                             return(
                                 <Button
-                                    // className={"suvRadBtn"}
                                     id = {`${x.suvHeader}`}
                                     className={`${x.className[index]} suvRadBtn`}
                                     color= {`${x.color[index]}`}
@@ -217,7 +217,7 @@ class PatSurvey extends Component {
                     </Card>           
                 :   
                 
-                    <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+                    <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.questions}</h4></CardText>
@@ -226,12 +226,11 @@ class PatSurvey extends Component {
                         {x.answers.map((answer, index) => {
                             return (
                                 <Button
-                                    // className={"suvChkBtn"}
+                                    id={`${x.suvHeader}`}
                                     className={`${x.className[index]} suvChkBtn`}
-
                                     color={`${x.color[index]}`}
                                     onClick={() => this.onCheckboxBtnClick(`${answer}`)}
-                                    active={this.state.cSelected.includes === `${answer}`}
+                                    active={this.state.cSelected === `${answer}`}
                                     value={`${answer}`}
                                 >
                                     <h4>{`${answer}`}</h4>
