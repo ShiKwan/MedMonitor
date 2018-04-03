@@ -21,6 +21,7 @@ import {
 
 
 var questions = [{
+    
     suvHeader: 'MEDICATION',
     question: 'Are You Current With Your Parkinson Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
@@ -194,7 +195,6 @@ class PatSurvey extends Component {
                         {x.answers.map( (answer, index) => {
                             return(
                                 <Button
-                                    // className={"suvRadBtn"}
                                     id = {`${x.suvHeader}`}
                                     className={`${x.className[index]} suvRadBtn`}
                                     color= {`${x.color[index]}`}
@@ -226,12 +226,11 @@ class PatSurvey extends Component {
                         {x.answers.map((answer, index) => {
                             return (
                                 <Button
-                                    // className={"suvChkBtn"}
+                                    id={`${x.suvHeader}`}
                                     className={`${x.className[index]} suvChkBtn`}
-
                                     color={`${x.color[index]}`}
                                     onClick={() => this.onCheckboxBtnClick(`${answer}`)}
-                                    active={this.state.cSelected.includes === `${answer}`}
+                                    active={this.state.cSelected === `${answer}`}
                                     value={`${answer}`}
                                 >
                                     <h4>{`${answer}`}</h4>

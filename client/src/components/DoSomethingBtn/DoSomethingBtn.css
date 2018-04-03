@@ -1,36 +1,35 @@
-div.patMedInfo {
+#episodeVideo {
+    margin-top: -9px;
+}
+
+div.doSomethingInfo {
     max-width: 850px;
 }
 
-.patMedInfoCard {
+.doSomethingInfoCard {
     margin-bottom: 25px;
 }
 
-.patMedInfoCard .patMedInfoHeader {
+.doSomethingInfoCard .doSomethingInfoHeader {
     text-align: center;
     margin-bottom: 35px;
     color: black;
     background-color: #9eb1bd;
 }
 
-.patMedInfoCard .patMedInfoBody {
+.doSomethingInfoCard .doSomethingInfoBody {
     color: black;
     padding: 25px;
     background-color: #f3f3f1;
 }
 
-.patMedInfo .patMedInfoDue {
-    text-align: center;
-}
-
-.patMedDueRemind {
+.doSomethingBtnGroup {
     text-align: center;
     margin: 0 auto;
     display: grid;
 }
 
-button.patMedRemindBtn,
-button.somethingBtn1,
+button.submitVideo,
 button.somethingBtn2,
 button.somethingBtn3 {
     padding: 15px 25px 15px 25px;
@@ -43,8 +42,7 @@ button.somethingBtn3 {
     transition-duration: 1s;
 }
 
-button.patMedRemindBtn:hover,
-button.somethingBtn1:hover,
+button.submitVideo:hover,
 button.somethingBtn2:hover,
 button.somethingBtn3:hover {
     padding: 15px 25px 15px 25px;
