@@ -108,6 +108,10 @@ button.questSubmitBtn {
     color: #e3c044;
     font-weight: bold;
     background-color: #2d5366;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: 1s;
 }
 
 button.questSubmitBtn:hover {
