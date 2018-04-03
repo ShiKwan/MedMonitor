@@ -47,13 +47,23 @@ class Admin_Episode extends Component {
 
 handleLoadPatient = (e) => {
     e.preventDefault();
-    console.log("here");
+
     this.loadPatient();
+    console.log("current state: ", this.state);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
     patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
         .then(res => {
+            let objMedication = {};
+            objMedication = res.data
+            res.data.episode.map((epi, epi_index) => {
+                epi.medications.map((med, med_index) =>{
+                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} ${med.form} ${med.route}`
+                        objMedication.episode[epi_index].medications[med_index].value = `${med.dose} ${med.form} ${med.route}`
+                    
+                })
+            })
             console.log("res.data", res.data)
             this.setState({patientId : res.data._id})
             this.setState({patient: res.data});
@@ -71,8 +81,17 @@ loadPatient = () => {
 loadMedication = () => {
     medicationAPI.findAll()
     .then(res => {
+        let objMedication = {}
+        objMedication = res.data
+        res.data.map((x,index)=>{
+            x.doses.map((item,index2) =>{
+                objMedication[index].doses[index2].label = `${item.dose} ${item.form} ${item.route}`
+                objMedication[index].doses[index2].value = `${item.dose} ${item.form} ${item.route}`
+            })
+        })
+        console.log(objMedication);
         this.setState({
-            medications : res.data
+            medications : objMedication
         })
     })
     .catch(err => console.log(err));

@@ -16,30 +16,30 @@ import {
 let ddlSelectedDoses = [];
 const ddlMedications = [];
 const ddlTime = [
-    {value: '0000', label: '12:00am'},
-    {value: '0100', label: '1:00am'},
-    {value: '0200', label: '2:00am'},
-    {value: '0300', label: '3:00am'},
-    {value: '0400', label: '4:00am'},
-    {value: '0500', label: '5:00am'},
-    {value: '0600', label: '6:00am'},
-    {value: '0700', label: '7:00am'},
-    {value: '0800', label: '8:00am'},
-    {value: '0900', label: '9:00am'},
-    {value: '1000', label: '10:00am'},
-    {value: '1100', label: '11:00am'},
-    {value: '1200', label: '12:00pm'},
-    {value: '1300', label: '1:00pm'},
-    {value: '1400', label: '2:00pm'},
-    {value: '1500', label: '3:00pm'},
-    {value: '1600', label: '4:00pm'},
-    {value: '1700', label: '5:00pm'},
-    {value: '1800', label: '6:00pm'},
-    {value: '1900', label: '7:00pm'},
-    {value: '2000', label: '8:00pm'},
-    {value: '2100', label: '9:00pm'},
-    {value: '2200', label: '10:00pm'},
-    {value: '2300', label: '11:00pm'}
+    {value: '0000',test:'test', label: '12:00am'},
+    {value: '0100',test:'test', label: '1:00am'},
+    {value: '0200',test:'test', label: '2:00am'},
+    {value: '0300',test:'test', label: '3:00am'},
+    {value: '0400',test:'test', label: '4:00am'},
+    {value: '0500',test:'test', label: '5:00am'},
+    {value: '0600',test:'test', label: '6:00am'},
+    {value: '0700',test:'test', label: '7:00am'},
+    {value: '0800',test:'test', label: '8:00am'},
+    {value: '0900',test:'test', label: '9:00am'},
+    {value: '1000',test:'test', label: '10:00am'},
+    {value: '1100',test:'test', label: '11:00am'},
+    {value: '1200',test:'test', label: '12:00pm'},
+    {value: '1300',test:'test', label: '1:00pm'},
+    {value: '1400',test:'test', label: '2:00pm'},
+    {value: '1500',test:'test', label: '3:00pm'},
+    {value: '1600',test:'test', label: '4:00pm'},
+    {value: '1700',test:'test', label: '5:00pm'},
+    {value: '1800',test:'test', label: '6:00pm'},
+    {value: '1900',test:'test', label: '7:00pm'},
+    {value: '2000',test:'test', label: '8:00pm'},
+    {value: '2100',test:'test', label: '9:00pm'},
+    {value: '2200',test:'test', label: '10:00pm'},
+    {value: '2300',test:'test', label: '11:00pm'}
 ];
 
 export default class PatientMedications extends React.Component {
@@ -52,13 +52,25 @@ export default class PatientMedications extends React.Component {
             drugType: "",
             drugDoses: [],
             ddlSelectedDoses : [],
-            ddlPreviousSelectedDoses : []
+            ddlPreviousSelectedDoses : [],
+            allMedications : [],
+            allTime : ddlTime
         }
+
+        
+    }
+    componentWillReceiveProps(newProp){
+        this.setState({
+            selectedPreviousDoses : this.props.medication,
+            medication : this.props.medication,
+            allMedications : this.props.allMedications,
+         })
     }
     onGenerateMedications= () => {
         console.log("this patient previous med: " , this.props.patientLastEpisodeMedications);
         console.log("all meds : ", this.props.medications);
         console.log("ddl Medications: " , ddlMedications);
+        console.log("patient medication's state : ", this.state);
     }
 
     populateDoses = (item) => {
@@ -131,8 +143,6 @@ export default class PatientMedications extends React.Component {
 
     
     render () {
-        setTimeout(() => {},500)
-
         this.props.medications.map(x => {
             //console.log(x.name);
             const objMedication = {
@@ -168,12 +178,17 @@ export default class PatientMedications extends React.Component {
                                                 medication = {x.medication}
                                                 handleNewChange = {this.handleNewChange}
                                                 ddlMedications = {ddlMedications}
+                                                ddlDosage = {this.props.medications}
+                                                value = {x.value}
+                                                label = {x.label}
                                                 dose = {x.dose}
                                                 form = {x.form}
                                                 route = {x.route}
                                                 previousTimes = {x.times}
                                                 handlePreviousTimeChange = {this.handlePreviousTimeChange}
+                                                handleDosage = {this.handleDosage}
                                                 allTime = {ddlTime}
+                                                allMedications = {this.props.medications}
                                             />                                            
                                         )}
                                     </Container>
