@@ -28,7 +28,6 @@ export default class registerPatientCard extends React.Component {
             <Card style={{display: this.props.registerPatientCard ? "block" : "none"}}>
                 <CardBody style={{minHeight: 550}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
-                    <CardText>
                         <br />
                         New patient: {this.props.patient_name} successfully enrolled.
                         <br /><br />
@@ -57,7 +56,6 @@ export default class registerPatientCard extends React.Component {
                             <Button style={{marginRight: 6}}>Cancel</Button>
                         </Form>
                 
-                    </CardText>
                 </CardBody>
             </Card>
 

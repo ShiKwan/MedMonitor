@@ -11,15 +11,27 @@ module.exports = {
 
     findAll: function(req, res) {
         db.Patient_data
-        .find( {}, {details: 1} )
-        .populate("doctor")
+        .find( {}, {details: 1, appointment: 1, date_created: 1} )
+       // .populate("doctor")
         .sort( {"details.last_name": 1} )
-        .then(patientList=> res.json(patientList))
+        .then(patientList => { 
+            const dateOneWeekAgo = new Date(new Date().getTime()-7*24*60*60*1000).getTime();
+            const apptList = patientList.filter(elem => elem.appointment.next_appt.getTime() > dateOneWeekAgo);
+            
+            const patientWeekList = patientList.filter(elem => elem.date_created.getTime() > dateOneWeekAgo);
+            myObj = {
+                patientsList: patientList,
+                apptsList: apptList,
+                patientsWeekList: patientWeekList
+            }
+            res.json(myObj) 
+         })
         .catch(err => {
             console.log('CONTROLLER ERROR: ${err}');
             res.status(422).json(err);
-            })
+         })
     },   
+
 
     // NOTE CAN ADD MORE FETCH ROUTES SORTED IN DIFFERENT WAYS SO DOCTOR CAN SELECT HOW TO FIND PATIENT
     // EG. SORTED BY DATE LAST SEEN, SORTED BY PATIENT EMERGENCIES, SORTED BY NEXT APPT DATE ETC, ETC

@@ -24,7 +24,7 @@ const Patient_dataSchema = new Schema({
         appointment: {
             next_appt: Date,
             comments: String,
-            },
+         },
 
         episode: [{
             episode_id: { type: String, required: true},

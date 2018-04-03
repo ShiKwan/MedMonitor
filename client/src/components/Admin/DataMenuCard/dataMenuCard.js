@@ -12,10 +12,10 @@ export default class DataMenuCard extends React.Component {
             <Card style={{display: this.props.dataMenuCard ? "block" : "none"}}>
                 <CardBody>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Data Mining</CardTitle>
-                    <CardText> 
+
                         <div>Drug data</div>
                         <div>Disease data</div>
-                    </CardText>
+
                 </CardBody>
             </Card>
 

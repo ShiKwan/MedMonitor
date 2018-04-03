@@ -30,8 +30,7 @@ export default class AddPhysicianCard extends React.Component {
 
             <Card style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
                 <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new patient</CardTitle>
-                    <CardText>
+                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add new physician</CardTitle>
                         <br />
         
                         <Form>
@@ -75,7 +74,6 @@ export default class AddPhysicianCard extends React.Component {
                             <Button style={{marginRight: 6}}>Cancel</Button>
                         </Form>
                     
-                    </CardText>
                 </CardBody>
             </Card>
 
