@@ -1,16 +1,50 @@
-.medReminder,
-.medTook {
-    margin-right: 15px;
+div.patMedInfo {
+    max-width: 850px;
 }
 
-.nextMedBtn {
+.patMedInfoCard {
+    margin-bottom: 25px;
+}
+
+.patMedInfoCard .patMedInfoHeader {
+    text-align: center;
+    margin-bottom: 35px;
+    color: black;
+    background-color: #9eb1bd;
+}
+
+.patMedInfoCard .patMedInfo {
+    color: black;
+    padding: 25px;
+    background-color: #f3f3f1;
+}
+
+.patMedInfo .patMedInfoDue {
+    text-align: center;
+}
+
+.patMedDueRemind {
+    text-align: center;
     margin: 0 auto;
+    display: grid;
 }
 
-button.medReminder:hover {
-    background-color: green;
+button.patMedRemindBtn,
+button.somethingBtn1,
+button.somethingBtn2,
+button.somethingBtn3 {
+    padding: 15px 25px 15px 25px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
 }
 
-button.medTook:hover {
-    background-color: goldenrod;
+button.patMedRemindBtn:hover,
+button.somethingBtn1:hover,
+button.somethingBtn2:hover,
+button.somethingBtn3:hover {
+    padding: 15px 25px 15px 25px;
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
 }

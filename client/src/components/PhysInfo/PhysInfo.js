@@ -20,7 +20,7 @@ const PhysInfo = (props) => {
 
     return (
         <Container className="physCard">
-            <Card className="physInfoCard" body inverse style={{ backgroundColor: '#669999', borderColor: '#669999' }}>
+            <Card className="physInfoCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
             {/* <Card className="physInfoCard" body outline color="info"> */}
                 <CardHeader tag="h4"  className="physInfoHeader">Physician Information</CardHeader>
                 <Card className="docCardInfo">

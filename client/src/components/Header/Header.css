@@ -1,26 +1,38 @@
-.ml-auto {
+.navLogInPills,
+.navlogOutpills {
     margin-top: 15px;
 }
 
 .navbar {
-    background-color: #c2d6d6;
-    border-bottom: 5px solid #669999;
-    box-shadow: 0px 0px 10px #bab9b9;
+    background-color: #9eb1bd;
+    border-bottom: 8px solid #2d5366;
+    box-shadow: 0px 0px 15px #bab9b9;
 }
 
-a.nav-link.active {
-    /* margin-bottom: 10px; */
+.navlogOutpills .logOutBtn,
+.navLogInPills .navHomeBtn,
+.navLogInPills .navAppBtn {
     text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 15px 15px 15px 15px;
 }
 
-a.color-home.nav-link.active,
-a.color-app.nav-link.active,
-a.color-logout.nav-link.active {
-    background-color: grey;
+a.navHomeBtn.nav-link.active,
+a.navAppBtn.nav-link.active,
+a.logOutBtn.nav-link.active {
+    background-color: #2d5366;
+    color: #e3c044;
 }
 
-a.color-home.nav-link.active:hover,
-a.color-app.nav-link.active:hover,
-a.color-logout.nav-link.active:hover {
-    background-color: green;
+a.navHomeBtn.nav-link:hover,
+a.navAppBtn.nav-link:hover,
+a.logOutBtn.nav-link:hover {
+    background-color: #e3c044;
+    color: #2d5366;
+    box-shadow: 0 0 0 0.2rem #2d5366;
+}
+
+p.loginName {
+    font-size: 20px;
 }
