@@ -313,8 +313,8 @@ class Admin extends Component {
                 <Container className="clearfix">
                 {this.state.patients.map( (x) => console.log(x))}
                     <br />
-                        <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
-                        <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
+                        <span  style={{fontWeight: "bold", float: "left"}}>Physician: {`${localStorage.getItem("username")} ${localStorage.getItem("username")}`}</span>
+                        <span  style={{fontWeight: "bold", float: "right"}}>{`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}</span>
                 </Container>
 
                     <br />
