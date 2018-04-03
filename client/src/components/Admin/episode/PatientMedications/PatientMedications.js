@@ -14,7 +14,6 @@ import {
     Table
 } from 'reactstrap';
 let ddlSelectedDoses = [];
-const ddlMedications = [];
 const ddlTime = [
     {value: '0000',test:'test', label: '12:00am'},
     {value: '0100',test:'test', label: '1:00am'},
@@ -46,7 +45,7 @@ export default class PatientMedications extends React.Component {
     constructor(props){
         super(props);   
         this.state= {
-            patientMedications : [],
+            patientMedications : {},
             selectedOption : "",
             selectedTime : [],
             drugType: "",
@@ -64,12 +63,12 @@ export default class PatientMedications extends React.Component {
             selectedPreviousDoses : this.props.medication,
             medication : this.props.medication,
             allMedications : this.props.allMedications,
+            patientLastEpisodeMedications : this.props.patientLastEpisodeMedications
          })
     }
     onGenerateMedications= () => {
         console.log("this patient previous med: " , this.props.patientLastEpisodeMedications);
         console.log("all meds : ", this.props.medications);
-        console.log("ddl Medications: " , ddlMedications);
         console.log("patient medication's state : ", this.state);
     }
 
@@ -100,17 +99,18 @@ export default class PatientMedications extends React.Component {
                                 drugDoses : med.data[0].doses
                             }, function(){
                                 ddlSelectedDoses = [];
-                                this.state.drugDoses.map((x,index) => {
-                                    const objSelectedDoses = {
-                                        value: "",
-                                        label: ""
-                                    }
-                                    objSelectedDoses.label = `${x.dose} ${x.form} ${x.route}`;
-                                    objSelectedDoses.value = index;
-                                    ddlSelectedDoses.push(objSelectedDoses);
-                                    this.setState({ddlSelectedDoses})
-                                })
-                                console.log("ddlSelectedDoses populated, ", ddlSelectedDoses);
+                                this.state.drugDoses?
+                                    this.state.drugDoses.map((x,index) => {
+                                        const objSelectedDoses = {
+                                            value: "",
+                                            label: ""
+                                        }
+                                        objSelectedDoses.label = `${x.dose} ${x.form} ${x.route}`;
+                                        objSelectedDoses.value = index;
+                                        ddlSelectedDoses.push(objSelectedDoses);
+                                        this.setState({ddlSelectedDoses})
+                                    })
+                                : null
                             })
                             console.log("after find one med :", this.state);
                         })
@@ -137,26 +137,48 @@ export default class PatientMedications extends React.Component {
     }
     handleDosage = (selectedOption) =>{
         console.log("selectedOption : " , selectedOption);
-        this.setState({ selectedDosage : `${selectedOption.value}`});
+        this.setState({ 
+            selectedDosage : `${selectedOption.value}`,
+            selectedDosageLabel : `${selectedOption.label}`
+        });
         console.log("new selected time: ", this.state.selectedDosage);
     }
+    handleAddNewMed = () => {
+        //we need dose, form, medication, route, times (array)
+        const newPatientMedications = this.state.patientLastEpisodeMedications
+        const objNewMed = {
+            medication : "",
+            dose : "",
+            form : "",
+            route : "",
+            times : [],
+            label : [],
+            value : ""
+        }
+        objNewMed.medication = this.state.selectedOption
+        objNewMed.times = this.state.selectedTime
+        objNewMed.value = this.state.selectedDosage
+        objNewMed.label = this.state.selectedDosageLabel
+        this.props.medications.map((x) => {
+            if(x.name === this.state.selectedOption){
+                objNewMed.dose = x.doses[this.state.selectedDosage].dose
+                objNewMed.form = x.doses[this.state.selectedDosage].form
+                objNewMed.route = x.doses[this.state.selectedDosage].route
+            }
+        })
+        newPatientMedications.push(objNewMed);
+        this.setState({
+            patientLastEpisodeMedications : newPatientMedications
+        })
+        console.log("new patient medications :", this.state.patientLastEpisodeMedications)
 
+        console.log(objNewMed);
+        
+    }
     
     render () {
-        this.props.medications.map(x => {
-            //console.log(x.name);
-            const objMedication = {
-                                value : "",
-                                label : ""
-                            }
-            objMedication.value= x.name;
-            objMedication.label= x.name;
-            ddlMedications.push(objMedication)
-        })
-        
+
         return (
-
-
             <Container fluid className="text-center">
                 <Row>
                     <Col className='md-12'>
@@ -168,29 +190,20 @@ export default class PatientMedications extends React.Component {
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
                                 </CardText>
-                                <h2>Previous medication(s)</h2>
-                                {this.props.patientLastEpisodeMedications ?
+                                <h2>Current Medication(s)</h2>
+                                {this.state.patientLastEpisodeMedications ?
                                     <Container>
                                         
-                                        {this.props.patientLastEpisodeMedications.map(x =>    
-                                                <PreviousMedication 
+                                            <PreviousMedication 
                                                 name="medication-name"
-                                                medication = {x.medication}
+                                                patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
                                                 handleNewChange = {this.handleNewChange}
-                                                ddlMedications = {ddlMedications}
                                                 ddlDosage = {this.props.medications}
-                                                value = {x.value}
-                                                label = {x.label}
-                                                dose = {x.dose}
-                                                form = {x.form}
-                                                route = {x.route}
-                                                previousTimes = {x.times}
                                                 handlePreviousTimeChange = {this.handlePreviousTimeChange}
                                                 handleDosage = {this.handleDosage}
                                                 allTime = {ddlTime}
                                                 allMedications = {this.props.medications}
-                                            />                                            
-                                        )}
+                                            />                         
                                     </Container>
                                 : null
                                 }
@@ -205,10 +218,10 @@ export default class PatientMedications extends React.Component {
                                         placeholder = "new medication..."
                                         value = {this.state.selectedOption}
                                         onChange = {this.handleChange}
-                                        options= {ddlMedications}
+                                        options= {this.props.medications}
                                     /><hr/>
                                     Type : {this.state.drugType} <br />
-                                    Doses : --- TO DO --- (Apply value here once a new medicine is selected) <br />
+                                    Dose : <br/>
                                     {
                                        this.state.drugDoses && this.state.drugDoses.length > 0 ? 
                                             <Select
@@ -229,7 +242,7 @@ export default class PatientMedications extends React.Component {
                                         options= {ddlTime}
                                         multi= {true}
                                     />
-                                    <br /> <Button color="success">Add</Button>
+                                    <br /> <Button color="success" onClick={this.handleAddNewMed}>Add</Button>
                                     
         {/* 
         {this.props.medications.map(x => 

@@ -60,7 +60,7 @@ loadPatient = () => {
             res.data.episode.map((epi, epi_index) => {
                 epi.medications.map((med, med_index) =>{
                      objMedication.episode[epi_index].medications[med_index].label = `${med.dose} ${med.form} ${med.route}`
-                        objMedication.episode[epi_index].medications[med_index].value = `${med.dose} ${med.form} ${med.route}`
+                        objMedication.episode[epi_index].medications[med_index].value = med_index
                     
                 })
             })
@@ -84,9 +84,11 @@ loadMedication = () => {
         let objMedication = {}
         objMedication = res.data
         res.data.map((x,index)=>{
+            objMedication[index].label = `${x.name}`
+            objMedication[index].value = `${x.name}`
             x.doses.map((item,index2) =>{
                 objMedication[index].doses[index2].label = `${item.dose} ${item.form} ${item.route}`
-                objMedication[index].doses[index2].value = `${item.dose} ${item.form} ${item.route}`
+                objMedication[index].doses[index2].value = index2
             })
         })
         console.log(objMedication);
