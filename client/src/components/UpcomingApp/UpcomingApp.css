@@ -21,6 +21,10 @@
     font-weight: bold;
     background-color: #2d5366;
     padding: 15px 0px 15px 0px;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: 1s;
 }
 
 .upcomingAppCard .appRemindBtn:hover {
