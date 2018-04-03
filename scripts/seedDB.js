@@ -272,10 +272,12 @@ const patient_dataSeed = [
       email: "bill@microsoft.com",
       phone: "123-534-5673",
     },
+
       appointment: {
-        next_appt: Date(),
+        next_appt: new Date(),
         comments: "Look forward to seeying Ya"
     },
+
       episode: [{
         episode_id: "001",
         start_date: Date.now,
@@ -290,7 +292,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date(),
+            date: new Date(),
             time: "1000",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
@@ -333,7 +335,7 @@ const patient_dataSeed = [
   },
   // new patient
   {
-    date_created: Date(),
+    date_created: new Date(),
     active: true,
     //doctor: to be populated with _id from doctors collection
     details: {
@@ -344,13 +346,15 @@ const patient_dataSeed = [
       email: "thegatsby@michael.com",
       phone: "123-994-4532",
     },
+    
       appointment: {
-        next_appt: Date(),
+        next_appt: new Date(),
         comments: "TAKE THOSE MEDS YOUNG MAN!"
     },
+
       episode: [{
         episode_id: "001",
-        start_date: Date(),
+        start_date: new Date(),
         doctor: "Dr melanie kopff",
 
         medications: [{
@@ -362,7 +366,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: Date(),
+            date: new Date(),
             time: "1200",
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required

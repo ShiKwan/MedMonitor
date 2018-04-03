@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Card, CardBody, CardTitle, CardText,
-    Table
+    Table,
 } from 'reactstrap';
 import './selectPatientCard.css';
 
@@ -20,18 +20,15 @@ export default class SelectPatientCard extends React.Component {
                 <CardBody style={{minHeight: 550}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Select patient</CardTitle>
 
-                    <CardText>
                     <br />
                         {this.props.patientsLength ? (
 
-                            <Table>
+                            <Table style={{width: 300}}>
                                 <tbody>
                                     {this.props.patients.map(item => (
-                                            <tr>
-                                                <a  onClick={() => this.onClicked(item._id)}>
+                                            <tr onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 100}}>{item.details.patient_number}</td>
                                                     <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
-                                                </a>
                                             </tr>
                                     ))} 
                                 </tbody>
@@ -40,8 +37,7 @@ export default class SelectPatientCard extends React.Component {
                         ) : (
                         <h3>No Results to Display</h3>
                         )}
-
-                    </CardText>
+                      
                 </CardBody>
             </Card> 
 
