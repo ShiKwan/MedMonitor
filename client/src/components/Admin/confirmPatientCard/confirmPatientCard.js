@@ -3,11 +3,11 @@ import {
     Button, 
     Card, CardBody, CardTitle, CardText,
 } from 'reactstrap';
-import './confirmPatientCard.css';
+import './ConfirmPatientCard.css';
 
 
 
-export default class confirmPatientCard extends React.Component {
+export default class ConfirmPatientCard extends React.Component {
     render () {
         return (
 

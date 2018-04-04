@@ -18,30 +18,29 @@ export default class confirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.notificationCard ? "block" : "none"}}>
-                <CardBody>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Dashboard</CardTitle>
+            <Card className="dashboradTableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
+                <CardBody className="dashboardTableBody">
+                    <CardTitle className="dashboardTitle">Dashboard</CardTitle>
                     
                         <p>You currently have {this.props.numPatients} patients using this application.<br /> 
                         </p>
 
                     
-                        <p style={{fontWeight: "bold"}}>New patients enrolled past 7 days.</p>
+                        <p className="tableTitle">New patients enrolled past 7 days.</p>
 
                         {this.props.patientsWeekListLength ? (
 
-                        <Table style={{width: 500}}>
+                        <Table className="patEnrolledTable">
                             <thead>
                                 <tr>
                                     <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="patEnrolledBody">
                                     {this.props.patientsWeekList.map(item => (
 
-                                    <tr onClick={() => this.onClicked(item._id)}>
+                                    <tr className="patEnrolledDetail" onClick={() => this.onClicked(item._id)}>
                                        
-                                        
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             
                                             <td>{item.details.patient_number}</td>
@@ -61,18 +60,18 @@ export default class confirmPatientCard extends React.Component {
                             )}
 
                         <br />
-                        <p style={{fontWeight: "bold"}}>Appointments this week</p> 
+                        <p className="tableTitle">Appointments this week</p> 
 
-                        <Table style={{width: 500}}>
+                        <Table className="appThisWeekTable">
                             <thead>
                                 <tr>
                                     <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="appThisWeekPat">
                                     {this.props.apptsList.map(item => (
 
-                                    <tr onClick={() => this.onClicked(item._id)}>
+                                    <tr className="appThisWeekDetail" onClick={() => this.onClicked(item._id)}>
                                         
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             
@@ -89,26 +88,25 @@ export default class confirmPatientCard extends React.Component {
                         </Table>
 
                         <br />
-                        <p style={{fontWeight: "bold"}}>Emergency notifications</p>
+                        <p className="tableTitle">Emergency notifications</p>
                         
-                        <Table style={{width: 500}}>
+                        <Table className="emergNotifTable">
                             <thead>
                                 <tr>
                                     <th>Name</th><th>Hosp number</th><th>Date</th><th>Type</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="emerNotifPat">
                                 
-                                    
-                                    <tr onClick={() => this.onClicked()}>
+                                    <tr className="emergNotifDetail" onClick={() => this.onClicked()}>
 
-                                            <td style={{padding: 2}}>name</td>
+                                            <td> name</td>
 
-                                            <td style={{padding: 2}}>hospnumber</td>
+                                            <td> hospnumber</td>
 
-                                            <td style={{padding: 2}}>date</td>
+                                            <td> date</td>
 
-                                            <td style={{padding: 2}}>type</td>
+                                            <td> type</td>
                             
                                     </tr>
 

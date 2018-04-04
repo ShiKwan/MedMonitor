@@ -3,7 +3,7 @@ div.patSurvey {
 }
 
 .patSurveyCard,
-.introSuvCard {
+.introsurvCard {
     margin-top: 25px;
 }
 
@@ -14,12 +14,12 @@ div.patSurvey {
     background-color: #9eb1bd;
 }
 
-.patSurvey .introSuvCard,
+.patSurvey .introsurvCard,
 .patSurvey .patSurveyCard {
     margin-bottom: 25px;
 }
 
-.introSuvCard .introSuvCardHeader {
+.introsurvCard .introsurvCardHeader {
     text-align: center;
     color: black;
     background-color: #9eb1bd;
@@ -38,58 +38,58 @@ div.patSurvey {
 
 /* //// survey buttons /////////////////////////////////////////////////////////////// */
 
-.suvRadGroup,
-.suvChkGroup {
+.survRadGroup,
+.survChkGroup {
     margin: 0 auto;
     display: grid;
 }
 
 /* /////////////////////////////////////////////////// */
 
-.suvChkBtnGreen,
-.suvRadBtnGreen {
+.survChkBtnGreen,
+.survRadBtnGreen {
     background-color: #28a745;
     border-color: #28a745;
 }
 
-.suvChkBtnBlue,
-.suvRadBtnBlue {
+.survChkBtnBlue,
+.survRadBtnBlue {
     background-color: #16a0b6;
     border-color: #16a0b6;
 }
 
-.suvChkBtnYellow,
-.suvRadBtnYellow {
+.survChkBtnYellow,
+.survRadBtnYellow {
     background-color: #ffc107;
     border-color: #ffc107;
 }
 
-.suvChkBtnOrange,
-.suvRadBtnOrange {
+.survChkBtnOrange,
+.survRadBtnOrange {
     background-color: #ff6600;
     border-color: #ff6600;
 }
 
-.suvChkBtnRed,
-.suvRadBtnRed {
+.survChkBtnRed,
+.survRadBtnRed {
     background-color: #dc3545;
     border-color: #dc3545;
 }
 
 /* ////////////////////////////////////////////////////////// */
 
-button.suvRadBtn,
-button.suvChkBtn,
-button.suvChkBtnGreen,
-button.suvRadBtnGreen,
-button.suvChkBtnBlue,
-button.suvRadBtnBlue,
-button.suvChkBtnYellow,
-button.suvRadBtnYellow,
-button.suvChkBtnOrange,
-button.suvRadBtnOrange,
-button.suvChkBtnRed,
-button.suvRadBtnRed {
+button.survRadBtn,
+button.survChkBtn,
+button.survChkBtnGreen,
+button.survRadBtnGreen,
+button.survChkBtnBlue,
+button.survRadBtnBlue,
+button.survChkBtnYellow,
+button.survRadBtnYellow,
+button.survChkBtnOrange,
+button.survRadBtnOrange,
+button.survChkBtnRed,
+button.survRadBtnRed {
     color: white;
     margin-right: 10px;
     margin-left: 10px;
@@ -97,82 +97,82 @@ button.suvRadBtnRed {
     margin-bottom: 10px;
 }
 
-button.suvChkBtnGreen:hover,
-button.suvRadBtnGreen:hover {
+button.survChkBtnGreen:hover,
+button.survRadBtnGreen:hover {
     background-color: #1e7b34;
     border-color: #1e7b34;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
-button.suvChkBtnBlue:hover,
-button.suvRadBtnBlue:hover {
+button.survChkBtnBlue:hover,
+button.survRadBtnBlue:hover {
     background-color: #117888;
     border-color: #117888;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
-button.suvChkBtnYellow:hover,
-button.suvRadBtnYellow:hover {
+button.survChkBtnYellow:hover,
+button.survRadBtnYellow:hover {
     background-color: #cc9900;
     border-color: #cc9900;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
-button.suvChkBtnOrange:hover,
-button.suvRadBtnOrange:hover {
+button.survChkBtnOrange:hover,
+button.survRadBtnOrange:hover {
     background-color: #cc5200;
     border-color: #cc5200;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
-button.suvChkBtnRed:hover,
-button.suvRadBtnRed:hover {
+button.survChkBtnRed:hover,
+button.survRadBtnRed:hover {
     background-color: #ad1f2d;
     border-color: #ad1f2d;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnGreen:not(:disabled):not(.disabled).active,
-.suvRadBtnGreen:not(:disabled):not(.disabled).active,
-.suvChkBtnGreen:not(:disabled):not(.disabled):active,
-.suvRadBtnGreen:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnGreen.dropdown-toggle {
+.survChkBtnGreen:not(:disabled):not(.disabled).active,
+.survRadBtnGreen:not(:disabled):not(.disabled).active,
+.survChkBtnGreen:not(:disabled):not(.disabled):active,
+.survRadBtnGreen:not(:disabled):not(.disabled):active,
+.show>.survChkBtnGreen.dropdown-toggle {
     background-color: #1e7b34;
     border-color: #1e7b34;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnBlue:not(:disabled):not(.disabled).active,
-.suvRadBtnBlue:not(:disabled):not(.disabled).active,
-.suvChkBtnBlue:not(:disabled):not(.disabled):active,
-.suvRadBtnBlue:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnBlue.dropdown-toggle {
+.survChkBtnBlue:not(:disabled):not(.disabled).active,
+.survRadBtnBlue:not(:disabled):not(.disabled).active,
+.survChkBtnBlue:not(:disabled):not(.disabled):active,
+.survRadBtnBlue:not(:disabled):not(.disabled):active,
+.show>.survChkBtnBlue.dropdown-toggle {
     background-color: #117888;
     border-color: #117888;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnYellow:not(:disabled):not(.disabled).active,
-.suvRadBtnYellow:not(:disabled):not(.disabled).active,
-.suvChkBtnYellow:not(:disabled):not(.disabled):active,
-.suvRadBtnYellow:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnYellow.dropdown-toggle {
+.survChkBtnYellow:not(:disabled):not(.disabled).active,
+.survRadBtnYellow:not(:disabled):not(.disabled).active,
+.survChkBtnYellow:not(:disabled):not(.disabled):active,
+.survRadBtnYellow:not(:disabled):not(.disabled):active,
+.show>.survChkBtnYellow.dropdown-toggle {
    background-color: #cc9900;
    border-color: #cc9900;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnOrange:not(:disabled):not(.disabled).active,
-.suvRadBtnOrange:not(:disabled):not(.disabled).active,
-.suvChkBtnOrange:not(:disabled):not(.disabled):active,
-.suvRadBtnOrange:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnOrange.dropdown-toggle {
+.survChkBtnOrange:not(:disabled):not(.disabled).active,
+.survRadBtnOrange:not(:disabled):not(.disabled).active,
+.survChkBtnOrange:not(:disabled):not(.disabled):active,
+.survRadBtnOrange:not(:disabled):not(.disabled):active,
+.show>.survChkBtnOrange.dropdown-toggle {
     background-color: #cc5200;
     border-color: #cc5200;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnRed:not(:disabled):not(.disabled).active,
-.suvRadBtnRed:not(:disabled):not(.disabled).active,
-.suvChkBtnRed:not(:disabled):not(.disabled):active,
-.suvRadBtnRed:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnRed.dropdown-toggle {
+.survChkBtnRed:not(:disabled):not(.disabled).active,
+.survRadBtnRed:not(:disabled):not(.disabled).active,
+.survChkBtnRed:not(:disabled):not(.disabled):active,
+.survRadBtnRed:not(:disabled):not(.disabled):active,
+.show>.survChkBtnRed.dropdown-toggle {
     background-color: #ad1f2d;
     border-color: #ad1f2d;
     box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
@@ -184,8 +184,8 @@ h4,
     text-align: center;
 }
 
-.suvRadGroup,
-.suvChkGroup {
+.survRadGroup,
+.survChkGroup {
     margin: 0 auto;
     display: grid;
 }

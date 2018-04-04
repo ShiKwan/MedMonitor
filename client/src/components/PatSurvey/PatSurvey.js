@@ -22,122 +22,122 @@ import {
 
 var questions = [{
     
-    suvHeader: 'MEDICATION',
+    survHeader: 'MEDICATION',
     question: 'Are You Current With Your Parkinson Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
-    color: ['success', 'danger'],
+    color: ['green', 'red'],
     value: [0, 4],
-    className: ['', ''],
+    className: ['survRadBtnGreen', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'SYMPTOMS',
+    survHeader: 'SYMPTOMS',
     question: 'Since taking your LAST Parkinson medication: have you had any:',
     answers: ['Falls', 'Freezing Of Gait', 'Choking', 'Hallucinations', 'None Of These'],
-    color: ['danger', 'danger', 'danger', 'danger', 'success'],
+    color: ['red', 'red', 'red', 'red', 'green'],
     value: [4, 4, 4, 4, 0],
-    className: ['', '', '', '', ''],
+    className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
     selectionType: "checkbox"
 },
 
 {
-    suvHeader: 'Kick In',
+    survHeader: 'Kick In',
     question: 'Since taking your LAST Parkinson medication: how long did it take to kick in?',
     answers: ['Immediately', 'Quickly', 'Awhile', 'Very Late', 'Never'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'Wearing Off',
+    survHeader: 'Wearing Off',
     question: 'Since taking your LAST Parkinson medication: if wearing off, how long ago.?',
     answers: ['Still Nothing', '15 Minutes Ago', '45 Minutes Ago', '1 Hour And 15 MInutes Ago', '2 Hours Ago'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 {
-    suvHeader: 'ACTIVITY',
+    survHeader: 'ACTIVITY',
     question: 'Since taking your LAST Parkinson medications: how much of the time have you been able to do normal activities',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'MOVEMENT',
+    survHeader: 'MOVEMENT',
     question: 'Since taking your LAST Parkinson medications: how much of the time have you been able to move comfortable?',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'OFF TIME',
+    survHeader: 'OFF TIME',
     question: 'Right Now: do you feel off (slow, stiff, difficult to walk)?',
     answers: ['Normal', 'A Little Slow', 'Slow', 'Very Slow', 'Can\'t Move At All'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'TREMORS',
+    survHeader: 'TREMORS',
     question: 'Right Now: if you suffer from tremor, how is it now?',
     answers: ['No Tremor', 'Bothering Me A Little', 'Worse Than Normal', 'Quite Bad', 'Very Bad, Can\'t Do Normal Tasks'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'STIFFNESS',
+    survHeader: 'STIFFNESS',
     question: 'Right Now: how is your stiffness?',
     answers: ['No Stiffness', 'A Little Stiff', 'Quite Stiff', 'Very Stiff', 'So Stiff Can\'t Move'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'WALKING',
+    survHeader: 'WALKING',
     question: 'Right Now: how is your walking?',
     answers: ['Good', 'A Little Slow', 'Slower Than Normal', 'Very Slow, Shuffling', 'Can\'t Walk At All'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 },
 
 {
-    suvHeader: 'BALANCE',
+    survHeader: 'BALANCE',
     question: 'Right Now: how is your balance when you stand or walk?',
     answers: ['Good', 'A Little Unsteady', 'Unsteady', 'Very Unsteady, Worry About Falling', 'Too Unsteady To Stand Or Walk'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 
 },
 
 {
-    suvHeader: 'SLEEPY',
+    survHeader: 'SLEEPY',
     question: 'Since taking your LAST Parkinson medication: how tired have you been?',
     answers: ['Not At All', 'Some', 'Sleepy', 'Very Sleepy', 'Exhausted All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['suvRadBtnGreen', 'suvRadBtnBlue', 'suvRadBtnYellow', 'suvRadBtnOrange', 'suvRadBtnRed'],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio"
 
 }
@@ -176,8 +176,8 @@ class PatSurvey extends Component {
         
         <Container fluid className="patSurvey">
                 
-                <Card className="introSuvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                <CardHeader tag="h4" className="introSuvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
+                <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
             </Card>
 
             
@@ -187,16 +187,16 @@ class PatSurvey extends Component {
                 x.selectionType  === "radio" ?
                     // create radio button here
                     <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
+                    <CardHeader tag="h4" className="patSurveyHeader">{x.survHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
 
-                    <div className="suvRadGroup">
+                    <div className="survRadGroup">
                         {x.answers.map( (answer, index) => {
                             return(
                                 <Button
-                                    id = {`${x.suvHeader}`}
-                                    className={`${x.className[index]} suvRadBtn`}
+                                    id = {`${x.survHeader}`}
+                                    className={`${x.className[index]} survRadBtn`}
                                     color= {`${x.color[index]}`}
                                     onClick={() => this.onRadioBtnClick(`${answer}`)}
                                     active={this.state.rSelected === `${answer}` }
@@ -218,19 +218,19 @@ class PatSurvey extends Component {
                 :   
                 
                     <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
+                    <CardHeader tag="h4" className="patSurveyHeader">{x.survHeader}</CardHeader>
                     <Card className="surveyQuestions">
                     <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
 
-                    <div className="suvChkGroup">
+                    <div className="survChkGroup">
                         {x.answers.map((answer, index) => {
                             return (
                                 <Button
-                                    id={`${x.suvHeader}`}
-                                    className={`${x.className[index]} suvChkBtn`}
+                                    id={`${x.survHeader}`}
+                                    className={`${x.className[index]} survChkBtn`}
                                     color={`${x.color[index]}`}
                                     onClick={() => this.onCheckboxBtnClick(`${answer}`)}
-                                    active={this.state.cSelected === `${answer}`}
+                                    active={this.state.cSelected.includes `${answer}`}
                                     value={`${answer}`}
                                 >
                                     <h4>{`${answer}`}</h4>

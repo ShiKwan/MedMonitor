@@ -16,17 +16,18 @@ export default class SelectPatientCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.selectPatientCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Select patient</CardTitle>
+            <Card className="selectPatTableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
+                <CardBody className="selectPatTableBody">
+                    <CardTitle className="selectPatTitle">Select patient</CardTitle>
 
                     <br />
                         {this.props.patientsLength ? (
 
-                            <Table style={{width: 300}}>
-                                <tbody>
+                            <Table className="selectPatTable">
+
+                                <tbody className="selectPatTableBody">
                                     {this.props.patients.map(item => (
-                                            <tr onClick={() => this.onClicked(item._id)}>
+                                            <tr className="selectPatDetail" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 100}}>{item.details.patient_number}</td>
                                                     <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
                                             </tr>
