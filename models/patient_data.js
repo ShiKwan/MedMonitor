@@ -40,8 +40,7 @@ const Patient_dataSchema = new Schema({
             }],
 
             record: [{
-                date: { type: Date, required: true},
-                time: { type: String, required: true},
+                date_time: Date,
                 meds_taken: Boolean,
                 // can add more detailed record of medications taken and notes here if required
                 symptoms: {

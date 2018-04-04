@@ -37,7 +37,9 @@ class Admin_Episode extends Component {
         patientEpisodesStart: [],
         patientEpisodesMedications: [],
 
-        medications : []
+        medications : [],
+        newEpisode: [],
+        newAppt : []
     };
     
     componentDidMount() {
@@ -59,7 +61,7 @@ loadPatient = () => {
             objMedication = res.data
             res.data.episode.map((epi, epi_index) => {
                 epi.medications.map((med, med_index) =>{
-                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} ${med.form} ${med.route}`
+                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} | ${med.form} | ${med.route}`
                         objMedication.episode[epi_index].medications[med_index].value = med_index
                     
                 })
@@ -87,13 +89,13 @@ loadMedication = () => {
             objMedication[index].label = `${x.name}`
             objMedication[index].value = `${x.name}`
             x.doses.map((item,index2) =>{
-                objMedication[index].doses[index2].label = `${item.dose} ${item.form} ${item.route}`
+                objMedication[index].doses[index2].label = `${item.dose} | ${item.form} | ${item.route}`
                 objMedication[index].doses[index2].value = index2
             })
         })
         console.log(objMedication);
         this.setState({
-            medications : objMedication
+            medications: objMedication
         })
     })
     .catch(err => console.log(err));
@@ -118,11 +120,114 @@ createNewEpisode= () => {
     // constructnewEpisode object and API call
     this.setState({confirmNewEpisodeDetailsCard: false})
     this.setState({successEpisodeCreatedCard: true})
+
+    //send email, save data to database, and prompt success message
+    this.prepDataToSave();
     
+
 }
 
+handleMedCallback = (lastEpiMeds) => {
+    console.log("new med list: ", lastEpiMeds);
+    this.setState({
+        newEpisode: lastEpiMeds
+    });
+    console.log("new patient med episode : ", this.state.newEpisode);
+}
 
+handleApptCallback = (appt) =>{
+    console.log("appointment : ", appt);
+    this.setState({
+        newAppt: appt
+    });
+    console.log("new patient appt : " , this.state.newAppt);
+}
 
+prepDataToSave = () =>{
+    console.log("admin episode state: ", this.state);
+    this.setState({
+        newObj: this.state.newEpisode
+    }, function () {
+        let objToSubmit = {
+            episode_id: "001",
+            doctor: "",
+            start_date: Date(),
+            medications: []
+        }
+        objToSubmit.doctor = this.state.patient.episode[0].doctor
+        objToSubmit.medications = this.state.newObj
+
+        for (let i = 0; i < this.state.newObj.length; i++) {
+            for (let j = 0; j < this.state.newObj[i].times.length; j++) {
+                if (this.state.newObj[i].times[j].value) {
+                    objToSubmit.medications[i].times.push(this.state.newObj[i].times[j].value);
+                }
+            }
+        }
+        for (let i = 0; i < objToSubmit.medications.length; i++) {
+            for (let j = 0; j < objToSubmit.medications[i].times.length; j++) {
+                let itemLength = objToSubmit.medications[i].times.length
+                while (itemLength--) {
+                    if (this.state.newObj[i].times[itemLength].value) {
+                        objToSubmit.medications[i].times.splice(itemLength, 1);
+                    }
+                }
+            }
+        }
+
+        console.log(objToSubmit);
+        patientAPI.createNewEpisode(window.location.search.substring(4),
+            objToSubmit)
+            .then(res => {
+                console.log(res)
+                patientAPI.updateAppointment(window.location.search.substring(4), this.state.newAppt)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+    }
+
+    )
+}
+
+populateState = () =>{
+    console.log("admin episode state: ", this.state);
+    this.setState({
+        newObj : this.state.newEpisode
+    }, function(){
+            let objToSubmit = {
+                episode_id: "001",
+                doctor: "",
+                medication: [
+                ]
+            }
+    objToSubmit.doctor = this.state.patient.episode[0].doctor
+    objToSubmit.medication = this.state.newObj
+    
+    for(let i = 0; i < this.state.newObj.length ; i++){
+        for(let j =0; j < this.state.newObj[i].times.length; j++){
+            if(this.state.newObj[i].times[j].value){
+                console.log("value exist here");
+                objToSubmit.medication[i].times.push(this.state.newObj[i].times[j].value);
+            }
+        }
+    }
+        for (let i = 0; i < objToSubmit.medication.length; i++){
+            for (let j = 0; j < objToSubmit.medication[i].times.length; j++) {
+                let itemLength = objToSubmit.medication[i].times.length
+                while (itemLength--){
+                    if (this.state.newObj[i].times[itemLength].value) {
+                        objToSubmit.medication[i].times.splice(itemLength, 1);
+                    }
+                }
+            }
+        }
+
+        console.log(objToSubmit);
+    }
+        
+)  
+}
     render() {
         return (
             <div>
@@ -158,10 +263,12 @@ createNewEpisode= () => {
                                 patientLastEpisode = {this.state.patientLastEpisode}
                                 patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
                                 enterNextAppointment = {this.enterNextAppointment}
+                                handleMedCallback={this.handleMedCallback}
                             />
                             <PatientNextAppointment
                                 addNextAppointmentCard = {this.state.addNextAppointmentCard}
                                 confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
+                                handleApptCallback={this.handleApptCallback}
 
                             />
                             <PatientConfirmEpisode
@@ -172,6 +279,7 @@ createNewEpisode= () => {
                                 successEpisodeCreatedCard = {this.state.successEpisodeCreatedCard}
                             />
                         </Row>
+                        <Button onClick={this.populateState}>Show me state </Button>
                     </div> 
                 </Container>
             </div>
