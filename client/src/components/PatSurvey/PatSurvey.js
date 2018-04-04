@@ -34,7 +34,7 @@ var questions = [{
 {
     suvHeader: 'SYMPTOMS',
     question: 'Since taking your LAST Parkinson medication: have you had any:',
-    answers: ['Falls', 'Freezing Of Gait', 'Dizziness', 'Hallucinations', 'None Of These'],
+    answers: ['Falls', 'Freezing Of Gait', 'Choking', 'Hallucinations', 'None Of These'],
     color: ['danger', 'danger', 'danger', 'danger', 'success'],
     value: [4, 4, 4, 4, 0],
     className: ['', '', '', '', ''],
@@ -134,10 +134,10 @@ var questions = [{
 {
     suvHeader: 'SLEEPY',
     question: 'Since taking your LAST Parkinson medication: how tired have you been?',
-    answers: ['Not At All', 'Some', 'Sleepy', 'Very Sleepy, Exhausted All The Time'],
-    color: ['success', 'info', 'warning', 'orange', 'danger'],
+    answers: ['Not At All', 'Some', 'Sleepy', 'Very Sleepy', 'Exhausted All The Time'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
-    className: ['', '', '', 'suvRadBtnOrange', ''],
+    className: ['suvRadBtnGreen', 'suvRadBtnBlue', 'suvRadBtnYellow', 'suvRadBtnOrange', 'suvRadBtnRed'],
     selectionType: "radio"
 
 }
@@ -220,7 +220,7 @@ class PatSurvey extends Component {
                     <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="patSurveyHeader">{x.suvHeader}</CardHeader>
                     <Card className="surveyQuestions">
-                    <CardText className="surveyQandA"><h4>{x.questions}</h4></CardText>
+                    <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
 
                     <div className="suvChkGroup">
                         {x.answers.map((answer, index) => {

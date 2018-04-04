@@ -44,16 +44,52 @@ div.patSurvey {
     display: grid;
 }
 
+/* /////////////////////////////////////////////////// */
+
+.suvChkBtnGreen,
+.suvRadBtnGreen {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.suvChkBtnBlue,
+.suvRadBtnBlue {
+    background-color: #16a0b6;
+    border-color: #16a0b6;
+}
+
+.suvChkBtnYellow,
+.suvRadBtnYellow {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
 .suvChkBtnOrange,
 .suvRadBtnOrange {
     background-color: #ff6600;
     border-color: #ff6600;
 }
 
+.suvChkBtnRed,
+.suvRadBtnRed {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* ////////////////////////////////////////////////////////// */
+
 button.suvRadBtn,
 button.suvChkBtn,
+button.suvChkBtnGreen,
+button.suvRadBtnGreen,
+button.suvChkBtnBlue,
+button.suvRadBtnBlue,
+button.suvChkBtnYellow,
+button.suvRadBtnYellow,
 button.suvChkBtnOrange,
-button.suvRadBtnOrange {
+button.suvRadBtnOrange,
+button.suvChkBtnRed,
+button.suvRadBtnRed {
     color: white;
     margin-right: 10px;
     margin-left: 10px;
@@ -61,23 +97,65 @@ button.suvRadBtnOrange {
     margin-bottom: 10px;
 }
 
-button.suvRadBtn:hover,
-button.suvChkBtn:hover {
-    color: black;
+button.suvChkBtnGreen:hover,
+button.suvRadBtnGreen:hover {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
-
+button.suvChkBtnBlue:hover,
+button.suvRadBtnBlue:hover {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.suvChkBtnYellow:hover,
+button.suvRadBtnYellow:hover {
+    background-color: #cc9900;
+    border-color: #cc9900;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
 button.suvChkBtnOrange:hover,
 button.suvRadBtnOrange:hover {
-    color: black;
-    background-color: #e65c00;
-    border-color: #e65c00;
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.suvChkBtnRed:hover,
+button.suvRadBtnRed:hover {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-button.suvRadBtn:not(:disabled):not(.disabled).active,
-button.suvChkBtn:not(:disabled):not(.disabled).active,
-button.suvRadBtn:not(:disabled):not(.disabled):active,
-button.suvChkBtn:not(:disabled):not(.disabled):active {
-    color: #212529;
+.suvChkBtnGreen:not(:disabled):not(.disabled).active,
+.suvRadBtnGreen:not(:disabled):not(.disabled).active,
+.suvChkBtnGreen:not(:disabled):not(.disabled):active,
+.suvRadBtnGreen:not(:disabled):not(.disabled):active,
+.show>.suvChkBtnGreen.dropdown-toggle {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.suvChkBtnBlue:not(:disabled):not(.disabled).active,
+.suvRadBtnBlue:not(:disabled):not(.disabled).active,
+.suvChkBtnBlue:not(:disabled):not(.disabled):active,
+.suvRadBtnBlue:not(:disabled):not(.disabled):active,
+.show>.suvChkBtnBlue.dropdown-toggle {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.suvChkBtnYellow:not(:disabled):not(.disabled).active,
+.suvRadBtnYellow:not(:disabled):not(.disabled).active,
+.suvChkBtnYellow:not(:disabled):not(.disabled):active,
+.suvRadBtnYellow:not(:disabled):not(.disabled):active,
+.show>.suvChkBtnYellow.dropdown-toggle {
+   background-color: #cc9900;
+   border-color: #cc9900;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
 .suvChkBtnOrange:not(:disabled):not(.disabled).active,
@@ -85,10 +163,19 @@ button.suvChkBtn:not(:disabled):not(.disabled):active {
 .suvChkBtnOrange:not(:disabled):not(.disabled):active,
 .suvRadBtnOrange:not(:disabled):not(.disabled):active,
 .show>.suvChkBtnOrange.dropdown-toggle {
-    color: #212529;
-    background-color: #e65c00;
-    border-color: #e65c00;
-    box-shadow: 0 0 0 0.2rem rgba(204, 102, 0, .5);
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.suvChkBtnRed:not(:disabled):not(.disabled).active,
+.suvRadBtnRed:not(:disabled):not(.disabled).active,
+.suvChkBtnRed:not(:disabled):not(.disabled):active,
+.suvRadBtnRed:not(:disabled):not(.disabled):active,
+.show>.suvChkBtnRed.dropdown-toggle {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
 h4,
