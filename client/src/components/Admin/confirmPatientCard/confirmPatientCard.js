@@ -11,11 +11,11 @@ export default class ConfirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
+            <Card className="reviewSelPatTableCard" style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
+                <CardBody className="reviewSelPatTableBody">
+                    <CardTitle className="reviewSelPatTitle">Review selected patient</CardTitle>
 
-                    <CardText>
+                    <CardText className="reviewSelPatCard">
                         <br />
                         Hospital Number: {this.props.patientNumber} <br />
                         Name :  {this.props.firstname}&nbsp;{this.props.lastname} <br/>
@@ -33,14 +33,14 @@ export default class ConfirmPatientCard extends React.Component {
                     <br />
                     <br />
                     <a href={`/admin/Episode?id=${ this.props.patientId }`}>
-                        <Button style={{marginRight: 6}}>Create new Episode</Button>
+                        <Button className="reviewSelPatCreateBtn">Create New Episode</Button>
                     </a>
                     <a href={`/admin/Report?id=${ this.props.patientId }`}>
-                        <Button style={{marginRight: 6}}>Report</Button>
+                        <Button className="reviewSelPatReportBtn">Report</Button>
                     </a>
-                    <Button style={{marginRight: 6}}>Update details</Button>
-                    <Button style={{marginRight: 6}}>Update appointments</Button>
-                    <Button style={{marginRight: 6}}>Close</Button>
+                    <Button className="reviewSelPatUpdateDetailBtn">Update Details</Button>
+                    <Button className="reviewSelPatUpdateAppBtn">Update App's</Button>
+                    <Button className="reviewSelPatCloseBtn">Close</Button>
 
                 </CardBody>
             </Card>

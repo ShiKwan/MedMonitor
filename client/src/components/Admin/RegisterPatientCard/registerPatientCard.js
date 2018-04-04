@@ -25,16 +25,16 @@ export default class registerPatientCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.registerPatientCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+            <Card className="registNewPatTableCard" style={{display: this.props.registerPatientCard ? "block" : "none"}}>
+                <CardBody className="registNewPatTableBody">
+                    <CardTitle className="registNewPatTitle">Enroll a new patient</CardTitle>
                         <br />
                         New patient: {this.props.patient_name} successfully enrolled.
                         <br /><br />
                         You can set a username and password now for this patient now or let the patient rgeister a username and password on first accessing the application. 
                         <br /><br />
     
-                        <Form>
+                        <Form className="registNewPatForm">
                             <FormGroup3_9Input
                                 label = {"Username"}
                                 type = {"text"}
@@ -52,8 +52,8 @@ export default class registerPatientCard extends React.Component {
                             />
 
                             <br />
-                            <Button style={{marginRight: 6}} onClick={(event) => this.onClicked(event)}>Register</Button>
-                            <Button style={{marginRight: 6}}>Cancel</Button>
+                            <Button className="registNewPatRegistBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
+                            <Button className="registNewPatCanelBtn">Cancel</Button>
                         </Form>
                 
                 </CardBody>

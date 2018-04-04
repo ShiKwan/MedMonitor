@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './PatientDetails.css';
+
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -16,11 +18,12 @@ export default class PatientDetails extends React.Component {
     }
     render () {
         return (
-            <Card style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review patient details</CardTitle>
+            
+            <Card className="revPatDetailTableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
+                <CardBody className="revPatDetailTableBody">
+                    <CardTitle className="revPatDetialTitle">Review patient details</CardTitle>
                 
-                    <CardText>
+                    <CardText className="revPatDetailCard">
                         <br />
                         Hospital Number: {this.props.patient_number} <br />
                         Name :  {this.props.first_name}&nbsp;{this.props.last_name} <br/>
@@ -42,13 +45,13 @@ export default class PatientDetails extends React.Component {
 
                     <br /><br />
                     <div style={{display: this.props.active ? "block" : "none"}}>
-                        <Button style={{marginRight: 6}} onClick={() => this.props.enterEpisodeMedications()}> Here Next</Button>
+                        <Button className="revPatDetailHereNextBtn" onClick={() => this.props.enterEpisodeMedications()}> Here Next</Button>
                         <a href={"/admin"}>
-                            <Button style={{marginRight: 6}}>Cancel</Button>
+                            <Button className="revPatDetailCanelBtn">Cancel</Button>
                         </a> 
                     </div>
                     <div style={{display: !this.props.active ? "block" : "none"}}>
-                        <a href={"/admin"}><Button style={{marginRight: 6}}>Back</Button></a> 
+                        <a href={"/admin"}><Button className="revPatDetailBackBtn">Back</Button></a> 
                     </div>
                     
                 </CardBody>
