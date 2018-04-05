@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './ConfirmEpisode.css';
+
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -12,9 +14,9 @@ import {
 export default class PatientConfirmEpisode extends React.Component {
     render () {
         return (
-            <Card style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Confirm New Episode</CardTitle>
+            <Card className="confirmNewEpisTableCard"style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
+                <CardBody className="confirmNewEpisTableBody">
+                    <CardTitle className="confirmNewEpisTitle">Confirm New Episode</CardTitle>
                 
                     <CardText>
                         Review new episode details and click submit to creat a new episode
@@ -22,9 +24,11 @@ export default class PatientConfirmEpisode extends React.Component {
                     </CardText>
 
                     <br /><br />
-                    <Button style={{marginRight: 6}} onClick={() =>this.props.createNewEpisode()}>Here Submit</Button>
-                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Back</Button></a> 
-                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
+                    <Button className="confirmNewEpisSubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
+                    <a href={"/admin"}> 
+                    <Button className="confirmNewEpisBackBtn">Back</Button></a> 
+                    <a href={"/admin"}> 
+                    <Button className="confirmNewEpisCanelBtn">Cancel</Button></a> 
                     
                 </CardBody>
             </Card>

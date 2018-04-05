@@ -10,9 +10,9 @@ export default class SuccessPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.successPhysicianCard ? "block" : "none"}}>
-            <CardBody style={{minHeight: 550}}>
-                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enroll a new patient</CardTitle>
+            <Card className="successEnrollPhysTableCard" style={{display: this.props.successPhysicianCard ? "block" : "none"}}>
+            <CardBody className="successEnrollPhysTableBody">
+                <CardTitle className="successEnrollPhysTitle">Enroll A New Physician</CardTitle>
                 <CardText>
                     <br />
                     New Physician: {this.props.physician_name} successfully enrolled and registered.

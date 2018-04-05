@@ -129,37 +129,49 @@ export default class PreviousMedication extends React.Component {
 
             return(
                 <Container>
-                <Button onClick={this.showState}>Show State</Button>
-                <label>Medication</label> <br/>
-                {this.state.medication}<br />
+                    {/* <Button onClick={this.showState}>Show State</Button> */}
+                    {/* <label>Medication</label> <br/> */}
 
-                <Label>Label: {this.state.label}</Label><br />
+                    <Row>
+                        <Col size="md-4">
+                            {this.state.medication} 
+                        </Col>
 
-                <Label>Dose: {this.state.dose}</Label><br />
-                <Label>Form: {this.state.form}</Label><br />
-                <Label>Route: {this.state.route}</Label><br />
-                <Label>Value : {this.state.value}</Label><br/>
+                    {/* <Label>Label: {this.state.label}</Label><br />
 
-                <Select 
-                    key = {this.state.medication}
-                    name= {this.state.medication}
-                    value = {this.state.value}
-                    placeholder = 'previous medication doses'
-                    onChange = {this.handleDosage}
-                    options= {this.populateDropDown(this.state.medication)}
-                />
-                <Label>Medication intake time:</Label>
-                <Select 
-                    name= {`${this.state.medication}-times`}
-                    value = {this.state.times}
-                    placeholder = 'previous medication intake time'
-                    onChange = {this.handlePreviousTimeChange}
-                    options= {this.state.allTime}
-                    multi= {true}
-                />
-                
-                <Button color="success" onClick={()=> this.EditMedicine()}>Edit</Button>
-                <Button color="danger" onClick={()=>this.removeMedicine()}>Remove</Button>
+                    <Label>Dose: {this.state.dose}</Label><br />
+                    <Label>Form: {this.state.form}</Label><br />
+                    <Label>Route: {this.state.route}</Label><br />
+                    <Label>Value : {this.state.value}</Label><br/> */}
+
+                        <Col size="md-4">
+                            <Label>Dose | Form | Route</Label>
+
+                            <Select 
+                                key = {this.state.medication}
+                                name= {this.state.medication}
+                                value = {this.state.value}
+                                placeholder = 'previous medication doses'
+                                onChange = {this.handleDosage}
+                                options= {this.populateDropDown(this.state.medication)}
+                            />
+                        </Col>
+                        <Col size="md-4">
+                            <Label>Medication intake time:</Label>
+                            <Select 
+                                name= {`${this.state.medication}-times`}
+                                value = {this.state.times}
+                                placeholder = 'previous medication intake time'
+                                onChange = {this.handlePreviousTimeChange}
+                                options= {this.state.allTime}
+                                multi= {true}
+                            />
+                        </Col>
+                    </Row>
+                        <br />
+                        <Button color="danger" onClick={()=>this.removeMedicine()}>Remove Medication</Button>
+
+                    <br /><br /><hr />
                 </Container>
             
         )
