@@ -54,12 +54,16 @@ class Home extends Component {
             })
             .then(res => {
                 console.log(res);
-                localStorage.setItem("userId", res.data._id);
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
                 localStorage.setItem("messageCenter", "Login successfully!");
                 localStorage.setItem("messageStatus", "success");
+                if(res.data.patient_id){
+                    localStorage.setItem("userId", res.data.patient_id);
+                }else if(res.data.doctor_id){
+                    localStorage.setItem("userId", res.data.doctor_id);
+                }
                 this.setState({
                     id : res.data._id,
                     role: res.data.role,
@@ -70,12 +74,18 @@ class Home extends Component {
                 }, function(){
                     if(this.state.role.toLowerCase()==="patient"){
                         patientAPI.findPatientInfoForPatient(this.state.id)
-                        .then(res => console.log(res))
+                        .then(res => {
+                            console.log("patient info:");
+                            console.log(res);
+                        })
                         .catch(err => console.log(err));
 
                     }else if(this.state.role.toLowerCase()==="admin" || this.state.role.toLower() ==="doctor"){
                         doctorAPI.findOne(this.state.id)
-                        .then(res => console.log(res))
+                        .then(res => {
+                            console.log("doctor info:");
+                            console.log(res)
+                        })
                         .catch(err => console.log(err));
                     }
                 })

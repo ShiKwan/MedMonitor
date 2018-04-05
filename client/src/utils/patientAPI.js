@@ -19,6 +19,8 @@ export default {
         return axios.get("/api/patient/forAdmin/"+id);
     },
     findPatientInfoForPatient: function(id){
+        console.log("looking for patient info");
+        console.log("id : ", id);
         return axios.get("/api/patient/forPatient/"+id);
     },
     createNewEpisode: function(id, objEpisode){

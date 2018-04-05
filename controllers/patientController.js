@@ -69,10 +69,15 @@ module.exports = {
     // To be sent req.params.id of patient
     // return json of appointment & details field as well as their  doctor details (via a populate)
     findByIdForPatient: function(req, res) {
+        console.log(req.params.id);
         db.Patient_data
-        .findById(req.params.id, {appointment: 1, details: 1})
+        .findById(req.params.id, {appointment: 1, details: 1, episode: 1})
         .populate("doctor")
-        .then(patient => res.json(patient))
+        .then(patient => {
+            console.log("patient info");
+            console.log(patient);
+            res.json(patient);
+        })
         .catch(err => {
             console.log('CONTROLLER ERROR: ${err}');
             res.status(422).json(err);
@@ -83,10 +88,14 @@ module.exports = {
     // To be sent req.params.id of patient
     // return json of medications
     patientMeds: function(req, res) {
+        console.log("here");
         db.Patient_data
         .findById(req.params.id, {"episode.medications": 1})
         .populate("doctor")
-        .then(patient => res.json(patient))
+        .then(patient => {
+            console.log(patient);
+            res.json(patient)
+        })
         .catch(err => {
             console.log('CONTROLLER ERROR: ${err}');
             res.status(422).json(err);

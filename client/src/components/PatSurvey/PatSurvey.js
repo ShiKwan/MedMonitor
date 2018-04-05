@@ -216,6 +216,8 @@ class PatSurvey extends Component {
             this.setState({
                 questions : newQuestions
             })
+        }else if(newQuestions.length === 0){
+            this.props.handleFinishedCallback();
         }
     }
 
