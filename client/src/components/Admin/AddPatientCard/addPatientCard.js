@@ -11,18 +11,15 @@ import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
 import './addPatientCard.css';
 
 
-
 export default class AddPatientCard extends React.Component {
 
     onClicked(event) {
         this.props.enrollPatient(event)
     }
 
-
     onChanged(event) {
         this.props.handleInputChange(event)
     }
-
 
 
     render () {
@@ -37,8 +34,8 @@ export default class AddPatientCard extends React.Component {
 
                             <FormGroup3_9Name
                                 nameFirstName = {"pt_firstname"}
-                                nameLastName = {"pt_lastname"}
                                 valueFirstName = {this.props.firstname}
+                                nameLastName = {"pt_lastname"}
                                 valueLastName= {this.props.lastname}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
@@ -61,11 +58,11 @@ export default class AddPatientCard extends React.Component {
 
                             <FormGroup3_9Contact
                                 labelEmail = {"Contact email"}
-                                labelPhone = {"Contact phone"}
-                                valueEmail = {this.props.email}
                                 nameEmail = {"pt_email"}
-                                valuePhone = {this.props.phone}
+                                valueEmail = {this.props.email}
+                                labelPhone = {"Contact phone"}
                                 namePhone = {"pt_phone"}
+                                valuePhone = {this.props.phone}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 

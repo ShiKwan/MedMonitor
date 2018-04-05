@@ -13,8 +13,11 @@ import './changeAppointmentCard.css';
 
 export default class ChangeAppointmentCard extends React.Component {
 
+
+    //YYYY-MM-DDTHH:mm:ss.sssZ
+    //this.setState({newAppt: `${this.state.newApptDate}T${this.state.newApptTime}.000Z`})
     onClicked(id) {
-        this.props.updateAppointment(id)
+       this.props.updateAppointment(id)
     }
 
 
@@ -39,24 +42,32 @@ export default class ChangeAppointmentCard extends React.Component {
 
                             <FormGroup row>
                                 <Label sm={3}>Name</Label>
-                                <Label sm={9}>{this.props.nextAppt}</Label>
+                                <Label sm={9}>{this.props.firstname} {this.props.lastname}</Label>
                             </FormGroup>
 
                             <FormGroup row>
                                 <Label sm={3}>Enrollment Status</Label>
-                                <Label sm={9}>{this.props.active ? "Active" : "Currently inactive"} </Label>
+                                <Label sm={9}>{this.props.active ? "Active" : "Currently inactive"}</Label>
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Next appointment currently on </Label>
+                                <Label sm={3}>Next appointment currently on: </Label>
                                 <Label sm={9}>{this.props.nextAppt}</Label>
                             </FormGroup>
 
                             <FormGroup3_9Input
-                                label = {"Change next appt to: "}
+                                type="date"
+                                label = {"New appointment date: "}
                                 placeholder = {this.props.nextAppt}
-                                name = {"pt_appt"}
-                                
+                                nameDate = {"pt_newApptDate"}
+                                onChanged = {(event) => this.onChanged(event)}
+                            />  
+                            
+                            <FormGroup3_9Input
+                                type="time"
+                                label = {"New appointment time: "}
+                                placeholder = {this.props.nextAppt}
+                                nameTime = {"pt_newApptTime"}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 

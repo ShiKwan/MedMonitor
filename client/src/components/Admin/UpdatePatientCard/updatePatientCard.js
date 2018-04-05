@@ -46,12 +46,12 @@ export default class UpdatePatientCard extends React.Component {
                                 labelEmail = {"Contact email"}
                                 placeholder = {this.props.email}
                                 nameEmail = {"dr_email"}
-                                valueEmail = {this.props.email}
+                                //valueEmail = {this.props.email}
 
                                 labelPhone = {"Contact phone"}
                                 placeholder = {this.props.phone}
                                 namePhone = {"dr_phone"}
-                                valuePhone = {this.props.phone}
+                                //valuePhone = {this.props.phone}
                                 
                                 onChanged = {(event) => this.onChanged(event)}
                             />

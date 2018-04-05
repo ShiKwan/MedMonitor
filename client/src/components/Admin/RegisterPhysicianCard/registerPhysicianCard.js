@@ -43,6 +43,7 @@ export default class RegisterPhysicianCard extends React.Component {
                                 onChanged = {(event) => this.onChanged(event)}
                             />
                             <FormGroup3_9Input
+                                type = {"password"}
                                 label = {"Password"}
                                 placeholder = {"password"}
                                 name = {"dr_password"}

@@ -27,7 +27,7 @@ export default class UpdatePhysicianCard extends React.Component {
         return (
 
             <Card style={{display: this.props.updatePhysicianCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
+                <CardBody style={{minHeight: 400}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update physician details </CardTitle>
                         <br />
                         <Form>
@@ -43,23 +43,23 @@ export default class UpdatePhysicianCard extends React.Component {
                             </FormGroup>
 
                             <FormGroup3_9Input
-                                label = "Office"
+                                label = {"Office"}
                                 placeholder = {this.props.office}
-                                name = "dr_office"
-                                value = {this.props.office}
+                                name = {"dr_office"}
+                                //value = {this.props.office}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 
                             <FormGroup3_9Contact
                                 labelEmail = {"Contact email"}
-                                placeholder = {this.props.email}
+                                placeholderEmail = {this.props.email}
                                 nameEmail = {"dr_email"}
-                                valueEmail = {this.props.email}
+                                //valueEmail = {this.props.email}
 
                                 labelPhone = {"Contact phone"}
-                                placeholder = {this.props.phone}
+                                placeholderPhone = {this.props.phone}
                                 namePhone = {"dr_phone"}
-                                valuePhone = {this.props.phone}
+                                //valuePhone = {this.props.phone}
                                 
                                 onChanged = {(event) => this.onChanged(event)}
                             />

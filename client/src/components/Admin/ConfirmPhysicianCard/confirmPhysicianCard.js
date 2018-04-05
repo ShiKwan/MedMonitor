@@ -26,7 +26,7 @@ export default class confirmPhysicianCard extends React.Component {
         return (
 
             <Card style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
+                <CardBody style={{minHeight: 400}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected physician</CardTitle>
                     <br />
                     <Table size="sm" style={{width: 500}}>
@@ -36,7 +36,7 @@ export default class confirmPhysicianCard extends React.Component {
                             </tr><tr>
                                 <td>Name:  </td><td>{this.props.firstname}&nbsp;{this.props.lastname}</td>
                             </tr><tr>
-                                <td>Date Added:  </td><td>{this.props.date_added}&nbsp;{this.props.lastname}</td>
+                                <td>Date Added:  </td><td>{this.props.date_added}</td>
                             </tr><tr>
                                 <td>Office </td><td>{this.props.office}</td>
                             </tr><tr>
