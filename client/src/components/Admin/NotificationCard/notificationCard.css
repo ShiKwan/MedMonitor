@@ -6,9 +6,10 @@
 
 p.tableTitle {
     font-weight: bold;
+
 }
 
-div.dashboradTableCard {
+div.dashboardTableCard {
     border-width: 3px;
     border-color: #2d5366;
     margin-bottom: 25px;
@@ -25,3 +26,6 @@ div.dashboradTableCard {
     background-color: #eeda90;
     cursor: pointer;
 }
+
+
+

@@ -24,7 +24,7 @@ import {
 var questions = [{
     
     survHeader: 'MEDICATION',
-    question: 'Are You Current With Your Parkinson Medication?',
+    question: 'Are You Current With Your Parkinson\'s Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
     color: ['green', 'red'],
     value: [0, 4],
@@ -35,10 +35,12 @@ var questions = [{
     questionNum : 0
 },
 
+// ---------- emergncy symptoms questions ---------
+
 {
-    survHeader: 'SYMPTOMS',
-    question: 'Since taking your LAST Parkinson medication: have you had any:',
-    answers: ['Falls', 'Freezing Of Gait', 'Choking', 'Hallucinations', 'None Of These'],
+    survHeader: 'WORRYING SYMPTOMS',
+    question: 'Since taking your LAST Parkinson\'s medication: have you had any:',
+    answers: ['Falls', 'Freezing Of Gait', 'Choking on food', 'Hallucinations', 'None Of These'],
     color: ['red', 'red', 'red', 'red', 'green'],
     value: [4, 4, 4, 4, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
@@ -48,10 +50,12 @@ var questions = [{
     questionNum : 1
 },
 
+// ---------- general parkinson's questions ---------
+
 {
-    survHeader: 'Kick In',
-    question: 'Since taking your LAST Parkinson medication: how long did it take to kick in?',
-    answers: ['Immediately', 'Quickly', 'Awhile', 'Very Late', 'Never'],
+    survHeader: 'KICK In',
+    question: 'Since taking your LAST Parkinson\'s medication: how long did it take to kick in?',
+    answers: ['Immediately', 'After 15 Minutes', 'After 30 Minutes', 'After 1 Hour', 'After More Than 1 Hour'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -62,9 +66,9 @@ var questions = [{
 },
 
 {
-    survHeader: 'Wearing Off',
-    question: 'Since taking your LAST Parkinson medication: if wearing off, how long ago.?',
-    answers: ['Still Nothing', '15 Minutes Ago', '45 Minutes Ago', '1 Hour And 15 MInutes Ago', '2 Hours Ago'],
+    survHeader: 'WEARING OFF',
+    question: 'Since taking your LAST Parkinson\'s medication: if wearing off, how long ago.?',
+    answers: ['Did Not Wear Off', '15 Minutes Ago', '30 Minutes Ago', '1 Hours Ago', 'More Than 1 hour Ago'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -73,9 +77,10 @@ var questions = [{
     firstQuestion : 0,
     questionNum : 3
 },
+
 {
-    survHeader: 'ACTIVITY',
-    question: 'Since taking your LAST Parkinson medications: how much of the time have you been able to do normal activities',
+    survHeader: 'MOVEMENT',
+    question: 'Since taking your LAST Parkinson\s medications: how much of the time have you been able to move comfortable?',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
@@ -87,9 +92,9 @@ var questions = [{
 },
 
 {
-    survHeader: 'MOVEMENT',
-    question: 'Since taking your LAST Parkinson medications: how much of the time have you been able to move comfortable?',
-    answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
+    survHeader: 'SLEEPY',
+    question: 'Since taking your LAST Parkinson\'s medication: how tired have you been?',
+    answers: ['Not Tired At All', 'Some Tiredness', 'Sleepy', 'Very Sleepy', 'Exhausted All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -97,11 +102,12 @@ var questions = [{
     answered : '',
     firstQuestion : 0,
     questionNum : 5
+
 },
 
 {
     survHeader: 'OFF TIME',
-    question: 'Right Now: do you feel off (slow, stiff, difficult to walk)?',
+    question: 'Right Now: do you feel off (slow, stiff, difficulty walking)?',
     answers: ['Normal', 'A Little Slow', 'Slow', 'Very Slow', 'Can\'t Move At All'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
@@ -126,19 +132,6 @@ var questions = [{
 },
 
 {
-    survHeader: 'STIFFNESS',
-    question: 'Right Now: how is your stiffness?',
-    answers: ['No Stiffness', 'A Little Stiff', 'Quite Stiff', 'Very Stiff', 'So Stiff Can\'t Move'],
-    color: ['green', 'blue', 'yellow', 'orange', 'red'],
-    value: [0, 1, 2, 3, 4],
-    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio",
-    answered : '',
-    firstQuestion : 0,
-    questionNum : 8
-},
-
-{
     survHeader: 'WALKING',
     question: 'Right Now: how is your walking?',
     answers: ['Good', 'A Little Slow', 'Slower Than Normal', 'Very Slow, Shuffling', 'Can\'t Walk At All'],
@@ -148,7 +141,7 @@ var questions = [{
     selectionType: "radio",
     answered : '',
     firstQuestion : 0,
-    questionNum : 9
+    questionNum : 8
 },
 
 {
@@ -161,14 +154,28 @@ var questions = [{
     selectionType: "radio",
     answered : '',
     firstQuestion : 0,
-    questionNum : 10
+    questionNum : 9
+},
 
+// ---------- side effects questions ---------
+
+{
+    survHeader: 'NAUSEA AND VOMITING',
+    question: 'Since taking your last Parkinson\s medication: Have you had any nausea or sickness?',
+    answers: ['None', 'A little nausea', 'Frequent nausea', 'Continual nausea', 'Vomiting'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
+    value: [0, 1, 2, 3, 4],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 10
 },
 
 {
-    survHeader: 'SLEEPY',
-    question: 'Since taking your LAST Parkinson medication: how tired have you been?',
-    answers: ['Not At All', 'Some', 'Sleepy', 'Very Sleepy', 'Exhausted All The Time'],
+    survHeader: 'DIZZINESS/LIGHTHEADEDNESS',
+    question: 'Since taking your last Parkinson\s medication: Have you felt dizzy or lightheaded?',
+    answers: ['None', 'Very occasionally', 'Yes, when I stand up', 'All the time', 'To dizzy to stand up'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -176,8 +183,35 @@ var questions = [{
     answered : '',
     firstQuestion : 0,
     questionNum : 11
+},
 
-}
+{
+    survHeader: 'HEADACHES',
+    question: 'Since taking your last Parkinson\s medication: Have you had any headache?',
+    answers: ['None', 'A little/occasionally', 'Mild/continual', 'Quite severe/on and off', 'Severe/all the time'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
+    value: [0, 1, 2, 3, 4],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 12
+},
+
+{
+    survHeader: 'DRY MOUTH/BLURRED VISIONM',
+    question: 'Since taking your last Parkinson\s medication: Have you had any feelings of dry mouth and/or blurred vision?',
+    answers: ['None', 'Occasionally', 'On and off', 'Most of the time', 'All the time'],
+    color: ['green', 'blue', 'yellow', 'orange', 'red'],
+    value: [0, 1, 2, 3, 4],
+    className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 13
+},
+
+
 ];
 
 

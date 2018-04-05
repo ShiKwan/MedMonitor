@@ -42,34 +42,33 @@ const Patient_dataSchema = new Schema({
             record: [{
                 date_time: Date,
                 meds_taken: Boolean,
-                // can add more detailed record of medications taken and notes here if required
-                symptoms: {
-                    ontime: Number,
-                    offtime: Number,
-                    tremor: Number,
-                    dexterity: Number,
-                    stiffness: Number,
-                    initiation: Number,
-                    speach: Number,
-                    walking: Number,
-                    balance: Number,
-                    drooling: Number,
-                    malaise: Number,
-                },
-
+                // can add more detailed record of medications taken and notes here if required 
+                
                 emergencies: {
                     falls: Boolean,
+                    freezing: Boolean,
                     choking: Boolean,
                     hallucination: Boolean,
                 },
+
+                symptoms: {
+                    kickin: Number,
+                    wearoff: Number,
+                    movement: Number,
+                    sleepy: Number,
+                    offtime: Number,
+                    tremor: Number,
+                    walking: Number,
+                    balance: Number,
+                },
+
+               
 
                 side_effects: {
                     sickness: Number,
                     dizziness: Number,
                     headaches: Number,
                     drymouth: Number,
-                    urinating: Number,
-                    indigestion: Number,
                 },
 
                 notes: String,

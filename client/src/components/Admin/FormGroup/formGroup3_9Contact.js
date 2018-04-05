@@ -21,11 +21,11 @@ export default class FormGroup3_9Contact extends React.Component {
             <FormGroup row>
                 <Label sm={3}>Contact email</Label>
                 <Col sm={9}>
-                    <Input type="email" name={this.props.nameEmail} placeholder="john.smith@mail.com" onChange={(event) => this.onChanged(event)}  value={this.props.valueEmail} />  
+                    <Input type="email" name={this.props.nameEmail} placeholder="john.smith@mail.com" onChange={(event) => this.onChanged(event)} value={this.props.valueEmail} />  
                 </Col>
                 <Label sm={3}>Contact phone</Label>
                 <Col sm={9}>
-                    <Input type="phone" name={this.props.namePhone}id="phone" placeholder="216-394-2420" onChange={(event) => this.onChanged(event)}  value={this.props.valuePhone} />  
+                    <Input type="text" name={this.props.namePhone} placeholder="216-394-2420" onChange={(event) => this.onChanged(event)} value={this.props.valuePhone} />  
                 </Col>
             </FormGroup>
             

@@ -18,22 +18,20 @@ export default class confirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="dashboradTableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
+            <Card className="dashboardTableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
                 <CardBody className="dashboardTableBody">
                     <CardTitle className="dashboardTitle">Dashboard</CardTitle>
                     
-                        <p>You currently have {this.props.numPatients} patients using this application.<br /> 
-                        </p>
+                        <p className="tableTitle">You currently have {this.props.numPatients} patients using this application.</p> 
 
-                    
                         <p className="tableTitle">New patients enrolled past 7 days.</p>
 
                         {this.props.patientsWeekListLength ? (
 
-                        <Table className="patEnrolledTable">
+                        <Table size="sm" className="patEnrolledTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
+                                    <th>Name</th><th>Hosp number</th><th>Date enrolled</th><th>Primary physician</th>
                                 </tr>
                             </thead>
                             <tbody className="patEnrolledBody">
@@ -47,10 +45,10 @@ export default class confirmPatientCard extends React.Component {
 
                                             <td>{item.appointment.next_appt.toString().slice(0,10)}</td>
 
-                                            <td>{item.appointment.next_appt.toString().slice(11,16)}</td>
-                                    
-                                    </tr>
+                                            <td>Dr. Physician</td>
 
+
+                                    </tr>
                                 ))}
                             </tbody>
                         </Table >
@@ -59,13 +57,12 @@ export default class confirmPatientCard extends React.Component {
                             <h3>No patients enrolled past 7 days</h3>
                             )}
 
-                        <br />
                         <p className="tableTitle">Appointments this week</p> 
 
-                        <Table className="appThisWeekTable">
+                        <Table size="sm" className="appThisWeekTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th>
+                                    <th>Name</th><th>Hosp number</th><th>Apptdate</th><th>Appt time</th><th>Primary physician</th>
                                 </tr>
                             </thead>
                             <tbody className="appThisWeekPat">
@@ -80,6 +77,8 @@ export default class confirmPatientCard extends React.Component {
                                             <td>{item.appointment.next_appt.toString().slice(0,10)}</td>
 
                                             <td>{item.appointment.next_appt.toString().slice(11,16)}</td>
+
+                                            <td>Dr. Physician</td>
                                     
                                     </tr>
 
@@ -87,13 +86,12 @@ export default class confirmPatientCard extends React.Component {
                             </tbody>
                         </Table>
 
-                        <br />
                         <p className="tableTitle">Emergency notifications</p>
                         
-                        <Table className="emergNotifTable">
+                        <Table size="sm" className="emergNotifTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Type</th>
+                                    <th>Name</th><th>Hosp number</th><th>Date</th><th>Time</th><th>Type</th><th>Primary physician</th>
                                 </tr>
                             </thead>
                             <tbody className="emerNotifPat">
@@ -106,11 +104,14 @@ export default class confirmPatientCard extends React.Component {
 
                                             <td> date</td>
 
+                                            <td>Time</td>
+
                                             <td> type</td>
+
+                                            <td>Dr. Physician</td>
                             
                                     </tr>
 
-                                
                             </tbody>
                         </Table>
                         
