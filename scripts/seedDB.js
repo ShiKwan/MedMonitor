@@ -298,35 +298,33 @@ const patient_dataSeed = [
             date_time: new Date(),
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
-            symptoms: {
-                ontime: 3,
-                offtime: 1,
-                tremor: 4,
-                dexterity: 4,
-                stiffness: 3,
-                initiation: 2,
-                speach: 1,
-                walking: 2,
-                balance: 1,
-                drooling: 1,
-                malaise: 2,
-            },
 
-            emergencies: 
-              {
-                falls: false,
-                choking: false,
-                hallucination: false,
-            },
+            emergencies: {
+              falls: false,
+              freezing: false,
+              choking: false,
+              hallucination: false,
+          },
 
-            side_effects: {
-                sickness: 2,
-                dizziness: 2,
-                headaches: 1,
-                drymouth: 1,
-                urinating: 1,
-                indigestion: 1,
-            },
+          symptoms: {
+              kickin: 3,
+              wearoff: 4,
+              movement: 3,
+              sleepy: 4,
+              offtime: 3,
+              tremor: 4,
+              walking: 4,
+              balance: 4,
+          },
+
+         
+
+          side_effects: {
+              sickness: 1,
+              dizziness: 2,
+              headaches: 1,
+              drymouth: 4,
+          },
 
           notes: "",
       }],
@@ -371,35 +369,33 @@ const patient_dataSeed = [
             date_time: new Date(),
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
-            symptoms: {
-                ontime: 2,
-                offtime: 3,
-                tremor: 2,
-                dexterity: 4,
-                stiffness: 4,
-                initiation: 4,
-                speach: 3,
-                walking: 3,
-                balance: 2,
-                drooling: 1,
-                malaise: 3,
-            },
 
-            emergencies: 
-              {
-                falls: false,
-                choking: false,
-                hallucination: false,
-            },
+            emergencies: {
+              falls: false,
+              freezing: false,
+              choking: false,
+              hallucination: false,
+          },
 
-            side_effects: {
-                sickness: 1,
-                dizziness: 2,
-                headaches: 3,
-                drymouth: 1,
-                urinating: 1,
-                indigestion: 1,
-            },
+          symptoms: {
+              kickin: 1,
+              wearoff: 2,
+              movement: 2,
+              sleepy: 2,
+              offtime: 2,
+              tremor: 4,
+              walking: 3,
+              balance: 3,
+          },
+
+         
+
+          side_effects: {
+              sickness: 3,
+              dizziness: 1,
+              headaches: 3,
+              drymouth: 1,
+          },
 
           notes: "its worse than normal this am",
         }],
