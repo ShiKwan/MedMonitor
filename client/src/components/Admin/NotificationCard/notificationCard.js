@@ -110,7 +110,6 @@ export default class confirmPatientCard extends React.Component {
                             
                                     </tr>
 
-                                
                             </tbody>
                         </Table>
                         

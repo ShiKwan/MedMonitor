@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
     Card, CardBody, CardTitle, CardText,
+    Button
 } from 'reactstrap';
 import './successPatientCard.css';
 
@@ -20,6 +21,8 @@ export default class SuccessPatientCard extends React.Component {
                     An email has been sent to {this.props.patient_email} with their username and password so that they can log-in and use the application.
                     <br />              
                 </CardText>
+                    <br />
+                    <a href="/admin"><Button style={{marginRight: 6}}>Finish</Button></a>
             </CardBody>
         </Card>
         

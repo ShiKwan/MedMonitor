@@ -3,17 +3,31 @@ import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import userAPI from "../../utils/userAPI";
+
+import MenuCard from "../../components/Admin/MenuCard";
+import DataMenuCard from "../../components/Admin/DataMenuCard";
+import NotificationCard from "../../components/Admin/NotificationCard";
+
 import ConfirmPatientCard from "../../components/Admin/ConfirmPatientCard";
 import SelectPatientCard from "../../components/Admin/SelectPatientCard";
-import DataMenuCard from "../../components/Admin/DataMenuCard";
-import MenuCard from "../../components/Admin/MenuCard";
 import AddPatientCard from "../../components/Admin/AddPatientCard";
 import RegisterPatientCard from "../../components/Admin/RegisterPatientCard";
 import SuccessPatientCard from "../../components/Admin/SuccessPatientCard";
+import UpdatePatientCard from "../../components/Admin/UpdatePatientCard";
+import SuccessUpdatePatientCard from "../../components/Admin/SuccessUpdatePatientCard";
+import ChangeAppointmentCard from "../../components/Admin/ChangeAppointmentCard";
+import SuccessChangeAppointmentCard from "../../components/Admin/SuccessChangeAppointmentCard";
+
+import SelectPhysicianCard from "../../components/Admin/SelectPhysicianCard";
+import ConfirmPhysicianCard from "../../components/Admin/ConfirmPhysicianCard";
 import AddPhysicianCard from "../../components/Admin/AddPhysicianCard";
 import RegisterPhysicianCard from "../../components/Admin/RegisterPhysicianCard";
 import SuccessPhysicianCard from "../../components/Admin/SuccessPhysicianCard";
-import NotificationCard from "../../components/Admin/NotificationCard"
+import UpdatePhysicianCard from "../../components/Admin/UpdatePhysicianCard";
+import SuccessUpdatePhysicianCard from "../../components/Admin/SuccessUpdatePhysicianCard";
+import RemovePhysicianCard from "../../components/Admin/RemovePhysicianCard"
+import SuccessRemovePhysicianCard from "../../components/Admin/SuccessRemovePhysicianCard"
+
 import { 
     Button, 
     Container, Row, Col, 
@@ -28,13 +42,28 @@ class Admin extends Component {
         dataMiningCard: false,
         notificationCard: true,
         
+        confirmPatientCard: false,
         selectPatientCard: false,
         addPatientCard: false,
+        registerPatientCard: false,
+        successPatientCard: false,
+        updatePatientCard: false,
+        successUpdatePatientCard: false,
+        changeAppointmentCard: false,
+        successChangeAppointmentCard: false, 
+
         selectPhysicianCard: false,
+        confirmPhysicianCard: false,
         addPhysicianCard: false,
-        selectMedcationCard: false,
+        registerPhysicianCard: false,
+        successPhysicianCard: false,
+        updatePhysicianCard: false,
+        successUpdatePhysicianCard: false,
+        removePhysicianCard: false,
+        successRemovePhysicianCard: false,
+
+        selectMedicationCard: false,
         addMedicationtCard: false,
-        confirmPatientCard: false,
         
         patients: [],
         patient: {},
@@ -43,6 +72,10 @@ class Admin extends Component {
         patientEpisodes: [],
         patientEpisodesStart: [],
         recordsLastPatientEpisode: [],
+
+        physicians: [],
+        physician: [],
+        physicianName: [],
 
         apptsList: [],
         numPatients: 0,
@@ -53,6 +86,8 @@ class Admin extends Component {
         pt_lastname: "",
         pt_hospnum: "",
         pt_dob: "",
+        pt_active: "",
+        pt_appt: "",
         pt_email: "",
         pt_phone: "",   
         pt_username: "",
@@ -68,21 +103,21 @@ class Admin extends Component {
         dr_dob: "",
         dr_email: "",
         dr_phone: "",
-        dtr_username: "",
+        dr_username: "",
         dr_password: "", 
         dr_id: "",
         physician_name: "",
         physician_email: "",
-
     };
 
     // Call function to fetch data required for admin page when Admin component mounts
     componentDidMount() {
-        this.loadPatientData(); 
+        this.loadData(); 
     };
 
 
     menuSelect = (menuItem) => {
+        menuItem == "dash board" ? this.setState({notificationCard: true}): this.setState({notificationCard: false});
         menuItem == "select patient" ? this.setState({selectPatientCard: true}): this.setState({selectPatientCard: false});
         menuItem == "add patient" ? this.setState({addPatientCard: true}) : this.setState({addPatientCard: false});
         menuItem == "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
@@ -92,28 +127,83 @@ class Admin extends Component {
         this.setState({confirmPatientCard: false});
         this.setState({registerPatientCard: false});
         this.setState({successPatientCard: false});
+        this.setState({updatePatientCard: false});
+        this.setState({successUpdatePatientCard: false});
+        this.setState({changeAppointmenttCard: false});
+        this.setState({successChangeAppointmenttCard: false});
+        this.setState({confirmPhysicianCard: false});
         this.setState({registerPhysicianCard: false});
         this.setState({successPhysicianCard: false});
-        this.setState({notificationCard: false})
-    }
+        this.setState({updatePhysicianCard: false});
+        this.setState({successUpdatePhysicianCard: false});
+        this.setState({removePhysicianCard: false});
+        this.setState({successRemovePhysicianCard: false});
+    };
 
 
-    loadPatientData = () => {
+    loadData = () => {
+
+        this.setState({ patients: [] });
+        this.setState({ patient: {} });
+        this.setState({ patientDetails: [] });
+        this.setState({ patientAppointment: [] });
+        this.setState({ patientEpisodes: [] });
+        this.setState({ patientEpisodesStart: [] });
+        this.setState({ recordsLastPatientEpisode: [] });
+
+        this.setState({ physicians: [] });
+        this.setState({ physician: [] });
+        this.setState({ physicianName: [] });
+
+        this.setState({ apptsList: [] });
+        this.setState({ numPatients: 0 });
+        this.setState({ patientsWeekList: [] });
+        this.setState({ patientsweekListLength: 0 });
+
+        this.setState({ pt_firstname: "" });
+        this.setState({ pt_lastname: "" });
+        this.setState({ pt_hospnum: "" });
+        this.setState({ pt_dob: "" });
+        this.setState({ pt_active: "" });
+        this.setState({ pt_appt: "" });
+        this.setState({ pt_email: "" });
+        this.setState({ pt_phone: "" });   
+        this.setState({ pt_username: "" });
+        this.setState({ pt_password: "" }); 
+        this.setState({ pt_id: "" });
+        this.setState({ patient_name: "" });
+        this.setState({ patient_email: "" });
+
+        this.setState({ dr_firstname: "" });
+        this.setState({ dr_lastname: "" });
+        this.setState({ dr_idnum: "" });
+        this.setState({ dr_office: "" });
+        this.setState({ dr_dob: "" });
+        this.setState({ dr_email: "" });
+        this.setState({ dr_phone: "" });
+        this.setState({ dr_username: "" });
+        this.setState({ dr_password: "" }); 
+        this.setState({ dr_id: "" });
+        this.setState({ physician_name: "" });
+        this.setState({ physician_email: "" });
+
         patientAPI.findAll({})
             .then(res => { 
-                this.setState({ patients: res.data.patientsList}); 
-                this.setState({ apptsList: res.data.apptsList}); 
-                this.setState({ numPatients: this.state.patients.length});
-                this.setState({ patientsWeekList: res.data.patientsWeekList})
-                this.setState({ patientsWeekListLength: this.state.patientsWeekList.length })
+                this.setState({patients: res.data.patientsList}); 
+                this.setState({apptsList: res.data.apptsList}); 
+                this.setState({numPatients: this.state.patients.length});
+                this.setState({patientsWeekList: res.data.patientsWeekList})
+                this.setState({patientsWeekListLength: this.state.patientsWeekList.length})
 
-
-            })
-            .catch(err => console.log(err));
+                doctorAPI.findAll({})
+                .then(res => {
+                    this.setState({ physicians: res.data});
+                })
+        })
+        .catch(err => console.log(err));
     };
     
 
-    // find patient data by id for Admin 
     confirmPatient = (id) => {
        
         patientAPI.findPatientInfoForAdmin(id)
@@ -135,7 +225,6 @@ class Admin extends Component {
     };
 
 
-    // add a new patient
     enrollPatient = event => {
         event.preventDefault();
         patientAPI.createNewPatient ({
@@ -180,13 +269,7 @@ class Admin extends Component {
             this.setState({registerPatientCard: true});
             this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
             this.setState({pt_id: res.data.insertedIds[0]})
-           
-            console.log(new Date(new Date().getTime()-7*24*60*60*1000).toISOString().toString().slice(0,10))
 
-            let date = new Date("2018-03-09 12:30")
-            let  date1 = date
-            console.log(date)
-            console.log(date1)
         })
         .catch(err => console.log(err));
     };
@@ -227,8 +310,60 @@ class Admin extends Component {
         }
     }
 
+    updatePatientDisplay = (id) => {
+        this.setState({confirmPatientCard: false})
+        this.setState({updatePatientCard: true})
+        this.setState({pt_id: id})
+     };
 
-     // add a new doctor
+
+    updatePatient = (id) => {
+        patientAPI.updateContact(id, {
+            email: this.state.email,
+            phone: this.state.phone,
+            // timestamps: {'created_at', 'updated_at' }
+        })
+        .then(res => {
+            this.setState({updatePatientCard: false});
+            this.setState({successUpdatePatientCard: true});
+            this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
+        })
+        .catch(err => console.log(err));
+    };
+
+    updateAppointmentDisplay = (id) => {
+        this.setState({confirmPatientCard: false})
+        this.setState({changeAppointmentCard: true})
+        this.setState({pt_id: id})
+     };
+
+    updateAppointment = (id) => {
+        patientAPI.updateAppointment(id, {
+            next_appt: Date(), //this.state.next_appt,
+            comments: "some new comments" //this.state.comments
+        })
+        .then(res => {
+            this.setState({changeAppointmentCard: false});
+            this.setState({successChangeAppointmentCard: true});
+            this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
+        })
+        .catch(err => console.log(err));
+    };
+
+
+    confirmPhysician = (id) => {
+        doctorAPI.findOne(id)
+            .then(res => {
+                console.log("find physician info for admin", res);
+                this.setState({confirmPhysicianCard: true});
+                this.setState({selectPhysicianCard: false});
+                this.setState({physician: res.data});
+                this.setState({physicianName: this.state.physician.name});
+            })
+            .catch(err => console.log(err));
+    };
+
+
      addPhysician= event => {
         event.preventDefault();
         doctorAPI.create ({
@@ -291,7 +426,49 @@ class Admin extends Component {
                 });  
             });
         }
-    }
+    };
+
+
+    updatePhysicianDisplay = (id) => {
+        this.setState({confirmPhysicianCard: false})
+        this.setState({updatePhysicianCard: true})
+        this.setState({dr_id: id})
+     };
+
+
+    updatePhysician = (id) => {
+        doctorAPI.update (id, {
+            office: this.state.office,
+            email: this.state.email,
+            phone: this.state.phone,
+            // timestamps: {'created_at', 'updated_at' }
+        })
+        .then(res => {
+            this.setState({updatePhysicianCard: false});
+            this.setState({successUpdatePhysicianCard: true});
+            this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
+        })
+        .catch(err => console.log(err));
+    };
+
+
+    removePhysicianDisplay = (id) => {
+        this.setState({confirmPhysicianCard: false})
+        this.setState({removePhysicianCard: true})
+        this.setState({dr_id: id})
+     };
+
+
+    removePhysician = (id) => {
+        doctorAPI.remove(id)
+        .then(res => {
+            this.setState({removePhysicianCard: false});
+            this.setState({successRemovePhysicianCard: true});
+            this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
+            this.setState({physician_email: this.state.physician.email})
+        })
+        .catch(err => console.log(err));
+    };
 
 
     // Dynamic form input handler
@@ -311,7 +488,7 @@ class Admin extends Component {
 
             <Container fluid>
                 <Container className="clearfix">
-                {this.state.patients.map( (x) => console.log(x))}
+                {/* {this.state.patients.map( (x) => console.log(x))} */}
                     <br />
                         <span  style={{fontWeight: "bold", float: "left"}}>Physician: {`${localStorage.getItem("username")} ${localStorage.getItem("username")}`}</span>
                         <span  style={{fontWeight: "bold", float: "right"}}>{`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}</span>
@@ -325,27 +502,51 @@ class Admin extends Component {
                         
                             <MenuCard
                                 menuCard = {this.state.menuCard}
+                                dataMenuCard = {this.state.dataMenuCard}
+                                notificationCard = {this.state.notificationCard}
+
                                 selectPatientCard = {this.state.selectPatientCard}
                                 confirmPatientCard = {this.state.confirmPatientCard}
                                 addPatientCard = {this.state.addPatientCard}
                                 registerPatientCard = {this.state.registerPatienttCard}
-                                successpatientCard = {this.state.successPatientCard}
-                                selectphysicianCard = {this.state.selectPhysicianCard}
+                                successPatientCard = {this.state.successPatientCard}
+                                updatePatientCard = {this.state.updatePatientCard}
+                                successUpdatePatientCard = {this.state.successUpdatePatientCard}
+                                changeAppointmentCard = {this.state.changeAppointmentCard}
+                                successChangeAppointmentCard = {this.state.successChangeAppointmentCard}
+
+                                selectPhysicianCard = {this.state.selectPhysicianCard}
+                                confirmPhysicianCard = {this.state.confirmPhysicianCard}
+                                updatePhysicianCard = {this.state.updatePhysicianCard}
+                                successUpdatePhysicianCard = {this.state.successUpdatePhysicianCard}
                                 addPhysicianCard = {this.state.addPhysicianCard}
-                                registerPhysiciancard = {this.state.registerPhysicianCard}
+                                registerPhysicianCard = {this.state.registerPhysicianCard}
                                 successPhysicianCard = {this.state.successPhysicianCard}
+                                removePhysicianCard = {this.state.removePhysicianCard}
+                                successRemovePhysicianCard = {this.state.successRemovePhysicianCard}
+
                                 selectMedicationCard = {this.state.selectMedicationCard}
-                                addPMedicationCard = {this.state.addPMedicationCard}
+                                addMedicationCard = {this.state.addMedicationCard}
+                                
                                 menuSelect = {(selection) => this.menuSelect(selection)}
                              />
 
                             <DataMenuCard
-                                dataMiningCard = {this.state.dataMenuCard}
+                                dataMenuCard = {this.state.dataMenuCard}
                             />
 
                         </Col>
             
                         <Col sm="9">
+
+                            <NotificationCard
+                                notificationCard = {this.state.notificationCard}
+                                numPatients = {this.state.numPatients}
+                                apptsList = {this.state.apptsList}
+                                patientsWeekList = {this.state.patientsWeekList}
+                                patientsWeekListLength = {this.state.patientsWeekListLength}
+                                confirmPatient = {(id) => this.confirmPatient(id)}
+                            />   
 
                             <SelectPatientCard 
                                 selectPatientCard = {this.state.selectPatientCard}
@@ -366,9 +567,11 @@ class Admin extends Component {
                                 email = {this.state.patientDetails.email}
                                 phone = {this.state.patientDetails.phone} 
                                 patientEpisodesLength = {this.state.patientEpisodes.length}
-                                patientEpisodeStart = {this.state.patientEpisodesStart}
+                                patientEpisodesStart = {this.state.patientEpisodesStart}
                                 recordsLastPatientEpisode = {this.state.recordsLastPatientEpisode} 
                                 patientId = {this.state.pt_id}
+                                updatePatientDisplay = {(id) => this.updatePatientDisplay(id)}
+                                updateAppointmentDisplay = {(id) => this.updateAppointmentDisplay(id)}
                             />
 
                             <AddPatientCard
@@ -390,6 +593,78 @@ class Admin extends Component {
                                 patient_email = {this.state.patient_email}
                             />
 
+                            <UpdatePatientCard
+                                updatePatientCard = {this.state.updatePatientCard}
+                                patientNumber = {this.state.patientDetails.patient_number}
+                                firstname = {this.state.patientDetails.first_name}
+                                lastname = {this.state.patientDetails.last_name}
+                                email = {this.state.patientDetails.email}
+                                phone = {this.state.patientDetails.phone} 
+                                pt_id = {this.state.patient._id}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                updatePatient = {(id) => this.updatePatient(id)}
+                            />
+
+                            <SuccessUpdatePatientCard
+                                successUpdatePatientCard = {this.state.successUpdatePatientCard}
+                                patient_name = {this.state.patient_name}
+                            />
+
+                             <ChangeAppointmentCard
+                                changeAppointmentCard = {this.state.changeAppointmentCard}
+                                patientNumber = {this.state.patientDetails.patient_number}
+                                firstname = {this.state.patientDetails.first_name}
+                                lastname = {this.state.patientDetails.last_name}
+                                active = {this.state.patient.active}
+                                nextAppt = {this.state.patientAppointment.next_appt}
+                                pt_id = {this.state.patient._id}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                updateAppointment = {(id) => this.updateAppointment(id)}
+                            />
+
+                            <SuccessChangeAppointmentCard
+                                successChangeAppointmentCard = {this.state.successChangeAppointmentCard}
+                                patient_name = {this.state.patient_name}
+                            />
+
+                            <SelectPhysicianCard 
+                                selectPhysicianCard = {this.state.selectPhysicianCard}
+                                physicians = {this.state.physicians}
+                                physiciansLength = {this.state.physicians.length}
+                                confirmPhysician = {(id) => this.confirmPhysician(id)}
+                            />
+
+                            <ConfirmPhysicianCard 
+                                confirmPhysicianCard = {this.state.confirmPhysicianCard}
+                                idNumber = {this.state.physician.id_number}
+                                firstname = {this.state.physicianName.first}
+                                lastname = {this.state.physicianName.last}
+                                office = {this.state.physician.office}
+                                dateAdded = {this.state.physician.date_added}
+                                email = {this.state.physician.email}
+                                phone = {this.state.physician.phone} 
+                                updatePhysicianDisplay = {(id) => this.updatePhysicianDisplay(id)}
+                                removePhysicianDisplay = {(id) => this.removePhysicianDisplay(id)}
+                            />
+
+                            <UpdatePhysicianCard
+                                updatePhysicianCard = {this.state.updatePhysicianCard}
+                                idNumber = {this.state.physician.id_number}
+                                firstname = {this.state.physicianName.first}
+                                lastname = {this.state.physicianName.last}
+                                office = {this.state.physician.office}
+                                email = {this.state.physician.email}
+                                phone = {this.state.physician.phone} 
+                                dr_id = {this.state.physician._id}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                updatePhysician = {(id) => this.updatePhysician(id)}
+                            />
+
+                            <SuccessUpdatePhysicianCard
+                                successUpdatePhysicianCard = {this.state.successUpdatePhysicianCard}
+                                physician_name = {this.state.physician_name}
+                            />
+
                             <AddPhysicianCard
                                 addPhysicianCard = {this.state.addPhysicianCard}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
@@ -407,17 +682,23 @@ class Admin extends Component {
                                 successPhysicianCard = {this.state.successPhysicianCard}
                                 physician_name = {this.state.physician_name}
                                 physician_email = {this.state.physician_email}
+                            />    
+
+                            <RemovePhysicianCard
+                                removePhysicianCard = {this.state.removePhysicianCard}
+                                idNumber = {this.state.physician.id_number}
+                                firstname = {this.state.physicianName.first}
+                                lastname = {this.state.physicianName.last}
+                                office = {this.state.physician.office}
+                                dr_id = {this.state.physician._id}
+                                removePhysician = {(id) => this.removePhysician(id)}
                             />
 
-                            <NotificationCard
-                                notificationCard = {this.state.notificationCard}
-                                numPatients = {this.state.numPatients}
-                                apptsList = {this.state.apptsList}
-                                patientsWeekList = {this.state.patientsWeekList}
-                                patientsWeekListLength = {this.state.patientsWeekListLength}
-                                confirmPatient = {(id) => this.confirmPatient(id)}
-
-                            />                         
+                            <SuccessRemovePhysicianCard
+                                successRemovePhysicianCard = {this.state.successRemovePhysicianCard}
+                                physician_name = {this.state.physician_name}
+                                physician_email = {this.state.physician_email}
+                            /> 
 
                         </Col>
                     </Row>

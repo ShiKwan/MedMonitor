@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     Button, 
     Card, CardBody, CardTitle, CardText,
+    Table
 } from 'reactstrap';
 import './ConfirmPatientCard.css';
 
@@ -38,8 +39,8 @@ export default class ConfirmPatientCard extends React.Component {
                     <a href={`/admin/Report?id=${ this.props.patientId }`}>
                         <Button className="reviewSelPatReportBtn">Report</Button>
                     </a>
-                    <Button className="reviewSelPatUpdateDetailBtn">Update Details</Button>
-                    <Button className="reviewSelPatUpdateAppBtn">Update App's</Button>
+                    <Button className="reviewSelPatUpdateDetailBtn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
+                    <Button className="reviewSelPatUpdateAppBtn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
                     <Button className="reviewSelPatCloseBtn">Close</Button>
 
                 </CardBody>

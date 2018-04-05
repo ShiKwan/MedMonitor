@@ -55,7 +55,7 @@ export default class AddPhysicianCard extends React.Component {
                                 label = {"Office"}
                                 placeholder = {"office name & address"}
                                 name = {"dr_office"}
-                                value = {this.props.dob}
+                                value = {this.props.office}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 
@@ -70,8 +70,8 @@ export default class AddPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="addNewPhysEnrollBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
-                            <Button className="addNewphysCanelBtn">Cancel</Button>
+                            <Button className="addNewPhysEnrollBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
+                            <a href="/admin"><Button className="addNewphysCanelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

@@ -236,19 +236,22 @@ const userSeed = [
     doctor_id: "melaniesID"
   }
 ]
+
 // Doctor collection seeds
 
-
 const doctorSeed = [
-  {
+  { date_added: new Date(),
     name: { first: "John", last: "Heyworth" },
+    id_number: "id12233",
     office: "Beachwood medical practice, Beachwood",
     email: "john.heworth@doctor.com",
     phone: "216-395-2345"
   },
 
   {
+    date_added: new Date(),
     name: { first: "melanie", last: "kopff" },
+    id_number: "id09876",
     office: "Park Road East medical centre, Solon",
     email: "mel.kopffh@doctor.com",
     phone: "216-786-2845"
