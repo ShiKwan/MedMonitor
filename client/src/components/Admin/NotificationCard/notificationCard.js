@@ -22,10 +22,8 @@ export default class confirmPatientCard extends React.Component {
                 <CardBody>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Dashboard</CardTitle>
                     
-                        <p>You currently have {this.props.numPatients} patients using this application.<br /> 
-                        </p>
-
-                    
+                        <p>You currently have {this.props.numPatients} patients using this application.</p>
+                        <br /> 
                         <p style={{fontWeight: "bold"}}>New patients enrolled past 7 days.</p>
 
                         {this.props.patientsWeekListLength ? (
@@ -39,8 +37,7 @@ export default class confirmPatientCard extends React.Component {
                             <tbody>
                                     {this.props.patientsWeekList.map(item => (
 
-                                    <tr onClick={() => this.onClicked(item._id)}>
-                                       
+                                    <tr style={{lineHeight: 1}} onClick={() => this.onClicked(item._id)}>
                                         
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             
@@ -72,7 +69,7 @@ export default class confirmPatientCard extends React.Component {
                             <tbody>
                                     {this.props.apptsList.map(item => (
 
-                                    <tr onClick={() => this.onClicked(item._id)}>
+                                    <tr style={{lineHeight: 1}} onClick={() => this.onClicked(item._id)}>
                                         
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             
@@ -99,20 +96,18 @@ export default class confirmPatientCard extends React.Component {
                             </thead>
                             <tbody>
                                 
-                                    
-                                    <tr onClick={() => this.onClicked()}>
+                                    <tr style={{lineHeight: 1}} onClick={() => this.onClicked()}>
 
-                                            <td style={{padding: 2}}>name</td>
+                                            <td>name</td>
 
-                                            <td style={{padding: 2}}>hospnumber</td>
+                                            <td>hospnumber</td>
 
-                                            <td style={{padding: 2}}>date</td>
+                                            <td>date</td>
 
-                                            <td style={{padding: 2}}>type</td>
+                                            <td>type</td>
                             
                                     </tr>
 
-                                
                             </tbody>
                         </Table>
                         

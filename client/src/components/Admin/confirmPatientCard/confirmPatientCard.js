@@ -2,33 +2,57 @@ import React, { Component } from 'react';
 import {
     Button, 
     Card, CardBody, CardTitle, CardText,
+    Table
 } from 'reactstrap';
 import './confirmPatientCard.css';
 
 
-
 export default class confirmPatientCard extends React.Component {
+
+    onClickedDetails(id) {
+        this.props.updatePatientDisplay(id)
+        }
+
+     onClickedAppt(id) {
+         this.props.updateAppointmentDisplay(id)
+        }
+
+
     render () {
         return (
 
             <Card style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
                 <CardBody style={{minHeight: 550}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected patient</CardTitle>
-
-                    <CardText>
-                        <br />
-                        Hospital Number: {this.props.patientNumber} <br />
-                        Name :  {this.props.firstname}&nbsp;{this.props.lastname} <br/>
-                        Date of Birth: {this.props.dob} <br /><br />
-                        Enrolled: {this.props.dateCreated} <br />
-                        Enrollment status: {this.props.active ? "Active" : "Currently inactive"} <br />
-                        Next Appointmant: {this.props.nextAppt} <br /><br />
-                        E-mail: {this.props.email} <br />
-                        Phone: {this.props.phone} <br /><br />
-                        Episodes recorded: {this.props.patientEpisodesLength} <br />
-                        Start of last Episode: {this.props.patientEpisodesStart} <br />
-                        Records in last episode: {this.props.recordsLastPatientEpisode} 
-                    </CardText>
+                    <br />
+                    <Table style={{width: 500}}>
+                        <tbody>
+                            <tr>
+                                <td>Hospital number: </td><td>{this.props.patientNumber} </td>
+                            </tr><tr>
+                                <td>Name :  </td><td>{this.props.firstname}&nbsp;{this.props.lastname} </td>
+                            </tr><tr>
+                                <td>Date of Birth: </td><td>{this.props.dob} </td>
+                            </tr><tr>
+                                <td>Enrolled: </td><td>{this.props.dateCreated ? this.props.dateCreated.toString().slice(0,10) : null} </td>
+                            </tr><tr>
+                                <td>Enrollment status: </td><td>{this.props.active ? "Active" : "Currently inactive"} </td>
+                            </tr><tr>
+                                <td>Next Appointmant: </td><td>{this.props.nextAppt ? `${this.props.nextAppt.toString().slice(0,10)} at ${this.props.nextAppt.toString().slice(11,16)}` : null} </td>
+                            </tr><tr>
+                                <td>E-mail: </td><td>{this.props.email} </td>
+                            </tr><tr>
+                                <td>Phone: </td><td>{this.props.phone} </td>
+                            </tr><tr>
+                                <td>Episodes recorded: </td><td>{this.props.patientEpisodesLength} </td>
+                            </tr><tr>
+                                <td>Start of last Episode: </td><td>{this.props.patientEpisodesStart ? `${this.props.patientEpisodesStart.toString().slice(0,10)} at ${this.props.patientEpisodesStart.toString().slice(11,16)}` : null} </td>
+                            </tr><tr>
+                                <td>Records in last episode: </td><td>{this.props.recordsLastPatientEpisode} </td>
+                            </tr>
+                        </tbody>
+                        
+                    </Table>
 
                     <br />
                     <br />
@@ -38,8 +62,8 @@ export default class confirmPatientCard extends React.Component {
                     <a href={`/admin/Report?id=${ this.props.patientId }`}>
                         <Button style={{marginRight: 6}}>Report</Button>
                     </a>
-                    <Button style={{marginRight: 6}}>Update details</Button>
-                    <Button style={{marginRight: 6}}>Update appointments</Button>
+                    <Button style={{marginRight: 6}} onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
+                    <Button style={{marginRight: 6}} onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
                     <Button style={{marginRight: 6}}>Close</Button>
 
                 </CardBody>

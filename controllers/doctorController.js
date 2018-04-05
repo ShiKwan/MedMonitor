@@ -10,7 +10,7 @@ module.exports = {
     // Returns json list of doctors names and _ids only (sorted alphabeltically by name
     findAll: function(req, res) {
         db.Doctor
-           .find( {}, {name: 1} )
+           .find({})
            .sort( {"name.last" : 1} )
             .then(doctorList=> res.json(doctorList))
             .catch(err => {
@@ -24,7 +24,6 @@ module.exports = {
     // To be sent req.params.id with _id of doctor to be fetched
     // Returns json of doctor details
     findById: function(req, res) {
-        console.log("here")
         db.Doctor
             .findById(req.params.id)
             .then(doctor => res.json(doctor))
@@ -66,6 +65,13 @@ module.exports = {
     // Update a doctors details
     // To be sent req.params.id of doctor to be updated & req.body object of doctor's new details
     update: function(req, res) {
+        console.log("reqid " + req.params.id)
+        console.log("reqdate " + req.body.date_added)
+        console.log("reqnum " + req.body.id_number)
+        console.log("reqoffice" + req.body.office)
+        console.log("reqemail " + req.body.email)
+        console.log("reqphone " + req.body.phone)
+
         db.Doctor
             .findOneAndUpdate(
                 { _id: req.params.id },

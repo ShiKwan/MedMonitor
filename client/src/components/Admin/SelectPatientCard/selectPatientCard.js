@@ -26,7 +26,7 @@ export default class SelectPatientCard extends React.Component {
                             <Table style={{width: 300}}>
                                 <tbody>
                                     {this.props.patients.map(item => (
-                                            <tr onClick={() => this.onClicked(item._id)}>
+                                            <tr style={{lineHeight: 1}} onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 100}}>{item.details.patient_number}</td>
                                                     <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
                                             </tr>
