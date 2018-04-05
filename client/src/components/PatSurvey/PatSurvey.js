@@ -234,6 +234,11 @@ class PatSurvey extends Component {
     handleCompletedCallback = (surveyHeader, answer) => {
         console.log("Survey header : " + surveyHeader);
         console.log("Answer : ", answer);
+        if(surveyHeader.toUpperCase() === 'WORRYING SYMPTOMS'){
+            if(!answer.includes("None Of These")){
+                this.props.handleIncident()
+            }
+        }
         let newCompleted = this.state.completed;
         newCompleted[surveyHeader] = answer
         this.setState({
@@ -242,7 +247,6 @@ class PatSurvey extends Component {
     };
 
     handleQuestionCallback = () =>{
-        //splice
         let newQuestions = questions
         newQuestions.splice(0,1);
         if(newQuestions.length > 0 ){

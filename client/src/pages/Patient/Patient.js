@@ -53,7 +53,7 @@ class Patient extends Component {
                     <Button onClick={this.props.handleIncident}>Alert Admin</Button>
                     <Row>
                         <Col size='md-12'>
-                            <PatSurvey handleFinishedCallback={this.handleFinishedCallback} />
+                            <PatSurvey handleIncident={this.props.handleIncident} handleFinishedCallback={this.handleFinishedCallback} />
                         </Col>
                     </Row>
                     {

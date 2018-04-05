@@ -32,11 +32,16 @@ import {
     Button, 
     Container, Row, Col, 
     Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Table, Alert
 } from 'reactstrap';
 
 
 class Admin extends Component {
+    constructor(props){
+        super(props)
+        this.getBackAlertIncident = this.getBackAlertIncident.bind(this);
+
+    }
     state = {
         menuCard: true,
         dataMiningCard: false,
@@ -108,8 +113,16 @@ class Admin extends Component {
         dr_id: "",
         physician_name: "",
         physician_email: "",
+        alertIncident : this.props.alertIncident
     };
 
+    getBackAlertIncident(alertIncident){
+        console.log("getting back alert incident");
+        this.setState({
+            alertIncident : alertIncident
+        })
+        console.log("Alert incident : " , this.state.alertIncident);
+    }
     // Call function to fetch data required for admin page when Admin component mounts
     componentDidMount() {
         this.loadData(); 
@@ -487,6 +500,9 @@ class Admin extends Component {
         // <Container>
 
             <Container fluid>
+                <Container>
+                   <Alert color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
+                </Container>
                 <Container className="clearfix">
                 {/* {this.state.patients.map( (x) => console.log(x))} */}
                     <br />

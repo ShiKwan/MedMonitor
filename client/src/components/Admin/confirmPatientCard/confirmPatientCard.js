@@ -4,7 +4,7 @@ import {
     Card, CardBody, CardTitle, CardText,
     Table
 } from 'reactstrap';
-import './confirmPatientCard.css';
+import './ConfirmPatientCard.css';
 
 
 

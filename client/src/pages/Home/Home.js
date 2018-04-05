@@ -59,13 +59,13 @@ class Home extends Component {
                 localStorage.setItem("role", res.data.role);
                 localStorage.setItem("messageCenter", "Login successfully!");
                 localStorage.setItem("messageStatus", "success");
-                if(res.data.patient_id){
+                if(res.data.patient_id && res.data.role.toLowerCase() === 'patient'){
                     localStorage.setItem("userId", res.data.patient_id);
-                }else if(res.data.doctor_id){
+                }else if(res.data.doctor_id && (res.data.role.toLowerCase() === 'admin' || res.data.role.toLowerCase() === 'doctor')){
                     localStorage.setItem("userId", res.data.doctor_id);
                 }
                 this.setState({
-                    id : res.data._id,
+                    id : localStorage.getItem("userId"),
                     role: res.data.role,
                     email: res.data.email,
                     username: res.data.username,
@@ -77,6 +77,8 @@ class Home extends Component {
                         .then(res => {
                             console.log("patient info:");
                             console.log(res);
+                            localStorage.setItem("firstName", res.data.details.first_name);
+                            localStorage.setItem("lastName", res.data.details.last_name);
                         })
                         .catch(err => console.log(err));
 
@@ -85,6 +87,10 @@ class Home extends Component {
                         .then(res => {
                             console.log("doctor info:");
                             console.log(res)
+                            localStorage.setItem("firstName", res.data.name.first);
+                            localStorage.setItem("lastName", res.data.name.last);
+                            localStorage.setItem("office", res.data.office);
+                            localStorage.setItem("phone", res.data.phone);
                         })
                         .catch(err => console.log(err));
                     }
@@ -110,7 +116,6 @@ class Home extends Component {
                 localStorage.setItem("messageStatus", "danger");
                 this.props.getBackMessage(this.state.messageCenter);
                 this.props.getBackMessageStatus(this.state.messageStatus);
-                
             }
             );
         }

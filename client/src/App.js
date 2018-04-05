@@ -15,6 +15,7 @@ import NoMatch from "./pages/NoMatch";
 import Admin_Report from "./pages/Admin_Report";
 import Admin_Episode from "./pages/Admin_Episode";
 import userAPI from "./utils/userAPI";
+import mailerAPI from "./utils/nodemailerAPI";
 import {Alert } from 'reactstrap';
 import openSocket from 'socket.io-client';
 
@@ -95,7 +96,7 @@ class App extends Component {
   PrivateAdminRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
       localStorage.getItem("role")!== null && localStorage.getItem("role").toLowerCase() === "doctor" || localStorage.getItem("role").toLowerCase() === "admin"
-        ? <Component {...props} />
+        ? <Component {...props} alertIncident={this.state.alertIncident} />
         : (
           localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
           localStorage.setItem("messageStatus", "danger"),
@@ -139,10 +140,27 @@ class App extends Component {
     })
   }
   
-  handleIncident =  e => {
-      e.preventDefault();
-      socket.emit('alertAdmin');
-      
+  handleIncident =  () => {
+      console.log("socket io fired");
+      socket.emit('alertAdmin', {'name' : localStorage.getItem("firstName") +  " " + localStorage.getItem("lastName")});
+      //send email to doctor
+      mailerAPI.sendToDoctor({
+                    name : this.state.username,
+                    subject : `MedMonitor : Urgent incident from  ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}`,
+                    email : this.state.newAccountEmail,
+                    message : `
+                              Your patient ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")} has reported a risky incident! 
+                              Please log on to the application to review the patient information and schedule the earliest possible appointment for him.
+                              From
+                              Team MedMonitor`
+                })
+                .then(res =>{
+                    console.log(res);
+                    console.log("mail man work real hard!");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
   }
 
   render(){

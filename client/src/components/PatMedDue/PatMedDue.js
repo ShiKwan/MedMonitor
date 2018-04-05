@@ -79,7 +79,6 @@ class PatMedDue extends Component {
                                     <Container>
                                     <Label>{currentDateTime}</Label> 
                                     </Container>
-
                                     :
                                     null
                                 
