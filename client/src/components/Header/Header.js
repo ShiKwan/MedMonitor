@@ -36,9 +36,14 @@ export default class Header extends React.Component {
                 .then(data =>{
                     console.log("user logging out...")
                     console.log(data);
+                    localStorage.addItem("userId", null);
                     localStorage.addItem("username", null);
                     localStorage.addItem("role", null);
                     localStorage.addItem("email", null);
+                    localStorage.addItem("firstName", null);
+                    localStorage.addItem("lastName", null);
+                    localStorage.addItem("office", null);
+                    localStorage.addItem("phone", null);
                     localStorage.addItem("messageCenter", "You have successfully logged out from our application!");
                     localStorage.addItem("messageStatus", "success");
                 })
