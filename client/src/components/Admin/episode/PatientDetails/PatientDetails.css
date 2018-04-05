@@ -4,6 +4,10 @@ div.revPatDetailTableCard {
     margin-bottom: 25px;
 }
 
+.revPatDetailTableBody {
+    background-color: #f3f3f1;
+}
+
 .revPatDetailCard {
     text-align: center;
 }

@@ -14,7 +14,7 @@ export default class ConfirmPatientCard extends React.Component {
 
             <Card className="reviewSelPatTableCard" style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
                 <CardBody className="reviewSelPatTableBody">
-                    <CardTitle className="reviewSelPatTitle">Review selected patient</CardTitle>
+                    <CardTitle className="reviewSelPatTitle">Review Selected Patient</CardTitle>
 
                     <CardText className="reviewSelPatCard">
                         <br />

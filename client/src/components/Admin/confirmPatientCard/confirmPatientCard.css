@@ -4,6 +4,10 @@ div.reviewSelPatTableCard {
     margin-bottom: 25px;
 }
 
+.reviewSelPatTableBody {
+    background-color: #f3f3f1;
+}
+
 .reviewSelPatTableBody .reviewSelPatTitle {
     padding: 10px;
     background-color: #9eb1bd;

@@ -38,14 +38,6 @@ div.patSurvey {
 
 /* //// survey buttons /////////////////////////////////////////////////////////////// */
 
-.survRadGroup,
-.survChkGroup {
-    margin: 0 auto;
-    display: grid;
-}
-
-/* /////////////////////////////////////////////////// */
-
 .survChkBtnGreen,
 .survRadBtnGreen {
     background-color: #28a745;
@@ -182,12 +174,6 @@ h4,
 .radSelected,
 .chkSelected {
     text-align: center;
-}
-
-.survRadGroup,
-.survChkGroup {
-    margin: 0 auto;
-    display: grid;
 }
 
 button.questSubmitBtn {

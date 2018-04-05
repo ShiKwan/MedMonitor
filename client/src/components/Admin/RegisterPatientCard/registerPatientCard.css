@@ -4,6 +4,10 @@ div.registNewPatTableCard {
     margin-bottom: 25px;
 }
 
+.registNewPatTableBody {
+    background-color: #f3f3f1;
+}
+
 .registNewPatTableBody .registNewPatTitle {
     padding: 10px;
     background-color: #9eb1bd;

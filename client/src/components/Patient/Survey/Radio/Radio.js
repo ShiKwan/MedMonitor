@@ -1,5 +1,7 @@
 import React from 'react';
 import QButton from "../Button";
+import "./Radio.css";
+
 import { 
     Container,
     Card,
@@ -69,7 +71,6 @@ export default class Radio extends React.Component {
                                             active = {this.state.rSelected}
                                         >
                                         </QButton>
-                                        <Label>{this.state.rSelected}</Label>
                                         </Container>
                                     )
                                 })

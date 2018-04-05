@@ -11,16 +11,17 @@ export default class SuccessChangeAppointmentCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.successChangeAppointmentCard ? "block" : "none"}}>
-            <CardBody style={{minHeight: 550}}>
-                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update next appointment</CardTitle>
+            <Card className="succesChangAppTableCard" style={{display: this.props.successChangeAppointmentCard ? "block" : "none"}}>
+            <CardBody className="successChangAppTableBody">
+                <CardTitle className="successChangAppTitle">Update Next Appointment</CardTitle>
                 <CardText>
                     <br />
                     Patient, {this.props.patient_name}, next appointment has been successfully updated.
                     <br /><br /> <br />      
                 </CardText>
 
-                <a href="/admin"><Button style={{marginRight: 6}}>Finish</Button></a>
+                <a href="/admin">
+                <Button className="successChangAppFinshBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

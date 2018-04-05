@@ -1,5 +1,7 @@
 import React from 'react';
 import QButton from "../Button";
+import "./Checkbox.css";
+
 import { 
     Container,
     Card,

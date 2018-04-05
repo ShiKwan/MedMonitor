@@ -1,4 +1,6 @@
-
+.enrollNewPatTableBody {
+        background-color: #f3f3f1;
+}
 
 div.enrollNewPatTableCard {
     border-width: 3px;

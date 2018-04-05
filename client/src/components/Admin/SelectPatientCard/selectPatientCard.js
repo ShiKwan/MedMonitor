@@ -18,7 +18,7 @@ export default class SelectPatientCard extends React.Component {
 
             <Card className="selectPatTableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
                 <CardBody className="selectPatTableBody">
-                    <CardTitle className="selectPatTitle">Select patient</CardTitle>
+                    <CardTitle className="selectPatTitle">Select Patient</CardTitle>
 
                     <br />
                         {this.props.patientsLength ? (

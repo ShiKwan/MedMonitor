@@ -21,7 +21,7 @@ export default class PatientDetails extends React.Component {
             
             <Card className="revPatDetailTableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
                 <CardBody className="revPatDetailTableBody">
-                    <CardTitle className="revPatDetialTitle">Review patient details</CardTitle>
+                    <CardTitle className="revPatDetialTitle">Review Patient Details</CardTitle>
                 
                     <CardText className="revPatDetailCard">
                         <br />

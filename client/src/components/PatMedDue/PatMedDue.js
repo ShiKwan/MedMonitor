@@ -32,15 +32,17 @@ class PatMedDue extends Component {
         })
     }
     componentDidMount(){
-        patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
-            .then(res => {
-                console.log("data for patient: ", res.data)
-                this.setState({
-                    medication : res.data.episode[0].medications,
+        if(localStorage.getItem("userId")){
+            patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
+                .then(res => {
+                    console.log("data for patient: ", res.data)
+                    this.setState({
+                        medication: res.data.episode[0].medications,
+                    })
+                    console.log("Staate in past med due : ", this.state);
                 })
-                console.log("Staate in past med due : ", this.state);
-            })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
+        }
     }
     beautifyCountDown = (duration) =>{
         let newDurationHour = parseInt(0)

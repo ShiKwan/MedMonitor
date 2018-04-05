@@ -17,7 +17,8 @@ import {
     FormGroup,
     Label,
     Input,
-    FormText
+    FormText,
+    Progress
 } from 'reactstrap';
 
 
@@ -40,7 +41,7 @@ var questions = [{
 {
     survHeader: 'WORRYING SYMPTOMS',
     question: 'Since taking your LAST Parkinson\'s medication: have you had any:',
-    answers: ['Falls', 'Freezing Of Gait', 'Choking on food', 'Hallucinations', 'None Of These'],
+    answers: ['Falls', 'Freezing Of Gait', 'Choking On Food', 'Hallucinations', 'None Of These'],
     color: ['red', 'red', 'red', 'red', 'green'],
     value: [4, 4, 4, 4, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
@@ -80,7 +81,7 @@ var questions = [{
 
 {
     survHeader: 'MOVEMENT',
-    question: 'Since taking your LAST Parkinson\s medications: how much of the time have you been able to move comfortable?',
+    question: 'Since taking your LAST Parkinson\'s medications: how much of the time have you been able to move comfortable?',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
@@ -161,8 +162,8 @@ var questions = [{
 
 {
     survHeader: 'NAUSEA AND VOMITING',
-    question: 'Since taking your last Parkinson\s medication: Have you had any nausea or sickness?',
-    answers: ['None', 'A little nausea', 'Frequent nausea', 'Continual nausea', 'Vomiting'],
+    question: 'Since taking your last Parkinson\'s medication: Have you had any nausea or sickness?',
+    answers: ['None', 'A Little Nausea', 'Frequent Nausea', 'Continual Nausea', 'Vomiting'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -174,8 +175,8 @@ var questions = [{
 
 {
     survHeader: 'DIZZINESS/LIGHTHEADEDNESS',
-    question: 'Since taking your last Parkinson\s medication: Have you felt dizzy or lightheaded?',
-    answers: ['None', 'Very occasionally', 'Yes, when I stand up', 'All the time', 'To dizzy to stand up'],
+    question: 'Since taking your last Parkinson\'s medication: Have you felt dizzy or lightheaded?',
+    answers: ['None', 'Very Occasionally', 'Yes, When I Stand Up', 'All The Time', 'To Dizzy To Stand Up'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -187,8 +188,8 @@ var questions = [{
 
 {
     survHeader: 'HEADACHES',
-    question: 'Since taking your last Parkinson\s medication: Have you had any headache?',
-    answers: ['None', 'A little/occasionally', 'Mild/continual', 'Quite severe/on and off', 'Severe/all the time'],
+    question: 'Since taking your last Parkinson\'s medication: Have you had any headache?',
+    answers: ['None', 'A Little/Occasionally', 'Mild/Continual', 'Quite Severe/On And Off', 'Severe/All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -200,8 +201,8 @@ var questions = [{
 
 {
     survHeader: 'DRY MOUTH/BLURRED VISIONM',
-    question: 'Since taking your last Parkinson\s medication: Have you had any feelings of dry mouth and/or blurred vision?',
-    answers: ['None', 'Occasionally', 'On and off', 'Most of the time', 'All the time'],
+    question: 'Since taking your last Parkinson\'s medication: Have you had any feelings of dry mouth and/or blurred vision?',
+    answers: ['None', 'Occasionally', 'On And Off', 'Most Of The Time', 'All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -254,6 +255,15 @@ class PatSurvey extends Component {
             this.props.handleFinishedCallback();
         }
     }
+    handleProgressBar = (answered) =>{
+
+        let percentage = 100 - (questions.length/14 * 100);
+        return(
+            <Container>
+                <Progress color="success" value={percentage} />
+            </Container>
+        )
+    }
 
     render() {
         return (
@@ -261,7 +271,12 @@ class PatSurvey extends Component {
             <Container fluid className="patSurvey">
                 <Button onClick={this.handlePopulate}>Show State</Button>
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
+                    <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS LONG SURVEY</CardHeader>
+                    <br />
+                        <div>
+                            {this.handleProgressBar(`${this.state.answered}`)}
+                            
+                        </div>
                 </Card>
                 {
                     this.state.questions.map( (x,i) => {

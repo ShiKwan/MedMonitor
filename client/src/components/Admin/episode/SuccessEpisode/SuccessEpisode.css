@@ -1,24 +1,23 @@
-div.registPhyTableCard {
+div.successNewEpisTableCard {
     border-width: 3px;
     border-color: #2d5366;
     margin-bottom: 25px;
 }
 
-.registPhysTableBody {
+.successNewEpisTableBody {
     background-color: #f3f3f1;
 }
 
-.registPhysTableBody .registPhysTitle {
+.successNewEpisTableBody .successNewEpisTitle {
     padding: 10px;
     background-color: #9eb1bd;
 }
 
-.registPhysForm .registPhysRegisterBtn {
+.successNewEpisTableBody .successNewEpisFinishBtn {
     margin-right: 10px;
 }
 
-.registPhysForm .registPhysRegisterBtn,
-.registPhysForm .registPhysCancelBtn {
+.successNewEpisTableBody .successNewEpisFinishBtn {
     margin-top: 7px;
     color: #e3c044;
     font-weight: bold;
@@ -30,8 +29,7 @@ div.registPhyTableCard {
     transition-duration: 1s;
 }
 
-.registPhysForm .registPhysRegisterBtn:hover,
-.registPhysForm .registPhysCancelBtn:hover {
+.successNewEpisTableBody .successNewEpisFinishBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;

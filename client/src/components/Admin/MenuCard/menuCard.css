@@ -3,6 +3,11 @@ div.actionTableCard {
     border-color: #2d5366;
 }
 
+.actionTableBody {
+    background-color: #f3f3f1;
+}
+
+
 .actionTableBody .actionTable {
     padding: 10px;
     background-color: #9eb1bd;

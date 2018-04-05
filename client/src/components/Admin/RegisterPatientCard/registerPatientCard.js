@@ -27,7 +27,7 @@ export default class registerPatientCard extends React.Component {
 
             <Card className="registNewPatTableCard" style={{display: this.props.registerPatientCard ? "block" : "none"}}>
                 <CardBody className="registNewPatTableBody">
-                    <CardTitle className="registNewPatTitle">Enroll a new patient</CardTitle>
+                    <CardTitle className="registNewPatTitle">Enroll A New Patient</CardTitle>
                         <br />
                         New patient: {this.props.patient_name} successfully enrolled.
                         <br /><br />

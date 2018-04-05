@@ -13,7 +13,7 @@ export default class SuccessPatientCard extends React.Component {
 
             <Card className="successEnrollPatTableCard" style={{display: this.props.successPatientCard ? "block" : "none"}}>
             <CardBody className="successEnrollPatTableBody">
-                    <CardTitle className="successEnrollPatTitle">Enroll a new patient</CardTitle>
+                    <CardTitle className="successEnrollPatTitle">Enroll A New Patient</CardTitle>
                 <CardText>
                     <br />
                     New Patient: {this.props.patient_name} successfully enrolled and registered.
@@ -22,7 +22,8 @@ export default class SuccessPatientCard extends React.Component {
                     <br />              
                 </CardText>
                     <br />
-                    <a href="/admin"><Button style={{marginRight: 6}}>Finish</Button></a>
+                    <a href="/admin">
+                    <Button className="successEnrollPatFinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

@@ -11,16 +11,17 @@ export default class SuccessUpdatePhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.successUpdatePhysicianCard ? "block" : "none"}}>
-            <CardBody style={{minHeight: 550}}>
-                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update physician details</CardTitle>
+            <Card className="successUpdatePhysTableCard" style={{display: this.props.successUpdatePhysicianCard ? "block" : "none"}}>
+            <CardBody className="suceessUpdatePhysTableBody">
+                <CardTitle className="successUpdatePhysTitle">Update Physician Details</CardTitle>
                 <CardText>
                     <br />
                     Dr. {this.props.physician_name}'s details have been successfully updated.
                     <br /><br /> <br />      
                 </CardText>
 
-                <a href="/admin"><Button style={{marginRight: 6}}>Finish</Button></a>
+                <a href="/admin">
+                <Button className="successUpdatePhysFinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         
