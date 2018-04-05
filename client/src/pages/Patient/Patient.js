@@ -28,17 +28,19 @@ class Patient extends Component {
     }
     componentDidMount() {
         console.log("user id : " + localStorage.getItem("userId"));
-        patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
-            .then(res => {
-                console.log("data for patient: ", res.data)
-                this.setState({
-                    next_appt: `${res.data.appointment.next_appt}`,
-                    medication : res.data.episode[0].medications,
-                    details : res.data.details
+        if(localStorage.getItem("userId")){
+            patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
+                .then(res => {
+                    console.log("data for patient: ", res.data)
+                    this.setState({
+                        next_appt: `${res.data.appointment.next_appt}`,
+                        medication: res.data.episode[0].medications,
+                        details: res.data.details
+                    })
+                    console.log(this.state);
                 })
-                console.log(this.state);
-            })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
+        }
     }
     handleFinishedCallback= () => {
         this.setState({
