@@ -29,7 +29,7 @@ export default class confirmPhysicianCard extends React.Component {
                 <CardBody style={{minHeight: 550}}>
                     <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected physician</CardTitle>
                     <br />
-                    <Table style={{width: 500}}>
+                    <Table size="sm" style={{width: 500}}>
                         <tbody>
                             <tr>
                                 <td>Id Number: </td><td>{this.props.idNumber}</td>
