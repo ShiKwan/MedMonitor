@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 
 import "./PatSurvey.css";
-
+import QCheckbox from "../Patient/Survey/Checkbox";
+import QRadio from "../Patient/Survey/Radio";
 import { 
     Container,
     Card,
@@ -28,7 +29,10 @@ var questions = [{
     color: ['green', 'red'],
     value: [0, 4],
     className: ['survRadBtnGreen', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 1,
+    questionNum : 0
 },
 
 {
@@ -38,7 +42,10 @@ var questions = [{
     color: ['red', 'red', 'red', 'red', 'green'],
     value: [4, 4, 4, 4, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
-    selectionType: "checkbox"
+    selectionType: "checkbox",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 1
 },
 
 {
@@ -48,7 +55,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 2
 },
 
 {
@@ -58,7 +68,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 3
 },
 {
     survHeader: 'ACTIVITY',
@@ -67,7 +80,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 4
 },
 
 {
@@ -77,7 +93,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 5
 },
 
 {
@@ -87,7 +106,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 6
 },
 
 {
@@ -97,7 +119,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 7
 },
 
 {
@@ -107,7 +132,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 8
 },
 
 {
@@ -117,7 +145,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 9
 },
 
 {
@@ -127,7 +158,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 10
 
 },
 
@@ -138,7 +172,10 @@ var questions = [{
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
-    selectionType: "radio"
+    selectionType: "radio",
+    answered : '',
+    firstQuestion : 0,
+    questionNum : 11
 
 }
 ];
@@ -151,106 +188,90 @@ class PatSurvey extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { cSelected: [] };
-
-        this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-        this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+        this.state = ({
+            questions : questions,
+            completed : [],
+        })
     }
-
-    onRadioBtnClick(rSelected) {
-        this.setState({ rSelected });
+    // Handle notification from a child slide that we should move to the next
+    handlePopulate = () => {
+        console.log(this.state);
     }
+    handleCompletedCallback = (surveyHeader, answer) => {
+        console.log("Survey header : " + surveyHeader);
+        console.log("Answer : ", answer);
+        let newCompleted = this.state.completed;
+        newCompleted[surveyHeader] = answer
+        this.setState({
+            completed : newCompleted
+        })
+    };
 
-    onCheckboxBtnClick(selected) {
-        const index = this.state.cSelected.indexOf(selected);
-        if (index < 0) {
-            this.state.cSelected.push(selected);
-        } else {
-            this.state.cSelected.splice(index, 1);
+    handleQuestionCallback = () =>{
+        //splice
+        let newQuestions = questions
+        newQuestions.splice(0,1);
+        if(newQuestions.length > 0 ){
+            newQuestions[0].firstQuestion = 1;
+            this.setState({
+                questions : newQuestions
+            })
         }
-        this.setState({ cSelected: [...this.state.cSelected] });
     }
 
     render() {
         return (
-        
-        <Container fluid className="patSurvey">
-                
+        this.state.questions.length > 0 ?
+            <Container fluid className="patSurvey">
+                <Button onClick={this.handlePopulate}>Show State</Button>
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
-            </Card>
-
-            
-        {
-        questions.map( x => {
-            return(
-                x.selectionType  === "radio" ?
-                    // create radio button here
-                    <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="patSurveyHeader">{x.survHeader}</CardHeader>
-                    <Card className="surveyQuestions">
-                    <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
-
-                    <div className="survRadGroup">
-                        {x.answers.map( (answer, index) => {
-                            return(
-                                <Button
-                                    id = {`${x.survHeader}`}
-                                    className={`${x.className[index]} survRadBtn`}
-                                    color= {`${x.color[index]}`}
-                                    onClick={() => this.onRadioBtnClick(`${answer}`)}
-                                    active={this.state.rSelected === `${answer}` }
-                                    value={`${answer}`}
+                    <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS SHORT SURVEY</CardHeader>
+                </Card>
+                {
+                    this.state.questions.map( (x,i) => {
+                        return(
+                        this.state.questions ?
+                            x.selectionType  === "radio" ?
+                                <QRadio
+                                    key = {x.survHeader}
+                                    survHeader = {x.survHeader}
+                                    question = {x.question}
+                                    answers = {x.answers}
+                                    selectionType = {x.selectionType}
+                                    className = {x.className}
+                                    color = {x.color}
+                                    answered = {x.answered}
+                                    firstQuestion = {x.firstQuestion}
+                                    questionNum = {x.questionNum}
+                                    handleCompletedCallback = {this.handleCompletedCallback}
+                                    handleQuestionCallback = {this.handleQuestionCallback}
                                 >
-                                    <h4>{`${answer}`}</h4>
-                                </Button>
-                            )
-                        })
-                        }
-                    </div>
-                    <br>
-                    </br>
-                    <p className="radSelected">You Selected: {this.state.rSelected}</p>
-
-                    <Button className="questSubmitBtn" color="secondary" size="lg" block><h4>Submit Your Answer</h4></Button>
-                    </Card>
-                    </Card>           
-                :   
-                
-                    <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="patSurveyHeader">{x.survHeader}</CardHeader>
-                    <Card className="surveyQuestions">
-                    <CardText className="surveyQandA"><h4>{x.question}</h4></CardText>
-
-                    <div className="survChkGroup">
-                        {x.answers.map((answer, index) => {
-                            return (
-                                <Button
-                                    id={`${x.survHeader}`}
-                                    className={`${x.className[index]} survChkBtn`}
-                                    color={`${x.color[index]}`}
-                                    onClick={() => this.onCheckboxBtnClick(`${answer}`)}
-                                    active={this.state.cSelected.includes `${answer}`}
-                                    value={`${answer}`}
+                                </QRadio>
+                            :   
+                                <QCheckbox
+                                    key = {x.survHeader}
+                                    survHeader = {x.survHeader}
+                                    question = {x.question}
+                                    answers = {x.answers}
+                                    selectionType = {x.selectionType}
+                                    className = {x.className}
+                                    color = {x.color}
+                                    answered = {x.answered}
+                                    firstQuestion = {x.firstQuestion}
+                                    questionNum = {x.questionNum}
+                                    handleCompletedCallback = {this.handleCompletedCallback}
+                                    handleQuestionCallback = {this.handleQuestionCallback}
                                 >
-                                    <h4>{`${answer}`}</h4>
-                                </Button>
-                            )
-                        })
-                        }
-                    </div>
-                    <br>
-                    </br>
-                    <p className="chkSelected">You Selected: {JSON.stringify(this.state.cSelected)}</p>
-
-                    <Button className="questSubmitBtn" color="secondary" size="lg" block><h4>Submit Your Answer</h4></Button>
-                    </Card>
-                    </Card>
-            )
-            })
-            }
-                
-        </Container>
+                                </QCheckbox>
+                        :
+                        null
+                        )
+                    })
+                }
+                    
+            </Container>
+            :
+            <Label>You have completed the questionaires</Label>
 
         
         );
