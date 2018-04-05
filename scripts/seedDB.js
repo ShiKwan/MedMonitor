@@ -292,8 +292,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: new Date(),
-            time: "1000",
+            date_time: new Date(),
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
             symptoms: {
@@ -366,8 +365,7 @@ const patient_dataSeed = [
         }],
 
         record: [{
-            date: new Date(),
-            time: "1200",
+            date_time: new Date(),
             meds_taken: true,
             // can add more detailed record of medications taken and notes here if required
             symptoms: {

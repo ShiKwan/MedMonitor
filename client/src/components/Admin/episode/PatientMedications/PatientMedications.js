@@ -105,7 +105,7 @@ export default class PatientMedications extends React.Component {
                                             value: "",
                                             label: ""
                                         }
-                                        objSelectedDoses.label = `${x.dose} ${x.form} ${x.route}`;
+                                        objSelectedDoses.label = `${x.dose} | ${x.form} | ${x.route}`;
                                         objSelectedDoses.value = index;
                                         ddlSelectedDoses.push(objSelectedDoses);
                                         this.setState({ddlSelectedDoses})
@@ -144,7 +144,6 @@ export default class PatientMedications extends React.Component {
         console.log("new selected time: ", this.state.selectedDosage);
     }
     handleAddNewMed = () => {
-        //we need dose, form, medication, route, times (array)
         const newPatientMedications = this.state.patientLastEpisodeMedications
         const objNewMed = {
             medication : "",
@@ -175,7 +174,34 @@ export default class PatientMedications extends React.Component {
         console.log(objNewMed);
         
     }
-    
+    handleLastMedChange = (lastEpiMeds) =>{
+        console.log("new med list: ", lastEpiMeds);
+        this.setState({
+            patientLastEpisodeMedications : lastEpiMeds
+        });
+        console.log("changes: new patient last episode medications : ", this.state.patientLastEpisodeMedications );
+    }
+    handleDoseChange = (dose, medName, lastEpiMeds) => {
+        console.log("here getting back message")
+        console.log(lastEpiMeds);
+        let newMedList = lastEpiMeds;
+        newMedList.map( (x,index) => {
+            if(x.name === medName){
+                newMedList[index].item = dose;
+                console.log(newMedList[index].item);
+            }
+        });
+        console.log(newMedList);
+        this.setState({
+            patientLastEpisodeMedications: newMedList
+        })
+        console.log("new state: ", this.state.patientLastEpisodeMedications);
+    }
+    handleNextButton = () =>{
+        this.props.handleMedCallback(this.state.patientLastEpisodeMedications);
+        this.props.enterNextAppointment();
+    }
+
     render () {
 
         return (
@@ -191,21 +217,32 @@ export default class PatientMedications extends React.Component {
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
                                 </CardText>
                                 <h2>Current Medication(s)</h2>
-                                {this.state.patientLastEpisodeMedications ?
-                                    <Container>
-                                        
-                                            <PreviousMedication 
-                                                name="medication-name"
-                                                patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
-                                                handleNewChange = {this.handleNewChange}
-                                                ddlDosage = {this.props.medications}
-                                                handlePreviousTimeChange = {this.handlePreviousTimeChange}
-                                                handleDosage = {this.handleDosage}
-                                                allTime = {ddlTime}
-                                                allMedications = {this.props.medications}
-                                            />                         
-                                    </Container>
-                                : null
+                                { this.state.patientLastEpisodeMedications ?
+                                    this.state.patientLastEpisodeMedications.map((x, index) => 
+                                        <Container>
+                                            
+                                                <PreviousMedication 
+                                                    patientLastEpisodeMedications={this.state.patientLastEpisodeMedications}
+                                                    key = {x.medication}
+                                                    dose = {x.dose}
+                                                    form = {x.form}
+                                                    label = {x.label}
+                                                    medication = {x.medication}
+                                                    route = {x.route}
+                                                    times = {x.times}
+                                                    value= {x.value}
+                                                    handleNewChange = {this.handleNewChange}
+                                                    ddlDosage = {this.props.medications}
+                                                    handlePreviousTimeChange = {this.handlePreviousTimeChange}
+                                                    handleDosage = {this.handleDosage}
+                                                    allTime = {ddlTime}
+                                                    allMedications = {this.props.medications}
+                                                    handleDoseChange={this.handleDoseChange}
+                                                    handleLastMedChange={this.handleLastMedChange}
+                                                />                         
+                                        </Container>
+                                    )
+                                    : null
                                 }
 
                                 <h2>New medication(s)</h2>
@@ -243,29 +280,11 @@ export default class PatientMedications extends React.Component {
                                         multi= {true}
                                     />
                                     <br /> <Button color="success" onClick={this.handleAddNewMed}>Add</Button>
-                                    
-        {/* 
-        {this.props.medications.map(x => 
-            <ul>
-                <li>{x.name}
-                    <li>{x.type}</li>
-                    {x.doses.map( item => 
-                        <ul>
-                            <li>dose : {item.dose}</li>
-                            <li>form : {item.form}</li>
-                            <li>route : {item.route}</li>
-                        </ul>
-                    )}
-                </li>
-                
-                
-            </ul>
-        )} */}
                                     </Container>
                                     : null}
                                 </Container>
                                 <br /><br />
-                                <Button style={{marginRight: 6}} onClick={() => this.props.enterNextAppointment()}>Here Next</Button>
+                                <Button style={{marginRight: 6}} onClick={() => this.handleNextButton()}>Here Next</Button>
                                 <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
 
                             </CardBody>

@@ -28,12 +28,12 @@ export default class AddPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add new physician</CardTitle>
+            <Card className="addNewPhysTableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
+                <CardBody className="addNewPhysTableBody">
+                    <CardTitle className="addNewPhysTitle">Add new physician</CardTitle>
                         <br />
         
-                        <Form>
+                        <Form className="addNewPhysForm">
 
                             <FormGroup3_9Name
                                 nameFirstName = {"dr_firstname"}
@@ -70,8 +70,8 @@ export default class AddPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button style={{marginRight: 6}} onClick={(event) => this.onClicked(event)}>Enroll</Button>
-                            <Button style={{marginRight: 6}}>Cancel</Button>
+                            <Button className="addNewPhysEnrollBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
+                            <Button className="addNewphysCanelBtn">Cancel</Button>
                         </Form>
                     
                 </CardBody>

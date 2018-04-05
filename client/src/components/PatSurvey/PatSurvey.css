@@ -3,7 +3,7 @@ div.patSurvey {
 }
 
 .patSurveyCard,
-.introSuvCard {
+.introsurvCard {
     margin-top: 25px;
 }
 
@@ -14,12 +14,12 @@ div.patSurvey {
     background-color: #9eb1bd;
 }
 
-.patSurvey .introSuvCard,
+.patSurvey .introsurvCard,
 .patSurvey .patSurveyCard {
     margin-bottom: 25px;
 }
 
-.introSuvCard .introSuvCardHeader {
+.introsurvCard .introsurvCardHeader {
     text-align: center;
     color: black;
     background-color: #9eb1bd;
@@ -38,22 +38,58 @@ div.patSurvey {
 
 /* //// survey buttons /////////////////////////////////////////////////////////////// */
 
-.suvRadGroup,
-.suvChkGroup {
+.survRadGroup,
+.survChkGroup {
     margin: 0 auto;
     display: grid;
 }
 
-.suvChkBtnOrange,
-.suvRadBtnOrange {
+/* /////////////////////////////////////////////////// */
+
+.survChkBtnGreen,
+.survRadBtnGreen {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.survChkBtnBlue,
+.survRadBtnBlue {
+    background-color: #16a0b6;
+    border-color: #16a0b6;
+}
+
+.survChkBtnYellow,
+.survRadBtnYellow {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.survChkBtnOrange,
+.survRadBtnOrange {
     background-color: #ff6600;
     border-color: #ff6600;
 }
 
-button.suvRadBtn,
-button.suvChkBtn,
-button.suvChkBtnOrange,
-button.suvRadBtnOrange {
+.survChkBtnRed,
+.survRadBtnRed {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* ////////////////////////////////////////////////////////// */
+
+button.survRadBtn,
+button.survChkBtn,
+button.survChkBtnGreen,
+button.survRadBtnGreen,
+button.survChkBtnBlue,
+button.survRadBtnBlue,
+button.survChkBtnYellow,
+button.survRadBtnYellow,
+button.survChkBtnOrange,
+button.survRadBtnOrange,
+button.survChkBtnRed,
+button.survRadBtnRed {
     color: white;
     margin-right: 10px;
     margin-left: 10px;
@@ -61,34 +97,85 @@ button.suvRadBtnOrange {
     margin-bottom: 10px;
 }
 
-button.suvRadBtn:hover,
-button.suvChkBtn:hover {
-    color: black;
+button.survChkBtnGreen:hover,
+button.survRadBtnGreen:hover {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.survChkBtnBlue:hover,
+button.survRadBtnBlue:hover {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.survChkBtnYellow:hover,
+button.survRadBtnYellow:hover {
+    background-color: #cc9900;
+    border-color: #cc9900;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.survChkBtnOrange:hover,
+button.survRadBtnOrange:hover {
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+button.survChkBtnRed:hover,
+button.survRadBtnRed:hover {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-button.suvChkBtnOrange:hover,
-button.suvRadBtnOrange:hover {
-    color: black;
-    background-color: #e65c00;
-    border-color: #e65c00;
+.survChkBtnGreen:not(:disabled):not(.disabled).active,
+.survRadBtnGreen:not(:disabled):not(.disabled).active,
+.survChkBtnGreen:not(:disabled):not(.disabled):active,
+.survRadBtnGreen:not(:disabled):not(.disabled):active,
+.show>.survChkBtnGreen.dropdown-toggle {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-button.suvRadBtn:not(:disabled):not(.disabled).active,
-button.suvChkBtn:not(:disabled):not(.disabled).active,
-button.suvRadBtn:not(:disabled):not(.disabled):active,
-button.suvChkBtn:not(:disabled):not(.disabled):active {
-    color: #212529;
+.survChkBtnBlue:not(:disabled):not(.disabled).active,
+.survRadBtnBlue:not(:disabled):not(.disabled).active,
+.survChkBtnBlue:not(:disabled):not(.disabled):active,
+.survRadBtnBlue:not(:disabled):not(.disabled):active,
+.show>.survChkBtnBlue.dropdown-toggle {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
-.suvChkBtnOrange:not(:disabled):not(.disabled).active,
-.suvRadBtnOrange:not(:disabled):not(.disabled).active,
-.suvChkBtnOrange:not(:disabled):not(.disabled):active,
-.suvRadBtnOrange:not(:disabled):not(.disabled):active,
-.show>.suvChkBtnOrange.dropdown-toggle {
-    color: #212529;
-    background-color: #e65c00;
-    border-color: #e65c00;
-    box-shadow: 0 0 0 0.2rem rgba(204, 102, 0, .5);
+.survChkBtnYellow:not(:disabled):not(.disabled).active,
+.survRadBtnYellow:not(:disabled):not(.disabled).active,
+.survChkBtnYellow:not(:disabled):not(.disabled):active,
+.survRadBtnYellow:not(:disabled):not(.disabled):active,
+.show>.survChkBtnYellow.dropdown-toggle {
+   background-color: #cc9900;
+   border-color: #cc9900;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnOrange:not(:disabled):not(.disabled).active,
+.survRadBtnOrange:not(:disabled):not(.disabled).active,
+.survChkBtnOrange:not(:disabled):not(.disabled):active,
+.survRadBtnOrange:not(:disabled):not(.disabled):active,
+.show>.survChkBtnOrange.dropdown-toggle {
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnRed:not(:disabled):not(.disabled).active,
+.survRadBtnRed:not(:disabled):not(.disabled).active,
+.survChkBtnRed:not(:disabled):not(.disabled):active,
+.survRadBtnRed:not(:disabled):not(.disabled):active,
+.show>.survChkBtnRed.dropdown-toggle {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
 }
 
 h4,
@@ -97,8 +184,8 @@ h4,
     text-align: center;
 }
 
-.suvRadGroup,
-.suvChkGroup {
+.survRadGroup,
+.survChkGroup {
     margin: 0 auto;
     display: grid;
 }

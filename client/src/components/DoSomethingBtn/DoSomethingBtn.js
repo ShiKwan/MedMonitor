@@ -23,11 +23,11 @@ import {
 const DoSomethingBtn = (props) => {
 
     return (
-        <Container fluid className="doSomethingInfo">
+        <Container fluid className="uploadVideoInfo">
 
-            <Card className="doSomethingInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                <CardHeader tag="h4" className="doSomethingInfoHeader">UPLOAD EPISODE VIDEO</CardHeader>
-                <Card className="doSomethingInfoBody">
+            <Card className="uploadVideoInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <CardHeader tag="h4" className="uploadVideoInfoHeader">UPLOAD EPISODE VIDEO</CardHeader>
+                <Card className="uploadVideoInfoBody">
                     <CardText className="shareVideo"><h4>Share Your Episode Video With Your Doctor</h4></CardText>
                         <FormGroup row className="uploadVideo">
                             <Label size="lg">Upload Your Video Link Here</Label>
