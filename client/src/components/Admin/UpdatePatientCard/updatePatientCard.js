@@ -26,12 +26,12 @@ export default class UpdatePatientCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.updatePatientCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update patient details </CardTitle>
+            <Card className="updatePatTableCard" style={{display: this.props.updatePatientCard ? "block" : "none"}}>
+                <CardBody className="updatePatTableBody">
+                    <CardTitle className="updatePatTitle">Update Patient Details </CardTitle>
                         <br />
-                        <Form>
 
+                        <Form className="updatePatForm">
                             <FormGroup row>
                                 <Label sm={3}>Hospital number</Label>
                                 <Label sm={9}>{this.props.patientNumber}</Label>
@@ -57,8 +57,9 @@ export default class UpdatePatientCard extends React.Component {
                             />
 
                             <br />
-                            <Button style={{marginRight: 6}} onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
-                            <a href="/admin"><Button style={{marginRight: 6}}>Cancel</Button></a>
+                            <Button className="updatePatUpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
+                            <a href="/admin">
+                            <Button className="updatePatCancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

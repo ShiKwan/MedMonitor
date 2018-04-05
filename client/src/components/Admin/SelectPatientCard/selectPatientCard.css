@@ -2,6 +2,10 @@
     width: auto;
 }
 
+.selectPatTableBody {
+    background-color: #f3f3f1;
+}
+
 p.tableTitle {
     font-weight: bold;
 }

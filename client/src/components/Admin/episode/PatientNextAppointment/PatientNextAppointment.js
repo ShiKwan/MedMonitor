@@ -37,7 +37,7 @@ export default class PatientNextAppointment extends React.Component {
         return (
             <Card className="nextAppTableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
                 <CardBody className="nextAppTableBody">
-                    <CardTitle className="nextAppTitle">Enter next appointment</CardTitle>
+                    <CardTitle className="nextAppTitle">Enter Next Appointment</CardTitle>
                 
                     <CardText>
                         Enter the time of this patients next appointment and any comments for the patient to view.

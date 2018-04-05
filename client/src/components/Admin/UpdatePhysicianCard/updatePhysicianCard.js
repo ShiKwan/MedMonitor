@@ -28,7 +28,7 @@ export default class UpdatePhysicianCard extends React.Component {
 
             <Card style={{display: this.props.updatePhysicianCard ? "block" : "none"}}>
                 <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update physician details </CardTitle>
+                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Update Physician Details </CardTitle>
                         <br />
                         <Form>
 

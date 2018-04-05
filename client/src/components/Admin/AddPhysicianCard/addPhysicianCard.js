@@ -30,7 +30,7 @@ export default class AddPhysicianCard extends React.Component {
 
             <Card className="addNewPhysTableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
                 <CardBody className="addNewPhysTableBody">
-                    <CardTitle className="addNewPhysTitle">Add new physician</CardTitle>
+                    <CardTitle className="addNewPhysTitle">Add New Physician</CardTitle>
                         <br />
         
                         <Form className="addNewPhysForm">

@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Header.css";
+import logo from "./med_monitor.png";
 import userAPI from "../../utils/userAPI";
 
 import {
@@ -54,6 +55,7 @@ export default class Header extends React.Component {
                             {localStorage.getItem("username") && localStorage.getItem("username") !== "null" ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null }
                             </NavItem>
                         </Nav>
+                        <img className="med_logo" src={logo} alt={"logo"} />
                         <Nav pills className="navlogOutpills">
                             <NavItem className="navLogName">
                                 <Label className="loginName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>

@@ -25,11 +25,11 @@ export default class confirmPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Review selected physician</CardTitle>
+            <Card className="confirmPhysCardTableCard"style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
+                <CardBody className="confirmPhyCardTableBody">
+                    <CardTitle className="confirmPhysCardTitle">Review Selected Physician</CardTitle>
                     <br />
-                    <Table size="sm" style={{width: 500}}>
+                    <Table size="sm" className="confirmPhysCardTable">
                         <tbody>
                             <tr>
                                 <td>Id Number: </td><td>{this.props.idNumber}</td>
@@ -50,9 +50,10 @@ export default class confirmPhysicianCard extends React.Component {
 
                     <br />
                     <br />
-                    <Button style={{marginRight: 6}} onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update details</Button>
-                    <Button style={{marginRight: 6}} onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove physician</Button>
-                    <a href="/admin"><Button style={{marginRight: 6}}>Back</Button></a>
+                    <Button className="confirmPhysCardUpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
+                    <Button className="confirmPhysCardCancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
+                    <a href="/admin">
+                    <Button className="confirmPhysCardBackBtn">Back</Button></a>
 
                 </CardBody>
             </Card>

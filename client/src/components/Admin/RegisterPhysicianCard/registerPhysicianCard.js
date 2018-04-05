@@ -25,16 +25,16 @@ export default class RegisterPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Add a new physician</CardTitle>
+            <Card className="registPhyTableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
+                <CardBody className="registPhysTableBody">
+                    <CardTitle className="registPhysTitle">Add A New Physician</CardTitle>
                         <br />
                         New physician: {this.props.physician_name} successfully enrolled.
                         <br /><br />
                         You can set a username and password now for this physician now or let the physician rgeister a username and password on first accessing the application. 
                         <br /><br />
     
-                        <Form>
+                        <Form className="registPhysForm">
                             <FormGroup3_9Input
                                 label = {"Username"}
                                 placeholder = {"username"}
@@ -51,8 +51,8 @@ export default class RegisterPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button style={{marginRight: 6}} onClick={(event) => this.onClicked(event)}>Register</Button>
-                            <Button style={{marginRight: 6}}>Cancel</Button>
+                            <Button className="registPhysRegisterBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
+                            <Button className="registPhysCancelBtn">Cancel</Button>
                         </Form>
                 
                 </CardBody>

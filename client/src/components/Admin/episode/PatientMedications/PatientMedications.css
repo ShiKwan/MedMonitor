@@ -4,6 +4,10 @@ div.patMedTableCard {
     margin-bottom: 25px;
 }
 
+.patMedTableBody {
+    background-color: #f3f3f1;
+}
+
 .patMedTableBody .currentMedTitle,
 .patMedTableBody .newMedTitle {
     text-align: center;

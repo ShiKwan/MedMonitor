@@ -4,6 +4,10 @@ div.addNewPhysTableCard {
     margin-bottom: 25px;
 }
 
+.addNewPhysTableBody {
+    background-color: #f3f3f1;
+}
+
 .addNewPhysTableBody .addNewPhysTitle {
     padding: 10px;
     background-color: #9eb1bd;

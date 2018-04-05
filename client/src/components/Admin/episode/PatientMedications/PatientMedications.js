@@ -214,7 +214,7 @@ export default class PatientMedications extends React.Component {
 
                         <Card className="patMedTableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
                             <CardBody className="patMedTableBody">
-                                <CardTitle className="patMedTitle">Enter patient medications</CardTitle>
+                                <CardTitle className="patMedTitle">Enter Patient Medications</CardTitle>
                             
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
