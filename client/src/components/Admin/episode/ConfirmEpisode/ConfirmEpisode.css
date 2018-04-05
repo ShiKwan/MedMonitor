@@ -1,25 +1,22 @@
-div.revPatDetailTableCard {
+div.confirmNewEpisTableCard {
     border-width: 3px;
     border-color: #2d5366;
     margin-bottom: 25px;
 }
 
-.revPatDetailCard {
-    text-align: center;
-}
-
-.revPatDetailTableBody .revPatDetialTitle {
+.confirmNewEpisTableBody .confirmNewEpisTitle {
     padding: 10px;
     background-color: #9eb1bd;
 }
 
-.revPatDetailTableBody .revPatDetailNextBtn {
+.confirmNewEpisTableBody .confirmNewEpisSubmitBtn,
+.confirmNewEpisTableBody .confirmNewEpisBackBtn {
     margin-right: 10px;
 }
 
-.revPatDetailTableBody .revPatDetailNextBtn,
-.revPatDetailTableBody .revPatDetailCanelBtn,
-.revPatDetailTableBody .revPatDetailBackBtn {
+.confirmNewEpisTableBody .confirmNewEpisSubmitBtn,
+.confirmNewEpisTableBody .confirmNewEpisBackBtn,
+.confirmNewEpisTableBody .confirmNewEpisCanelBtn {
     margin-top: 7px;
     color: #e3c044;
     font-weight: bold;
@@ -31,9 +28,9 @@ div.revPatDetailTableCard {
     transition-duration: 1s;
 }
 
-.revPatDetailTableBody .revPatDetailNextBtn:hover,
-.revPatDetailTableBody .revPatDetailCanelBtn:hover,
-.revPatDetailTableBody .revPatDetailBackBtn:hover {
+.confirmNewEpisTableBody .confirmNewEpisSubmitBtn:hover,
+.confirmNewEpisTableBody .confirmNewEpisBackBtn:hover,
+.confirmNewEpisTableBody .confirmNewEpisCanelBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;

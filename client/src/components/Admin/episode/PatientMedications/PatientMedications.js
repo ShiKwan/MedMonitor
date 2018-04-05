@@ -3,6 +3,8 @@ import Select, {Async} from 'react-select';
 import medicationAPI from "../../../../utils/medicationAPI"
 import 'react-select/dist/react-select.css';
 import PreviousMedication from "../PreviousMedication"
+import './PatientMedications.css';
+
 
 import {
     Nav, Navbar, NavItem, NavLink, 
@@ -205,22 +207,23 @@ export default class PatientMedications extends React.Component {
     render () {
 
         return (
-            <Container fluid className="text-center">
+            <Container fluid>
                 <Row>
                     <Col className='md-12'>
-                        <Card style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
-                            <Button onClick ={()=> this.onGenerateMedications()}> </Button>
-                            <CardBody style={{minHeight: 550}}>
-                                <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enter patient medications</CardTitle>
+                        <Button onClick={() => this.onGenerateMedications()}> </Button>
+
+                        <Card className="patMedTableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
+                            <CardBody className="patMedTableBody">
+                                <CardTitle className="patMedTitle">Enter patient medications</CardTitle>
                             
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
                                 </CardText>
-                                <h2>Current Medication(s)</h2>
+                                <h5 className="currentMedTitle">Current Medication(s)</h5>
                                 { this.state.patientLastEpisodeMedications ?
                                     this.state.patientLastEpisodeMedications.map((x, index) => 
                                         <Container>
-                                            
+                                            <br />
                                                 <PreviousMedication 
                                                     patientLastEpisodeMedications={this.state.patientLastEpisodeMedications}
                                                     key = {x.medication}
@@ -245,7 +248,7 @@ export default class PatientMedications extends React.Component {
                                     : null
                                 }
 
-                                <h2>New medication(s)</h2>
+                                <h5 className="newMedTitle">New Medication(s)</h5>
                                 <Container>
                                 {this.props.medications ? 
                                     <Container>
@@ -256,9 +259,17 @@ export default class PatientMedications extends React.Component {
                                         value = {this.state.selectedOption}
                                         onChange = {this.handleChange}
                                         options= {this.props.medications}
-                                    /><hr/>
-                                    Type : {this.state.drugType} <br />
-                                    Dose : <br/>
+                                    />
+                                    <br />
+                                    <Row>
+                                    <Col size="md-6">
+                                    Type : {this.state.drugType}
+                                    </Col>
+                                    <Col size="md-6">
+                                    Dose :
+                                    </Col>
+                                    </Row>
+                                    <br />
                                     {
                                        this.state.drugDoses && this.state.drugDoses.length > 0 ? 
                                             <Select
@@ -269,7 +280,7 @@ export default class PatientMedications extends React.Component {
                                                 options = {ddlSelectedDoses}
                                             />
                                         : null 
-                                    }<hr />
+                                    }
                                     Medication intake time:
                                     <Select 
                                         name= "medication-intake-time"
@@ -279,13 +290,15 @@ export default class PatientMedications extends React.Component {
                                         options= {ddlTime}
                                         multi= {true}
                                     />
-                                    <br /> <Button color="success" onClick={this.handleAddNewMed}>Add</Button>
+                                    <br /> 
+                                    <Button className="addMedBtn" color="success" onClick={this.handleAddNewMed}>Add Medication</Button>
                                     </Container>
                                     : null}
                                 </Container>
                                 <br /><br />
-                                <Button style={{marginRight: 6}} onClick={() => this.handleNextButton()}>Here Next</Button>
-                                <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
+                                <Button className="newMedNextBtn" onClick={() => this.handleNextButton()}>Next</Button>
+                                <a href={"/admin"}> 
+                                <Button className="newMedCanelBtn">Cancel</Button></a> 
 
                             </CardBody>
                         </Card>

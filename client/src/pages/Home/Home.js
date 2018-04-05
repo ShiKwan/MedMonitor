@@ -5,6 +5,8 @@ import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
 import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
 import userAPI from '../../utils/userAPI';
+import patientAPI from '../../utils/patientAPI';
+import doctorAPI from '../../utils/doctorAPI';
 
 import classnames from 'classnames';
 
@@ -52,19 +54,32 @@ class Home extends Component {
             })
             .then(res => {
                 console.log(res);
-                
+                localStorage.setItem("userId", res.data._id);
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
                 localStorage.setItem("messageCenter", "Login successfully!");
                 localStorage.setItem("messageStatus", "success");
                 this.setState({
+                    id : res.data._id,
                     role: res.data.role,
                     email: res.data.email,
                     username: res.data.username,
                     messageCenter: "Login successfully!",
                     messageStatus: "success"
+                }, function(){
+                    if(this.state.role.toLowerCase()==="patient"){
+                        patientAPI.findPatientInfoForPatient(this.state.id)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err));
+
+                    }else if(this.state.role.toLowerCase()==="admin" || this.state.role.toLower() ==="doctor"){
+                        doctorAPI.findOne(this.state.id)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err));
+                    }
                 })
+                
                 this.props.getBackMessage(this.state.messageCenter);
                 this.props.getBackMessageStatus(this.state.messageStatus);
                 console.log("username : ", this.state.username);

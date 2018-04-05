@@ -35,9 +35,9 @@ export default class PatientNextAppointment extends React.Component {
 
     render () {
         return (
-            <Card style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
-                <CardBody style={{minHeight: 550}}>
-                    <CardTitle style={{backgroundColor: "#eeeeee", padding: 6}}>Enter next appointment</CardTitle>
+            <Card className="nextAppTableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
+                <CardBody className="nextAppTableBody">
+                    <CardTitle className="nextAppTitle">Enter next appointment</CardTitle>
                 
                     <CardText>
                         Enter the time of this patients next appointment and any comments for the patient to view.
@@ -47,12 +47,19 @@ export default class PatientNextAppointment extends React.Component {
                             onChange={this.handleDate}
                         />
                     </Container>
+
+                    <br />
+                    
                     <Label>
                         Notes for patient:
                     </Label>
                     <Input type="text" name='comments' onChange={this.handleInputChange} placeholder='write notes to patient here' />
-                    <Button style={{marginRight: 6}} onClick={() => this.handleSubmit()}>Here Next</Button>
-                    <a href={"/admin"}> <Button style={{marginRight: 6}}>Cancel</Button></a> 
+
+                    <br />
+
+                    <Button className="nextAppNextBtn" onClick={() => this.handleSubmit()}>Next</Button>
+                    <a href={"/admin"}> 
+                    <Button className="nextAppCancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
                     
                 </CardBody>
             </Card>

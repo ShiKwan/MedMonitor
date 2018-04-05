@@ -232,55 +232,57 @@ populateState = () =>{
         return (
             <div>
                 <Container fluid>
-                    Admin Episode Page<br />
-                    Patient id: {this.state.patientId}<br/>
-                    <Button onClick={this.handleLoadPatient}> Show patient info</Button>
-                    <div className="clearfix">
-                        <br />
-                        <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
-                        <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
-                    </div>
+                    <Container className="clearfix">
+                        Admin Episode Page<br />
+                        Patient id: {this.state.patientId}<br/>
+                        <Button onClick={this.handleLoadPatient}> Show patient info</Button>
+                            <br />
+                            <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
+                            <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
+                    </Container>
                     <br />
-                    <div>
-                        <Row>  
-                            <PatientDetails 
-                                patientDetailsCard = {this.state.patientDetailsCard}
-                                patient_number = {this.state.patientDetails.patient_number}
-                                first_name = {this.state.patientDetails.first_name}
-                                last_name = {this.state.patientDetails.last_name}
-                                dob = {this.state.patientDetails.dob}
-                                date_created = {this.state.patient.date_created}
-                                active = {this.state.patient.active}
-                                email = {this.state.patientDetails.email}
-                                phone = {this.state.patientDetails.phone}
-                                length = {this.state.patientEpisodes.length}
-                                patientEpisodesStart = {this.state.patientEpisodesStart}
-                                enterEpisodeMedications = {this.enterEpisodeMedications}
-                            />
-                            <PatientMedications 
-                                medications = {this.state.medications}
-                                addEpisodeMedicationsCard = {this.state.addEpisodeMedicationsCard}
-                                patientLastEpisode = {this.state.patientLastEpisode}
-                                patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
-                                enterNextAppointment = {this.enterNextAppointment}
-                                handleMedCallback={this.handleMedCallback}
-                            />
-                            <PatientNextAppointment
-                                addNextAppointmentCard = {this.state.addNextAppointmentCard}
-                                confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
-                                handleApptCallback={this.handleApptCallback}
+                    <Container>
+                        <Row>
+                            <Col size="md-12">
+                                <PatientDetails 
+                                    patientDetailsCard = {this.state.patientDetailsCard}
+                                    patient_number = {this.state.patientDetails.patient_number}
+                                    first_name = {this.state.patientDetails.first_name}
+                                    last_name = {this.state.patientDetails.last_name}
+                                    dob = {this.state.patientDetails.dob}
+                                    date_created = {this.state.patient.date_created}
+                                    active = {this.state.patient.active}
+                                    email = {this.state.patientDetails.email}
+                                    phone = {this.state.patientDetails.phone}
+                                    length = {this.state.patientEpisodes.length}
+                                    patientEpisodesStart = {this.state.patientEpisodesStart}
+                                    enterEpisodeMedications = {this.enterEpisodeMedications}
+                                />
+                                <PatientMedications 
+                                    medications = {this.state.medications}
+                                    addEpisodeMedicationsCard = {this.state.addEpisodeMedicationsCard}
+                                    patientLastEpisode = {this.state.patientLastEpisode}
+                                    patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
+                                    enterNextAppointment = {this.enterNextAppointment}
+                                    handleMedCallback={this.handleMedCallback}
+                                />
+                                <PatientNextAppointment
+                                    addNextAppointmentCard = {this.state.addNextAppointmentCard}
+                                    confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
+                                    handleApptCallback={this.handleApptCallback}
 
-                            />
-                            <PatientConfirmEpisode
-                                confirmNewEpisodeDetailsCard = {this.state.confirmNewEpisodeDetailsCard}
-                                createNewEpisode = {this.createNewEpisode}
-                            />
-                            <PatientSuccessEpisode 
-                                successEpisodeCreatedCard = {this.state.successEpisodeCreatedCard}
-                            />
+                                />
+                                <PatientConfirmEpisode
+                                    confirmNewEpisodeDetailsCard = {this.state.confirmNewEpisodeDetailsCard}
+                                    createNewEpisode = {this.createNewEpisode}
+                                />
+                                <PatientSuccessEpisode 
+                                    successEpisodeCreatedCard = {this.state.successEpisodeCreatedCard}
+                                />
+                            </Col>
                         </Row>
                         <Button onClick={this.populateState}>Show me state </Button>
-                    </div> 
+                    </Container> 
                 </Container>
             </div>
 
