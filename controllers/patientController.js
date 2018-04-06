@@ -12,7 +12,7 @@ module.exports = {
     findAll: function(req, res) {
         db.Patient_data
         .find( {}, {details: 1, appointment: 1, date_created: 1} )
-       // .populate("doctor")
+        .populate("physician")
         .sort( {"details.last_name": 1} )
         .then(patientList => { 
             const dateOneWeekAgo = new Date(new Date().getTime()-7*24*60*60*1000).getTime();
