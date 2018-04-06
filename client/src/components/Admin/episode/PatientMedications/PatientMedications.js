@@ -20,30 +20,30 @@ import {
 } from 'reactstrap';
 let ddlSelectedDoses = [];
 const ddlTime = [
-    {value: '0000',test:'test', label: '12:00am'},
-    {value: '0100',test:'test', label: '1:00am'},
-    {value: '0200',test:'test', label: '2:00am'},
-    {value: '0300',test:'test', label: '3:00am'},
-    {value: '0400',test:'test', label: '4:00am'},
-    {value: '0500',test:'test', label: '5:00am'},
-    {value: '0600',test:'test', label: '6:00am'},
-    {value: '0700',test:'test', label: '7:00am'},
-    {value: '0800',test:'test', label: '8:00am'},
-    {value: '0900',test:'test', label: '9:00am'},
-    {value: '1000',test:'test', label: '10:00am'},
-    {value: '1100',test:'test', label: '11:00am'},
-    {value: '1200',test:'test', label: '12:00pm'},
-    {value: '1300',test:'test', label: '1:00pm'},
-    {value: '1400',test:'test', label: '2:00pm'},
-    {value: '1500',test:'test', label: '3:00pm'},
-    {value: '1600',test:'test', label: '4:00pm'},
-    {value: '1700',test:'test', label: '5:00pm'},
-    {value: '1800',test:'test', label: '6:00pm'},
-    {value: '1900',test:'test', label: '7:00pm'},
-    {value: '2000',test:'test', label: '8:00pm'},
-    {value: '2100',test:'test', label: '9:00pm'},
-    {value: '2200',test:'test', label: '10:00pm'},
-    {value: '2300',test:'test', label: '11:00pm'}
+    {value: '0000', label: '12:00am'},
+    {value: '0100', label: '1:00am'},
+    {value: '0200', label: '2:00am'},
+    {value: '0300', label: '3:00am'},
+    {value: '0400', label: '4:00am'},
+    {value: '0500', label: '5:00am'},
+    {value: '0600', label: '6:00am'},
+    {value: '0700', label: '7:00am'},
+    {value: '0800', label: '8:00am'},
+    {value: '0900', label: '9:00am'},
+    {value: '1000', label: '10:00am'},
+    {value: '1100', label: '11:00am'},
+    {value: '1200', label: '12:00pm'},
+    {value: '1300', label: '1:00pm'},
+    {value: '1400', label: '2:00pm'},
+    {value: '1500', label: '3:00pm'},
+    {value: '1600', label: '4:00pm'},
+    {value: '1700', label: '5:00pm'},
+    {value: '1800', label: '6:00pm'},
+    {value: '1900', label: '7:00pm'},
+    {value: '2000', label: '8:00pm'},
+    {value: '2100', label: '9:00pm'},
+    {value: '2200', label: '10:00pm'},
+    {value: '2300', label: '11:00pm'}
 ];
 
 export default class PatientMedications extends React.Component {
@@ -92,34 +92,29 @@ export default class PatientMedications extends React.Component {
     }
 
     handleChange = (item) => {
-        console.log(item);
+        console.log("selected item", item);
         this.setState({selectedOption: item.label},function(){
+            this.setState({
+                drugDoses : item.doses,
+                drugType : item.type
+            }, function(){
+                ddlSelectedDoses = [];
+                this.state.drugDoses?
+                    this.state.drugDoses.map((x,index) => {
+                        const objSelectedDoses = {
+                            value: "",
+                            label: ""
+                        }
+                        objSelectedDoses.label = `${x.dose} | ${x.form} | ${x.route}`;
+                        objSelectedDoses.value = index;
+                        ddlSelectedDoses.push(objSelectedDoses);
+                        this.setState({ddlSelectedDoses})
+                    })
+                : null
+            })
             console.log(`Selected: ${item.label}`);
             console.log("selected med state: " , this.state)
-            medicationAPI.findOne(this.state.selectedOption)
-                        .then(med => {
-                            console.log(med.data[0]);
-                            this.setState({
-                                drugType: med.data[0].type,
-                                drugDoses : med.data[0].doses
-                            }, function(){
-                                ddlSelectedDoses = [];
-                                this.state.drugDoses?
-                                    this.state.drugDoses.map((x,index) => {
-                                        const objSelectedDoses = {
-                                            value: "",
-                                            label: ""
-                                        }
-                                        objSelectedDoses.label = `${x.dose} | ${x.form} | ${x.route}`;
-                                        objSelectedDoses.value = index;
-                                        ddlSelectedDoses.push(objSelectedDoses);
-                                        this.setState({ddlSelectedDoses})
-                                    })
-                                : null
-                            })
-                            console.log("after find one med :", this.state);
-                        })
-                        .catch(err => console.log(err));
+            
         });
         
     }
@@ -148,36 +143,53 @@ export default class PatientMedications extends React.Component {
         });
         console.log("new selected time: ", this.state.selectedDosage);
     }
-    handleAddNewMed = () => {
-        const newPatientMedications = this.state.patientLastEpisodeMedications
-        const objNewMed = {
-            medication : "",
-            dose : "",
-            form : "",
-            route : "",
-            times : [],
-            label : [],
-            value : ""
+    validateNewMed = (medication, dosage, times) =>{
+        let valid = true;
+        if(!medication || !dosage || !times){
+            this.props.getBackMessage("Medication, dosage and times cannot be empty.");
+            this.props.getBackMessageStatus("danger");
+            valid = false;
         }
-        objNewMed.medication = this.state.selectedOption
-        objNewMed.times = this.state.selectedTime
-        objNewMed.value = this.state.selectedDosage
-        objNewMed.label = this.state.selectedDosageLabel
-        this.props.medications.map((x) => {
-            if(x.name === this.state.selectedOption){
-                objNewMed.dose = x.doses[this.state.selectedDosage].dose
-                objNewMed.form = x.doses[this.state.selectedDosage].form
-                objNewMed.route = x.doses[this.state.selectedDosage].route
+        this.state.patientLastEpisodeMedications.map((med) =>{
+            if(med.medication === medication){
+                this.props.getBackMessage(`${medication} has already been prescribed.`);
+                this.props.getBackMessageStatus("danger");
+                valid = false;
             }
         })
-        newPatientMedications.push(objNewMed);
-        this.setState({
-            patientLastEpisodeMedications : newPatientMedications
-        })
-        console.log("new patient medications :", this.state.patientLastEpisodeMedications)
+        return valid
+    }
+    handleAddNewMed = () => {
+        if(this.validateNewMed(this.state.selectedOption, this.state.selectedDosage, this.state.selectedTime)){
+            const newPatientMedications = this.state.patientLastEpisodeMedications
+            const objNewMed = {
+                medication : "",
+                dose : "",
+                form : "",
+                route : "",
+                times : [],
+                label : [],
+                value : ""
+            }
+            objNewMed.medication = this.state.selectedOption
+            objNewMed.times = this.state.selectedTime
+            objNewMed.value = this.state.selectedDosage
+            objNewMed.label = this.state.selectedDosageLabel
+            this.props.medications.map((x) => {
+                if(x.name === this.state.selectedOption){
+                    objNewMed.dose = x.doses[this.state.selectedDosage].dose
+                    objNewMed.form = x.doses[this.state.selectedDosage].form
+                    objNewMed.route = x.doses[this.state.selectedDosage].route
+                }
+            })
+            newPatientMedications.push(objNewMed);
+            this.setState({
+                patientLastEpisodeMedications : newPatientMedications
+            })
+            console.log("new patient medications :", this.state.patientLastEpisodeMedications)
 
-        console.log(objNewMed);
-        
+            console.log(objNewMed);
+        }
     }
     handleLastMedChange = (lastEpiMeds) =>{
         console.log("new med list: ", lastEpiMeds);
@@ -263,18 +275,13 @@ export default class PatientMedications extends React.Component {
                                         onChange = {this.handleChange}
                                         options= {this.props.medications}
                                     />
-                                    <br />
-                                    <Row>
-                                    <Col size="md-6">
-                                    Type : {this.state.drugType}
-                                    </Col>
-                                    <Col size="md-6">
-                                    Dose :
-                                    </Col>
-                                    </Row>
-                                    <br />
+                                    
                                     {
                                        this.state.drugDoses && this.state.drugDoses.length > 0 ? 
+                                       <div>
+                                            Type : {this.state.drugType}
+                                            
+                                            Dose :<br />
                                             <Select
                                                 name = "new-med-dosage"
                                                 value = {this.state.selectedDosage}
@@ -282,6 +289,10 @@ export default class PatientMedications extends React.Component {
                                                 onChange = {this.handleDosage}
                                                 options = {ddlSelectedDoses}
                                             />
+                                        </div>
+                                        
+                                        
+                                            
                                         : null 
                                     }
                                     Medication intake time:

@@ -23,36 +23,39 @@ export default class PatientNextAppointment extends React.Component {
 
     }
     handleSubmit = () =>{
-        if(this.validateDate){
-            this.props.handleApptCallback(this.state);
-            this.props.confirmNewEpisodeDetails();
-            this.validateDate(this.state.date, this.state.time);
-            mailerAPI.sendToPatient({
-                subject : "MedMonitor - Appointment Created",
-                name: this.props.first_name + ", " + this.props.last_name,
-                email: this.props.email,
-                message:
-                    `
-                    Dear ${this.props.first_name} ${this.props.last_name},
-                    We have scheduled an appointment for you with ${this.props.patientLastEpisode.doctor} on ${moment(this.state.next_appt).format()}. 
-                    These are the comment from your doctor: 
-                    
-                    ${this.state.comments}
+        if(this.validateDate(this.state.date, this.state.time)){
+            this.setState({
+                next_appt : moment(this.state.date + " " + this.state.time).format("dddd, MMMM Do YYYY h:mm a")
+            },function(){
+                this.props.handleApptCallback(this.state);
+                this.props.confirmNewEpisodeDetails();
+                mailerAPI.sendToPatient({
+                    subject : "MedMonitor - Appointment Created",
+                    name: this.props.first_name + ", " + this.props.last_name,
+                    email: this.props.email,
+                    message:
+                        `
+                        Dear ${this.props.first_name} ${this.props.last_name},
+                        We have scheduled an appointment for you with ${this.props.patientLastEpisode.doctor} on ${moment(this.state.next_appt).format()}. 
+                        These are the comment from your doctor: 
+                        
+                        ${this.state.comments}
 
-                    As we are progressing through your health wealthness, we would like to remind you to keep track of your wellness frequently with our application.
-                    If you need a reminder for medication time for current episode and appointment time, please visit the application. 
-                    
-                    From:
+                        As we are progressing through your health wealthness, we would like to remind you to keep track of your wellness frequently with our application.
+                        If you need a reminder for medication time for current episode and appointment time, please visit the application. 
+                        
+                        From:
 
-                    MedMonitor
-                    `
-            })
-                .then(res => {
-                    console.log(res);
+                        MedMonitor
+                        `
                 })
-                .catch(err => {
-                    console.log(err);
-                });
+                    .then(res => {
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                })
         }
     }
     validateDate = (date, time) => {
@@ -62,7 +65,7 @@ export default class PatientNextAppointment extends React.Component {
             if(moment(date).isAfter(moment())){
                 console.log("date is later than today. ")
                 this.setState({
-                    next_appt : moment(date + " " + time)._d
+                    next_appt : moment(date + " " + time).format("dddd, MMMM Do YYYY h:mm a")
                 }, function() {
                     console.log("state in next appointment : ", this.state);
                     this.props.getBackMessage(null)
@@ -88,7 +91,6 @@ export default class PatientNextAppointment extends React.Component {
             [name]: value
         });
         console.log(event.target.value);
-        
     };
 
     render () {

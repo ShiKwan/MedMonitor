@@ -15,7 +15,9 @@ import {
 } from 'reactstrap';
 
 export default class PatientConfirmEpisode extends React.Component {
+    
     render () {
+        console.log(this.props);
         return (
             <Card className="confirmNewEpisTableCard TableCard" style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
                 <CardBody className="confirmNewEpisTableBody TableBody">
@@ -29,7 +31,7 @@ export default class PatientConfirmEpisode extends React.Component {
                         <h3>Next Appointment</h3>
                         {this.props.nextAppointment.next_appt ? 
                             <ListGroupItem>
-                                Date/time : {moment(this.props.nextAppointment.next_appt).format("dddd, MMMM Do YYYY h:mm a").toString()}
+                                Date/time : {this.props.nextAppointment.next_appt}
                             </ListGroupItem>
                             : null}
                         <ListGroupItem>

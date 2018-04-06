@@ -98,10 +98,12 @@ loadMedication = () => {
 }
 
 enterEpisodeMedications = () => {
+    this.setState({patientDetailsCard: false})
     this.setState({addEpisodeMedicationsCard: true});
 }
 
 enterNextAppointment = () => {
+    this.setState({addEpisodeMedicationsCard: false});
     this.setState({addNextAppointmentCard: true})
 }
 
@@ -251,6 +253,8 @@ populateState = () =>{
                                     patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
                                     enterNextAppointment = {this.enterNextAppointment}
                                     handleMedCallback={this.handleMedCallback}
+                                    getBackMessage={this.props.getBackMessage} 
+                                    getBackMessageStatus={this.props.getBackMessageStatus}
                                 />
                                 <PatientNextAppointment
                                     first_name={this.state.patientDetails.first_name}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './PatientDetails.css';
-
+import moment from 'moment';
 import '../../../../pages/Admin';
 
 
@@ -30,13 +30,13 @@ export default class PatientDetails extends React.Component {
                         <br />
                         Hospital Number: {this.props.patient_number} <br />
                         Name :  {this.props.first_name}&nbsp;{this.props.last_name} <br/>
-                        Date of Birth: {this.props.dob} <br /><br />
+                        Date of Birth: {moment(this.props.dob).format("dddd, MMMM Do YYYY")} <br /><br />
                         Enrolled: {this.props.date_created} <br />
                         Enrollment status: {this.props.active ? "Active" : "Currently inactive"} <br />
                         E-mail: {this.props.email} <br />
                         Phone: {this.props.phone} <br /><br />
                         Episodes recorded: {this.props.length} <br />
-                        Last episode created: {this.props.date_created} <br />
+                        Last episode created: {moment(this.props.date_created).format("dddd, MMMM Do YYYY h:mm a")} <br />
                         <br /><br />
 
                         { this.props.active ?  "" : 
