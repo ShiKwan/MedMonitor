@@ -24,7 +24,7 @@ export default class FormGroup3_9Input extends React.Component {
                     <Input 
                         type={this.props.type ? this.props.type : "text"} 
                         name={this.props.name} 
-                        placeholder={this.props.placeholder ? this.props.placeholder : ""} 
+                        placeholder={this.props.placeholder ? this.props.placeholder : ""}
                         value={this.props.value}
                         onChange={(event) => this.onChanged(event)}  
                     />  
