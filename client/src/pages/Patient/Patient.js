@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PatSurvey from "../../components/PatSurvey";
 import PatMedDue from "../../components/PatMedDue";
-import DoSomethingBtn from "../../components/DoSomethingBtn";
+import VideoUpload from "../../components/VideoUpload";
 import patientAPI from "../../utils/patientAPI";
 
 import './Patient.css';
@@ -52,7 +52,6 @@ class Patient extends Component {
         return (
             <Container fluid>
                 <Container>
-                    <Button onClick={this.props.handleIncident}>Alert Admin</Button>
                     <Row>
                         <Col size='md-12'>
                             <PatSurvey handleIncident={this.props.handleIncident} handleFinishedCallback={this.handleFinishedCallback} />
@@ -65,7 +64,7 @@ class Patient extends Component {
                                     <PatMedDue medication={this.state.medication} />
                                 </Col>
                                 <Col size='md-6'>
-                                    <DoSomethingBtn />
+                                    <VideoUpload />
                                 </Col>
                             </Row>
                         :

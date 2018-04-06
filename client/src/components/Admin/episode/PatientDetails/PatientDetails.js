@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PatientDetails.css';
 
 import '../../../../pages/Admin';
 

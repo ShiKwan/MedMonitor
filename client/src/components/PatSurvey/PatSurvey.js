@@ -213,7 +213,7 @@ var questions = [{
 },
 
 {
-    survHeader: 'DRY MOUTH/BLURRED VISIONM',
+    survHeader: 'DRY MOUTH/BLURRED VISION',
     question: 'Since taking your last Parkinson\'s medication: Have you had any feelings of dry mouth and/or blurred vision?',
     answers: ['None', 'Occasionally', 'On And Off', 'Most Of The Time', 'All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
@@ -240,10 +240,7 @@ class PatSurvey extends Component {
             completed : [],
         })
     }
-    // Handle notification from a child slide that we should move to the next
-    handlePopulate = () => {
-        console.log(this.state);
-    }
+    
     handleCompletedCallback = (label, answer) => {
         console.log("Survey header : " + label);
         console.log("Answer : ", answer);
@@ -349,7 +346,7 @@ class PatSurvey extends Component {
         let percentage = 100 - (questions.length/14 * 100);
         return(
             <Container>
-                <Progress color="success" value={percentage} />
+                <Progress animated color="success" value={percentage} />
             </Container>
         )
     }
@@ -358,20 +355,24 @@ class PatSurvey extends Component {
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">
-                <Button onClick={this.handlePopulate}>Show State</Button>
+            
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
-                    <br />
-                        <div>
-                            {this.handleProgressBar(`${this.state.answered}`)}
-                            
-                        </div>
+                        {this.state.questions.length === 14 ?
+                            <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
+                            : 
+                            <div>
+                                {this.handleProgressBar(`${this.state.answered}`)}
+
+                            </div>
+                       } 
                 </Card>
+                
                 {
                     this.state.questions.map( (x,i) => {
                         return(
                         this.state.questions ?
                             x.selectionType  === "radio" ?
+                            
                                 <QRadio
                                     key = {x.survHeader}
                                     label = {x.label}

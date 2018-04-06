@@ -62,3 +62,73 @@ img {
     padding: 15px 25px 15px 25px;
     margin-left: auto;
 }
+
+@media screen and (max-width: 1024px) {
+    .navGreeting .navLogName {
+        float: right;
+    }
+    img {
+        width: auto;
+        height: 125px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    
+    .navGreeting .navLogName {
+        float: right;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    em {
+        font-size: 25px;
+    }
+
+    img {
+        width: auto;
+        height: 115px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .navbar {
+        border-bottom: 5px solid #2d5366;
+        box-shadow: 0px 0px 10px #bab9b9;
+    }
+    img {
+        width: auto;
+        height: 60px;
+        cursor: pointer;
+    }
+    .navBtn .logOutBtn,
+    .navBtn .navAppBtn {
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .navGreeting .navLogName {
+        float: right;
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+
+    em {
+        font-size: 20px;
+    }
+    .navPills,
+    .navlogOutpills {
+        margin-top: 5px;
+    }
+
+    .navBtn {
+        font-size: 10px;
+    }
+    .navBtn .navAppBtn {
+        margin-right: 5px;
+    }
+}

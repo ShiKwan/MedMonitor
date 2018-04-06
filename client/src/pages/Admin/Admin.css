@@ -1,8 +1,10 @@
-div.panicAlertBtn {
-    right: 25px;
-    position: absolute;
-    margin-top: 485px;
+.panicAlertNotice .panicAlertMessage {
+    margin-left: 100px;
     z-index: 100;
+    position: fixed;
+    position: -webkit-fixed;
+    bottom: 10px;
+    right: 30px;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////// */
@@ -46,7 +48,7 @@ div.TableCard {
 .TableBody .BackBtn,
 .TableBody .RemoveBtn,
 .TableBody .RegisterBtn,
-.TableBody .SumbitBtn,
+.TableBody .SubmitBtn,
 .TableBody .CreateBtn,
 .TableBody .ReportBtn,
 .TableBody .CloseBtn,

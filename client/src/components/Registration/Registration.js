@@ -164,7 +164,7 @@ export default class Registration extends React.Component {
                 :(
                     <Form className="registration-form col-md-12">
                         <Container>
-                            <h2 className="RegisterMessage">Register Your Account</h2>
+                            <h2 className="registerMessage">Register Your Account</h2>
                         </Container>
                         <FormGroup row className="RegisterUserName">
                             <Label size="lg">User Name</Label>
