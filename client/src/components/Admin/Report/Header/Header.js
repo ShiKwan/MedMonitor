@@ -5,6 +5,7 @@ import {
     Card, CardBody, CardTitle, CardText,
     Form, FormGroup, Label, Input, FormText,
 } from 'reactstrap';
+import moment from 'moment';
 
 export default class Header extends React.Component {
 
@@ -17,7 +18,7 @@ export default class Header extends React.Component {
                         <h3>Doctor : this.props.doctorName{this.props.doctorName}</h3>
                     </Col>
                     <Col md='6' className="text-right">
-                        <h3>Report Date : ${Date.now()}</h3>
+                        <h3>Report Date : ${moment()}</h3>
                     </Col>
                 </Row>
             </Container>

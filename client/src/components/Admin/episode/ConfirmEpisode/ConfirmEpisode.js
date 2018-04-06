@@ -3,7 +3,7 @@ import './ConfirmEpisode.css';
 
 import '../../../../pages/Admin';
 
-
+import moment from 'moment';
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -25,6 +25,41 @@ export default class PatientConfirmEpisode extends React.Component {
                         Review new episode details and click submit to creat a new episode
                         <br /><br />
                     </CardText>
+                    <ListGroup>
+                        <h3>Next Appointment</h3>
+                        {this.props.nextAppointment.next_appt ? 
+                            <ListGroupItem>
+                                Date/time : {this.props.nextAppointment.next_appt}
+                            </ListGroupItem>
+                            : null}
+                        <ListGroupItem>
+                            Comments : {this.props.nextAppointment.comments}
+                        </ListGroupItem>
+                    </ListGroup>
+                    {
+                        this.props.confirmNewEpisodeDetailsCard && this.props.newEpisode ? 
+                            <ListGroup>
+                                <h3>Medication Prescribed</h3>
+                                {this.props.newEpisode.map( (med, index) =>{
+                                    return (
+                                        <ListGroupItem>
+                                            Name : {med.medication} <br />
+                                            Label : {med.label} <br />
+                                            Time : 
+                                            {med.times ? 
+                                                med.times.map( (time,index) => {
+                                                    return(
+                                                    <Label> {time.value ? time.value : time} {index < med.times.length-1 ? "|" : null} </Label>
+                                                    )
+                                                })
+                                            : null
+                                            }
+                                        </ListGroupItem>
+                                    )
+                                })}            
+                            </ListGroup>
+                        : null
+                    }
 
                     <br /><br />
                     <Button className="confirmNewEpisSubmitBtn SubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
