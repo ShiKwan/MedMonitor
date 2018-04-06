@@ -12,7 +12,7 @@ module.exports = {
     findAll: function(req, res) {
         db.Patient_data
         .find( {}, {details: 1, appointment: 1, date_created: 1} )
-       // .populate("doctor")
+        .populate("physician")
         .sort( {"details.last_name": 1} )
         .then(patientList => { 
             const dateOneWeekAgo = new Date(new Date().getTime()-7*24*60*60*1000).getTime();
@@ -190,7 +190,7 @@ module.exports = {
                 { $set: {"details.email": req.body.email} },
                 { $set: {"details.phone": req.body.phone} }
             )
-            .then(episode => res.json(update))
+            .then(update => res.json(update))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
@@ -206,7 +206,7 @@ module.exports = {
                 { _id: req.params.id },
                 { $set: {physician: req.body.physician} }
             )
-            .then(episode => res.json(update))
+            .then(update => res.json(update))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
