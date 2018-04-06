@@ -12,7 +12,7 @@ module.exports = {
     findAll: function(req, res) {
         db.Patient_data
         .find( {}, {details: 1, appointment: 1, date_created: 1} )
-       // .populate("doctor")
+        .populate("physician")
         .sort( {"details.last_name": 1} )
         .then(patientList => { 
             const dateOneWeekAgo = new Date(new Date().getTime()-7*24*60*60*1000).getTime();
@@ -201,10 +201,12 @@ module.exports = {
     // To be sent req.params.id of patient to be updated and req.body with physician ID
     // returns ?
     updatePatientsDr: function(req, res) {
+        console.log("req1" + req.params.id)
+        console.log("req2" + req.body.physician)
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $set: {physician: req.body.physician} }
+                { $set: {"physician": req.body.physician} }
             )
             .then(update => res.json(update))
             .catch(err => {
@@ -221,7 +223,7 @@ module.exports = {
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $set: {active: false} }
+                { $set: {"active": false} }
             )
             .then(episode => res.json(episode))
             .catch(err => {

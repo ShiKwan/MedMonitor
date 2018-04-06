@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
+import './PatientDetails.css';
 import moment from 'moment';
+=======
+
+>>>>>>> fe925b532933cb883219dc6d45dc89d771a33818
 import '../../../../pages/Admin';
 
 

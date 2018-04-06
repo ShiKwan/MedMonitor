@@ -267,7 +267,7 @@ const patient_dataSeed = [
     
     active: true,
 
-    doctor: "5ac6c59d2156d5403891d0c2",   //doctor: to be populated with _id from doctors collection
+    doctor: "",      //doctor: to be populated with _id from doctors collection
     
     details: {
       patient_number: "hosp001",
@@ -338,7 +338,7 @@ const patient_dataSeed = [
     date_created: new Date(),
     active: true,
 
-    physician: "Dr. melanie Kopff",
+    physician: "",
     
     details: {
       patient_number: "hosp023",

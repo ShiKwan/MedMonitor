@@ -14,7 +14,9 @@ import {
 } from 'reactstrap';
 
 export default class PatientConfirmEpisode extends React.Component {
+    
     render () {
+        console.log(this.props);
         return (
             <Card className="confirmNewEpisTableCard TableCard" style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "block", width: "100%"}}>
                 <CardBody className="confirmNewEpisTableBody TableBody">
@@ -41,14 +43,14 @@ export default class PatientConfirmEpisode extends React.Component {
                                 <h3>Medication Prescribed</h3>
                                 {this.props.newEpisode.map( (med, index) =>{
                                     return (
-                                        <ListGroupItem>
+                                        <ListGroupItem key={med.medication}>
                                             Name : {med.medication} <br />
                                             Label : {med.label} <br />
-                                            Time : 
+                                            Time :  
                                             {med.times ? 
                                                 med.times.map( (time,index) => {
                                                     return(
-                                                    <Label> {time.value ? time.value : time} {index < med.times.length-1 ? "|" : null} </Label>
+                                                    <Label key={index}> {time.value ? time.value : time} {index < med.times.length-1 ? "|" : null} </Label>
                                                     )
                                                 })
                                             : null

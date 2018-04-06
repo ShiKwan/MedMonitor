@@ -204,9 +204,9 @@ button.questSubmitBtn:hover {
 }
 
 @media screen and (max-width: 376px) {
- .introsurvCard .introsurvCardHeader {
-     font-size: 25px;
- }
+    .introsurvCard .introsurvCardHeader {
+        font-size: 25px;
+    }
     .patSurveyCard .patSurveyHeader {
         font-size: 20px;
         margin-bottom: 30px;
