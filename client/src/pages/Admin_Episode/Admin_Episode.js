@@ -226,9 +226,10 @@ populateState = () =>{
             }
         }
 
-        console.log(objToSubmit);
+        //console.log(objToSubmit);
+        console.log("current state :" , this.state);   
     }
-        
+     
 )  
 }
     render() {
@@ -286,6 +287,8 @@ populateState = () =>{
                                 <PatientConfirmEpisode
                                     confirmNewEpisodeDetailsCard = {this.state.confirmNewEpisodeDetailsCard}
                                     createNewEpisode = {this.createNewEpisode}
+                                    nextAppointment = {this.state.newAppt}
+                                    newEpisode = {this.state.newEpisode}
                                 />
                                 <PatientSuccessEpisode 
                                     successEpisodeCreatedCard = {this.state.successEpisodeCreatedCard}

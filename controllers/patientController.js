@@ -190,7 +190,23 @@ module.exports = {
                 { $set: {"details.email": req.body.email} },
                 { $set: {"details.phone": req.body.phone} }
             )
-            .then(episode => res.json(episode))
+            .then(update => res.json(update))
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+    },
+
+    // Enters/updates physician ID into patient_data collection
+    // To be sent req.params.id of patient to be updated and req.body with physician ID
+    // returns ?
+    updatePatientsDr: function(req, res) {
+        db.Patient_data
+            .findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: {physician: req.body.physician} }
+            )
+            .then(update => res.json(update))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);

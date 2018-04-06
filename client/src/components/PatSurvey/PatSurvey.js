@@ -5,6 +5,8 @@ import "./PatSurvey.css";
 import QCheckbox from "../Patient/Survey/Checkbox";
 import QRadio from "../Patient/Survey/Radio";
 import patientAPI from "../../utils/patientAPI";
+import alertAPI from "../../utils/alertAPI";
+import moment from 'moment';
 import { 
     Container,
     Card,
@@ -268,21 +270,22 @@ class PatSurvey extends Component {
                 this.props.handleIncident(stringAnswer, localStorage.getItem("patient_number"))
                 //save emergencies to alertEmergencies collection
                 let emergencyObj = {
-                    user_id : localStorage.getItem("userId"),
-                    alertFirstName : localStorage.getItem("firstName"),
-                    alertLastName : localStorage.getItem("lastName"),
-                    alertHospitalNum : localStorage.getItem("patient_number"),
-                    urgent_activity : {
-                        falls: newAnswer[0] === 1 ? "falls" : null,
+                    alert_firstname : localStorage.getItem("firstName"),
+                    alert_lastname : localStorage.getItem("lastName"),
+                    alert_hospnum : localStorage.getItem("patient_number"),
+                    alert_type : {
+                        fall: newAnswer[0] === 1 ? "falls" : null,
                         freezing: newAnswer[1] === 1 ? "freezing" : null,
                         choking: newAnswer[2] === 1 ? "choking": null,
                         hallucination: newAnswer[3] === 1 ? "hallucination" : null
                     },
-                    date_time : Date.now()
+                    alert_datetime : moment(),
+                    alert_physician : ""
                 }
                 //TODO: 
-
-
+                alertAPI.create(emergencyObj)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err));
             }
             console.log("new answer : " + newAnswer);
             answer = newAnswer;
@@ -413,12 +416,9 @@ class PatSurvey extends Component {
                         )
                     })
                 }
-                    
             </Container>
             :
             <Label>You have completed the questionaires</Label>
-
-        
         );
     }
 }

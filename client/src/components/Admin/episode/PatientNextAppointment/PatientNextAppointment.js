@@ -54,7 +54,7 @@ export default class PatientNextAppointment extends React.Component {
             });
     }
     handleDate = (date) => {
-        this.setState({ next_appt : date._d }, () => console.log(this.state.next_appt));
+        this.setState({ next_appt : date._d.toString() }, () => console.log(this.state.next_appt));
     };
     // Form handlers
     handleInputChange = event => {
