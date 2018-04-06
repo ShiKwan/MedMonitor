@@ -31,7 +31,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // add a new drug
     addNewDrug = event => {
         event.preventDefault();
@@ -48,7 +47,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // delete a drug
     deleteDrug = event => {
         event.preventDefault();
@@ -56,7 +54,6 @@ class Books extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // add new dose to existing medication
     addNewDose = event => {
@@ -71,7 +68,6 @@ class Books extends Component {
 
     };
 
-
     // delete a dose from existing medication
     // note dose object must exactly match the dose object to be deleted fromt the document
     deleteDose = event => {
@@ -85,6 +81,7 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
+
     // --------------------
     // Doctor routes tests
     // --------------------
@@ -95,7 +92,6 @@ class Books extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // find doctor by id
     findDoctor = event => {
@@ -150,13 +146,13 @@ class Books extends Component {
     // Patient_data route tests
     // ------------------------
 
+
     // load personal details of all patients (alphabetical by last name) ^^
     loadAllPatients = () => {
         patientAPI.findAll({})
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // find patient data by id for Admin ^^
     findPatientInfoForAdmin = event => {
@@ -166,7 +162,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // find patient data by id for Patient use ^^
     findPatientInfoForPatient = event => {
         event.preventDefault();
@@ -174,7 +169,6 @@ class Books extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // fetch patient medications ^^
     findPatientMeds = event => {
@@ -184,7 +178,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // make patient inactive (leaves care of doctor) ^^
     recordPatientInactive = event => {
         event.preventDefault();
@@ -192,7 +185,6 @@ class Books extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // update patient details (email and phone) ^^
     updatePatientContactDetails = event => {
@@ -205,7 +197,6 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // update next appointment
     updatePatientAppointment = event => {
         event.preventDefault();
@@ -217,52 +208,46 @@ class Books extends Component {
             .catch(err => console.log(err));
     };
 
-
     // create a new patient record with data entered by patient
     createNewRecord = event => {
         event.preventDefault();
         patientAPI.createNewRecord(this.state.id, {
 
-            date: Date(),
-            time: "0830",
-            meds_taken: true,
-            // can add more detailed record of medications taken and notes here if required
-            symptoms: {
-                ontime: 1,
-                offtime: 2,
-                tremor: 4,
-                dexterity: 4,
-                stiffness: 2,
-                initiation: 2,
-                speach: 1,
-                walking: 1,
-                balance: 2,
-                drooling: 1,
-                malaise: 2
+            date_time: Date,
+            meds_taken: Boolean,
+            // can add more detailed record of medications taken and notes here if required 
+            
+            emergencies: {
+                falls: Boolean,
+                freezing: Boolean,
+                choking: Boolean,
+                hallucination: Boolean,
             },
 
-            emergencies: {
-                falls: false,
-                choking: false,
-                hallucination: false
+            symptoms: {
+                kickin: Number,
+                wearoff: Number,
+                movement: Number,
+                sleepy: Number,
+                offtime: Number,
+                tremor: Number,
+                walking: Number,
+                balance: Number,
             },
 
             side_effects: {
-                sickness: 1,
-                dizziness: 1,
-                headaches: 1,
-                drymouth: 1,
-                urinating: 1,
-                indigestion: 2
+                sickness: Number,
+                dizziness: Number,
+                headaches: Number,
+                drymouth: Number,
             },
 
-                notes: "does this really work??"
+            notes: String,
         })
 
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // create a new episode by doctor
     createNewEpisode = event => {
@@ -282,40 +267,36 @@ class Books extends Component {
             }],
 
             record: [{
-                date: Date(),
-                time: "1200",
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                symptoms: {
-                    ontime: 1,
-                    offtime: 1,
-                    tremor: 2,
-                    dexterity: 3,
-                    stiffness: 3,
-                    initiation: 3,
-                    speach: 2,
-                    walking: 3,
-                    balance: 1,
-                    drooling: 1,
-                    malaise: 1
-                },
+                date_time: Date,
+            meds_taken: Boolean,
+            // can add more detailed record of medications taken and notes here if required 
+            
+            emergencies: {
+                falls: Boolean,
+                freezing: Boolean,
+                choking: Boolean,
+                hallucination: Boolean,
+            },
 
-                emergencies: {
-                    falls: false,
-                    choking: false,
-                    hallucination: false
-                },
+            symptoms: {
+                kickin: Number,
+                wearoff: Number,
+                movement: Number,
+                sleepy: Number,
+                offtime: Number,
+                tremor: Number,
+                walking: Number,
+                balance: Number,
+            },
 
-                side_effects: {
-                    sickness: 2,
-                    dizziness: 1,
-                    headaches: 1,
-                    drymouth: 1,
-                    urinating: 1,
-                    indigestion: 1
-                },
+            side_effects: {
+                sickness: Number,
+                dizziness: Number,
+                headaches: Number,
+                drymouth: Number,
+            },
 
-                notes: "First record filled in with doctor"
+            notes: String,
 
             }],
 
@@ -324,7 +305,6 @@ class Books extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
-
 
     // add a new patient
     addNewPatient = event => {
