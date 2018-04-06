@@ -7,7 +7,7 @@ const Patient_dataSchema = new Schema({
         date_created: {type: Date, default: Date.now},
         active: { type: Boolean, default: true },
 
-        doctor: {
+        physician: {
             type: Schema.Types.ObjectId,
             ref: "Doctor"
         },

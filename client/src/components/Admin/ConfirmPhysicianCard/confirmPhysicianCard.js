@@ -4,11 +4,8 @@ import {
     Card, CardBody, CardTitle, CardText,
     Table
 } from 'reactstrap';
+import moment from "moment";
 import './confirmPhysicianCard.css';
-
-
-
-
 
 
 export default class confirmPhysicianCard extends React.Component {
@@ -36,7 +33,7 @@ export default class confirmPhysicianCard extends React.Component {
                             </tr><tr>
                                 <td>Name:  </td><td>{this.props.firstname}&nbsp;{this.props.lastname}</td>
                             </tr><tr>
-                                <td>Date Added:  </td><td>{this.props.date_added}</td>
+                                <td>Date Added:  </td><td>{moment(this.props.dateAdded).format("MMMM Do YYYY")}</td>
                             </tr><tr>
                                 <td>Office </td><td>{this.props.office}</td>
                             </tr><tr>

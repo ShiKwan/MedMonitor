@@ -12,6 +12,7 @@ import ConfirmPatientCard from "../../components/Admin/ConfirmPatientCard";
 import SelectPatientCard from "../../components/Admin/SelectPatientCard";
 import AddPatientCard from "../../components/Admin/AddPatientCard";
 import RegisterPatientCard from "../../components/Admin/RegisterPatientCard";
+import AddPatientsDrCard from "../../components/Admin/AddPatientsDrCard";
 import SuccessPatientCard from "../../components/Admin/SuccessPatientCard";
 import UpdatePatientCard from "../../components/Admin/UpdatePatientCard";
 import SuccessUpdatePatientCard from "../../components/Admin/SuccessUpdatePatientCard";
@@ -51,6 +52,7 @@ class Admin extends Component {
         selectPatientCard: false,
         addPatientCard: false,
         registerPatientCard: false,
+        addPatientsDrCard: false,
         successPatientCard: false,
         updatePatientCard: false,
         successUpdatePatientCard: false,
@@ -125,6 +127,7 @@ class Admin extends Component {
         })
         console.log("Alert incident : " , this.state.alertIncident);
     }
+
     // Call function to fetch data required for admin page when Admin component mounts
     componentDidMount() {
         this.loadData(); 
@@ -140,6 +143,7 @@ class Admin extends Component {
         menuItem == "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedicationCard: false});
         menuItem == "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
         this.setState({confirmPatientCard: false});
+        this.setState({addPatientsDrCard: false});
         this.setState({registerPatientCard: false});
         this.setState({successPatientCard: false});
         this.setState({updatePatientCard: false});
@@ -234,7 +238,6 @@ class Admin extends Component {
                 this.setState({patientEpisodes: this.state.patient.episode})
                 this.setState({patientEpisodesStart: this.state.patientEpisodes[this.state.patientEpisodes.length-1].start_date})
                 this.setState({recordsLastPatientEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1].record.length})
-                //sk added this, patient id was not pass in to state:
                 this.setState({pt_id : res.data._id})
             })
             .catch(err => console.log(err));
@@ -282,19 +285,37 @@ class Admin extends Component {
         .then(res => {
             console.log(res.data.insertedIds[0]);
             this.setState({addPatientCard: false});
-            this.setState({registerPatientCard: true});
+            this.setState({addPatientsDrCard: true});
             this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
             this.setState({pt_id: res.data.insertedIds[0]})
 
         })
         .catch(err => console.log(err));
     };
+
+
+    addPatientsDr = event => {
+        event.preventDefault();
+        console.log("id" + this.state.pt_id)
+        console.log("phys: " + this.state.primary_phys)
+        if(this.state.primary_phys) {
+            patientAPI.updatePhysician(this.state.pt_id, {
+                primary_physician : this.state.pt_physician
+            })
+            .then(res => {
+                console.log(res.data);
+                this.setState({addPatientsDrCard: false});
+                this.setState({registerPatientCard: true});
+            })
+            .catch(err => console.log(err));
+        };
+    };
     
 
     registerPatient = event => {
         event.preventDefault();
         console.log("pwd: " + this.state.pt_password + " | " + this.state.pt_username)
-        if(this.state.pt_password && this.state.pt_username){
+        if(this.state.pt_password && this.state.pt_username) {
             userAPI.createAccount({
                 username : this.state.pt_username,
                 password : this.state.pt_password,
@@ -347,18 +368,23 @@ class Admin extends Component {
         .catch(err => console.log(err));
     };
 
+
     updateAppointmentDisplay = (id) => {
         this.setState({confirmPatientCard: false})
         this.setState({changeAppointmentCard: true})
         this.setState({pt_id: id})
      };
 
+
     updateAppointment = (id) => {
-        this.state.pt_newApptDate ? console.log(this.state.pt_newApptDate) : null;
+        console.log("a " + this.state.pt_newApptDate)
+        console.log("b " + this.state.pt_newApptTime)
+        console.log("id" + id)
+        console.log("c " + `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`)
+        const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
+        console.log("d " + newAppt)
         patientAPI.updateAppointment(id, {
-            
-            next_appt: Date(), //this.state.next_appt,
-            comments: "some new comments" //this.state.comments
+            next_appt: newAppt
         })
         .then(res => {
             this.setState({changeAppointmentCard: false});
@@ -510,8 +536,14 @@ class Admin extends Component {
                 <Container className="clearfix">
                 {/* {this.state.patients.map( (x) => console.log(x))} */}
                     <br />
-                        <span  style={{fontWeight: "bold", float: "left"}}>Physician: {`${localStorage.getItem("username")} ${localStorage.getItem("username")}`}</span>
-                        <span  style={{fontWeight: "bold", float: "right"}}>{`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}</span>
+                        <span  style={{fontWeight: "bold", float: "left"}}>
+                            Physician: Dr.&nbsp;
+                            {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)}&nbsp;
+                            {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}  
+                        </span>
+                        <span  style={{fontWeight: "bold", float: "right"}}>
+                            {`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}
+                        </span>
                 </Container>
 
                     <br />
@@ -528,6 +560,7 @@ class Admin extends Component {
                                 selectPatientCard = {this.state.selectPatientCard}
                                 confirmPatientCard = {this.state.confirmPatientCard}
                                 addPatientCard = {this.state.addPatientCard}
+                                addPatientsDrCard = {this.state.addPatientsDrCard}
                                 registerPatientCard = {this.state.registerPatienttCard}
                                 successPatientCard = {this.state.successPatientCard}
                                 updatePatientCard = {this.state.updatePatientCard}
@@ -580,7 +613,7 @@ class Admin extends Component {
                                 patientNumber = {this.state.patientDetails.patient_number}
                                 firstname = {this.state.patientDetails.first_name}
                                 lastname = {this.state.patientDetails.last_name}
-                                dob = {this.state.patient.date_created}
+                                dob = {this.state.patientDetails.dob}
                                 dateCreated = {this.state.patient.date_created}
                                 active = {this.state.patient.active}
                                 nextAppt = {this.state.patientAppointment.next_appt}
@@ -598,6 +631,12 @@ class Admin extends Component {
                                 addPatientCard = {this.state.addPatientCard}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatient = {(event) => this.enrollPatient(event)}
+                            />
+
+                             <AddPatientsDrCard
+                                addPatientsDrCard = {this.state.addPatientsDrCard}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                enrollPatientWithDr = {(event) => this.enrollPatientWithDr(event)}
                             />
 
                             <RegisterPatientCard
