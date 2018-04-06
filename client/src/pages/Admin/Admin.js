@@ -253,7 +253,7 @@ class Admin extends Component {
             date_created: new Date(),
             active: true,
 
-            //doctor: to be populated with _id from doctors collection,
+            physician: "", //doctor: to be populated with _id from doctors collection in next page
 
             details: {
                 patient_number: this.state.pt_hospnum,
@@ -288,7 +288,6 @@ class Admin extends Component {
             console.log(res.data.insertedIds[0]);
             this.setState({addPatientCard: false});
             this.setState({addPatientsDrCard: true});
-            console.log("here1" + this.state.addPatientsDrCard)
             this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
             this.setState({pt_id: res.data.insertedIds[0]})
 
@@ -299,8 +298,8 @@ class Admin extends Component {
 
     enrollPatientWithDr = event => {
         event.preventDefault();
-        console.log("pt: " + this.state.pt_id)
-        console.log("phys: " + this.state.pt_physician)
+        console.log("1pt: " + this.state.pt_id)
+        console.log("1phys: " + this.state.pt_physician)
         if(this.state.primary_phys) {
             patientAPI.updatePatientsDoctor(this.state.pt_id, {
                 physician : this.state.pt_physician

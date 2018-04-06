@@ -33,9 +33,10 @@ export default class AddPatientCard extends React.Component {
                         <Form className="enrollNewPatForm">
 
                             <FormGroup3_9Select
+
                                 label="Select patient's primary physician:"
+                                firstOption="select physician"
                                 name = "pt_physician"
-                                //value = {this.props.physician}
                                 selectList={this.props.physicians}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
