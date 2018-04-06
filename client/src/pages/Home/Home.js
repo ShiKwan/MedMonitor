@@ -67,8 +67,6 @@ class Home extends Component {
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
-                localStorage.setItem("messageCenter", "Login successfully!");
-                localStorage.setItem("messageStatus", "success");
                 if(res.data.patient_id && res.data.role.toLowerCase() === 'patient'){
                     localStorage.setItem("userId", res.data.patient_id);
                 }else if(res.data.doctor_id && (res.data.role.toLowerCase() === 'admin' || res.data.role.toLowerCase() === 'doctor')){
@@ -79,8 +77,6 @@ class Home extends Component {
                     role: res.data.role,
                     email: res.data.email,
                     username: res.data.username,
-                    messageCenter: "Login successfully!",
-                    messageStatus: "success"
                 }, function(){
                     if(this.state.role.toLowerCase()==="patient"){
                         patientAPI.findPatientInfoForPatient(this.state.id)
