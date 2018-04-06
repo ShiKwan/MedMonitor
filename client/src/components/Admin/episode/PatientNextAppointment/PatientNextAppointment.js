@@ -93,7 +93,7 @@ export default class PatientNextAppointment extends React.Component {
 
     render () {
         return (
-            <Card className="nextAppTableCard TableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "block"}}>
+            <Card className="nextAppTableCard TableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
                 <CardBody className="nextAppTableBody TableBody">
                     <CardTitle className="nextAppTitle Title">Enter Next Appointment</CardTitle>
                 
