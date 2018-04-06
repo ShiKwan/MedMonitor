@@ -157,6 +157,10 @@ export default class PatientMedications extends React.Component {
                 valid = false;
             }
         })
+        if(valid){
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
         return valid
     }
     handleAddNewMed = () => {
