@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import "./PatSurvey.css";
 import QCheckbox from "../Patient/Survey/Checkbox";
 import QRadio from "../Patient/Survey/Radio";
+import patientAPI from "../../utils/patientAPI";
 import { 
     Container,
     Card,
@@ -68,7 +69,6 @@ var questions = [{
     firstQuestion : 0,
     questionNum : 2
 },
-
 {
     survHeader: 'WEARING OFF',
     question: 'Since taking your LAST Parkinson\'s medication: if wearing off, how long ago.?',
@@ -225,8 +225,6 @@ var questions = [{
     firstQuestion : 0,
     questionNum : 13
 },
-
-
 ];
 
 
@@ -249,17 +247,71 @@ class PatSurvey extends Component {
     handleCompletedCallback = (label, answer) => {
         console.log("Survey header : " + label);
         console.log("Answer : ", answer);
-        if(label.toUpperCase() === 'WORRYING SYMPTOMS'){
-            if(!answer.includes("None Of These")){
-                this.props.handleIncident()
+        
+        if(label === 'emergencies'){
+            console.log(questions[0]);
+            let newAnswer = [0,0,0,0];
+            for(let i =0; i< answer.length; i++){
+                if(answer[i] === questions[0].answers[0]){
+                    newAnswer[0] = 1;
+                }else if(answer[i] === questions[0].answers[1]){
+                    newAnswer[1] = 1;
+                }else if(answer[i] === questions[0].answers[2]){
+                    newAnswer[2] = 1;
+                }else if(answer[i] === questions[0].answers[3]){
+                    newAnswer[3] = 1;
+                }
             }
+            if(!answer.includes("None Of These")){
+                let stringAnswer = ""
+                answer.map((x) => {
+                    stringAnswer += x + ","
+                })
+
+                this.props.handleIncident(stringAnswer, localStorage.getItem("patient_number"))
+            }
+            console.log("new answer : " + newAnswer);
+            answer = newAnswer;
         }
         let newCompleted = this.state.completed;
         newCompleted[label] = answer
         this.setState({
             completed : newCompleted
         })
+        
     };
+    saveAnswersToDb = () =>{
+        let objAnswers ={
+            date_time : Date.now(),
+            meds_taken : this.state.completed.meds_taken,
+            emergencies : {
+                falls : this.state.completed.emergencies[0],
+                freezing : this.state.completed.emergencies[1],
+                choking : this.state.completed.emergencies[2],
+                hallucination : this.state.completed.emergencies[3],
+            },
+            symptoms : {
+                kickin : this.state.completed.kickin,
+                wearoff : this.state.completed.wearoff,
+                movement : this.state.completed.movement,
+                sleepy : this.state.completed.sleepy,
+                offtime : this.state.completed.offtime,
+                tremor : this.state.completed.tremor,
+                walking : this.state.completed.walking,
+                balance : this.state.completed.balance,
+            },
+            side_effects: {
+                sickness : this.state.completed.sickness,
+                dizziness : this.state.completed.dizziness,
+                headaches : this.state.completed.headaches,
+                drymouth : this.state.completed.drymouth,
+            }
+        }
+        console.log("objAnswers: ", objAnswers)
+        patientAPI.createNewRecord(localStorage.getItem("userId"), objAnswers)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
 
     handleQuestionCallback = () =>{
         let newQuestions = questions
@@ -271,6 +323,8 @@ class PatSurvey extends Component {
             })
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
+            console.log("Done with question: ", this.state.completed);
+            this.saveAnswersToDb();
         }
     }
     handleProgressBar = (answered) =>{

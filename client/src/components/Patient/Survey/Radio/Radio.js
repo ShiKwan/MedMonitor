@@ -60,7 +60,6 @@ export default class Radio extends React.Component {
                             <div className="survRadGroup">
                                 {this.props.data_value.map( (answer, index) => {
                                     //another component
-                                    console.log("in map, answer is : " , answer);
                                     return(
                                         <Container>
                                         <QButton 

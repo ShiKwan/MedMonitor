@@ -89,6 +89,8 @@ class Home extends Component {
                             console.log(res);
                             localStorage.setItem("firstName", res.data.details.first_name);
                             localStorage.setItem("lastName", res.data.details.last_name);
+                            localStorage.setItem("patient_number", res.data.details.patient_number);
+                            localStorage.setItem("patient_phone", res.data.details.phone);
                         })
                         .catch(err => console.log(err));
 
