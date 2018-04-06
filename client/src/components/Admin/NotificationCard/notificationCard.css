@@ -1,17 +1,23 @@
+p.tableTitle {
+    font-weight: bold;
+}
+
 .dashboardTable .patEnrolledTable,
 .dashboardTable .appThisWeekTable,
 .dashboardTable .emergNotifTable {
     width: auto;
 }
 
-.dashboardTableBody {
-    background-color: #f3f3f1;
+.patEnrolledDetail:hover,
+.appThisWeekDetail:hover,
+.emergNotifDetail:hover {
+    background-color: #eeda90;
+    cursor: pointer;
 }
 
-
-p.tableTitle {
-    font-weight: bold;
-
+/*
+.dashboardTableBody {
+    background-color: #f3f3f1;
 }
 
 div.dashboardTableCard {
@@ -23,14 +29,8 @@ div.dashboardTableCard {
 .dashboardTableBody .dashboardTitle {
     padding: 10px;
     background-color: #9eb1bd;
-}
+} */
 
-.patEnrolledDetail:hover,
-.appThisWeekDetail:hover,
-.emergNotifDetail:hover {
-    background-color: #eeda90;
-    cursor: pointer;
-}
 
 
 

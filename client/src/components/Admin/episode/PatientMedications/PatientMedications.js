@@ -5,6 +5,9 @@ import 'react-select/dist/react-select.css';
 import PreviousMedication from "../PreviousMedication"
 import './PatientMedications.css';
 
+import '../../../../pages/Admin';
+
+
 
 import {
     Nav, Navbar, NavItem, NavLink, 
@@ -212,9 +215,9 @@ export default class PatientMedications extends React.Component {
                     <Col className='md-12'>
                         <Button onClick={() => this.onGenerateMedications()}> </Button>
 
-                        <Card className="patMedTableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
-                            <CardBody className="patMedTableBody">
-                                <CardTitle className="patMedTitle">Enter Patient Medications</CardTitle>
+                        <Card className="patMedTableCard TableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
+                            <CardBody className="patMedTableBody TableBody">
+                                <CardTitle className="patMedTitle Title">Enter Patient Medications</CardTitle>
                             
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
@@ -296,9 +299,9 @@ export default class PatientMedications extends React.Component {
                                     : null}
                                 </Container>
                                 <br /><br />
-                                <Button className="newMedNextBtn" onClick={() => this.handleNextButton()}>Next</Button>
+                                <Button className="newMedNextBtn NextBtn" onClick={() => this.handleNextButton()}>Next</Button>
                                 <a href={"/admin"}> 
-                                <Button className="newMedCanelBtn">Cancel</Button></a> 
+                                <Button className="newMedCanelBtn CancelBtn">Cancel</Button></a> 
 
                             </CardBody>
                         </Card>

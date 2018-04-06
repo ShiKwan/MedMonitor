@@ -1,4 +1,4 @@
-.navLogInPills,
+.navPills,
 .navlogOutpills {
     margin-top: 15px;
 }
@@ -9,16 +9,14 @@
     box-shadow: 0px 0px 15px #bab9b9;
 }
 
-.navlogOutpills .logOutBtn,
-.navLogInPills .navHomeBtn,
-.navLogInPills .navAppBtn {
+.navBtn .logOutBtn,
+.navBtn .navAppBtn {
     text-align: center;
     margin-bottom: 10px;
     font-weight: bold;
     padding: 15px 15px 15px 15px;
 }
 
-a.navHomeBtn.nav-link.active,
 a.navAppBtn.nav-link.active,
 a.logOutBtn.nav-link.active {
     background-color: #2d5366;
@@ -29,7 +27,6 @@ a.logOutBtn.nav-link.active {
     transition-duration: 1s;
 }
 
-a.navHomeBtn.nav-link:hover,
 a.navAppBtn.nav-link:hover,
 a.logOutBtn.nav-link:hover {
     background-color: #e3c044;
@@ -44,4 +41,19 @@ p.loginName {
 img {
     width: auto;
     height: 150px;
+    cursor: pointer;
+}
+
+.navBtn {
+    display: -webkit-box;
+}
+
+.navlogOutPills,
+.navLogName {
+    float: right;
+    clear: both;
+}
+
+.navBtn .navAppBtn {
+    margin-right: 15px;
 }

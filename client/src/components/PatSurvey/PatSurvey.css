@@ -2,6 +2,10 @@ div.patSurvey {
     max-width: 850px;
 }
 
+.introsurvCardHeader {
+    font-size: 30px;
+}
+
 .patSurveyCard,
 .introsurvCard {
     margin-top: 25px;

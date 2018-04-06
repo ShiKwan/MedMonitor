@@ -4,6 +4,9 @@ import {
 } from 'reactstrap';
 import './menuCard.css';
 
+import '../../../pages/Admin';
+
+
 export default class MenuCard extends React.Component {
 
 
@@ -15,9 +18,9 @@ export default class MenuCard extends React.Component {
     render () {
         return (
 
-            <Card className="actionTableCard" style={{display: this.props.menuCard ? "block" : "none"}}>
-            <CardBody className="actionTableBody">
-                <CardTitle className="actionTable">Actions</CardTitle>
+            <Card className="actionTableCard TableCard" style={{display: this.props.menuCard ? "block" : "none"}}>
+            <CardBody className="actionTableBody TableBody">
+                <CardTitle className="actionTableTitle Title">Actions</CardTitle>
 
                     <div style={{fontWeight: this.props.notificationCard ? "bold" : ""}}><a onClick={() => this.onClicked("dash board")}>Dashboard</a></div>
 
@@ -27,7 +30,7 @@ export default class MenuCard extends React.Component {
                     <div className="actTableEnrollNewPat" style={{fontWeight: this.props.addPatientCard || this.props.registerPatientCard || this.props.successPatientCard? "bold" : ""}}><a onClick={() => this.onClicked("add patient")}>Enroll new patient</a></div>
 
                     <hr />
-                    <div className=".actTableSelPhys" style={{fontWeight: this.props.selectPhysicianCard || this.props.confirmPhysicianCard || this.props.updatePhysicianCard || this.props.successUpdatePhysicianCard || this.props.removePhysicianCard || this.props.successRemovePhysicianCard ? "bold" : ""}}><a onClick={() => this.onClicked("select physician")}>Select physician</a></div>
+                    <div className="actTableSelPhys" style={{fontWeight: this.props.selectPhysicianCard || this.props.confirmPhysicianCard || this.props.updatePhysicianCard || this.props.successUpdatePhysicianCard || this.props.removePhysicianCard || this.props.successRemovePhysicianCard ? "bold" : ""}}><a onClick={() => this.onClicked("select physician")}>Select physician</a></div>
 
                     <div className="actTableAddNewPhys" style={{fontWeight: this.props.addPhysicianCard || this.props.registerPhysicianCard ||this.props.successPhysicianCard ? "bold" : ""}}><a onClick={() => this.onClicked("add physician")}>Add new physician</a></div>
                     <hr />

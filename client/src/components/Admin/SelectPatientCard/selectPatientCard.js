@@ -5,6 +5,9 @@ import {
 } from 'reactstrap';
 import './selectPatientCard.css';
 
+import '../../../pages/Admin';
+
+
 
 export default class SelectPatientCard extends React.Component {
 
@@ -16,16 +19,16 @@ export default class SelectPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="selectPatTableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
-                <CardBody className="selectPatTableBody">
-                    <CardTitle className="selectPatTitle">Select Patient</CardTitle>
+            <Card className="selectPatTableCard TableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
+                <CardBody className="selectPatTableBody TableBody">
+                    <CardTitle className="selectPatTitle Title">Select Patient</CardTitle>
 
                     <br />
                         {this.props.patientsLength ? (
 
-                            <Table className="selectPatTable">
+                            <Table className="selectPatTable Table">
 
-                                <tbody className="selectPatTableBody">
+                                <tbody className="selectPatTBody">
                                     {this.props.patients.map(item => (
                                             <tr className="selectPatDetail" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 100}}>{item.details.patient_number}</td>

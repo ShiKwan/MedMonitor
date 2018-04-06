@@ -1,12 +1,3 @@
-div.patMedTableCard {
-    border-width: 3px;
-    border-color: #2d5366;
-    margin-bottom: 25px;
-}
-
-.patMedTableBody {
-    background-color: #f3f3f1;
-}
 
 .patMedTableBody .currentMedTitle,
 .patMedTableBody .newMedTitle {
@@ -17,8 +8,15 @@ div.patMedTableCard {
     background-color: #9eb1bd;
 }
 
+/* div.patMedTableCard {
+    border-width: 3px;
+    border-color: #2d5366;
+    margin-bottom: 25px;
+}
 
-
+.patMedTableBody {
+    background-color: #f3f3f1;
+}
 
 .patMedTableBody .newMedNextBtn {
     margin-right: 10px;
@@ -42,4 +40,4 @@ div.patMedTableCard {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
-}
+} */
