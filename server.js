@@ -86,7 +86,7 @@ const io = socketIO(server);
 io.on('connection', socket => {
   console.log('User connected');
   socket.on("alertAdmin", data => {
-    io.sockets.emit("alertAdmin", `Patient '${data.name}' reported a risky incident`);
+    io.sockets.emit("alertAdmin", `Patient '${data.name}' of hospital number ${data.hospitalNum} reported a risky incident of ${data.emergencies} at ${data.date}`);
   })
   socket.on('disconnect', () => {
     console.log('user disconnected');

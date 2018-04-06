@@ -10,6 +10,9 @@ import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
 import './removePhysicianCard.css';
 
+import '../../../pages/Admin';
+
+
 
 export default class RemovePhysicianCard extends React.Component {
 
@@ -20,12 +23,12 @@ export default class RemovePhysicianCard extends React.Component {
         render () {
         return (
 
-            <Card className="removePhysTableCard" style={{display: this.props.removePhysicianCard ? "block" : "none"}}>
-                <CardBody className="removePhysTableBody">
-                    <CardTitle className="removePhysTitle">Remove Physician</CardTitle>
+            <Card className="removePhysTableCard TableCard" style={{display: this.props.removePhysicianCard ? "block" : "none"}}>
+                <CardBody className="removePhysTableBody TableBody">
+                    <CardTitle className="removePhysTitle Title">Remove Physician</CardTitle>
                         <br />
 
-                        <Form className="removePhysForm">
+                        <Form className="removePhysForm Form">
                               <FormGroup row>
                                 <Label sm={3}>Physician Id</Label>
                                 <Label sm={9}>{this.props.idNumber}</Label>
@@ -45,9 +48,9 @@ export default class RemovePhysicianCard extends React.Component {
                             Click 'Remove' to PERMANENTLY remove this physician from using the application.
                             <br />
                             <br />
-                            <Button className="removePhysRemoveBtn" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
+                            <Button className="removePhysRemoveBtn RemoveBtn" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
                             <a href="/admin">
-                            <Button className="removePhysCancelBtn">Cancel</Button></a>
+                            <Button className="removePhysCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

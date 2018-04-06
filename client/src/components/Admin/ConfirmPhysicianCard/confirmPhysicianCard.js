@@ -6,9 +6,7 @@ import {
 } from 'reactstrap';
 import './confirmPhysicianCard.css';
 
-
-
-
+import '../../../pages/Admin';
 
 
 export default class confirmPhysicianCard extends React.Component {
@@ -25,9 +23,9 @@ export default class confirmPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmPhysCardTableCard"style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
-                <CardBody className="confirmPhyCardTableBody">
-                    <CardTitle className="confirmPhysCardTitle">Review Selected Physician</CardTitle>
+            <Card className="confirmPhysCardTableCard TableCard"style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
+                <CardBody className="confirmPhyCardTableBody TableBody">
+                    <CardTitle className="confirmPhysCardTitle Title">Review Selected Physician</CardTitle>
                     <br />
                     <Table size="sm" className="confirmPhysCardTable">
                         <tbody>
@@ -50,10 +48,10 @@ export default class confirmPhysicianCard extends React.Component {
 
                     <br />
                     <br />
-                    <Button className="confirmPhysCardUpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
-                    <Button className="confirmPhysCardCancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
+                    <Button className="confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
+                    <Button className="confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
                     <a href="/admin">
-                    <Button className="confirmPhysCardBackBtn">Back</Button></a>
+                    <Button className="confirmPhysCardBackBtn BackBtn">Back</Button></a>
 
                 </CardBody>
             </Card>

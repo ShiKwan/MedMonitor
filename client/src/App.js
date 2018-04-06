@@ -140,16 +140,22 @@ class App extends Component {
     })
   }
   
-  handleIncident =  () => {
+  handleIncident =  (emergencies, patientNumber) => {
       console.log("socket io fired");
-      socket.emit('alertAdmin', {'name' : localStorage.getItem("firstName") +  " " + localStorage.getItem("lastName")});
+      //get rid of the dangling comma
+      emergencies = emergencies.slice(0,-1);
+      socket.emit('alertAdmin', {'name' : localStorage.getItem("firstName") +  " " + localStorage.getItem("lastName"),
+                                  'hospitalNum' : patientNumber,
+                                  'emergencies' : emergencies,
+                                  'date' : Date.now()
+                                });
       //send email to doctor
       mailerAPI.sendToDoctor({
                     name : this.state.username,
                     subject : `MedMonitor : Urgent incident from  ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}`,
                     email : this.state.newAccountEmail,
                     message : `
-                              Your patient ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")} has reported a risky incident! 
+                              Your patient ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")} has reported risky emergencies ${emergencies}! 
                               Please log on to the application to review the patient information and schedule the earliest possible appointment for him.
                               From
                               Team MedMonitor`

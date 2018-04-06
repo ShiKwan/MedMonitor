@@ -10,6 +10,8 @@ import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
 import './changeAppointmentCard.css';
 
+import '../../../pages/Admin';
+
 
 export default class ChangeAppointmentCard extends React.Component {
 
@@ -29,11 +31,11 @@ export default class ChangeAppointmentCard extends React.Component {
     render () {
         return (
 
-            <Card className="updatePatDetailTableCard" style={{display: this.props.changeAppointmentCard ? "block" : "none"}}>
-                <CardBody className="updatePatDetailTableBody">
-                    <CardTitle className="updatePatDetailTitle">Update Patient Details </CardTitle>
+            <Card className="updatePatDetailTableCard TableCard" style={{display: this.props.changeAppointmentCard ? "block" : "none"}}>
+                <CardBody className="updatePatDetailTableBody TableBody">
+                    <CardTitle className="updatePatDetailTitle Title">Update Patient Details </CardTitle>
                         <br />
-                        <Form className="updatePatDetailForm">
+                        <Form className="updatePatDetailForm Form">
 
                             <FormGroup row>
                                 <Label sm={3}>Hospital number</Label>
@@ -72,9 +74,9 @@ export default class ChangeAppointmentCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="updatePatDetailUpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
+                            <Button className="updatePatDetailUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
-                            <Button className="updatePatDetailCancelBtn">Cancel</Button></a>
+                            <Button className="updatePatDetailCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

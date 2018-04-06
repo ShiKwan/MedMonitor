@@ -6,6 +6,8 @@ import {
 } from 'reactstrap';
 import './notificationCard.css';
 
+import '../../../pages/Admin';
+
 
 
 export default class confirmPatientCard extends React.Component {
@@ -18,9 +20,9 @@ export default class confirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="dashboardTableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
-                <CardBody className="dashboardTableBody">
-                    <CardTitle className="dashboardTitle">Dashboard</CardTitle>
+            <Card className="dashboardTableCard TableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
+                <CardBody className="dashboardTableBody TableBody">
+                    <CardTitle className="dashboardTitle Title">Dashboard</CardTitle>
                     
                         <p className="tableTitle">You currently have {this.props.numPatients} patients using this application.</p> 
 
@@ -28,7 +30,7 @@ export default class confirmPatientCard extends React.Component {
 
                         {this.props.patientsWeekListLength ? (
 
-                        <Table size="sm" className="patEnrolledTable">
+                        <Table size="sm" className="patEnrolledTable Table">
                             <thead>
                                 <tr>
                                     <th>Name</th><th>Hosp number</th><th>Date enrolled</th><th>Primary physician</th>

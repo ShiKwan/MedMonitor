@@ -5,6 +5,9 @@ import {
 } from 'reactstrap';
 import './selectPhysicianCard.css';
 
+import '../../../pages/Admin';
+
+
 export default class SelectPhysicianCard extends React.Component {
 
     onClicked(id) {
@@ -15,17 +18,17 @@ export default class SelectPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="selectPhysTableCard" style={{display: this.props.selectPhysicianCard ? "block" : "none"}}>
-                <CardBody className="selectPhysTableBody">
-                    <CardTitle className="selectPhysTitle">Select Physician</CardTitle>
+            <Card className="selectPhysTableCard TableCard" style={{display: this.props.selectPhysicianCard ? "block" : "none"}}>
+                <CardBody className="selectPhysTableBody TableBody">
+                    <CardTitle className="selectPhysTitle Title">Select Physician</CardTitle>
 
                     <br />
                         {this.props.physiciansLength ? (
 
-                            <Table className="selectPhysTable">
+                            <Table className="selectPhysTable Table">
                                 <tbody>
                                     {this.props.physicians.map(item => (
-                                            <tr className="selectPhysDetail" onClick={() => this.onClicked(item._id)}>
+                                            <tr className="selectPhysDetail Details" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 50}}>{item.id_number}</td>
                                                     <td style={{width: 150}}>{item.name.first}&nbsp;{item.name.last}</td> 
                                                     <td style={{width: 400}}>{item.office}</td> 

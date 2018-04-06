@@ -8,7 +8,9 @@ import {
 import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
 import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
-import './addPhysicianCard.css';
+
+import '../../../pages/Admin';
+
 
 
 export default class AddPhysicianCard extends React.Component {
@@ -25,12 +27,12 @@ export default class AddPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="addNewPhysTableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
-                <CardBody className="addNewPhysTableBody">
-                    <CardTitle className="addNewPhysTitle">Add New Physician</CardTitle>
+            <Card className="addNewPhysTableCard TableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
+                <CardBody className="addNewPhysTableBody TableBody">
+                    <CardTitle className="addNewPhysTitle Title">Add New Physician</CardTitle>
                         <br />
         
-                        <Form className="addNewPhysForm">
+                        <Form className="addNewPhysForm Form">
 
                             <FormGroup3_9Name
                                 nameFirstName = {"dr_firstname"} 
@@ -67,8 +69,9 @@ export default class AddPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="addNewPhysEnrollBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
-                            <a href="/admin"><Button className="addNewphysCanelBtn">Cancel</Button></a>
+                            <Button className="addNewPhysAddBtn AddBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
+                            <a href="/admin">
+                            <Button className="addNewphysCanelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

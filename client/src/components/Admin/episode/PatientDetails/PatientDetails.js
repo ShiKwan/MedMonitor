@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './PatientDetails.css';
 
+import '../../../../pages/Admin';
+
+
 import {
     Nav, Navbar, NavItem, NavLink, 
     Form, FormGroup, Label, Input, FormText,
@@ -19,9 +22,9 @@ export default class PatientDetails extends React.Component {
     render () {
         return (
             
-            <Card className="revPatDetailTableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
-                <CardBody className="revPatDetailTableBody">
-                    <CardTitle className="revPatDetialTitle">Review Patient Details</CardTitle>
+            <Card className="revPatDetailTableCard TableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
+                <CardBody className="revPatDetailTableBody TableBody">
+                    <CardTitle className="revPatDetialTitle Title">Review Patient Details</CardTitle>
                 
                     <CardText className="revPatDetailCard">
                         <br />
@@ -44,14 +47,14 @@ export default class PatientDetails extends React.Component {
                     </CardText>
 
                     <div style={{display: this.props.active ? "block" : "none"}}>
-                        <Button className="revPatDetailNextBtn" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
+                        <Button className="revPatDetailNextBtn NextBtn" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
                         <a href={"/admin"}>
-                            <Button className="revPatDetailCanelBtn">Cancel</Button>
+                            <Button className="revPatDetailCanelBtn CancelBtn">Cancel</Button>
                         </a> 
                     </div>
                     <div style={{display: !this.props.active ? "block" : "none"}}>
                         <a href={"/admin"}>
-                        <Button className="revPatDetailBackBtn">Back</Button></a> 
+                        <Button className="revPatDetailBackBtn BackBtn">Back</Button></a> 
                     </div>
                     
                 </CardBody>

@@ -28,11 +28,12 @@ import SuccessUpdatePhysicianCard from "../../components/Admin/SuccessUpdatePhys
 import RemovePhysicianCard from "../../components/Admin/RemovePhysicianCard"
 import SuccessRemovePhysicianCard from "../../components/Admin/SuccessRemovePhysicianCard"
 
-import { 
-    Button, 
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table, Alert
+import {  
+    Container, 
+    Row, 
+    Col, 
+    CardText, 
+    Alert
 } from 'reactstrap';
 
 
@@ -505,7 +506,7 @@ class Admin extends Component {
 
             <Container fluid>
                 <Container>
-                   <Alert color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
+                   <Alert className="panicAlertBtn" color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
                 </Container>
                 <Container className="clearfix">
                 {/* {this.state.patients.map( (x) => console.log(x))} */}

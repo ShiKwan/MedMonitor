@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import "./PatSurvey.css";
 import QCheckbox from "../Patient/Survey/Checkbox";
 import QRadio from "../Patient/Survey/Radio";
+import patientAPI from "../../utils/patientAPI";
 import { 
     Container,
     Card,
@@ -28,8 +29,9 @@ var questions = [{
     question: 'Are You Current With Your Parkinson\'s Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
     color: ['green', 'red'],
-    value: [0, 4],
+    value: [1, 0],
     className: ['survRadBtnGreen', 'survRadBtnRed'],
+    label: "meds_taken",
     selectionType: "radio",
     answered : '',
     firstQuestion : 1,
@@ -43,10 +45,11 @@ var questions = [{
     question: 'Since taking your LAST Parkinson\'s medication: have you had any:',
     answers: ['Falls', 'Freezing Of Gait', 'Choking On Food', 'Hallucinations', 'None Of These'],
     color: ['red', 'red', 'red', 'red', 'green'],
-    value: [4, 4, 4, 4, 0],
+    value: [0, 0, 0, 0, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
     selectionType: "checkbox",
     answered : '',
+    label: "emergencies",
     firstQuestion : 0,
     questionNum : 1
 },
@@ -62,10 +65,10 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "kickin",
     firstQuestion : 0,
     questionNum : 2
 },
-
 {
     survHeader: 'WEARING OFF',
     question: 'Since taking your LAST Parkinson\'s medication: if wearing off, how long ago.?',
@@ -75,6 +78,7 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "wearoff",
     firstQuestion : 0,
     questionNum : 3
 },
@@ -87,6 +91,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "movement",
     answered : '',
     firstQuestion : 0,
     questionNum : 4
@@ -100,6 +105,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "sleepy",
     answered : '',
     firstQuestion : 0,
     questionNum : 5
@@ -114,6 +120,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "offtime",
     answered : '',
     firstQuestion : 0,
     questionNum : 6
@@ -127,6 +134,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "tremor",
     answered : '',
     firstQuestion : 0,
     questionNum : 7
@@ -140,6 +148,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "walking",
     answered : '',
     firstQuestion : 0,
     questionNum : 8
@@ -153,6 +162,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "balance",
     answered : '',
     firstQuestion : 0,
     questionNum : 9
@@ -168,6 +178,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "sickness",
     answered : '',
     firstQuestion : 0,
     questionNum : 10
@@ -181,6 +192,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "dizziness",
     answered : '',
     firstQuestion : 0,
     questionNum : 11
@@ -194,6 +206,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "headaches",
     answered : '',
     firstQuestion : 0,
     questionNum : 12
@@ -208,11 +221,10 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "drymouth",
     firstQuestion : 0,
     questionNum : 13
 },
-
-
 ];
 
 
@@ -232,20 +244,74 @@ class PatSurvey extends Component {
     handlePopulate = () => {
         console.log(this.state);
     }
-    handleCompletedCallback = (surveyHeader, answer) => {
-        console.log("Survey header : " + surveyHeader);
+    handleCompletedCallback = (label, answer) => {
+        console.log("Survey header : " + label);
         console.log("Answer : ", answer);
-        if(surveyHeader.toUpperCase() === 'WORRYING SYMPTOMS'){
-            if(!answer.includes("None Of These")){
-                this.props.handleIncident()
+        
+        if(label === 'emergencies'){
+            console.log(questions[0]);
+            let newAnswer = [0,0,0,0];
+            for(let i =0; i< answer.length; i++){
+                if(answer[i] === questions[0].answers[0]){
+                    newAnswer[0] = 1;
+                }else if(answer[i] === questions[0].answers[1]){
+                    newAnswer[1] = 1;
+                }else if(answer[i] === questions[0].answers[2]){
+                    newAnswer[2] = 1;
+                }else if(answer[i] === questions[0].answers[3]){
+                    newAnswer[3] = 1;
+                }
             }
+            if(!answer.includes("None Of These")){
+                let stringAnswer = ""
+                answer.map((x) => {
+                    stringAnswer += x + ","
+                })
+
+                this.props.handleIncident(stringAnswer, localStorage.getItem("patient_number"))
+            }
+            console.log("new answer : " + newAnswer);
+            answer = newAnswer;
         }
         let newCompleted = this.state.completed;
-        newCompleted[surveyHeader] = answer
+        newCompleted[label] = answer
         this.setState({
             completed : newCompleted
         })
+        
     };
+    saveAnswersToDb = () =>{
+        let objAnswers ={
+            date_time : Date.now(),
+            meds_taken : this.state.completed.meds_taken,
+            emergencies : {
+                falls : this.state.completed.emergencies[0],
+                freezing : this.state.completed.emergencies[1],
+                choking : this.state.completed.emergencies[2],
+                hallucination : this.state.completed.emergencies[3],
+            },
+            symptoms : {
+                kickin : this.state.completed.kickin,
+                wearoff : this.state.completed.wearoff,
+                movement : this.state.completed.movement,
+                sleepy : this.state.completed.sleepy,
+                offtime : this.state.completed.offtime,
+                tremor : this.state.completed.tremor,
+                walking : this.state.completed.walking,
+                balance : this.state.completed.balance,
+            },
+            side_effects: {
+                sickness : this.state.completed.sickness,
+                dizziness : this.state.completed.dizziness,
+                headaches : this.state.completed.headaches,
+                drymouth : this.state.completed.drymouth,
+            }
+        }
+        console.log("objAnswers: ", objAnswers)
+        patientAPI.createNewRecord(localStorage.getItem("userId"), objAnswers)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
 
     handleQuestionCallback = () =>{
         let newQuestions = questions
@@ -257,6 +323,8 @@ class PatSurvey extends Component {
             })
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
+            console.log("Done with question: ", this.state.completed);
+            this.saveAnswersToDb();
         }
     }
     handleProgressBar = (answered) =>{
@@ -275,7 +343,7 @@ class PatSurvey extends Component {
             <Container fluid className="patSurvey">
                 <Button onClick={this.handlePopulate}>Show State</Button>
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS LONG SURVEY</CardHeader>
+                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
                     <br />
                         <div>
                             {this.handleProgressBar(`${this.state.answered}`)}
@@ -289,6 +357,8 @@ class PatSurvey extends Component {
                             x.selectionType  === "radio" ?
                                 <QRadio
                                     key = {x.survHeader}
+                                    label = {x.label}
+                                    data_value = {x.value}
                                     survHeader = {x.survHeader}
                                     question = {x.question}
                                     answers = {x.answers}
@@ -305,6 +375,8 @@ class PatSurvey extends Component {
                             :   
                                 <QCheckbox
                                     key = {x.survHeader}
+                                    label={x.label}
+                                    data_value={x.value}
                                     survHeader = {x.survHeader}
                                     question = {x.question}
                                     answers = {x.answers}

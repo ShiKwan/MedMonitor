@@ -8,11 +8,7 @@ import {
     Navbar,
     NavItem,
     NavLink,
-    Input,
-    Form,
-    FormGroup,
     Label,
-    Button,
     Container
 } from 'reactstrap';
 
@@ -54,23 +50,35 @@ export default class Header extends React.Component {
         return (
                 <Navbar color="navbar" light expand="md">
                     <Container>
-                        <Nav pills className="navLogInPills">
-                            <NavItem>
-                            <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active>HOME</NavLink>
-                            {localStorage.getItem("username") && localStorage.getItem("username") !== "null" ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null }
-                            </NavItem>
-                        </Nav>
-                        <img className="med_logo" src={logo} alt={"logo"} />
-                        <Nav pills className="navlogOutpills">
-                            <NavItem className="navLogName">
-                                <Label className="loginName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
-                                {localStorage.getItem("username")!== "null"?
-                                <NavLink href="/home" className="logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
-                                :
-                                <NavLink href="/home" className="logOutBtn" size="lg" active>LOG IN</NavLink>
-                                }
-                            </NavItem>
-                        </Nav>
+                            <Nav pills className="navPills">
+                                <img className="med_logo" src={logo} alt={"logo"} href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active />
+                            </Nav>
+
+                            <Nav pills className="navlogOutPills">
+                                <NavItem className="navLogName">
+                                    <Container>
+                                        <Label className="navLogName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
+                                    </Container>
+                                    {localStorage.getItem("username")!== "null"?
+                                    <Container className="navBtn">
+                                        <NavItem>
+                                            {/* <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active>HOME</NavLink> */}
+                                            {localStorage.getItem("username") && localStorage.getItem("username") !== "null" ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null}
+                                        </NavItem>
+                                        <NavLink href="/home" className="logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
+                                    </Container>
+                                    :
+                                    <Container>
+                                    <NavItem>
+                                        {/* <NavLink href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active>HOME</NavLink> */}
+                                        {localStorage.getItem("username") && localStorage.getItem("username") !== "null" ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null}
+                                    </NavItem>
+                                    <NavLink href="/home" className="logOutBtn" size="lg" active>LOG IN</NavLink>
+                                    </Container>
+
+                                    }
+                                </NavItem>
+                            </Nav>
                     </Container>
                 </Navbar>
         );

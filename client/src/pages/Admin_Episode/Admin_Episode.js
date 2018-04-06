@@ -52,6 +52,7 @@ handleLoadPatient = (e) => {
 
     this.loadPatient();
     console.log("current state: ", this.state);
+    console.log("new appt : " , this.state.newAppt);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
@@ -181,7 +182,9 @@ prepDataToSave = () =>{
             .then(res => {
                 console.log(res)
                 patientAPI.updateAppointment(window.location.search.substring(4), this.state.newAppt)
-                    .then(res => console.log(res))
+                    .then(res => {
+                        console.log(res)
+                    })
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
@@ -267,6 +270,14 @@ populateState = () =>{
                                     handleMedCallback={this.handleMedCallback}
                                 />
                                 <PatientNextAppointment
+                                    first_name={this.state.patientDetails.first_name}
+                                    last_name={this.state.patientDetails.last_name}
+                                    dob={this.state.patientDetails.dob}
+                                    date_created={this.state.patient.date_created}
+                                    active={this.state.patient.active}
+                                    email={this.state.patientDetails.email}
+                                    phone={this.state.patientDetails.phone}
+                                    patientLastEpisode={this.state.patientLastEpisode}
                                     addNextAppointmentCard = {this.state.addNextAppointmentCard}
                                     confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
                                     handleApptCallback={this.handleApptCallback}

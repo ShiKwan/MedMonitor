@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 // import Header from "../../components/Header";
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
-import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
+import { 
+    Container, 
+    TabContent,
+    TabPane, 
+    Nav, 
+    NavItem, 
+    NavLink, 
+    Row, 
+    Col
+} from 'reactstrap';
+
 import userAPI from '../../utils/userAPI';
 import patientAPI from '../../utils/patientAPI';
 import doctorAPI from '../../utils/doctorAPI';
@@ -57,8 +67,6 @@ class Home extends Component {
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
-                localStorage.setItem("messageCenter", "Login successfully!");
-                localStorage.setItem("messageStatus", "success");
                 if(res.data.patient_id && res.data.role.toLowerCase() === 'patient'){
                     localStorage.setItem("userId", res.data.patient_id);
                 }else if(res.data.doctor_id && (res.data.role.toLowerCase() === 'admin' || res.data.role.toLowerCase() === 'doctor')){
@@ -69,8 +77,6 @@ class Home extends Component {
                     role: res.data.role,
                     email: res.data.email,
                     username: res.data.username,
-                    messageCenter: "Login successfully!",
-                    messageStatus: "success"
                 }, function(){
                     if(this.state.role.toLowerCase()==="patient"){
                         patientAPI.findPatientInfoForPatient(this.state.id)
@@ -79,6 +85,8 @@ class Home extends Component {
                             console.log(res);
                             localStorage.setItem("firstName", res.data.details.first_name);
                             localStorage.setItem("lastName", res.data.details.last_name);
+                            localStorage.setItem("patient_number", res.data.details.patient_number);
+                            localStorage.setItem("patient_phone", res.data.details.phone);
                         })
                         .catch(err => console.log(err));
 

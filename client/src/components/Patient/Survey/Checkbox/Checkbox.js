@@ -33,6 +33,7 @@ export default class Checkbox extends React.Component {
 
     }
     onCheckboxBtnClick(selected) {
+        console.log("selected: " , selected)
         const index = this.state.cSelected.indexOf(selected);
         if (index < 0) {
             this.state.cSelected.push(selected);
@@ -50,8 +51,8 @@ export default class Checkbox extends React.Component {
         this.setState({
             answer : this.state.cSelected
         }, function(){
-            console.log("send question survey title '" + this.props.survHeader.toLowerCase() + "' with answer : '" + this.state.answer + "' to answered array..");
-            this.props.handleCompletedCallback(this.props.survHeader.toLowerCase(), this.state.answer);
+            console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : '" + this.state.answer + "' to answered array..");
+            this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
             this.props.handleQuestionCallback()
         });
         
@@ -67,16 +68,18 @@ export default class Checkbox extends React.Component {
                     <CardText className="surveyQandA"><h4>{this.props.question}</h4></CardText>
 
                     <div className="survChkGroup">
-                        {this.props.answers.map((answer, index) => 
+                        {this.props.data_value.map((answer, index) => 
                             <Container>
                             <QButton 
-                                answer = {answer}
+                                answer={this.props.answers[index]}
                                 index = {index}
                                 survHeader = {this.props.survHeader}
                                 className = {this.props.className}
                                 color = {this.props.color}
                                 onClickHandle = {this.onCheckboxBtnClick}
                                 active = {this.state.cSelected}
+                                data_value = {this.props.data_value}
+                                selectionType = {this.props.selectionType}
                             >
                             </QButton>
                             </Container>
