@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import Header from "../../components/Header";
 import '../Admin/Admin.css';
 import {
     Nav,
@@ -11,8 +10,15 @@ import {
     FormGroup,
     Label,
     Button,
-    Container
+    Container,
+    Row, 
+    Col
 } from 'reactstrap';
+import Chart from "../../components/Admin/Report/Chart";
+import EpisodeInfo from "../../components/Admin/Report/EpisodeInfo";
+import ReportHeader from "../../components/Admin/Report/Header";
+import Medication from "../../components/Admin/Report/Medication";
+import PatientInfo from "../../components/Admin/Report/PatientInfo";
 
 class Admin_Report extends Component {
     state = { 
@@ -27,13 +33,28 @@ componentDidMount() {
 
     render() {
         return (
-            <div>
+            <Container fluid>
+                <ReportHeader />
+                <hr />
                 <Container fluid>
-                {/* <Header /> */}
-                    Admin Report Page<br />
-                    Patient id: {this.state.patientId}
+                    <Row>
+                        <Col md='6'>
+                            <PatientInfo />
+                        </Col>
+                        <Col md='6'>
+                            <EpisodeInfo />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='3'>
+                            <Medication />
+                        </Col>
+                        <Col md='9'>
+                            <Chart />
+                        </Col>
+                    </Row>
                 </Container>
-            </div>
+            </Container>
         )
     }
 };
