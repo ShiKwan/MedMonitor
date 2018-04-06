@@ -29,10 +29,7 @@ div.patMedInfo {
     display: grid;
 }
 
-button.patMedRemindBtn,
-button.somethingBtn1,
-button.somethingBtn2,
-button.somethingBtn3 {
+button.patMedRemindBtn {
     padding: 15px 25px 15px 25px;
     color: #e3c044;
     font-weight: bold;
@@ -43,10 +40,7 @@ button.somethingBtn3 {
     transition-duration: 1s;
 }
 
-button.patMedRemindBtn:hover,
-button.somethingBtn1:hover,
-button.somethingBtn2:hover,
-button.somethingBtn3:hover {
+button.patMedRemindBtn:hover {
     padding: 15px 25px 15px 25px;
     color: #2d5366;
     background-color: #e3c044;

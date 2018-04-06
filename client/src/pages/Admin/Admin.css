@@ -7,7 +7,6 @@ div.panicAlertBtn {
 
 /* /////////////////////////////////////////////////////////////////////////////////// */
 
-
 div.TableCard {
     border-width: 3px;
     border-color: #2d5366;
@@ -36,9 +35,7 @@ div.TableCard {
 .TableBody .CreateBtn,
 .TableBody .ReportBtn,
 .TableBody .CloseBtn,
-.TableBody .AddBtn
-
- {
+.TableBody .AddBtn {
     margin-right: 10px;
 }
 
@@ -53,9 +50,7 @@ div.TableCard {
 .TableBody .CreateBtn,
 .TableBody .ReportBtn,
 .TableBody .CloseBtn,
-.TableBody .AddBtn
-
- {
+.TableBody .AddBtn {
     margin-top: 7px;
     color: #e3c044;
     font-weight: bold;
@@ -78,14 +73,11 @@ div.TableCard {
 .TableBody .CreateBtn:hover,
 .TableBody .ReportBtn:hover,
 .TableBody .CloseBtn:hover,
-.TableBody .AddBtn:hover
-
-    {
+.TableBody .AddBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
 }
-
 
 /* ////////////////////////////////////////// */
 
@@ -105,9 +97,7 @@ div.TableCard {
 .Form .CreateBtn,
 .Form .ReportBtn,
 .Form .CloseBtn,
-.Form .AddBtn
-
-    {
+.Form .AddBtn {
     margin-right: 10px;
 }
 
@@ -122,8 +112,7 @@ div.TableCard {
 .Form .CreateBtn,
 .Form .ReportBtn,
 .Form .CloseBtn,
-.Form .AddBtn
-    {
+.Form .AddBtn {
     margin-top: 7px;
     color: #e3c044;
     font-weight: bold;
@@ -146,9 +135,7 @@ div.TableCard {
 .Form .CreateBtn:hover,
 .Form .ReportBtn:hover,
 .Form .CloseBtn:hover,
-.Form .AddBtn:hover
-
-    {
+.Form .AddBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
