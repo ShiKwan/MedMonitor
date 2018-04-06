@@ -28,8 +28,9 @@ var questions = [{
     question: 'Are You Current With Your Parkinson\'s Medication?',
     answers: ['Yes, I Am', 'No, I Am Not'],
     color: ['green', 'red'],
-    value: [0, 4],
+    value: [1, 0],
     className: ['survRadBtnGreen', 'survRadBtnRed'],
+    label: "meds_taken",
     selectionType: "radio",
     answered : '',
     firstQuestion : 1,
@@ -43,10 +44,11 @@ var questions = [{
     question: 'Since taking your LAST Parkinson\'s medication: have you had any:',
     answers: ['Falls', 'Freezing Of Gait', 'Choking On Food', 'Hallucinations', 'None Of These'],
     color: ['red', 'red', 'red', 'red', 'green'],
-    value: [4, 4, 4, 4, 0],
+    value: [0, 0, 0, 0, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
     selectionType: "checkbox",
     answered : '',
+    label: "emergencies",
     firstQuestion : 0,
     questionNum : 1
 },
@@ -62,6 +64,7 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "kickin",
     firstQuestion : 0,
     questionNum : 2
 },
@@ -75,6 +78,7 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "wearoff",
     firstQuestion : 0,
     questionNum : 3
 },
@@ -87,6 +91,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "movement",
     answered : '',
     firstQuestion : 0,
     questionNum : 4
@@ -100,6 +105,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "sleepy",
     answered : '',
     firstQuestion : 0,
     questionNum : 5
@@ -114,6 +120,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "offtime",
     answered : '',
     firstQuestion : 0,
     questionNum : 6
@@ -127,6 +134,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "tremor",
     answered : '',
     firstQuestion : 0,
     questionNum : 7
@@ -140,6 +148,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "walking",
     answered : '',
     firstQuestion : 0,
     questionNum : 8
@@ -153,6 +162,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "balance",
     answered : '',
     firstQuestion : 0,
     questionNum : 9
@@ -168,6 +178,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "sickness",
     answered : '',
     firstQuestion : 0,
     questionNum : 10
@@ -181,6 +192,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "dizziness",
     answered : '',
     firstQuestion : 0,
     questionNum : 11
@@ -194,6 +206,7 @@ var questions = [{
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
+    label: "headaches",
     answered : '',
     firstQuestion : 0,
     questionNum : 12
@@ -208,6 +221,7 @@ var questions = [{
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
     selectionType: "radio",
     answered : '',
+    label: "drymouth",
     firstQuestion : 0,
     questionNum : 13
 },
@@ -232,16 +246,16 @@ class PatSurvey extends Component {
     handlePopulate = () => {
         console.log(this.state);
     }
-    handleCompletedCallback = (surveyHeader, answer) => {
-        console.log("Survey header : " + surveyHeader);
+    handleCompletedCallback = (label, answer) => {
+        console.log("Survey header : " + label);
         console.log("Answer : ", answer);
-        if(surveyHeader.toUpperCase() === 'WORRYING SYMPTOMS'){
+        if(label.toUpperCase() === 'WORRYING SYMPTOMS'){
             if(!answer.includes("None Of These")){
                 this.props.handleIncident()
             }
         }
         let newCompleted = this.state.completed;
-        newCompleted[surveyHeader] = answer
+        newCompleted[label] = answer
         this.setState({
             completed : newCompleted
         })
@@ -289,6 +303,8 @@ class PatSurvey extends Component {
                             x.selectionType  === "radio" ?
                                 <QRadio
                                     key = {x.survHeader}
+                                    label = {x.label}
+                                    data_value = {x.value}
                                     survHeader = {x.survHeader}
                                     question = {x.question}
                                     answers = {x.answers}
@@ -305,6 +321,8 @@ class PatSurvey extends Component {
                             :   
                                 <QCheckbox
                                     key = {x.survHeader}
+                                    label={x.label}
+                                    data_value={x.value}
                                     survHeader = {x.survHeader}
                                     question = {x.question}
                                     answers = {x.answers}

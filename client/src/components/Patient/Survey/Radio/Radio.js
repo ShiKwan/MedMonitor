@@ -28,6 +28,7 @@ export default class Radio extends React.Component {
     }
 
     onRadioBtnClick(rSelected) {
+        console.log(rSelected);
         this.setState({ rSelected });
         console.log(this.state.rSelected);
     }
@@ -39,8 +40,8 @@ export default class Radio extends React.Component {
         this.setState({
             answer : this.state.rSelected
         }, function(){
-            console.log("send question survey title '" + this.props.survHeader.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
-            this.props.handleCompletedCallback(this.props.survHeader.toLowerCase(), this.state.answer);
+            console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
+            this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
             this.props.handleQuestionCallback()
         });
         
@@ -57,18 +58,22 @@ export default class Radio extends React.Component {
                             <CardText className="surveyQandA"><h4>{this.props.question}</h4></CardText>
 
                             <div className="survRadGroup">
-                                {this.props.answers.map( (answer, index) => {
+                                {this.props.data_value.map( (answer, index) => {
                                     //another component
+                                    console.log("in map, answer is : " , answer);
                                     return(
                                         <Container>
                                         <QButton 
                                             index = {`${index}`}
-                                            answer = {`${answer}`}
+                                            answer = {this.props.answers[index]}
                                             survHeader = {this.props.survHeader}
                                             className = {this.props.className}
                                             color = {this.props.color}
+                                            selectionType = {this.props.selectionType}
                                             onClickHandle = {this.onRadioBtnClick}
                                             active = {this.state.rSelected}
+                                            data_value={this.props.data_value[index]}
+                                            selectionType = {this.props.selectionType}
                                         >
                                         </QButton>
                                         </Container>

@@ -7,7 +7,6 @@ import PatientConfirmEpisode from "../../components/Admin/episode/ConfirmEpisode
 import PatientSuccessEpisode from "../../components/Admin/episode/SuccessEpisode" 
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
-import mailerAPI from "../../utils/nodemailerAPI";
 import medicationAPI from "../../utils/medicationAPI";
 import {
     Nav, Navbar, NavItem, NavLink, 
@@ -53,6 +52,7 @@ handleLoadPatient = (e) => {
 
     this.loadPatient();
     console.log("current state: ", this.state);
+    console.log("new appt : " , this.state.newAppt);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
@@ -184,30 +184,6 @@ prepDataToSave = () =>{
                 patientAPI.updateAppointment(window.location.search.substring(4), this.state.newAppt)
                     .then(res => {
                         console.log(res)
-                        mailerAPI.sendToPatient({
-                            name : this.state.username,
-                            email : this.state.newAccountEmail,
-                            message : 
-                            `
-                            Dear ${this.state.patient.details.first_name} ${this.state.patient.details.last_name},
-                            We have scheduled an appointment for you with ${this.state.patientLastEpisode} on ${this.patientAppointment.next_appt}. 
-                            These are the comment from your doctor: 
-                            
-                            ${this.patientAppointment.comments}
-
-                            As we are progressing through your health wealthness, we would like to remind you to keep track of your wellness frequently with our application.
-                            If you need a reminder for medication time for current episode and appointment time, please visit the application. 
-                            From:
-                            MedMonitor
-                            `
-                })
-                .then(res =>{
-                    console.log(res);
-                    console.log("mail man work real hard!");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
                     })
                     .catch(err => console.log(err));
             })
@@ -294,6 +270,14 @@ populateState = () =>{
                                     handleMedCallback={this.handleMedCallback}
                                 />
                                 <PatientNextAppointment
+                                    first_name={this.state.patientDetails.first_name}
+                                    last_name={this.state.patientDetails.last_name}
+                                    dob={this.state.patientDetails.dob}
+                                    date_created={this.state.patient.date_created}
+                                    active={this.state.patient.active}
+                                    email={this.state.patientDetails.email}
+                                    phone={this.state.patientDetails.phone}
+                                    patientLastEpisode={this.state.patientLastEpisode}
                                     addNextAppointmentCard = {this.state.addNextAppointmentCard}
                                     confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
                                     handleApptCallback={this.handleApptCallback}

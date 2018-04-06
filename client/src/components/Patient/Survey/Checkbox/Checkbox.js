@@ -67,16 +67,18 @@ export default class Checkbox extends React.Component {
                     <CardText className="surveyQandA"><h4>{this.props.question}</h4></CardText>
 
                     <div className="survChkGroup">
-                        {this.props.answers.map((answer, index) => 
+                        {this.props.data_value.map((answer, index) => 
                             <Container>
                             <QButton 
-                                answer = {answer}
+                                answer={this.props.answers[index]}
                                 index = {index}
                                 survHeader = {this.props.survHeader}
                                 className = {this.props.className}
                                 color = {this.props.color}
                                 onClickHandle = {this.onCheckboxBtnClick}
                                 active = {this.state.cSelected}
+                                data_value = {this.props.data_value}
+                                selectionType = {this.props.selectionType}
                             >
                             </QButton>
                             </Container>
