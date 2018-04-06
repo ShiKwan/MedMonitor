@@ -94,6 +94,8 @@ class Admin extends Component {
         pt_dob: "",
         pt_active: "",
         pt_appt: "",
+        pt_newApptTime: "",
+        pt_newApptDate: "",
         pt_email: "",
         pt_phone: "",   
         pt_username: "",
@@ -143,8 +145,8 @@ class Admin extends Component {
         this.setState({successPatientCard: false});
         this.setState({updatePatientCard: false});
         this.setState({successUpdatePatientCard: false});
-        this.setState({changeAppointmenttCard: false});
-        this.setState({successChangeAppointmenttCard: false});
+        this.setState({changeAppointmentCard: false});
+        this.setState({successChangeAppointmentCard: false});
         this.setState({confirmPhysicianCard: false});
         this.setState({registerPhysicianCard: false});
         this.setState({successPhysicianCard: false});
@@ -185,6 +187,8 @@ class Admin extends Component {
         this.setState({ pt_username: "" });
         this.setState({ pt_password: "" }); 
         this.setState({ pt_id: "" });
+        this.setState({ pt_newApptTime: ""})
+        this.setState({ pt_newApptDate: ""})
         this.setState({ patient_name: "" });
         this.setState({ patient_email: "" });
 
@@ -222,7 +226,6 @@ class Admin extends Component {
        
         patientAPI.findPatientInfoForAdmin(id)
             .then(res => {
-                console.log("find patient info for admin", res);
                 this.setState({confirmPatientCard: true});
                 this.setState({selectPatientCard: false});
                 this.setState({notificationCard: false});
@@ -333,8 +336,8 @@ class Admin extends Component {
 
     updatePatient = (id) => {
         patientAPI.updateContact(id, {
-            email: this.state.email,
-            phone: this.state.phone,
+            email: this.state.pt_email ? this.state.pt_email : this.state.patientDetails.email,
+            phone: this.state.pt_phone ? this.state.pt_phone : this.state.patientDetails.phone
             // timestamps: {'created_at', 'updated_at' }
         })
         .then(res => {
@@ -352,7 +355,9 @@ class Admin extends Component {
      };
 
     updateAppointment = (id) => {
+        this.state.pt_newApptDate ? console.log(this.state.pt_newApptDate) : null;
         patientAPI.updateAppointment(id, {
+            
             next_appt: Date(), //this.state.next_appt,
             comments: "some new comments" //this.state.comments
         })
@@ -368,7 +373,6 @@ class Admin extends Component {
     confirmPhysician = (id) => {
         doctorAPI.findOne(id)
             .then(res => {
-                console.log("find physician info for admin", res);
                 this.setState({confirmPhysicianCard: true});
                 this.setState({selectPhysicianCard: false});
                 this.setState({physician: res.data});
@@ -452,9 +456,9 @@ class Admin extends Component {
 
     updatePhysician = (id) => {
         doctorAPI.update (id, {
-            office: this.state.office,
-            email: this.state.email,
-            phone: this.state.phone,
+            office: this.state.dr_office ? this.state.dr_office : this.state.physician.office,
+            email: this.state.dr_email ? this.state.dr_email : this.state.physician.email,
+            phone: this.state.dr_phone ? this.state.dr_phone : this.state.physician.phone
             // timestamps: {'created_at', 'updated_at' }
         })
         .then(res => {

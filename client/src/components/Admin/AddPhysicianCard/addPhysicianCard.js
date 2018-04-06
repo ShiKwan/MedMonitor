@@ -13,18 +13,15 @@ import '../../../pages/Admin';
 
 
 
-
 export default class AddPhysicianCard extends React.Component {
 
     onClicked(event) {
         this.props.addPhysician(event)
     }
 
-
     onChanged(event) {
         this.props.handleInputChange(event)
     }
-
 
 
     render () {
@@ -38,15 +35,15 @@ export default class AddPhysicianCard extends React.Component {
                         <Form className="addNewPhysForm Form">
 
                             <FormGroup3_9Name
-                                nameFirstName = {"dr_firstname"}
-                                nameLastName = {"dr_lastname"}
+                                nameFirstName = {"dr_firstname"} 
                                 valueFirstName = {this.props.firstname}
+                                nameLastName = {"dr_lastname"}
                                 valueLastName= {this.props.lastname}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 
                               <FormGroup3_9Input
-                                label = {"Id nmuber"}
+                                label = {"Id number"}
                                 placeholder = {"id1234"}
                                 name = {"dr_idnum"}
                                 value = {this.props.hospnum}
@@ -63,9 +60,9 @@ export default class AddPhysicianCard extends React.Component {
 
                             <FormGroup3_9Contact
                                 labelEmail = {"Contact email"}
-                                labelPhone = {"Contact phone"}
                                 valueEmail = {this.props.email}
                                 nameEmail = {"dr_email"}
+                                labelPhone = {"Contact phone"}
                                 valuePhone = {this.props.phone}
                                 namePhone = {"dr_phone"}
                                 onChanged = {(event) => this.onChanged(event)}
