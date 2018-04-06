@@ -190,7 +190,7 @@ module.exports = {
                 { $set: {"details.email": req.body.email} },
                 { $set: {"details.phone": req.body.phone} }
             )
-            .then(episode => res.json(update))
+            .then(update => res.json(update))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
@@ -206,7 +206,7 @@ module.exports = {
                 { _id: req.params.id },
                 { $set: {physician: req.body.physician} }
             )
-            .then(episode => res.json(update))
+            .then(update => res.json(update))
             .catch(err => {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);

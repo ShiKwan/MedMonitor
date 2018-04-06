@@ -51,4 +51,8 @@ router
     .route('/validateEmail/:email')
     .get(patientController.validateEmail);
 
+// Matches with "/api/patient/updateDr"
+    router
+    .route('/updateDr/:id')
+    .put(patientController.updatePatientsDr);
 module.exports = router;
