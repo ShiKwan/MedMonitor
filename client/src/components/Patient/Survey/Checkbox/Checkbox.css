@@ -1,4 +1,18 @@
 .survChkGroup {
-    margin: 0 auto;
-    display: grid;
+      margin: 0 auto;
+      display: grid;
+}
+
+@media screen and (max-width: 769px) {
+      .surveyQuestions .currentQuest {
+            margin-top: -15px;
+            font-size: 25px;
+      }
+}
+
+@media screen and (max-width: 376px) {
+      .surveyQuestions .currentQuest {
+            margin-top: -15px;
+            font-size: 20px;
+      }
 }

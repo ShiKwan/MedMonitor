@@ -6,7 +6,6 @@ import {
     Form, FormGroup, Label, Input, FormText,
 } from 'reactstrap';
 import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
-import './registerPhysicianCard.css';
 
 import '../../../pages/Admin';
 

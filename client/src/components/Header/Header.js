@@ -2,6 +2,8 @@ import React from 'react';
 import "./Header.css";
 import logo from "./med_monitor.png";
 import userAPI from "../../utils/userAPI";
+import background from "./blurry-blue-light.jpg";
+
 
 import {
     Nav,
@@ -78,6 +80,8 @@ export default class Header extends React.Component {
 
                                     }
                                 </NavItem>
+                        {/* <img className="blurry-blue-light" src={background} alt={"background"} /> */}
+
                             </Nav>
                     </Container>
                 </Navbar>

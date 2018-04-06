@@ -65,11 +65,11 @@ export default class Checkbox extends React.Component {
                 <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
                     <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                     <Card className="surveyQuestions">
-                    <CardText className="surveyQandA"><h4>{this.props.question}</h4></CardText>
+                        <CardText><h4 className="currentQuest">{this.props.question}</h4></CardText>
 
                     <div className="survChkGroup">
                         {this.props.data_value.map((answer, index) => 
-                            <Container>
+
                             <QButton 
                                 answer={this.props.answers[index]}
                                 index = {index}
@@ -82,7 +82,6 @@ export default class Checkbox extends React.Component {
                                 selectionType = {this.props.selectionType}
                             >
                             </QButton>
-                            </Container>
                         )}
                     </div>
                     <br>

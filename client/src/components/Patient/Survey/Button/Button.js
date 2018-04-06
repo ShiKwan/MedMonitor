@@ -20,8 +20,7 @@ import {
 export default class QButton extends React.Component {
     render() {   
         return(
-            <Container className="survBtn">
-
+            // <Container className="survBtn">
                 <Button
                     id={this.props.survHeader}
                     className={`${this.props.className[this.props.index]} survChkBtn`}
@@ -31,10 +30,10 @@ export default class QButton extends React.Component {
                     active = {this.props.active === this.props.answer}
                     data_value = {this.props.data_value}
                 >
-                    <h4>{this.props.answer}</h4>
+                    <h4 className="btnAnswer">{this.props.answer}</h4>
                 </Button>
 
-            </Container>
+            // </Container>
         )
     }
 }

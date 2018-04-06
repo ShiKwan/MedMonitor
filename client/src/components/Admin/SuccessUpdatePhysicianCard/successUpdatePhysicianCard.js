@@ -3,7 +3,6 @@ import {
     Card, CardBody, CardTitle, CardText,
     Button,
 } from 'reactstrap';
-import './successUpdatePhysicianCard.css';
 
 import '../../../pages/Admin';
 

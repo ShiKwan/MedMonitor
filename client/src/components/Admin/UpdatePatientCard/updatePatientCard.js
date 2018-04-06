@@ -8,7 +8,8 @@ import {
 import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
 import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
-import './updatePatientCard.css';
+
+import '../../../pages/Admin';
 
 
 export default class UpdatePatientCard extends React.Component {

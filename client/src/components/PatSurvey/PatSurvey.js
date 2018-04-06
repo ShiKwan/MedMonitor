@@ -59,7 +59,7 @@ var questions = [{
 // ---------- general parkinson's questions ---------
 
 {
-    survHeader: 'KICK In',
+    survHeader: 'KICK IN',
     question: 'Since taking your LAST Parkinson\'s medication: how long did it take to kick in?',
     answers: ['Immediately', 'After 15 Minutes', 'After 30 Minutes', 'After 1 Hour', 'After More Than 1 Hour'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
@@ -131,7 +131,7 @@ var questions = [{
 {
     survHeader: 'TREMORS',
     question: 'Right Now: if you suffer from tremor, how is it now?',
-    answers: ['No Tremor', 'Bothering Me A Little', 'Worse Than Normal', 'Quite Bad', 'Very Bad, Can\'t Do Normal Tasks'],
+    answers: ['No Tremor', 'Bothering Me A Little', 'Worse Than Normal', 'Quite Bad', 'Very Bad'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -159,7 +159,7 @@ var questions = [{
 {
     survHeader: 'BALANCE',
     question: 'Right Now: how is your balance when you stand or walk?',
-    answers: ['Good', 'A Little Unsteady', 'Unsteady', 'Very Unsteady, Worry About Falling', 'Too Unsteady To Stand Or Walk'],
+    answers: ['Good', 'A Little Unsteady', 'Unsteady', 'Very Unsteady', 'Too Unsteady To Stand'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -203,7 +203,7 @@ var questions = [{
 {
     survHeader: 'HEADACHES',
     question: 'Since taking your last Parkinson\'s medication: Have you had any headache?',
-    answers: ['None', 'A Little/Occasionally', 'Mild/Continual', 'Quite Severe/On And Off', 'Severe/All The Time'],
+    answers: ['None', 'A Little/Occasionally', 'Mild/Continual', 'Quite Severe/On & Off', 'Severe/All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
