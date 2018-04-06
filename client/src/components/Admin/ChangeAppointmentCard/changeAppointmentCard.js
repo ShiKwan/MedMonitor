@@ -12,6 +12,7 @@ import './changeAppointmentCard.css';
 
 import '../../../pages/Admin';
 
+import moment from "moment";
 
 export default class ChangeAppointmentCard extends React.Component {
 
@@ -54,14 +55,14 @@ export default class ChangeAppointmentCard extends React.Component {
 
                             <FormGroup row>
                                 <Label sm={3}>Next appointment currently on: </Label>
-                                <Label sm={9}>{this.props.nextAppt}</Label>
+                                <Label sm={9}>{moment(this.props.nextAppt).format("dddd, MMMM Do YYYY")} at  {moment(this.props.nextAppt).format("h:mm a")}</Label>
                             </FormGroup>
 
                             <FormGroup3_9Input
                                 type="date"
                                 label = {"New appointment date: "}
                                 placeholder = {this.props.nextAppt}
-                                nameDate = {"pt_newApptDate"}
+                                name = "pt_newApptDate"
                                 onChanged = {(event) => this.onChanged(event)}
                             />  
                             
@@ -69,7 +70,7 @@ export default class ChangeAppointmentCard extends React.Component {
                                 type="time"
                                 label = {"New appointment time: "}
                                 placeholder = {this.props.nextAppt}
-                                nameTime = {"pt_newApptTime"}
+                                name = "pt_newApptTime"
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 

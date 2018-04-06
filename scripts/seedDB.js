@@ -266,7 +266,9 @@ const patient_dataSeed = [
     date_created: Date(),
     
     active: true,
-    //doctor: to be populated with _id from doctors collection
+
+    doctor: "5ac6c59d2156d5403891d0c2"    //doctor: to be populated with _id from doctors collection
+    
     details: {
       patient_number: "hosp001",
       first_name:  "Bill",
@@ -283,8 +285,8 @@ const patient_dataSeed = [
 
       episode: [{
         episode_id: "001",
-        start_date: Date.now,
-        doctor: "Dr John Heyworth",
+        start_date: new date(),
+        physician: "Dr John Heyworth",
 
         medications: [{
             medication: "Sinemet (carbidopa/levodopa)",
@@ -317,8 +319,6 @@ const patient_dataSeed = [
               balance: 4,
           },
 
-         
-
           side_effects: {
               sickness: 1,
               dizziness: 2,
@@ -337,11 +337,13 @@ const patient_dataSeed = [
   {
     date_created: new Date(),
     active: true,
-    //doctor: to be populated with _id from doctors collection
+
+    physician: "Dr. melanie Kopff"
+    
     details: {
       patient_number: "hosp023",
       first_name:  "Michael",
-      last_name: "Gatsb3",
+      last_name: "Gatsby",
       dob: "03/11/1959",
       email: "thegatsby@michael.com",
       phone: "123-994-4532",
@@ -388,8 +390,6 @@ const patient_dataSeed = [
               balance: 3,
           },
 
-         
-
           side_effects: {
               sickness: 3,
               dizziness: 1,
@@ -404,7 +404,37 @@ const patient_dataSeed = [
      // timestamps: {'created_at', 'updated_at' }
 
   },
-  
+
+];
+
+const patient_alertSeed = [
+  {
+    alert_hospnum: "hosp5267278",
+    alert_firstname: "Hilary",
+    alert_lastname: "Clinton",
+    alert_type: [{
+      fall: "fall", 
+      freezing: "",
+      choking: "",
+      hallucination: "",
+    }],
+    alert_datetime: new Date(),
+    alert_physician: "dr. soandso",
+  },
+
+  {
+    alert_hospnum: "hosp9878",
+    alert_firstname: "Steve",
+    alert_lastname: "Wonder",
+    alert_type: [{
+      fall: "fall", 
+      freezing: "",
+      choking: "choking",
+      hallucination: "",
+    }],
+    alert_datetime: new Date(),
+    alert_physician: "dr. somebody",
+  }
 
 ];
 
@@ -436,6 +466,14 @@ db.Patient_data
   .then(() => db.Patient_data.collection.insertMany(patient_dataSeed))
      .then(data => {
       console.log(data.insertedIds.length + " patient_data records inserted!");
+
+  })
+
+db.Patient_alert
+  .remove({})
+  .then(() => db.Patient_alert.collection.insertMany(patient_alertSeed))
+     .then(data => {
+      console.log(data.insertedIds.length + " patient_alert records inserted!");
 
   })
   .catch(err => {
