@@ -6,9 +6,8 @@ import {
     Form, FormGroup, Label, Input, FormText,
 } from 'reactstrap';
 
-import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
-import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
-import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
+import FormGroup3_9Select from "../FormGroup/formGroup3_9Select";
+
 
 import '../../../pages/Admin';
 
