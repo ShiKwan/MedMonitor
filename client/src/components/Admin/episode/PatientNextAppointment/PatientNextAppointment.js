@@ -14,6 +14,9 @@ import moment from "moment";
 import mailerAPI from "../../../../utils/nodemailerAPI";
 import { Value } from 'react-select';
 
+import '../../../../pages/Admin';
+
+
 export default class PatientNextAppointment extends React.Component {
     state = {
         next_appt : '',

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './ConfirmEpisode.css';
 
 import '../../../../pages/Admin';
 
@@ -19,7 +18,7 @@ export default class PatientConfirmEpisode extends React.Component {
     render () {
         console.log(this.props);
         return (
-            <Card className="confirmNewEpisTableCard TableCard" style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
+            <Card className="confirmNewEpisTableCard TableCard" style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "block", width: "100%"}}>
                 <CardBody className="confirmNewEpisTableBody TableBody">
                     <CardTitle className="confirmNewEpisTitle Title">Confirm New Episode</CardTitle>
                 

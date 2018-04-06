@@ -87,7 +87,7 @@ export default class Checkbox extends React.Component {
                     </div>
                     <br>
                     </br>
-                    <p className="chkSelected">(Checkbox) You Selected: {JSON.stringify(this.state.cSelected)}</p>
+                    {/* <p className="chkSelected">(Checkbox) You Selected: {JSON.stringify(this.state.cSelected)}</p> */}
 
                     <Button className="questSubmitBtn" color="secondary" onClick={(e) => this.handleSubmit(e)} size="lg" block><h4>Submit Your Answer</h4></Button>
                     </Card>

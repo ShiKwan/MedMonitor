@@ -197,3 +197,25 @@ button.questSubmitBtn:hover {
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
 }
+
+@media screen and (max-width: 376px) {
+    .introsurvCardHeader {
+        font-size: 25px;
+    }
+
+    button.survRadBtn,
+    button.survChkBtn,
+    button.survChkBtnGreen,
+    button.survRadBtnGreen,
+    button.survChkBtnBlue,
+    button.survRadBtnBlue,
+    button.survChkBtnYellow,
+    button.survRadBtnYellow,
+    button.survChkBtnOrange,
+    button.survRadBtnOrange,
+    button.survChkBtnRed,
+    button.survRadBtnRed {
+        padding: 10px 20px 10px 20px;
+         }
+
+}

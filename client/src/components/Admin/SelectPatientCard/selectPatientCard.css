@@ -1,19 +1,9 @@
-/* .selectPatTable .patEnrolledb {
+.selectPatTable .patEnrolledb {
     width: auto;
-}
-
-.selectPatTableBody {
-    background-color: #f3f3f1;
 }
 
 p.tableTitle {
     font-weight: bold;
-}
-
-div.selectPatTableCard {
-    border-width: 3px;
-    border-color: #2d5366;
-    margin-bottom: 25px;
 }
 
 .selectPatTableBody .selectPatTitle {
@@ -24,4 +14,4 @@ div.selectPatTableCard {
 .selectPatDetail:hover {
     background-color: #eeda90;
     cursor: pointer;
-} */
+}

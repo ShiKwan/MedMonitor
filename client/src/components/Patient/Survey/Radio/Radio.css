@@ -2,3 +2,16 @@
     margin: 0 auto;
     display: grid;
 }
+
+
+@media screen and (max-width: 769px) {
+ 
+}
+
+@media screen and (max-width: 376px) {
+
+    .surveyQandA .currentQuest {
+        font-size: 20px;
+        margin-top: -10px;
+    }
+}

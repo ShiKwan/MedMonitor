@@ -53,3 +53,13 @@ h4.signInTab:hover,
 h4.registerTab:hover {
     color: #2d5366;
 }
+
+
+@media screen and (max-width: 376px) {
+    h4.signInTab,
+    h4.registerTab {
+        font-size: 20px;
+    }
+
+
+}
