@@ -78,7 +78,7 @@ class App extends Component {
         ? (
           localStorage.removeItem("messageCenter"),
           localStorage.removeItem("messageStatus"),
-          <Component {...props} test='hi there' getBackAlertIncident = {this.getBackAlertIncident} handleIncident = {this.handleIncident}/>
+          <Component {...props} test='hi there' getBackAlertIncident = {this.getBackAlertIncident} handleIncident = {this.handleIncident} getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}/>
         )
         : (
           localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
@@ -96,7 +96,7 @@ class App extends Component {
   PrivateAdminRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
       localStorage.getItem("role")!== null && localStorage.getItem("role").toLowerCase() === "doctor" || localStorage.getItem("role").toLowerCase() === "admin"
-        ? <Component {...props} alertIncident={this.state.alertIncident} />
+        ? <Component {...props} alertIncident={this.state.alertIncident} getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus} />
         : (
           localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
           localStorage.setItem("messageStatus", "danger"),

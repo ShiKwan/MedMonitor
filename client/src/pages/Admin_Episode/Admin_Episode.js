@@ -43,7 +43,6 @@ class Admin_Episode extends Component {
     };
     
     componentDidMount() {
-        console.log("window " + window.location.search.substring(4))
         this.loadPatient()
     };
 
@@ -51,8 +50,6 @@ handleLoadPatient = (e) => {
     e.preventDefault();
 
     this.loadPatient();
-    console.log("current state: ", this.state);
-    console.log("new appt : " , this.state.newAppt);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
@@ -67,7 +64,6 @@ loadPatient = () => {
                     
                 })
             })
-            console.log("res.data", res.data)
             this.setState({patientId : res.data._id})
             this.setState({patient: res.data});
             this.setState({patientDoctor: this.state.patient.doctor})
@@ -94,7 +90,6 @@ loadMedication = () => {
                 objMedication[index].doses[index2].value = index2
             })
         })
-        console.log(objMedication);
         this.setState({
             medications: objMedication
         })
@@ -129,23 +124,18 @@ createNewEpisode= () => {
 }
 
 handleMedCallback = (lastEpiMeds) => {
-    console.log("new med list: ", lastEpiMeds);
     this.setState({
         newEpisode: lastEpiMeds
     });
-    console.log("new patient med episode : ", this.state.newEpisode);
 }
 
 handleApptCallback = (appt) =>{
-    console.log("appointment : ", appt);
     this.setState({
         newAppt: appt
     });
-    console.log("new patient appt : " , this.state.newAppt);
 }
 
 prepDataToSave = () =>{
-    console.log("admin episode state: ", this.state);
     this.setState({
         newObj: this.state.newEpisode
     }, function () {
@@ -175,8 +165,6 @@ prepDataToSave = () =>{
                 }
             }
         }
-
-        console.log(objToSubmit);
         patientAPI.createNewEpisode(window.location.search.substring(4),
             objToSubmit)
             .then(res => {
@@ -210,7 +198,6 @@ populateState = () =>{
     for(let i = 0; i < this.state.newObj.length ; i++){
         for(let j =0; j < this.state.newObj[i].times.length; j++){
             if(this.state.newObj[i].times[j].value){
-                console.log("value exist here");
                 objToSubmit.medication[i].times.push(this.state.newObj[i].times[j].value);
             }
         }
@@ -225,9 +212,6 @@ populateState = () =>{
                 }
             }
         }
-
-        //console.log(objToSubmit);
-        console.log("current state :" , this.state);   
     }
      
 )  
@@ -237,8 +221,6 @@ populateState = () =>{
             <div>
                 <Container fluid>
                     <Container className="clearfix">
-                        Admin Episode Page<br />
-                        Patient id: {this.state.patientId}<br/>
                         <Button onClick={this.handleLoadPatient}> Show patient info</Button>
                             <br />
                             <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
@@ -282,6 +264,8 @@ populateState = () =>{
                                     addNextAppointmentCard = {this.state.addNextAppointmentCard}
                                     confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
                                     handleApptCallback={this.handleApptCallback}
+                                    getBackMessage={this.props.getBackMessage} 
+                                    getBackMessageStatus={this.props.getBackMessageStatus}
 
                                 />
                                 <PatientConfirmEpisode

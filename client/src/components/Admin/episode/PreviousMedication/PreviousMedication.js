@@ -33,8 +33,6 @@ export default class PreviousMedication extends React.Component {
         //first we need to assign doses value to the state
         const datavalue = this.props.allMedications.filter(x => x.name === this.props.medication)
         const labelvalue = datavalue[0].doses.filter(y => y.label === this.props.label)
-        console.log(datavalue);
-        console.log("label value : " , labelvalue);
         this.setState({
             medication : this.props.medication,
             times : this.props.times,
@@ -61,9 +59,7 @@ export default class PreviousMedication extends React.Component {
         })
     }
     handleDosage = (selectedOption) => {
-        console.log("selectedOption : ", selectedOption);
         const itemToSplit = selectedOption.label.split('|') //dose form route
-        console.log(itemToSplit);
         this.setState({
             value : `${selectedOption.value}`,
             label: `${selectedOption.label}`,
@@ -85,7 +81,6 @@ export default class PreviousMedication extends React.Component {
         //this.props.handleDoseChange(`${selectedOption.label}`, this.state.medication, this.state.patientLastEpisodeMedications);
     }
     handlePreviousTimeChange = (selectedOption) => {
-        console.log("Selected : " , selectedOption);
         const newSelectedOption = selectedOption
         this.setState({
             times : newSelectedOption
@@ -97,11 +92,9 @@ export default class PreviousMedication extends React.Component {
             }
         })
         this.props.handleLastMedChange(newMedList);
-        console.log(this.state.times);
     }
     showState = () => {
         console.log("Show state: " , this.state);
-        console.log("Show comp")
     }
     renderState = (value, label) =>{
         this.setState({
@@ -111,16 +104,12 @@ export default class PreviousMedication extends React.Component {
     }
 
     populateDropDown = (item) => {
-        console.log("in populatedropdown, item" , item);
-        
         let ddlDosage = [];
         this.state.allMedications.map((med, index) =>{
             if(med.name === item){
-                console.log("found med");
                 ddlDosage = med.doses;
             }
         } )
-        console.log("ddlDosage state :", ddlDosage);
         return(ddlDosage)
     }
 

@@ -29,7 +29,7 @@ export default class PatientConfirmEpisode extends React.Component {
                         <h3>Next Appointment</h3>
                         {this.props.nextAppointment.next_appt ? 
                             <ListGroupItem>
-                                Date/time : {this.props.nextAppointment.next_appt}
+                                Date/time : {moment(this.props.nextAppointment.next_appt).format("dddd, MMMM Do YYYY h:mm a").toString()}
                             </ListGroupItem>
                             : null}
                         <ListGroupItem>
@@ -42,14 +42,14 @@ export default class PatientConfirmEpisode extends React.Component {
                                 <h3>Medication Prescribed</h3>
                                 {this.props.newEpisode.map( (med, index) =>{
                                     return (
-                                        <ListGroupItem>
+                                        <ListGroupItem key={med.medication}>
                                             Name : {med.medication} <br />
                                             Label : {med.label} <br />
-                                            Time : 
+                                            Time :  
                                             {med.times ? 
                                                 med.times.map( (time,index) => {
                                                     return(
-                                                    <Label> {time.value ? time.value : time} {index < med.times.length-1 ? "|" : null} </Label>
+                                                    <Label key={index}> {time.value ? time.value : time} {index < med.times.length-1 ? "|" : null} </Label>
                                                     )
                                                 })
                                             : null
