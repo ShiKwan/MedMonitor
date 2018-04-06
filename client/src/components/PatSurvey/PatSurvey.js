@@ -5,6 +5,8 @@ import "./PatSurvey.css";
 import QCheckbox from "../Patient/Survey/Checkbox";
 import QRadio from "../Patient/Survey/Radio";
 import patientAPI from "../../utils/patientAPI";
+import alertAPI from "../../utils/alertAPI";
+import moment from 'moment';
 import { 
     Container,
     Card,
@@ -213,7 +215,7 @@ var questions = [{
 },
 
 {
-    survHeader: 'DRY MOUTH/BLURRED VISIONM',
+    survHeader: 'DRY MOUTH/BLURRED VISION',
     question: 'Since taking your last Parkinson\'s medication: Have you had any feelings of dry mouth and/or blurred vision?',
     answers: ['None', 'Occasionally', 'On And Off', 'Most Of The Time', 'All The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
@@ -240,10 +242,7 @@ class PatSurvey extends Component {
             completed : [],
         })
     }
-    // Handle notification from a child slide that we should move to the next
-    handlePopulate = () => {
-        console.log(this.state);
-    }
+    
     handleCompletedCallback = (label, answer) => {
         console.log("Survey header : " + label);
         console.log("Answer : ", answer);
@@ -271,21 +270,22 @@ class PatSurvey extends Component {
                 this.props.handleIncident(stringAnswer, localStorage.getItem("patient_number"))
                 //save emergencies to alertEmergencies collection
                 let emergencyObj = {
-                    user_id : localStorage.getItem("userId"),
-                    alertFirstName : localStorage.getItem("firstName"),
-                    alertLastName : localStorage.getItem("lastName"),
-                    alertHospitalNum : localStorage.getItem("patient_number"),
-                    urgent_activity : {
-                        falls: newAnswer[0] === 1 ? "falls" : null,
+                    alert_firstname : localStorage.getItem("firstName"),
+                    alert_lastname : localStorage.getItem("lastName"),
+                    alert_hospnum : localStorage.getItem("patient_number"),
+                    alert_type : {
+                        fall: newAnswer[0] === 1 ? "falls" : null,
                         freezing: newAnswer[1] === 1 ? "freezing" : null,
                         choking: newAnswer[2] === 1 ? "choking": null,
                         hallucination: newAnswer[3] === 1 ? "hallucination" : null
                     },
-                    date_time : Date.now()
+                    alert_datetime : moment(),
+                    alert_physician : ""
                 }
                 //TODO: 
-
-
+                alertAPI.create(emergencyObj)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err));
             }
             console.log("new answer : " + newAnswer);
             answer = newAnswer;
@@ -349,7 +349,7 @@ class PatSurvey extends Component {
         let percentage = 100 - (questions.length/14 * 100);
         return(
             <Container>
-                <Progress color="success" value={percentage} />
+                <Progress animated color="success" value={percentage} />
             </Container>
         )
     }
@@ -358,20 +358,24 @@ class PatSurvey extends Component {
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">
-                <Button onClick={this.handlePopulate}>Show State</Button>
+            
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
-                    <br />
-                        <div>
-                            {this.handleProgressBar(`${this.state.answered}`)}
-                            
-                        </div>
+                        {this.state.questions.length === 14 ?
+                            <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
+                            : 
+                            <div>
+                                {this.handleProgressBar(`${this.state.answered}`)}
+
+                            </div>
+                       } 
                 </Card>
+                
                 {
                     this.state.questions.map( (x,i) => {
                         return(
                         this.state.questions ?
                             x.selectionType  === "radio" ?
+                            
                                 <QRadio
                                     key = {x.survHeader}
                                     label = {x.label}
@@ -412,12 +416,9 @@ class PatSurvey extends Component {
                         )
                     })
                 }
-                    
             </Container>
             :
             <Label>You have completed the questionaires</Label>
-
-        
         );
     }
 }

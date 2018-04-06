@@ -55,7 +55,7 @@ export default class Radio extends React.Component {
                     <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366'}}>
                         <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                         <Card className="surveyQuestions">
-                            <CardText className="surveyQandA"><h4>{this.props.question}</h4></CardText>
+                            <CardText className="surveyQandA"><h4 className="currentQuest">{this.props.question}</h4></CardText>
 
                             <div className="survRadGroup">
                                 {this.props.data_value.map( (answer, index) => {
@@ -82,7 +82,7 @@ export default class Radio extends React.Component {
                             </div>
                         <br>
                         </br>
-                        <p className="radSelected">(Radio) You Selected: {this.state.rSelected}</p>
+                        {/* <p className="radSelected">(Radio) You Selected: {this.state.rSelected}</p> */}
 
                         <Button className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4>Submit Your Answer</h4></Button>
                         </Card>

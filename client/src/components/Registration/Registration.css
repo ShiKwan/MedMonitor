@@ -29,3 +29,15 @@
     margin-bottom: 25px;
     margin-top: -25px;
 }
+
+
+@media screen and (max-width: 376px) {
+    .signInMessage,
+    .registerMessage {
+        font-size: 21px;
+    }
+    .validation-form .submit-button,
+    .registration-form .submit-button {
+        padding: 10px 20px 10px 20px;
+    }
+}

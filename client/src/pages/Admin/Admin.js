@@ -533,9 +533,9 @@ class Admin extends Component {
         // <Container>
 
             <Container fluid>
-                <Container>
-                   <Alert className="panicAlertBtn" color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
-                </Container>
+                {/* <Container className="panicAlertNotice">
+                   <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
+                </Container> */}
                 <Container className="clearfix">
                 {/* {this.state.patients.map( (x) => console.log(x))} */}
                     <br />
@@ -765,6 +765,9 @@ class Admin extends Component {
 
                         </Col>
                     </Row>
+                </Container>
+                <Container className="panicAlertNotice">
+                    <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map(x => <label>{x}</label>)}</Alert>
                 </Container>
             </Container>
         

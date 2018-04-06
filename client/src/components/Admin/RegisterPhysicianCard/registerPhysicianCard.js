@@ -30,7 +30,7 @@ export default class RegisterPhysicianCard extends React.Component {
 
             <Card className="registPhyTableCard TableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
                 <CardBody className="registPhysTableBody TableBody">
-                    <CardTitle className="registPhysTitle">Add New Physician</CardTitle>
+                    <CardTitle className="registPhysTitle Title">Add New Physician</CardTitle>
                         <br />
                         New physician: {this.props.physician_name} successfully enrolled.
                         <br /><br />

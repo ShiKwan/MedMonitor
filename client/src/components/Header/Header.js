@@ -56,8 +56,8 @@ export default class Header extends React.Component {
 
                             <Nav pills className="navlogOutPills">
                                 <NavItem className="navInfo">
-                                    <Container>
-                                        <Label className="navLogName" for="appTime"><h3><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
+                                    <Container className="navGreeting">
+                                <Label className="navLogName" for="appTime"><h3 ><em>{localStorage.getItem("username") !== "null" ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
                                     </Container>
 
                                     {localStorage.getItem("username")!== "null"?

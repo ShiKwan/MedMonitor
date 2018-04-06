@@ -5,7 +5,8 @@ import {
     Table
 } from 'reactstrap';
 import moment from "moment";
-import './confirmPatientCard.css';
+
+import '../../../pages/Admin';
 
 
 
@@ -33,7 +34,7 @@ export default class ConfirmPatientCard extends React.Component {
                     <CardTitle className="reviewSelPatTitle Title">Review Selected Patient</CardTitle>
 
                         <br />
-                        <Table size="sm">
+                        <Table className="Table" size="sm">
                             <tr>
                                 <td>Hospital Number:</td><td>{this.props.patientNumber}</td>
                             </tr><tr>
