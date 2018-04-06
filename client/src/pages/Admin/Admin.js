@@ -52,8 +52,8 @@ class Admin extends Component {
         confirmPatientCard: false,
         selectPatientCard: false,
         addPatientCard: false,
-        registerPatientCard: false,
         addPatientsDrCard: false,
+        registerPatientCard: false,
         successPatientCard: false,
         updatePatientCard: false,
         successUpdatePatientCard: false,
@@ -191,8 +191,9 @@ class Admin extends Component {
         this.setState({ pt_username: "" });
         this.setState({ pt_password: "" }); 
         this.setState({ pt_id: "" });
-        this.setState({ pt_newApptTime: ""})
-        this.setState({ pt_newApptDate: ""})
+        this.setState({ pt_physician: "" });
+        this.setState({ pt_newApptTime: ""});
+        this.setState({ pt_newApptDate: ""});
         this.setState({ patient_name: "" });
         this.setState({ patient_email: "" });
 
@@ -287,6 +288,7 @@ class Admin extends Component {
             console.log(res.data.insertedIds[0]);
             this.setState({addPatientCard: false});
             this.setState({addPatientsDrCard: true});
+            console.log("here1" + this.state.addPatientsDrCard)
             this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
             this.setState({pt_id: res.data.insertedIds[0]})
 
@@ -295,13 +297,13 @@ class Admin extends Component {
     };
 
 
-    addPatientsDr = event => {
+    enrollPatientWithDr = event => {
         event.preventDefault();
-        console.log("id" + this.state.pt_id)
-        console.log("phys: " + this.state.primary_phys)
+        console.log("pt: " + this.state.pt_id)
+        console.log("phys: " + this.state.pt_physician)
         if(this.state.primary_phys) {
-            patientAPI.updatePhysician(this.state.pt_id, {
-                primary_physician : this.state.pt_physician
+            patientAPI.updatePatientsDoctor(this.state.pt_id, {
+                physician : this.state.pt_physician
             })
             .then(res => {
                 console.log(res.data);
@@ -636,6 +638,7 @@ class Admin extends Component {
 
                              <AddPatientsDrCard
                                 addPatientsDrCard = {this.state.addPatientsDrCard}
+                                physicians = {this.state.physicians}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatientWithDr = {(event) => this.enrollPatientWithDr(event)}
                             />

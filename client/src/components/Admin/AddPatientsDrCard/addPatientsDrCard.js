@@ -5,16 +5,16 @@ import {
     Card, CardBody, CardTitle, CardText,
     Form, FormGroup, Label, Input, FormText,
 } from 'reactstrap';
-import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
-import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
-import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
+import FormGroup3_9Select from "../FormGroup/formGroup3_9Select";
+
 import './addPatientsDrCard.css';
 
 
 export default class AddPatientCard extends React.Component {
 
+
     onClicked(event) {
-        this.props.enrollPatient(event)
+        this.props.enrollPatientWithDr(event)
     }
 
     onChanged(event) {
@@ -25,22 +25,23 @@ export default class AddPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="enrollNewPatTableCard" style={{display: this.props.addPatientCard ? "block" : "none"}}>
+            <Card className="enrollNewPatTableCard" style={{display: this.props.addPatientsDrCard ? "block" : "none"}}>
                 <CardBody className="enrollNewPatTableBody">
                     <CardTitle className="enrollNewPatTitle">Enroll A New Patient</CardTitle>
                         <br />
         
                         <Form className="enrollNewPatForm">
 
-                            {/* <FormSelect3_9Physician
-                                name =
-                                value = 
+                            <FormGroup3_9Select
+                                label="Select patient's primary physician:"
+                                name = "pt_physician"
+                                //value = {this.props.physician}
+                                selectList={this.props.physicians}
                                 onChanged = {(event) => this.onChanged(event)}
-                            /> */}
-
+                            />
 
                             <br />
-                            <Button className="enrollNewPatEnrollBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
+                            <Button className="enrollNewPatEnrollBtn" onClick={(event) => this.onClicked(event)}>Submit</Button>
                             <Button className="enrollNewPatCanelBtn">Cancel</Button>
                         </Form>
                     
