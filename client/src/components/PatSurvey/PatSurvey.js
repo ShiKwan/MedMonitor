@@ -269,6 +269,23 @@ class PatSurvey extends Component {
                 })
 
                 this.props.handleIncident(stringAnswer, localStorage.getItem("patient_number"))
+                //save emergencies to alertEmergencies collection
+                let emergencyObj = {
+                    user_id : localStorage.getItem("userId"),
+                    alertFirstName : localStorage.getItem("firstName"),
+                    alertLastName : localStorage.getItem("lastName"),
+                    alertHospitalNum : localStorage.getItem("patient_number"),
+                    urgent_activity : {
+                        falls: newAnswer[0] === 1 ? "falls" : null,
+                        freezing: newAnswer[1] === 1 ? "freezing" : null,
+                        choking: newAnswer[2] === 1 ? "choking": null,
+                        hallucination: newAnswer[3] === 1 ? "hallucination" : null
+                    },
+                    date_time : Date.now()
+                }
+                //TODO: 
+
+
             }
             console.log("new answer : " + newAnswer);
             answer = newAnswer;
