@@ -64,9 +64,9 @@ export default class PatientNextAppointment extends React.Component {
 
     render () {
         return (
-            <Card className="nextAppTableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
-                <CardBody className="nextAppTableBody">
-                    <CardTitle className="nextAppTitle">Enter Next Appointment</CardTitle>
+            <Card className="nextAppTableCard TableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
+                <CardBody className="nextAppTableBody TableBody">
+                    <CardTitle className="nextAppTitle Title">Enter Next Appointment</CardTitle>
                 
                     <CardText>
                         Enter the time of this patients next appointment and any comments for the patient to view.
@@ -86,9 +86,9 @@ export default class PatientNextAppointment extends React.Component {
 
                     <br />
 
-                    <Button className="nextAppNextBtn" onClick={() => this.handleSubmit()}>Next</Button>
+                    <Button className="nextAppNextBtn NextBtn" onClick={() => this.handleSubmit()}>Next</Button>
                     <a href={"/admin"}> 
-                    <Button className="nextAppCancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
+                    <Button className="nextAppCancelBtn CancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
                     
                 </CardBody>
             </Card>

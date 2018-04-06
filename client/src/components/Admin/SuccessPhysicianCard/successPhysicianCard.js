@@ -5,15 +5,18 @@ import {
 } from 'reactstrap';
 import './successPhysicianCard.css';
 
+import '../../../pages/Admin';
+
+
 
 export default class SuccessPhysicianCard extends React.Component {
 
     render () {
         return (
 
-            <Card className="successEnrollPhysTableCard" style={{display: this.props.successPhysicianCard ? "block" : "none"}}>
-            <CardBody className="successEnrollPhysTableBody">
-                <CardTitle className="successEnrollPhysTitle">Enroll A New Physician</CardTitle>
+            <Card className="successEnrollPhysTableCard TableCard" style={{display: this.props.successPhysicianCard ? "block" : "none"}}>
+            <CardBody className="successEnrollPhysTableBody TableBody">
+                <CardTitle className="successEnrollPhysTitle Title">Enroll A New Physician</CardTitle>
                 <CardText>
                     <br />
                     Dr. {this.props.physician_name} has been successfully enrolled and registered.
@@ -23,7 +26,7 @@ export default class SuccessPhysicianCard extends React.Component {
                 </CardText>
 
                 <a href="/admin">
-                <Button className="successEnrollPhysFinishBtn">Finish</Button></a>
+                <Button className="successEnrollPhysFinishBtn FinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

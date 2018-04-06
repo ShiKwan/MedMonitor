@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 // import Header from "../../components/Header";
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
-import { Container, Alert, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
+import { 
+    Container, 
+    TabContent,
+    TabPane, 
+    Nav, 
+    NavItem, 
+    NavLink, 
+    Row, 
+    Col
+} from 'reactstrap';
+
 import userAPI from '../../utils/userAPI';
 import patientAPI from '../../utils/patientAPI';
 import doctorAPI from '../../utils/doctorAPI';

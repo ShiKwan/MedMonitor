@@ -289,7 +289,7 @@ class PatSurvey extends Component {
             <Container fluid className="patSurvey">
                 <Button onClick={this.handlePopulate}>Show State</Button>
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    <CardHeader tag="h4" className="introsurvCardHeader">PLEASE TAKE THIS LONG SURVEY</CardHeader>
+                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
                     <br />
                         <div>
                             {this.handleProgressBar(`${this.state.answered}`)}

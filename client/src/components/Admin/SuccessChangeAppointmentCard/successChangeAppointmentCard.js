@@ -5,15 +5,18 @@ import {
 } from 'reactstrap';
 import './successChangeAppointmentCard.css';
 
+import '../../../pages/Admin';
+
+
 
 export default class SuccessChangeAppointmentCard extends React.Component {
 
     render () {
         return (
 
-            <Card className="succesChangAppTableCard" style={{display: this.props.successChangeAppointmentCard ? "block" : "none"}}>
-            <CardBody className="successChangAppTableBody">
-                <CardTitle className="successChangAppTitle">Update Next Appointment</CardTitle>
+            <Card className="succesChangAppTableCard TableCard" style={{display: this.props.successChangeAppointmentCard ? "block" : "none"}}>
+            <CardBody className="successChangAppTableBody TableBody">
+                <CardTitle className="successChangAppTitle Title">Update Next Appointment</CardTitle>
                 <CardText>
                     <br />
                     Patient, {this.props.patient_name}, next appointment has been successfully updated.
@@ -21,7 +24,7 @@ export default class SuccessChangeAppointmentCard extends React.Component {
                 </CardText>
 
                 <a href="/admin">
-                <Button className="successChangAppFinshBtn">Finish</Button></a>
+                <Button className="successChangAppFinshBtn FinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

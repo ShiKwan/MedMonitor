@@ -8,6 +8,9 @@ import {
 import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import './registerPhysicianCard.css';
 
+import '../../../pages/Admin';
+
+
 
 
 export default class RegisterPhysicianCard extends React.Component {
@@ -25,16 +28,16 @@ export default class RegisterPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="registPhyTableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
-                <CardBody className="registPhysTableBody">
-                    <CardTitle className="registPhysTitle">Add A New Physician</CardTitle>
+            <Card className="registPhyTableCard TableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
+                <CardBody className="registPhysTableBody TableBody">
+                    <CardTitle className="registPhysTitle">Add New Physician</CardTitle>
                         <br />
                         New physician: {this.props.physician_name} successfully enrolled.
                         <br /><br />
                         You can set a username and password now for this physician now or let the physician rgeister a username and password on first accessing the application. 
                         <br /><br />
     
-                        <Form className="registPhysForm">
+                        <Form className="registPhysForm Form">
                             <FormGroup3_9Input
                                 label = {"Username"}
                                 placeholder = {"username"}
@@ -52,8 +55,8 @@ export default class RegisterPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="registPhysRegisterBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
-                            <Button className="registPhysCancelBtn">Cancel</Button>
+                            <Button className="registPhysRegisterBtn RegisterBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
+                            <Button className="registPhysCancelBtn CancelBtn">Cancel</Button>
                         </Form>
                 
                 </CardBody>
