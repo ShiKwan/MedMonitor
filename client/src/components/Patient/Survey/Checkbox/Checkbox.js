@@ -76,7 +76,8 @@ export default class Checkbox extends React.Component {
                 this.props.firstQuestion === 1 ? 
 
                 <Card  className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
-                    <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
+                    <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}
+                    </CardHeader>
                     <Card className="surveyQuestions">
                         <CardText><h4 className="currentQuest">{this.props.question}</h4></CardText>
 

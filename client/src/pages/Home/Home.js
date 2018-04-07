@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
 
-import background from "./med_b.ground.jpg";
+// import background from "./med_b.ground.jpg";
 
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
@@ -161,8 +161,9 @@ class Home extends Component {
         let getBackMessageStatus = this.props.getBackMessageStatus;
         
         return (
-            <Container fluid className="bGroundContain">
-                    <img className="med_b.ground" src={background} alt={"background"} />
+            <Container fluid>
+            {/* className="bGroundContain"> */}
+                    {/* <img className="med_b.ground" src={background} alt={"background"} /> */}
 
                 <Container className="home-container">
                     

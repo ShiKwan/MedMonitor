@@ -50,7 +50,7 @@ h4.registerTab {
     cursor: pointer;
 }
 
-.bGroundContain img {
+/* .bGroundContain img {
     margin-top: -195px;
     position: fixed;
     background-size: cover;
@@ -60,7 +60,7 @@ h4.registerTab {
     z-index: -200;
     background-position: center;
     opacity: .5;
-}
+} */
 
 
 @media screen and (max-width: 376px) {

@@ -87,7 +87,7 @@ var questions = [{
 
 {
     survHeader: 'MOVEMENT',
-    question: 'Since taking your LAST Parkinson\'s medications: how much of the time have you been able to move comfortable?',
+    question: 'Since taking your LAST Parkinson\'s medications: have you been able to move comfortable?',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
@@ -371,18 +371,21 @@ class PatSurvey extends Component {
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">
-            
+                    {this.state.questions.length === 14 ?
+
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                        {this.state.questions.length === 14 ?
                     
                             <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
-                            : 
-                            // null
-                            <div>
-                                {this.handleProgressBar(`${this.state.answered}`)}
-                            </div>
-                       } 
+                  
                 </Card>
+
+                : 
+                            null
+                            /* // <div>
+                            //     {this.handleProgressBar(`${this.state.answered}`)}
+                            // </div> */
+                       } 
+                
                 
                 {
                     this.state.questions.map( (x,i) => {
