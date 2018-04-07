@@ -73,6 +73,16 @@ export default class ChangeAppointmentCard extends React.Component {
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 
+                             <FormGroup3_9Input
+                                type="textarea"
+                                label = {"Comments for patient: "}
+                                placeholder = {this.props.nextApptComment}
+                                name = "pt_nextApptComment"
+                                onChanged = {(event) => this.onChanged(event)}
+                            /> 
+
+
+
                             <br />
                             <Button className="updatePatDetailUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
