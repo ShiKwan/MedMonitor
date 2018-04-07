@@ -56,6 +56,7 @@ export default class Radio extends React.Component {
                         <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                         <Card className="surveyQuestions">
                             <CardText><h4 className="currentQuest">{this.props.question}</h4></CardText>
+                            
 
                             <div className="survRadGroup">
                                 {this.props.data_value.map( (answer, index) => {

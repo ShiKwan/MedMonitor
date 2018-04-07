@@ -361,12 +361,13 @@ class PatSurvey extends Component {
             
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                         {this.state.questions.length === 14 ?
+                    
                             <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
                             : 
-                            <div>
-                                {this.handleProgressBar(`${this.state.answered}`)}
-
-                            </div>
+                            null
+                            // <div>
+                            //     {this.handleProgressBar(`${this.state.answered}`)}
+                            // </div>
                        } 
                 </Card>
                 
