@@ -127,9 +127,7 @@ class App extends Component {
     })
     .catch(err => {
       console.log(err.response);
-      localStorage.setItem("username", null);
-      localStorage.setItem("role", null);
-      localStorage.setItem("email", null);
+      localStorage.clear()
       this.setState({
         username: "",
         role: "",

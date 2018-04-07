@@ -15,9 +15,11 @@ module.exports = {
         .populate("physician")
         .sort( {"details.last_name": 1} )
         .then(patientList => { 
-            const dateOneWeekAgo = new Date(new Date().getTime()-7*24*60*60*1000).getTime();
-            const apptList = patientList.filter(elem => elem.appointment.next_appt.getTime() > dateOneWeekAgo);
+            const dateOneWeekAhead = new Date(new Date().getTime()+7*24*60*60*1000).getTime();
+            const dateToday = new Date(new Date().getTime()-24*60*60*1000).getTime();
+            const apptList = patientList.filter(elem => elem.appointment.next_appt.getTime() > dateToday && elem.appointment.next_appt.getTime() < dateOneWeekAhead);
             
+            const dateOneWeekAgo= new Date(new Date().getTime()-7*24*60*60*1000).getTime();
             const patientWeekList = patientList.filter(elem => elem.date_created.getTime() > dateOneWeekAgo);
             myObj = {
                 patientsList: patientList,

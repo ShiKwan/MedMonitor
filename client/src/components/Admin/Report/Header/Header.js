@@ -18,7 +18,7 @@ export default class Header extends React.Component {
                         <h3>Doctor : this.props.doctorName{this.props.doctorName}</h3>
                     </Col>
                     <Col md='6' className="text-right">
-                        <h3>Report Date : ${moment()}</h3>
+                        <h3>Report Date : {moment().format("dddd, MMMM Do YYYY")}</h3>
                     </Col>
                 </Row>
             </Container>

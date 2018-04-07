@@ -72,6 +72,7 @@ class Home extends Component {
                 if(res.data.patient_id && res.data.role.toLowerCase() === 'patient'){
                     localStorage.setItem("userId", res.data.patient_id);
                 }else if(res.data.doctor_id && (res.data.role.toLowerCase() === 'admin' || res.data.role.toLowerCase() === 'doctor')){
+                    console.log("here");
                     localStorage.setItem("userId", res.data.doctor_id);
                 }
                 this.setState({

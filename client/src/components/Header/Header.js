@@ -53,7 +53,18 @@ export default class Header extends React.Component {
                 <Navbar color="navbar" light expand="md">
                     <Container>
                             <Nav pills className="navLogo">
-                                <img className="med_logo" src={logo} alt={"logo"} href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active />
+                        
+                            <NavLink className=" navHomeBtn"  alt={"logo"}
+                                href={localStorage.getItem("role") === "patient"
+                                    ? "/patient"
+                                    :
+                                    localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor"
+                                        ? "/admin"
+                                        :
+                                        "/"}
+                                size="lg" active >
+                                <img src={logo} className='med_logo' />
+                                </NavLink>   
                             </Nav>
 
                             <Nav pills className="navlogOutPills">
