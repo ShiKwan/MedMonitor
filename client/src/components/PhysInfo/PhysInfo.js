@@ -24,24 +24,24 @@ const PhysInfo = (props) => {
             {/* <Card className="physInfoCard" body outline color="info"> */}
                 <CardHeader tag="h4"  className="physInfoHeader">Physician Information</CardHeader>
                 <Card className="docCardInfo">
-                    <Label className="patDoc" for="patDoc">Doctor: </Label>
+                    <Label className="patDoc" for="patDoc">Doctor: Dr. {props.doctorLastName} {props.doctorFirstName}</Label>
                     <br>
                     </br>
-                    <Label className="patDocAddress" for="patDocAddress">Address: </Label>
+                    <Label className="patDocAddress" for="patDocAddress">Office: {props.office}</Label>
                     <br>
                     </br>
-                    <Label className="patDocCity" for="patDocCity">City: </Label>
+                    <Label className="patDocCity" for="patDocCity">Email: {props.email}</Label>
                     <br>
                     </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Phone Number: </Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Phone Number: {props.phone}</Label>
                     <hr>
                     </hr>
                     <CardTitle className="physInfoHours">Office Hours</CardTitle>
                 
-                    <Label className="patDocPhNum" for="patDocPhNum">From: </Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Day: {props.officeDay}</Label>
                     <br>
                     </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">To: </Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.officeHour} </Label>
                 </Card>
             </Card>
         </Container>
