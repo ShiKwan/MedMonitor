@@ -19,6 +19,13 @@ import mailerAPI from "./utils/nodemailerAPI";
 import {Alert } from 'reactstrap';
 import openSocket from 'socket.io-client';
 
+import {
+  Container,
+} from 'reactstrap';
+
+import background from "./med_b.ground.jpg";
+
+
 const socket = openSocket();
 
 class App extends Component {
@@ -170,9 +177,12 @@ class App extends Component {
   render(){
   return(
   <Router>
-    <div>
+      <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}}>
+
       <Header username = {this.state.username} role={this.state.role} />
         {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
+      
+
       <Switch>
           <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
           <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
@@ -191,6 +201,7 @@ class App extends Component {
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>
+        
     </div>
   </Router>
   )

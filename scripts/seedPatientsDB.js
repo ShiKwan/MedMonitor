@@ -199,6 +199,38 @@ const patient_dataSeed = [
                 emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
                 symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
                 side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+            },
+            {
+                date_time: new Date("2018-04-08T08:00:00.000Z"),
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
+                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+            },
+            {
+                date_time: new Date("2018-04-08T12:00:00.000Z"),
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                symptoms: {kickin: 4, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
+                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+            },
+            {
+                date_time: new Date("2018-04-08T16:00:00.000Z"),
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
+                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+            },
+            {
+                date_time: new Date("2018-04-08T20:00:00.000Z"),
+                meds_taken: true,
+                // can add more detailed record of medications taken and notes here if required
+                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
+                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
             }
 
 
