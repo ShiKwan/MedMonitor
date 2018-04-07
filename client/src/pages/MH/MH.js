@@ -13,7 +13,7 @@ import moment from "moment";
 
 class Books extends Component {
     state = {
-    id: "5abbfd955d44324ef49b1bc8", // test id only
+    id: "5ac93b9bbddfdc49cc7e66d5", // test id only
 
     patient: {},
     patientDetails: [],
@@ -384,7 +384,7 @@ class Books extends Component {
     // find patient data by id for Admin ^^
     findPatientInfoForAdmin = event => {
         event.preventDefault();
-        patientAPI.findPatientInfoForAdmin("5ac908767cb3a04bc47355fe")
+        patientAPI.findPatientInfoForAdmin("5ac93b9bbddfdc49cc7e66d5")
             .then(res => {
 
                 console.log(res.data)
@@ -424,7 +424,7 @@ class Books extends Component {
                 let wearoffAverages = []; 
                 let movementAverages = [];
                 let sleepyAverages = [];
-                let offftimeAverages = [];
+                let offtimeAverages = [];
                 let tremorAverages = [];
                 let walkingAverages = [];
                 let balanceAverages = [];
@@ -458,90 +458,75 @@ class Books extends Component {
                 for (i=0; i<this.state.patientLastEpisodeNumRecords; i++) {
                     
                     record = this.state.patientLastEpisodeRecords[i];
-                    console.log(record)
+                    //console.log(record)
                     currentRecordDate = record.date_time.slice(0,10); 
-                    //console.log("i : " + i)
-                    
-                        //console.log("before j : " + j)
-                        //console.log("beforeCurr: " + currentRecordDate)
-                        //console.log("beforeprev: " + previousRecordDate)
+
                     
                     j<1 || currentRecordDate == previousRecordDate ? j++ : j=0;
 
-                        //console.log("after j : " + j)
-                        //console.log("afterCurr " + currentRecordDate)
-                        //console.log("afterPrev: " + previousRecordDate)
                         
-                        let recordTime = record.date_time.slice(11,16);
-                       //console.log("after: " + recordTime)
-                        timePoint[j] = recordTime;
+                    let recordTime = record.date_time.slice(11,16);
 
-                        //console.log(record.symptoms.kickin)
-                        //console.log(kickin)
-                        kickin[j].push(record.symptoms.kickin);
-                        //console.log(kickin)
-                        
-                        wearoff[j].push(record.symptoms.wearoff);
-                        movement[j].push(record.symptoms.movement);
-                        sleepy[j].push(record.symptoms.sleepy);
-                        offtime[j].push(record.symptoms.offtime);
-                        tremor[j].push(record.symptoms.tremor);
-                        walking[j].push(record.symptoms.walking);
-                        balance[j].push(record.symptoms.balance);
+                    timePoints[j] = recordTime;
 
-                        sickness[j].push(record.side_effects.sickness);
-                        dizziness[j].push(record.side_effects.dizziness);
-                        headache[j].push(record.side_effects.headache);
-                        drymouth[j].push(record.side_effects.drymouth);
-                            
-                        previousRecordDate = currentRecordDate;
+
+                    kickin[j].push(record.symptoms.kickin);
+                    wearoff[j].push(record.symptoms.wearoff);
+                    movement[j].push(record.symptoms.movement);
+                    sleepy[j].push(record.symptoms.sleepy);
+                    offtime[j].push(record.symptoms.offtime);
+                    tremor[j].push(record.symptoms.tremor);
+                    walking[j].push(record.symptoms.walking);
+                    balance[j].push(record.symptoms.balance);
+
+                    sickness[j].push(record.side_effects.sickness);
+                    dizziness[j].push(record.side_effects.dizziness);
+                    headache[j].push(record.side_effects.headache);
+                    drymouth[j].push(record.side_effects.drymouth);
                         
-                        console.log(kickin)
+                    previousRecordDate = currentRecordDate;
                 }
 
+                let array = []; 
+                for (i=0; i<timePoints.length; i++) {
 
-                //next step to average all values in each [j] array
-                //let average = (array) => array.reduce((a, b) => a + b) / array.length;
-                 
+                    kickinAverages[i] = (kickin[i].reduce((a, b) => a + b)/ kickin[i].length).toFixed(1);
+                    wearoffAverages[i] = (wearoff[i].reduce((a, b) => a + b) / wearoff[i].length).toFixed(1)
+                    movementAverages[i] = (movement[i].reduce((a, b) => a + b) / movement[i].length).toFixed(1)
+                    sleepyAverages[i] = (sleepy[i].reduce((a, b) => a + b) / sleepy[i].length).toFixed(1)
+                    offtimeAverages[i] = (offtime[i].reduce((a, b) => a + b) / offtime[i].length).toFixed(1)
+                    tremorAverages[i] = (tremor[i].reduce((a, b) => a + b) / tremor[i].length).toFixed(1)
+                    walkingAverages[i] = (walking[i].reduce((a, b) => a + b) / walking[i].length).toFixed(1)
+                    balanceAverages[i] = (balance[i].reduce((a, b) => a + b) / balance[i].length).toFixed(1)
+
+                    sicknessAverages[i] = (sickness[i].reduce((a, b) => a + b) / sickness[i].length).toFixed(1)
+                    dizzinessAverages[i] = (dizziness[i].reduce((a, b) => a + b) / dizziness[i].length).toFixed(1)
+                    headacheAverages[i] = (headache[i].reduce((a, b) => a + b) / headache[i].length).toFixed(1)
+                    drymouthAverages[i] = (drymouth[i].reduce((a, b) => a + b) / drymouth[i].length).toFixed(1)
+                }
                 
-                // for (i=0; i<timePoints.length; i++) [
-                //     kickinAverages[i] = (kickin[i]) => kickin[i].reduce((a, b) => a + b) / kickin[i].length;
-                //     wearoffAverages[i] = (wearoff[i]) => wearoff[i].reduce((a, b) => a + b) / wearoff[i].length;
-                //     movementAverages[i] = (movement[i]) => movement[i].reduce((a, b) => a + b) / movement[i].length;
-                //     sleepyAverages[i] = (sleepy[i]) => sleepy[i].reduce((a, b) => a + b) / sleepy[i].length;
-                //     offtimeAverages[i] = (offtime[i]) => offtime[i].reduce((a, b) => a + b) / offtime[i].length;
-                //     tremorAverages[i] = (tremor[i]) => tremor[i].reduce((a, b) => a + b) / tremor[i].length;
-                //     walkingAverages[i] = (walking[i]) => walking[i].reduce((a, b) => a + b) / walking[i].length;
-                //     balanceAverages[i] = (balance[i]) => balance[i].reduce((a, b) => a + b) / balance[i].length;
+                let obj = {};
+                for (i=0; i<timePoints.length; i++) {
 
-                //     sicknessAverages[i] = (sickness[i]) => sickness[i].reduce((a, b) => a + b) / sickness[i].length;
-                //     dizzinessAverages[i] = (dizziness[i]) => dizziness[i].reduce((a, b) => a + b) / dizziness[i].length;
-                //     headacheAverages[i] = (headache[i]) => headache[i].reduce((a, b) => a + b) / headache[i].length;
-                //     drymouthAverages[i] = (drymouth[i]) => drymouth[i].reduce((a, b) => a + b) / drymouth[i].length;
-                // ]
+                    obj = {
+                        name: timePoints[i], 
+                        kickin: kickinAverages[i], 
+                        movement: movementAverages[i], 
+                        sleepy: sleepyAverages[i],
+                        offtime: offtimeAverages[i],
+                        tremor: tremorAverages[i],
+                        walking: walkingAverages[i],
+                        balance: balanceAverages[i],
+                        sickness: sicknessAverages[i],
+                        dozziness: dizzinessAverages[i],
+                        headache: headacheAverages[i],
+                        drymouth: drymouthAverages[i]
+                        };
 
-
-                // //then assemble an object from times and vaklues for graphing
-
-                // for (i=0; i<timePoints.length; i++) [
-                //     chartData[
-                //         {name: timePoint[i], 
-                //         kickin: kickinAverages[i], 
-                //         movement: movementAverages[i], 
-                //         sleepy: sleepyAverages[i],
-                //         offtime: offtimeAverages[i],
-                //         tremor: tremorAverages[i],
-                //         walking: walkingAverages[i],
-                //         balance: balanceAverages[i],
-                //         sickness: sicknessAverages[i],
-                //         dozziness: dizzinessAverages[i],
-                //         headache: headacheAverages[i],
-                //         drymouth: drymouthAverages[i]
-                //         }
-                //     ]
-                // }
+                    chartData.push(obj) 
+                }
             
-                // console.log(chartData)
+                console.log(chartData)
 
 
 
