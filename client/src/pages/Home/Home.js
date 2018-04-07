@@ -56,10 +56,23 @@ class Home extends Component {
         patientID : patientID
         })
     }
+    validateLogin(username, password){
+        let valid = true;
+        if(!username || !password){
+            valid = false;
+            this.props.getBackMessage("Username or password cannot be empty!");
+            this.props.getBackMessageStatus("danger");
+        }else if(password.length < 6){
+            valid = false;
+            this.props.getBackMessage("Password length needs to be greater than 5 characters");
+            this.props.getBackMessageStatus("danger");
+        }
+        return valid
+    }
     
     handleLogin = event => {
-        console.log("here");
-        if (this.state.password && this.state.username) {
+        if(this.validateLogin(this.state.username, this.state.password)){
+            if (this.state.password && this.state.username) {
             userAPI.login({
                 username: this.state.username,
                 password: this.state.password
@@ -136,6 +149,7 @@ class Home extends Component {
                 this.props.getBackMessageStatus(this.state.messageStatus);
             }
             );
+        }
         }
     }
     handleInputChange = event => {

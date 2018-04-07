@@ -66,7 +66,7 @@ class PatMedDue extends Component {
                 this.state.medication.map((x) =>{
 
                     return(
-                        x.times.map((y) =>{
+                        x.times.map((y,index) =>{
                             
                             let date = moment().format("MM-DD-YYYY")
                             let newTime = moment(y, "HHmm").format("hh:mm A")
@@ -78,7 +78,7 @@ class PatMedDue extends Component {
                             }
                             return(
                                 moment().diff(currentDateTime) < 0 ?
-                                    <Container>
+                                    <Container key="index">
                                     <Label>{currentDateTime}</Label> 
                                     </Container>
                                     :
