@@ -542,8 +542,10 @@ class Admin extends Component {
                     <br />
                         <span  style={{fontWeight: "bold", float: "left"}}>
                             Physician: Dr.&nbsp;
-                            {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)}&nbsp;
-                            {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}  
+
+                                {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)} &nbsp;
+                                {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}
+                            
                         </span>
                         <span  style={{fontWeight: "bold", float: "right"}}>
                             {`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}
