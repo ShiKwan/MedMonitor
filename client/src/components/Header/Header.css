@@ -44,6 +44,10 @@ p.loginName {
     cursor: pointer;
 }
 
+a.navLogo.nav-link.active {
+    background-color: Transparent;
+}
+
 .navBtn {
     display: -webkit-box;
 }
@@ -68,16 +72,13 @@ p.loginName {
         float: right;
     }
     .navLogo img {
-        width: auto;
         height: 125px;
-        cursor: pointer;
     }
 }
 
 @media screen and (max-width: 769px) {
     
     .navGreeting .navLogName {
-        float: right;
         margin-top: 5px;
         margin-bottom: 5px;
     }
@@ -87,17 +88,19 @@ p.loginName {
     }
 
     .navLogo img {
-        width: auto;
         height: 115px;
-        cursor: pointer;
     }
 }
 
 @media screen and (max-width: 668px) {
     .navLogo img {
-        width: auto;
         height: 100px;
-        cursor: pointer;
+    }
+    .navBtn .logOutBtn,
+    .navBtn .navAppBtn {
+        margin-bottom: 5px;
+        padding: 5px 10px 5px 10px;
+        font-size: 10px;
     }
 }
 
@@ -107,20 +110,16 @@ p.loginName {
         box-shadow: 0px 0px 10px #bab9b9;
     }
     .navLogo img {
-        width: auto;
         height: 60px;
-        cursor: pointer;
     }
     .navBtn .logOutBtn,
     .navBtn .navAppBtn {
-        text-align: center;
         margin-bottom: 5px;
-        font-weight: bold;
         padding: 5px 10px 5px 10px;
+        font-size: 10px;
     }
 
     .navGreeting .navLogName {
-        float: right;
         margin-top: 5px;
         margin-bottom: -5px;
     }
@@ -140,3 +139,4 @@ p.loginName {
         margin-right: 5px;
     }
 }
+

@@ -1,0 +1,11 @@
+.backgroundContain img {
+    /* margin-top: -400px; */
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: -200;
+    background-position: center;
+    opacity: .5;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
 
-import background from "./med_b.ground.jpg";
+// import background from "./med_b.ground.jpg";
 
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
@@ -90,6 +90,15 @@ class Home extends Component {
                             localStorage.setItem("lastName", res.data.details.last_name);
                             localStorage.setItem("patient_number", res.data.details.patient_number);
                             localStorage.setItem("patient_phone", res.data.details.phone);
+                            this.props.getBackMessage(this.state.messageCenter);
+                            this.props.getBackMessageStatus(this.state.messageStatus);
+                            console.log("username : ", this.state.username);
+                            console.log("local storage: ", localStorage.getItem("username"));
+                            if(localStorage.getItem("role").toLowerCase()==="patient"){
+                                this.props.history.push('/patient');      
+                            } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
+                                this.props.history.push('/admin');   
+                            }
                         })
                         .catch(err => console.log(err));
 
@@ -102,21 +111,19 @@ class Home extends Component {
                             localStorage.setItem("lastName", res.data.name.last);
                             localStorage.setItem("office", res.data.office);
                             localStorage.setItem("phone", res.data.phone);
+                            this.props.getBackMessage(this.state.messageCenter);
+                            this.props.getBackMessageStatus(this.state.messageStatus);
+                            console.log("username : ", this.state.username);
+                            console.log("local storage: ", localStorage.getItem("username"));
+                            if(localStorage.getItem("role").toLowerCase()==="patient"){
+                                this.props.history.push('/patient');      
+                            } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
+                                this.props.history.push('/admin');   
+                            }
                         })
                         .catch(err => console.log(err));
                     }
                 })
-                
-                this.props.getBackMessage(this.state.messageCenter);
-                this.props.getBackMessageStatus(this.state.messageStatus);
-                console.log("username : ", this.state.username);
-                console.log("local storage: ", localStorage.getItem("username"));
-                if(localStorage.getItem("role").toLowerCase()==="patient"){
-                    this.props.history.push('/patient');      
-                } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
-                    this.props.history.push('/admin');   
-                }
-                
             })
             .catch(err => {
                 this.setState({
@@ -161,10 +168,10 @@ class Home extends Component {
         let getBackMessageStatus = this.props.getBackMessageStatus;
         
         return (
-            <Container fluid className="bGroundContain">
-                    <img className="med_b.ground" src={background} alt={"background"} />
-            {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
-            {/* <Header /> */}
+            <Container fluid>
+            {/* className="bGroundContain"> */}
+                    {/* <img className="med_b.ground" src={background} alt={"background"} /> */}
+
                 <Container className="home-container">
                     
 
