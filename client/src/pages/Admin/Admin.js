@@ -385,8 +385,10 @@ class Admin extends Component {
         console.log("c " + `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`)
         const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
         console.log("d " + newAppt)
+        console.log("e " + this.state.pt_nextApptComment)
         patientAPI.updateAppointment(id, {
-            next_appt: newAppt
+            next_appt: newAppt,
+            comments: this.state.pt_nextApptComment,
         })
         .then(res => {
             this.setState({changeAppointmentCard: false});
@@ -679,6 +681,7 @@ class Admin extends Component {
                                 lastname = {this.state.patientDetails.last_name}
                                 active = {this.state.patient.active}
                                 nextAppt = {this.state.patientAppointment.next_appt}
+                                nextApptComment = {this.state.patientAppointment.comments}
                                 pt_id = {this.state.patient._id}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 updateAppointment = {(id) => this.updateAppointment(id)}

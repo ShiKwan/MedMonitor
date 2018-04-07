@@ -7,12 +7,26 @@ import patientAPI from "../../utils/patientAPI";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import moment from "moment";
 
 
 
 class Books extends Component {
     state = {
-    id: "5abbfd955d44324ef49b1bc8"
+    id: "5abbfd955d44324ef49b1bc8", // test id only
+
+    patient: {},
+    patientDetails: [],
+    patientAppt: [],
+    patientEpisodes: [],
+
+    patientLastEpisode: [],
+    patientLastEpisodeStart: "",
+    patientLastEpisodeMeds: [],
+
+    patientLastEpisodeRecords: [],
+    patientLastEpisodeNumRecords: 0,
+
     };
 
     componentDidMount() {
@@ -351,18 +365,8 @@ class Books extends Component {
 
         .then(res => console.log(res))
         .catch(err => console.log(err));
-    };
-
-    // find patient data by id for Admin ^^
-    findPatientInfoForAdmin = event => {
-        event.preventDefault();
-        patientAPI.findPatientInfoForAdmin("5ac7ae215a77e145a4d86145")
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => console.log(err));
-    };
-
+    };    
+    
     
     // Form handlers
     handleInputChange = event => {
@@ -372,6 +376,93 @@ class Books extends Component {
         });
         console.log(event.target.value);
     };
+
+
+
+
+
+    // find patient data by id for Admin ^^
+    // findPatientInfoForAdmin = event => {
+    //     event.preventDefault();
+    //     patientAPI.findPatientInfoForAdmin("5ac7ae215a77e145a4d86145")
+    //         .then(res => {
+
+    //             this.setState({patient: res.data});
+    //             this.setState({patientDetails: this.state.patient.details})
+    //             this.setState({patientAppt: this.state.patient.appointment})
+    //             this.setState({patientEpisodes: this.state.patient.episode})
+
+    //             this.setState({patientLastEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1] })
+    //             this.setState({patientLastEpisodeStart: this.state.patientLastEpisode.start_date})
+    //             this.setState({patientLastEpisodeMeds: this.state.patientLastEpisode.medications})
+
+    //             this.setState({patientLastEpisodeRecords: this.state.patientLastEpisode.record})
+    //             this.setState({patientLastEpisodeNumRecords: this.state.patientLastEpisodeRecords.length})
+
+    //             let record = [];
+    //             let currentRecordDate = "";
+    //             let previousRecordDate = "";
+    //             let recordTime = "";
+
+    //             let kickin = [][]; //2d array
+    //             let wearoff = [][]; 
+    //             let movement = [][];
+    //             let sleepy = [][];
+    //             let offftime = [][];
+    //             let tremor = [][];
+    //             let walking = [][];
+    //             let balance = [][];
+    //             let sickness = [][];
+    //             let dizziness = [][];
+    //             let headache = [][];
+    //             let drymouth = [][];
+    //             TimePoint = [];
+
+    //             let i=0, j=1, k=0;
+
+                
+                
+    //             for (i=0; i<this.state.patientLastEpisodeNumRecords; i++) {
+                    
+    //                 record = this.state.patientLastEpisodeRecords[i];
+    //                 currentRecordDate = moment(record.date_time).format().slice(0,10);
+                    
+    //                if (!i && currentRecordDate == previousRecordDate) {j++;} else {j=1;}
+
+    //                     let recordTime = moment(record.date_time).format().slice(12,16);
+
+    //                     timePoint[j] = recordTime;
+
+    //                     kickin[j].push(record.symptoms.kickin);
+    //                     wearoff[j].push(record.symptoms.wearoff);
+    //                     movement[j].push(record.symptoms.movement);
+    //                     sleepy[j].push(record.symptoms.sleepy);
+    //                     offtime[j].push(record.symptoms.offtime);
+    //                     tremor[j].push(record.symptoms.tremor);
+    //                     walking[j].push(record.symptoms.walking;
+    //                     balance[j].push(record.symptoms.balance);
+
+    //                     sickness[j].push(record.symptoms.sickness);
+    //                     dizziness[j].push(record.symptoms.dizziness);
+    //                     headache[j].push(record.symptoms.headache);
+    //                     drymouth[j].push(record.symptoms.drymouth);
+                            
+
+    //                     previousRecordDate = currentRecordDate;
+    //             }
+
+                // next step to average all values in each [j] array
+
+                // then assemble an object from times and vaklues for graphing
+
+            
+            
+            // })
+            // .catch(err => console.log(err));
+    //};
+
+    
+
 
 
     // ------

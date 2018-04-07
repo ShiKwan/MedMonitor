@@ -35,6 +35,7 @@ export default class ConfirmPatientCard extends React.Component {
 
                         <br />
                         <Table className="Table" size="sm">
+                        <tbody>
                             <tr>
                                 <td>Hospital Number:</td><td>{this.props.patientNumber}</td>
                             </tr><tr>
@@ -58,6 +59,7 @@ export default class ConfirmPatientCard extends React.Component {
                             </tr><tr>
                                 <td>Records in Last Episode:</td><td>{this.props.recordsLastPatientEpisode}</td>
                             </tr>
+                        </tbody>
                         </Table>
 
                     <br />
