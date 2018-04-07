@@ -349,6 +349,8 @@ class PatSurvey extends Component {
             // const offsetNum =introsurvCardElement + navbarElement;
             console.log('CHECKBOX: offsetNum', offsetNum);
             window.scrollTo(0, offsetNum);
+
+            
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);

@@ -162,8 +162,7 @@ class Home extends Component {
         return (
             <Container fluid className="bGroundContain">
                     <img className="med_b.ground" src={background} alt={"background"} />
-            {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
-            {/* <Header /> */}
+
                 <Container className="home-container">
                     
 
