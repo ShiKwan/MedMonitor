@@ -7,6 +7,7 @@ import PatientConfirmEpisode from "../../components/Admin/episode/ConfirmEpisode
 import PatientSuccessEpisode from "../../components/Admin/episode/SuccessEpisode" 
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
+import moment from 'moment';
 import medicationAPI from "../../utils/medicationAPI";
 import {
     Nav, Navbar, NavItem, NavLink, 
@@ -50,6 +51,7 @@ handleLoadPatient = (e) => {
     e.preventDefault();
 
     this.loadPatient();
+    console.log("current state in admin episode : ", this.state);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
@@ -171,7 +173,13 @@ prepDataToSave = () =>{
             objToSubmit)
             .then(res => {
                 console.log(res)
-                patientAPI.updateAppointment(window.location.search.substring(4), this.state.newAppt)
+                let objAppointment = {
+                    next_appt: moment(this.state.newAppt.next_appt, "dddd, MMMM Do YYYY h:mm a").format(),
+                    comments: this.state.pt_nextApptComment 
+                }
+                console.log(objAppointment);
+                patientAPI.updateAppointment(window.location.search.substring(4), 
+                    objAppointment)
                     .then(res => {
                         console.log(res)
                     })

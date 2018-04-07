@@ -58,7 +58,7 @@ class Patient extends Component {
                         </Col>
                     </Row>
                     {
-                        this.state.finishedQuestion === true ?
+                        this.state.finishedQuestion === false ?
                             <Row>
                                 <Col size='md-6'>
                                     <PatMedDue medication={this.state.medication} />

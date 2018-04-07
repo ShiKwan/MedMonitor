@@ -15,6 +15,7 @@ import {
     Col
 } from 'reactstrap';
 import Chart from "../../components/Admin/Report/Chart";
+import Video from "../../components/Admin/Report/Video";
 import EpisodeInfo from "../../components/Admin/Report/EpisodeInfo";
 import ReportHeader from "../../components/Admin/Report/Header";
 import Medication from "../../components/Admin/Report/Medication";
@@ -43,6 +44,7 @@ componentDidMount() {
                         </Col>
                         <Col md='6'>
                             <EpisodeInfo />
+                            <Video />
                         </Col>
                     </Row>
                     <Row>
