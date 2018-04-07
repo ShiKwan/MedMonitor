@@ -382,84 +382,166 @@ class Books extends Component {
 
 
     // find patient data by id for Admin ^^
-    // findPatientInfoForAdmin = event => {
-    //     event.preventDefault();
-    //     patientAPI.findPatientInfoForAdmin("5ac7ae215a77e145a4d86145")
-    //         .then(res => {
+    findPatientInfoForAdmin = event => {
+        event.preventDefault();
+        patientAPI.findPatientInfoForAdmin("5ac908767cb3a04bc47355fe")
+            .then(res => {
 
-    //             this.setState({patient: res.data});
-    //             this.setState({patientDetails: this.state.patient.details})
-    //             this.setState({patientAppt: this.state.patient.appointment})
-    //             this.setState({patientEpisodes: this.state.patient.episode})
+                console.log(res.data)
 
-    //             this.setState({patientLastEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1] })
-    //             this.setState({patientLastEpisodeStart: this.state.patientLastEpisode.start_date})
-    //             this.setState({patientLastEpisodeMeds: this.state.patientLastEpisode.medications})
+                this.setState({patient: res.data});
+                this.setState({patientDetails: this.state.patient.details})
+                this.setState({patientAppt: this.state.patient.appointment})
+                this.setState({patientEpisodes: this.state.patient.episode})
 
-    //             this.setState({patientLastEpisodeRecords: this.state.patientLastEpisode.record})
-    //             this.setState({patientLastEpisodeNumRecords: this.state.patientLastEpisodeRecords.length})
+                this.setState({patientLastEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1] })
+                this.setState({patientLastEpisodeStart: this.state.patientLastEpisode.start_date})
+                this.setState({patientLastEpisodeMeds: this.state.patientLastEpisode.medications})
 
-    //             let record = [];
-    //             let currentRecordDate = "";
-    //             let previousRecordDate = "";
-    //             let recordTime = "";
+                this.setState({patientLastEpisodeRecords: this.state.patientLastEpisode.record})
+                this.setState({patientLastEpisodeNumRecords: this.state.patientLastEpisodeRecords.length})
 
-    //             let kickin = [][]; //2d array
-    //             let wearoff = [][]; 
-    //             let movement = [][];
-    //             let sleepy = [][];
-    //             let offftime = [][];
-    //             let tremor = [][];
-    //             let walking = [][];
-    //             let balance = [][];
-    //             let sickness = [][];
-    //             let dizziness = [][];
-    //             let headache = [][];
-    //             let drymouth = [][];
-    //             TimePoint = [];
+                let record = [];
+                let currentRecordDate = "";
+                let previousRecordDate = "";
+                let recordTime = "";
 
-    //             let i=0, j=1, k=0;
+                let kickin = []; 
+                let wearoff = []; 
+                let movement = [];
+                let sleepy = [];
+                let offtime = [];
+                let tremor = [];
+                let walking = [];
+                let balance = [];
+                let sickness = [];
+                let dizziness = [];
+                let headache = [];
+                let drymouth = [];
+                let timePoint = [];
 
+                let kickinAverages = []; 
+                let wearoffAverages = []; 
+                let movementAverages = [];
+                let sleepyAverages = [];
+                let offftimeAverages = [];
+                let tremorAverages = [];
+                let walkingAverages = [];
+                let balanceAverages = [];
+                let sicknessAverages = [];
+                let dizzinessAverages = [];
+                let headacheAverages = [];
+                let drymouthAverages = [];
+
+                let timePoints = [];
+                let chartData = [];
+
+
+                let i=0, j=-1;
+
+                kickin.push( [] ); 
+                wearoff.push( [] ); 
+                movement.push( [] );
+                sleepy.push( [] );
+                offtime.push( [] );
+                tremor.push( [] );
+                walking.push( [] );
+                balance.push( [] );
+                sickness.push( [] );
+                dizziness.push( [] );
+                headache.push( [] );
+                drymouth.push( [] );
                 
-                
-    //             for (i=0; i<this.state.patientLastEpisodeNumRecords; i++) {
+                for (i=0; i<this.state.patientLastEpisodeNumRecords; i++) {
                     
-    //                 record = this.state.patientLastEpisodeRecords[i];
-    //                 currentRecordDate = moment(record.date_time).format().slice(0,10);
+                    record = this.state.patientLastEpisodeRecords[i];
+                    console.log(record)
+                    console.log(this.state.patientLastEpisodeNumRecords)
+                    currentRecordDate = record.date_time.slice(0,10);
                     
-    //                if (!i && currentRecordDate == previousRecordDate) {j++;} else {j=1;}
+                   if (j=-1 || currentRecordDate === previousRecordDate) {j++;} else {j=-1;}
 
-    //                     let recordTime = moment(record.date_time).format().slice(12,16);
+                        let recordTime = record.date_time.slice(11,16);
+                        console.log(record.date_time)
+                        console.log(currentRecordDate)
+                        console.log(previousRecordDate)
+                        console.log(recordTime)
+                        console.log(i + " : " + j)
 
-    //                     timePoint[j] = recordTime;
+                        timePoint[j] = recordTime;
 
-    //                     kickin[j].push(record.symptoms.kickin);
-    //                     wearoff[j].push(record.symptoms.wearoff);
-    //                     movement[j].push(record.symptoms.movement);
-    //                     sleepy[j].push(record.symptoms.sleepy);
-    //                     offtime[j].push(record.symptoms.offtime);
-    //                     tremor[j].push(record.symptoms.tremor);
-    //                     walking[j].push(record.symptoms.walking;
-    //                     balance[j].push(record.symptoms.balance);
+                        kickin[j].push(record.symptoms.kickin);
+                        console.log(kickin[j])
+                        wearoff[j].push(record.symptoms.wearoff);
+                        movement[j].push(record.symptoms.movement);
+                        sleepy[j].push(record.symptoms.sleepy);
+                        offtime[j].push(record.symptoms.offtime);
+                        tremor[j].push(record.symptoms.tremor);
+                        walking[j].push(record.symptoms.walking);
+                        balance[j].push(record.symptoms.balance);
 
-    //                     sickness[j].push(record.symptoms.sickness);
-    //                     dizziness[j].push(record.symptoms.dizziness);
-    //                     headache[j].push(record.symptoms.headache);
-    //                     drymouth[j].push(record.symptoms.drymouth);
+                        sickness[j].push(record.side_effects.sickness);
+                        dizziness[j].push(record.side_effects.dizziness);
+                        headache[j].push(record.side_effects.headache);
+                        drymouth[j].push(record.side_effects.drymouth);
                             
+                        previousRecordDate = currentRecordDate;
+                }
 
-    //                     previousRecordDate = currentRecordDate;
-    //             }
+                console.log(kickin[0])
 
-                // next step to average all values in each [j] array
+                //next step to average all values in each [j] array
+                //let average = (array) => array.reduce((a, b) => a + b) / array.length;
+                 
+                
+                // for (i=0; i<timePoints.length; i++) [
+                //     kickinAverages[i] = (kickin[i]) => kickin[i].reduce((a, b) => a + b) / kickin[i].length;
+                //     wearoffAverages[i] = (wearoff[i]) => wearoff[i].reduce((a, b) => a + b) / wearoff[i].length;
+                //     movementAverages[i] = (movement[i]) => movement[i].reduce((a, b) => a + b) / movement[i].length;
+                //     sleepyAverages[i] = (sleepy[i]) => sleepy[i].reduce((a, b) => a + b) / sleepy[i].length;
+                //     offtimeAverages[i] = (offtime[i]) => offtime[i].reduce((a, b) => a + b) / offtime[i].length;
+                //     tremorAverages[i] = (tremor[i]) => tremor[i].reduce((a, b) => a + b) / tremor[i].length;
+                //     walkingAverages[i] = (walking[i]) => walking[i].reduce((a, b) => a + b) / walking[i].length;
+                //     balanceAverages[i] = (balance[i]) => balance[i].reduce((a, b) => a + b) / balance[i].length;
 
-                // then assemble an object from times and vaklues for graphing
+                //     sicknessAverages[i] = (sickness[i]) => sickness[i].reduce((a, b) => a + b) / sickness[i].length;
+                //     dizzinessAverages[i] = (dizziness[i]) => dizziness[i].reduce((a, b) => a + b) / dizziness[i].length;
+                //     headacheAverages[i] = (headache[i]) => headache[i].reduce((a, b) => a + b) / headache[i].length;
+                //     drymouthAverages[i] = (drymouth[i]) => drymouth[i].reduce((a, b) => a + b) / drymouth[i].length;
+                // ]
+
+
+                // //then assemble an object from times and vaklues for graphing
+
+                // for (i=0; i<timePoints.length; i++) [
+                //     chartData[
+                //         {name: timePoint[i], 
+                //         kickin: kickinAverages[i], 
+                //         movement: movementAverages[i], 
+                //         sleepy: sleepyAverages[i],
+                //         offtime: offtimeAverages[i],
+                //         tremor: tremorAverages[i],
+                //         walking: walkingAverages[i],
+                //         balance: balanceAverages[i],
+                //         sickness: sicknessAverages[i],
+                //         dozziness: dizzinessAverages[i],
+                //         headache: headacheAverages[i],
+                //         drymouth: drymouthAverages[i]
+                //         }
+                //     ]
+                // }
+            
+                // console.log(chartData)
+
+
+
+                
 
             
             
-            // })
-            // .catch(err => console.log(err));
-    //};
+            })
+            .catch(err => console.log(err));
+    };
 
     
 
