@@ -39,7 +39,7 @@ const UpcomingApp = (props) => {
                     </br>
                     <Label className="appNum" for="appPhNum">Phone Number: {props.officePhone}</Label>
 
-                    <Button className="appRemindBtn" size="lg">Remind Me!</Button>{' '}
+                    <Button className="appRemindBtn" size="lg" onClick={(e)=>props.remindHandler(e)}>Remind Me!</Button>{' '}
                 </Card>
             </Card>
         </Container>

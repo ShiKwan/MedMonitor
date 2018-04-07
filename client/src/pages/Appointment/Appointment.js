@@ -16,30 +16,7 @@ import {
     Row,
     Col,
 } from 'reactstrap';
-const reminder = {
-  'summary': 'Potato!',
-  'location': 'Case Western Reserve University',
-  'description': 'I got this going',
-  'start': {
-    'dateTime': '2018-04-12T09:00:00-07:00',
-    'timeZone': 'America/Los_Angeles'
-  },
-  'end': {
-    'dateTime': '2018-04-12T17:00:00-07:30',
-    'timeZone': 'America/Los_Angeles'
-  },
-  'attendees': [
-    { 'email': 'lpage@example.com' },
-    { 'email': 'sbrin@example.com' }
-  ],
-  'reminders': {
-    'useDefault': false,
-    'overrides': [
-      { 'method': 'email', 'minutes': 24 * 60 },
-      { 'method': 'popup', 'minutes': 10 }
-    ]
-  }
-};
+
 gapi.load('client:auth2', initClient);
 
 function initClient() {
@@ -69,14 +46,18 @@ class Appointment extends Component {
                 appointment : res.data.appointment,
                 physician : res.data.physician,
                 physicianFirstName : res.data.physician.name.first,
-                physicianLastName : res.data.physician.name.last
-            })
+                physicianLastName : res.data.physician.name.last,
+                address : "2447 Imagine Ln",
+                city : "Cleveland, OH 44113",
+                officePhone : "216-115-55088",
+                dateTime : moment(this.state.appointment.next_appt).format()
+})
         })
         .catch((err) =>{console.log("err", err)})
 
     }
 
-    handleCreateEvent = event => {
+/*     handleCreateEvent = event => {
       event.preventDefault();
         gapi.client.load('calendar', 'v3', function(){
           var request = gapi.client.calendar.events.insert({
@@ -88,7 +69,7 @@ class Appointment extends Component {
             console.log(resp);
           }); 
         });
-  }
+  } */
 
    handleoAuth2TokenGet = event => {
        event.preventDefault();
@@ -101,6 +82,27 @@ class Appointment extends Component {
    const prompt = 'consent';
    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=${prompt}`;
    // Open a new window
+   const reminder = {
+'summary': `Doctor Appointment with ${this.state.physicianFirstName}, ${this.state.physicianLastName}`,
+'location': `${this.state.address} ${this.state.city}`,
+'description': `Doctor appointment`,
+'start': {
+'dateTime': `${this.state.dateTime}` ,
+'timeZone': 'America/New_York'
+},
+'end': {
+'dateTime': `${moment(this.state.dateTime).add(1, 'hour').format()}` ,
+'timeZone': 'America/New_York'
+},
+'reminders': {
+'useDefault': false,
+'overrides': [
+    { 'method': 'email', 'minutes': 24 * 60 },
+    { 'method': 'popup', 'minutes': 10 }
+]
+}
+};
+
    const win = window.open(url, 'name', 'height=600,width=450');
    if (win) win.focus();
    const pollTimer = window.setInterval(() => {
@@ -132,6 +134,7 @@ class Appointment extends Component {
          //  TODO: Persist result in sessionStorage here
        }
      } catch (err) {
+         console.log(err);
        // do something or nothing if window still not redirected after login
      }
    }, 100);
@@ -147,7 +150,7 @@ class Appointment extends Component {
                 {/* <Header /> */}
                 <Container>
                     <Button onClick={this.handleoAuth2TokenGet}>Authorize from Google and save it to patient's calendar</Button>
-                    <Button onClick={(e) =>this.handleCreateEvent(e)}>Show me the money and save it to my calendar </Button>
+                    {/* <Button onClick={(e) =>this.handleCreateEvent(e)}>Show me the money and save it to my calendar </Button> */}
                     <Row>
                         <Col size='md-6'>
                             <UpcomingApp 
@@ -158,6 +161,7 @@ class Appointment extends Component {
                                 address = "2447 Imagine Ln"
                                 city = "Cleveland, OH 44113"
                                 officePhone = "216-115-55088"
+                                remindHandler = {this.handleoAuth2TokenGet}
                             />
                         </Col>
                         <Col size='md-6'>
