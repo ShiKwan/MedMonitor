@@ -45,13 +45,21 @@ button.submit-button {
 
 h4.signInTab,
 h4.registerTab {
-    color: #6d8998;
+    color: #2d5366;
     font-weight: bold;
+    cursor: pointer;
 }
 
-h4.signInTab:hover,
-h4.registerTab:hover {
-    color: #2d5366;
+.bGroundContain img {
+    margin-top: -195px;
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: -200;
+    background-position: center;
+    opacity: .5;
 }
 
 

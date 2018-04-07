@@ -1,9 +1,9 @@
 import React from 'react';
 import "./Header.css";
-import logo from "./med_monitor.png";
-import userAPI from "../../utils/userAPI";
-import background from "./blurry-blue-light.jpg";
 
+import logo from "./med_monitor.png";
+
+import userAPI from "../../utils/userAPI";
 
 import {
     Nav,
@@ -52,7 +52,7 @@ export default class Header extends React.Component {
         return (
                 <Navbar color="navbar" light expand="md">
                     <Container>
-                            <Nav pills className="navPills">
+                            <Nav pills className="navLogo">
                                 <img className="med_logo" src={logo} alt={"logo"} href={localStorage.getItem("role") === "patient" ? "/patient" : localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor" ? "/admin" : "/"} className="navHomeBtn" size="lg" active />
                             </Nav>
 
@@ -80,8 +80,6 @@ export default class Header extends React.Component {
 
                                     }
                                 </NavItem>
-                        {/* <img className="blurry-blue-light" src={background} alt={"background"} /> */}
-
                             </Nav>
                     </Container>
                 </Navbar>

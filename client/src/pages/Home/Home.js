@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
-// import Header from "../../components/Header";
+
+import background from "./med_b.ground.jpg";
+
 import SignInForm from "../../components/SignInForm";
 import Registration from "../../components/Registration";
 import { 
@@ -158,10 +160,13 @@ class Home extends Component {
         let getBackMessageStatus = this.props.getBackMessageStatus;
         
         return (
-        <Container fluid >
+            <Container fluid className="bGroundContain">
+                    <img className="med_b.ground" src={background} alt={"background"} />
             {/*<Alert color={`${this.state.messageStatus}`} className="text-center" >{this.state.messageCenter}</Alert>*/}
             {/* <Header /> */}
                 <Container className="home-container">
+                    
+
                     <Nav tabs>
                         <NavItem>
                             <NavLink
@@ -196,8 +201,8 @@ class Home extends Component {
                             </Row>
                         </TabPane>
                     </TabContent>    
+                </Container>
             </Container>
-        </Container>
         );
     }
 };

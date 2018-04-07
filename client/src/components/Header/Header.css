@@ -38,15 +38,10 @@ p.loginName {
     font-size: 20px;
 }
 
-img {
+.navLogo img {
     width: auto;
     height: 150px;
     cursor: pointer;
-}
-
-img.blurry-blue-light {
-    z-index: -1;
-    width: 100%;
 }
 
 .navBtn {
