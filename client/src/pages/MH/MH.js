@@ -155,12 +155,12 @@ class Books extends Component {
     };
 
     // find patient data by id for Admin ^^
-    findPatientInfoForAdmin = event => {
-        event.preventDefault();
-        patientAPI.findPatientInfoForAdmin(this.state.id)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-    };
+    // findPatientInfoForAdmin = event => {
+    //     event.preventDefault();
+    //     patientAPI.findPatientInfoForAdmin(this.state.id)
+    //         .then(res => console.log(res))
+    //         .catch(err => console.log(err));
+    // };
 
     // find patient data by id for Patient use ^^
     findPatientInfoForPatient = event => {
@@ -353,7 +353,15 @@ class Books extends Component {
         .catch(err => console.log(err));
     };
 
-
+    // find patient data by id for Admin ^^
+    findPatientInfoForAdmin = event => {
+        event.preventDefault();
+        patientAPI.findPatientInfoForAdmin("5ac7ae215a77e145a4d86145")
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => console.log(err));
+    };
 
     
     // Form handlers
@@ -374,28 +382,17 @@ class Books extends Component {
         return (
 
             <Container>
-                Add new med:
                 <Form>
-                    <FormGroup>
-                        <Label >Drug name: </Label>
-                        <Input type="text" name="drugName" placeholder="drug name" onChange={this.handleInputChange} value={this.state.drugName} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label> Drug Type: </Label>
-                        <Input type="text" name="drugType" placeholder="drug type" onChange={this.handleInputChange} value={this.state.drugType} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Dosage: </Label>
-                        <Input type="text" name="dosage" placeholder="dosage" onChange={this.handleInputChange} value={this.state.dosage} />
-                    </FormGroup>
-                    <Button onClick={this.loadAllPatients}>loadall</Button>
-                    <Button onClick={this.createNewRecord}>record</Button>
+                    <br />
+                    <Button onClick={this.findPatientInfoForAdmin}>loadall</Button>
+                    {/* <Button onClick={this.createNewRecord}>record</Button>
                     <Button onClick={this.createNewEpisode}>episode</Button>
                     <Button onClick={this.addNewPatient}>add pt</Button>
-                    <Button onClick={this.recordPatientInactive}>findOne</Button>
+                    <Button onClick={this.recordPatientInactive}>findOne</Button> */}
 
 
                 </Form>
+
             </Container>
         )
     };

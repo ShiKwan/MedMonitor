@@ -267,7 +267,7 @@ const patient_dataSeed = [
     
     active: true,
 
-    doctor: "",      //doctor: to be populated with _id from doctors collection
+    physician: ""      //doctor: to be populated with _id from doctors collection
     
     details: {
       patient_number: "hosp001",
