@@ -439,39 +439,48 @@ class Books extends Component {
 
                 let i=0, j=-1;
 
-                kickin.push( [] ); 
-                wearoff.push( [] ); 
-                movement.push( [] );
-                sleepy.push( [] );
-                offtime.push( [] );
-                tremor.push( [] );
-                walking.push( [] );
-                balance.push( [] );
-                sickness.push( [] );
-                dizziness.push( [] );
-                headache.push( [] );
-                drymouth.push( [] );
+                for (i=0; i<6; i++) {
+
+                    kickin.push( [] ); 
+                    wearoff.push( [] ); 
+                    movement.push( [] );
+                    sleepy.push( [] );
+                    offtime.push( [] );
+                    tremor.push( [] );
+                    walking.push( [] );
+                    balance.push( [] );
+                    sickness.push( [] );
+                    dizziness.push( [] );
+                    headache.push( [] );
+                    drymouth.push( [] );
+            }
                 
                 for (i=0; i<this.state.patientLastEpisodeNumRecords; i++) {
                     
                     record = this.state.patientLastEpisodeRecords[i];
                     console.log(record)
-                    console.log(this.state.patientLastEpisodeNumRecords)
-                    currentRecordDate = record.date_time.slice(0,10);
+                    currentRecordDate = record.date_time.slice(0,10); 
+                    //console.log("i : " + i)
                     
-                   if (j=-1 || currentRecordDate === previousRecordDate) {j++;} else {j=-1;}
+                        //console.log("before j : " + j)
+                        //console.log("beforeCurr: " + currentRecordDate)
+                        //console.log("beforeprev: " + previousRecordDate)
+                    
+                    j<1 || currentRecordDate == previousRecordDate ? j++ : j=0;
 
+                        //console.log("after j : " + j)
+                        //console.log("afterCurr " + currentRecordDate)
+                        //console.log("afterPrev: " + previousRecordDate)
+                        
                         let recordTime = record.date_time.slice(11,16);
-                        console.log(record.date_time)
-                        console.log(currentRecordDate)
-                        console.log(previousRecordDate)
-                        console.log(recordTime)
-                        console.log(i + " : " + j)
-
+                       //console.log("after: " + recordTime)
                         timePoint[j] = recordTime;
 
+                        //console.log(record.symptoms.kickin)
+                        //console.log(kickin)
                         kickin[j].push(record.symptoms.kickin);
-                        console.log(kickin[j])
+                        //console.log(kickin)
+                        
                         wearoff[j].push(record.symptoms.wearoff);
                         movement[j].push(record.symptoms.movement);
                         sleepy[j].push(record.symptoms.sleepy);
@@ -486,9 +495,10 @@ class Books extends Component {
                         drymouth[j].push(record.side_effects.drymouth);
                             
                         previousRecordDate = currentRecordDate;
+                        
+                        console.log(kickin)
                 }
 
-                console.log(kickin[0])
 
                 //next step to average all values in each [j] array
                 //let average = (array) => array.reduce((a, b) => a + b) / array.length;
