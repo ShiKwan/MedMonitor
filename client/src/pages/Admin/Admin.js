@@ -300,8 +300,8 @@ class Admin extends Component {
         event.preventDefault();
         console.log("1pt: " + this.state.pt_id)
         console.log("1phys: " + this.state.pt_physician)
-        if(this.state.primary_phys) {
-            patientAPI.updatePatientsDoctor(this.state.pt_id, {
+        if(this.state.pt_physician) {
+            patientAPI.updatePatientsDr(this.state.pt_id, {
                 physician : this.state.pt_physician
             })
             .then(res => {

@@ -27,7 +27,7 @@ export default class AddPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="enrollNewPatTableCard TableCard" style={{display: this.props.addPatientCard ? "block" : "none"}}>
+            <Card className="enrollNewPatTableCard TableCard" style={{display: this.props.addPatientsDrCard ? "block" : "none"}}>
                 <CardBody className="enrollNewPatTableBody TableBody">
                     <CardTitle className="enrollNewPatTitle Title">Enroll A New Patient</CardTitle>
 

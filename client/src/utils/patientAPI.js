@@ -35,7 +35,7 @@ export default {
     findPatientEmail: function(email){
         return axios.get('/api/patient/validateEmail/'+email);
     },
-    updatePatientDr: function(id, objPhysician){
+    updatePatientsDr: function(id, objPhysician){
         return axios.put('/api/patient/updateDr/'+id, objPhysician);
     }
 };

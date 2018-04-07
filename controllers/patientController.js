@@ -72,7 +72,7 @@ module.exports = {
         console.log(req.params.id);
         db.Patient_data
         .findById(req.params.id, {appointment: 1, details: 1, episode: 1})
-        .populate("doctor")
+        .populate("physician")
         .then(patient => {
             console.log("patient info");
             console.log(patient);
