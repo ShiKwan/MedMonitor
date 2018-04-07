@@ -338,6 +338,17 @@ class PatSurvey extends Component {
             this.setState({
                 questions : newQuestions
             })
+
+            // Scroll the window to the top of the topFocus ID
+            const topFocusElement = document.getElementById('topFocus');
+            const introsurvCardElement = document.getElementsByClassName('introsurvCard');
+            const navbarElement = document.getElementsByClassName('navbar');
+            const offsetNum = navbarElement[0].offsetHeight;
+            // const offsetNum = topFocusElement.offsetTop * 2;
+            // const offsetNum = topFocusElement.offsetTop;
+            // const offsetNum =introsurvCardElement + navbarElement;
+            console.log('CHECKBOX: offsetNum', offsetNum);
+            window.scrollTo(0, offsetNum);
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);
@@ -364,10 +375,10 @@ class PatSurvey extends Component {
                     
                             <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
                             : 
-                            null
-                            // <div>
-                            //     {this.handleProgressBar(`${this.state.answered}`)}
-                            // </div>
+                            // null
+                            <div>
+                                {this.handleProgressBar(`${this.state.answered}`)}
+                            </div>
                        } 
                 </Card>
                 
