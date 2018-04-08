@@ -61,7 +61,7 @@ div.TableCard {
     -webkit-transition-property: background-color, color;
     -webkit-transition-duration: 1s;
     transition-property: background-color, color;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .TableBody .FinishBtn:hover,
@@ -123,7 +123,7 @@ div.TableCard {
     -webkit-transition-property: background-color, color;
     -webkit-transition-duration: 1s;
     transition-property: background-color, color;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .Form .FinishBtn:hover,
@@ -138,6 +138,47 @@ div.TableCard {
 .Form .ReportBtn:hover,
 .Form .CloseBtn:hover,
 .Form .AddBtn:hover {
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
+}
+
+
+
+/* ////Review Selected Patient Card ////////////////////////////////////// */
+
+
+.TableBody .reviewSelPatCreateBtn,
+.TableBody .reviewSelPatReportBtn,
+.TableBody .reviewSelPatUpdateDetailBtn,
+.TableBody .reviewSelPatUpdateAppBtn,
+.TableBody .reviewSelPatCloseBtn {
+    margin-right: 10px;
+}
+
+
+.TableBody .reviewSelPatCreateBtn,
+.TableBody .reviewSelPatReportBtn,
+.TableBody .reviewSelPatUpdateDetailBtn,
+.TableBody .reviewSelPatUpdateAppBtn,
+.TableBody .reviewSelPatCloseBtn {
+    margin-top: 7px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
+    padding: 5px 15px 5px 15px;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+
+.TableBody .reviewSelPatCreateBtn:hover,
+.TableBody .reviewSelPatReportBtn:hover,
+.TableBody .reviewSelPatUpdateDetailBtn:hover,
+.TableBody .reviewSelPatUpdateAppBtn:hover,
+.TableBody .reviewSelPatCloseBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;

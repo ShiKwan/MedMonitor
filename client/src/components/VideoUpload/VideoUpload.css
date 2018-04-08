@@ -30,7 +30,7 @@ button.submitVideo {
     -webkit-transition-property: background-color, color;
     -webkit-transition-duration: 1s;
     transition-property: background-color, color;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 button.submitVideo:hover {
