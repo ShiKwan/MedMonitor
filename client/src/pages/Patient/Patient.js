@@ -64,7 +64,7 @@ class Patient extends Component {
                                     <PatMedDue medication={this.state.medication} />
                                 </Col>
                                 <Col size='md-6'>
-                                    <VideoUpload />
+                                    <VideoUpload getBackMessage={this.props.getBackMessage} getBackMessageStatus = {this.props.getBackMessageStatus}/>
                                 </Col>
                             </Row>
                         :

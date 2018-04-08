@@ -38,17 +38,32 @@ class DoSomethingBtn extends Component {
         console.log(event.target.value);
         console.log(this.state);
     };
-    handleSubmit = (event) => {
-        console.log("here");
-        let objVideo = {
-            video_link: this.state.video_link,
-            patient_id : this.state.patient_id,
-            video_datetime : this.state.video_datetime
+    validateSubmit = (video_link) =>{
+        let valid = true;
+        if(!video_link){
+            valid = false
+            this.props.getBackMessage("Video link cannot be empty.");
+            this.props.getBackMessageStatus("danger");
+        }else{
+            this.props.getBackMessage("Your video has been recorded.");
+            this.props.getBackMessageStatus("success");
         }
-        console.log(objVideo);
-        videoAPI.create(objVideo)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        return valid;
+    }
+    handleSubmit = (event) => {
+        if(this.validateSubmit(this.state.video_link)){
+            console.log("here");
+            let objVideo = {
+                video_link: this.state.video_link,
+                patient_id : this.state.patient_id,
+                video_datetime : this.state.video_datetime
+            }
+            console.log(objVideo);
+            videoAPI.create(objVideo)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        }
+        
     }
     render() {
         return (
