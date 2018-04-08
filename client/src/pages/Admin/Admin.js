@@ -28,7 +28,7 @@ import UpdatePhysicianCard from "../../components/Admin/UpdatePhysicianCard";
 import SuccessUpdatePhysicianCard from "../../components/Admin/SuccessUpdatePhysicianCard";
 import RemovePhysicianCard from "../../components/Admin/RemovePhysicianCard"
 import SuccessRemovePhysicianCard from "../../components/Admin/SuccessRemovePhysicianCard"
-
+import moment from 'moment';
 import {  
     Container, 
     Row, 
@@ -244,55 +244,97 @@ class Admin extends Component {
             })
             .catch(err => console.log(err));
     };
+    validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone) =>{
+        let valid = true;
+        if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone){
+            valid = false;
+            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
+            this.props.getBackMessageStatus("danger");
+        }else if(phone){
+            phone = phone.replace(/-/g, "");
+            if(isNaN(phone)){
+                valid = false;
+                this.props.getBackMessage("Invalid phone number");
+                this.props.getBackMessageStatus("danger");
+            }
+        }else if(email){
+            //if email exist in our system
+            patientAPI.findPatientEmail(email)
+                        .then((res) =>{
+                            if(res.data.length > 0){
+                                valid = false;
+                                this.props.getBackMessage("Email address exists in our system")
+                                this.props.getBackMessageStatus("danger");
+                            }
+                        })
+                        .catch(err => console.log(err));
 
+        }else {
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid;
+    }
 
     enrollPatient = event => {
+        //hospitalNum, firstName, lastName, dob, email, phone
         event.preventDefault();
-        patientAPI.createNewPatient ({
+        console.log(this.state.hospnum);
+        console.log(this.state.firstname);
 
-            date_created: new Date(),
-            active: true,
+        if(this.validateNewPatientField(this.state.pt_hospnum, this.state.pt_firstname, this.state.pt_lastname, this.state.pt_dob, this.state.pt_email, this.state.pt_phone)){
+            //capitalize the first letter of both first and last name.
+            let patFirstName = this.state.pt_firstname.charAt(0).toUpperCase() + this.state.pt_firstname.slice(1);
+            let patLastName = this.state.pt_lastname.charAt(0).toUpperCase() + this.state.pt_lastname.slice(1);
+            patientAPI.createNewPatient ({
 
-            physician: "", //doctor: to be populated with _id from doctors collection in next page
+                date_created: new Date(),
+                active: true,
 
-            details: {
-                patient_number: this.state.pt_hospnum,
-                first_name: this.state.pt_firstname, 
-                last_name: this.state.pt_lastname,
-                dob:  this.state.pt_dob,
-                email: this.state.pt_email,
-                phone: this.state.pt_phone,
-            },            
-            appointment: {
-                next_appt: Date(),
-                comments: "tba",
-            },
-            episode: [{
-                episode_id: "000",
-                start_date: Date(),
-                doctor: "my doctor",
+                physician: "", //doctor: to be populated with _id from doctors collection in next page
 
-                medications: [{
-                    medication: "tbc",
+                details: {
+                    patient_number: this.state.pt_hospnum,
+                    first_name: patFirstName , 
+                    last_name: patLastName,
+                    dob:  this.state.pt_dob,
+                    email: this.state.pt_email,
+                    phone: this.state.pt_phone,
+                },            
+                appointment: {
+                    next_appt: Date(),
+                    comments: "tba",
+                },
+                episode: [{
+                    episode_id: "000",
+                    start_date: Date(),
+                    doctor: "my doctor",
+
+                    medications: [{
+                        medication: "tbc",
+                    }],
+                    record: [{
+                        date: Date(),
+                        time: "1200",
+                        meds_taken: true,
+                        // can add more detailed record of medications taken and notes here if required
+                    }],
                 }],
-                record: [{
-                    date: Date(),
-                    time: "1200",
-                    meds_taken: true,
-                    // can add more detailed record of medications taken and notes here if required
-                }],
-            }],
-            // timestamps: {'created_at', 'updated_at' }
-        })
-        .then(res => {
-            console.log(res.data.insertedIds[0]);
-            this.setState({addPatientCard: false});
-            this.setState({addPatientsDrCard: true});
-            this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
-            this.setState({pt_id: res.data.insertedIds[0]})
+                // timestamps: {'created_at', 'updated_at' }
+            })
+            .then(res => {
+                this.props.getBackMessage("Patient successfully enrolled into our system")
+                this.props.getBackMessageStatus("success");
+                console.log(res.data.insertedIds[0]);
+                this.setState({addPatientCard: false});
+                this.setState({addPatientsDrCard: true});
+                this.setState({patient_name: `${patFirstName} ${patLastName}`})
+                this.setState({pt_id: res.data.insertedIds[0]})
 
-        })
-        .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+        }
+        
     };
 
 
@@ -305,19 +347,49 @@ class Admin extends Component {
                 physician : this.state.pt_physician
             })
             .then(res => {
+                this.props.getBackMessage("A primary physician has been appointed to this patient")
+                this.props.getBackMessageStatus("success");
                 console.log(res.data);
                 this.setState({addPatientsDrCard: false});
                 this.setState({registerPatientCard: true});
             })
             .catch(err => console.log(err));
+        }else{
+            this.props.getBackMessage("Please select a primary physician for this patient")
+            this.props.getBackMessageStatus("danger");
         };
     };
-    
+    validatePatientCredential = (username, password) => {
+        let valid = true;
+        if(!username || !password){
+            this.props.getBackMessage("Username or password fields cannot be empty")
+            this.props.getBackMessageStatus("danger");
+        }else if(username){
+            //if username exist in the system
+            userAPI.findUserByUsername(username)
+            .then((res) =>{
+                if(res.data === 'username is ok for new account'){
+                    this.props.getBackMessage(null);
+                    this.props.getBackMessageStatus(null);
+                }else{
+                    valid = false
+                    this.props.getBackMessage("Username has been taken, try a new username")
+                    this.props.getBackMessageStatus("danger");
+                }
+                console.log(res)
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+            
+        }
+        return valid;
+    }
 
     registerPatient = event => {
         event.preventDefault();
         console.log("pwd: " + this.state.pt_password + " | " + this.state.pt_username)
-        if(this.state.pt_password && this.state.pt_username) {
+        if(this.validatePatientCredential(this.state.pt_password, this.state.pt_username)) {
             userAPI.createAccount({
                 username : this.state.pt_username,
                 password : this.state.pt_password,
@@ -355,20 +427,41 @@ class Admin extends Component {
         this.setState({pt_id: id})
      };
 
-
+    validatePatientInput = (email, phone) =>{
+        let valid = true;
+        if((phone)){
+            phone = phone.replace(/-/g, "");
+            if(isNaN(phone)){
+                valid = false;
+                this.props.getBackMessage("Invalid phone number");
+                this.props.getBackMessageStatus("danger");
+            }
+        }else{
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid
+    }
     updatePatient = (id) => {
-        patientAPI.updateContact(id, {
-            email: this.state.pt_email ? this.state.pt_email : this.state.patientDetails.email,
-            phone: this.state.pt_phone ? this.state.pt_phone : this.state.patientDetails.phone
-            // timestamps: {'created_at', 'updated_at' }
-        })
-        .then(res => {
-            this.setState({updatePatientCard: false});
-            this.setState({successUpdatePatientCard: true});
-            this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
-        })
-        .catch(err => console.log(err));
-    };
+        console.log("if there is a value in pt_email : " , this.state.pt_email);
+        console.log("if there is a value in pt_phone : " , this.state.pt_phone);
+        if(this.validatePatientInput(this.state.pt_email, this.state.pt_phone)){
+            patientAPI.updateContact(id, {
+                email: this.state.pt_email ? this.state.pt_email : this.state.patientDetails.email,
+                phone: this.state.pt_phone ? this.state.pt_phone : this.state.patientDetails.phone
+                // timestamps: {'created_at', 'updated_at' }
+            })
+            .then(res => {
+                this.props.getBackMessage("Patient details updated successfully.");
+                this.props.getBackMessageStatus("success");
+                this.setState({updatePatientCard: false});
+                this.setState({successUpdatePatientCard: true});
+                this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
+                })
+            .catch(err => console.log(err));
+        }
+    }
+    
 
 
     updateAppointmentDisplay = (id) => {
@@ -377,6 +470,25 @@ class Admin extends Component {
         this.setState({pt_id: id})
      };
 
+     validateAppt = (apptDateTime, apptDate, apptTime) => {
+         console.log("in validate appointment:");
+         console.log((String(apptDateTime._i)));
+         apptDateTime = String(apptDateTime._i);
+         let valid = true;
+         if(!apptDate || !apptTime){
+            valid = false
+            this.props.getBackMessage("New appointment date time cannot be empty.");
+            this.props.getBackMessageStatus("danger");
+         }else if(moment(apptDateTime).isBefore(moment())){
+            valid = false
+            this.props.getBackMessage("New appointment cannot be earlier than today.");
+            this.props.getBackMessageStatus("danger");
+         }else{
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+         }
+         return valid;
+     };
 
     updateAppointment = (id) => {
         console.log("a " + this.state.pt_newApptDate)
@@ -386,16 +498,20 @@ class Admin extends Component {
         const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
         console.log("d " + newAppt)
         console.log("e " + this.state.pt_nextApptComment)
-        patientAPI.updateAppointment(id, {
-            next_appt: newAppt,
-            comments: this.state.pt_nextApptComment,
-        })
-        .then(res => {
-            this.setState({changeAppointmentCard: false});
-            this.setState({successChangeAppointmentCard: true});
-            this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
-        })
-        .catch(err => console.log(err));
+        if(this.validateAppt(moment(newAppt), this.state.pt_newApptDate, this.state.pt_newApptTime)){
+            patientAPI.updateAppointment(id, {
+                next_appt: newAppt,
+                comments: this.state.pt_nextApptComment,
+            })
+            .then(res => {
+                this.props.getBackMessage("New appointment has been scheduled.");
+                this.props.getBackMessageStatus("success");
+                this.setState({changeAppointmentCard: false});
+                this.setState({successChangeAppointmentCard: true});
+                this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
+            })
+            .catch(err => console.log(err));
+        }
     };
 
 
@@ -637,6 +753,8 @@ class Admin extends Component {
                                 addPatientCard = {this.state.addPatientCard}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatient = {(event) => this.enrollPatient(event)}
+                                getBackMessage = {this.props.getBackMessage}
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                              <AddPatientsDrCard
@@ -644,6 +762,8 @@ class Admin extends Component {
                                 physicians = {this.state.physicians}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatientWithDr = {(event) => this.enrollPatientWithDr(event)}
+                                getBackMessage = {this.props.getBackMessage}
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <RegisterPatientCard
@@ -651,6 +771,8 @@ class Admin extends Component {
                                 patient_name = {this.state.patient_name}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 registerPatient = {(event) => this.registerPatient(event)}
+                                getBackMessage = {this.props.getBackMessage}
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <SuccessPatientCard
@@ -669,6 +791,8 @@ class Admin extends Component {
                                 pt_id = {this.state.patient._id}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 updatePatient = {(id) => this.updatePatient(id)}
+                                getBackMessage = {this.props.getBackMessage}
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <SuccessUpdatePatientCard
@@ -687,6 +811,8 @@ class Admin extends Component {
                                 pt_id = {this.state.patient._id}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 updateAppointment = {(id) => this.updateAppointment(id)}
+                                getBackMessage = {this.props.getBackMessage}
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <SuccessChangeAppointmentCard
@@ -771,7 +897,7 @@ class Admin extends Component {
                     </Row>
                 </Container>
                 <Container className="panicAlertNotice">
-                    <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map(x => <label>{x}</label>)}</Alert>
+                    <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map( (x,index) => <label key={index}>{x}</label>)}</Alert>
                 </Container>
             </Container>
         

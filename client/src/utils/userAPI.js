@@ -17,5 +17,8 @@ export default {
     },
     getUserByEmail  : function(email){
         return axios.get("/api/user/existingUser/" +email);
+    },
+    findUserByUsername : function(username){
+        return axios.get("/api/user/existingUsername/" +username);
     }
 }

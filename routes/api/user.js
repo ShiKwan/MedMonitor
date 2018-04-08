@@ -95,9 +95,12 @@ router.get("/isLoggedIn", function(req, res){
 // Matches with "/api/patient/forPatient/:id" A
 router 
     .route('/existingUser/:email')
-    .get(userController.getUserByEmail);
+    .get(userController.getUserByEmail)
     
-
+router
+    .route('/existingUsername/:username')
+    .get(userController.findUserByUsername);
+    
 router.post('/login',
   passport.authenticate('local'),
   function(req, res) {

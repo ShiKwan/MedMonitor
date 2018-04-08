@@ -26,6 +26,22 @@ module.exports = {
             callback(null, isMatch)
         })
     },
+    findUserByUsername : function(req, res){
+         db.User
+        .find({username: req.params.username})
+        .then(user => {
+            console.log("user: ", user);
+            if(user.length > 0){
+                res.send("user found in our system");
+            }else{
+                res.send("username is ok for new account");
+            }
+        })
+        .catch(err => {
+            console.log('CONTROLLER ERROR : ${err}');
+            res.status(422).json(err);
+        })
+    },
     getUserByEmail : function(req, res){
          db.User
         .find({email: req.params.email})
