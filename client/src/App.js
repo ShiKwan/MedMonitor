@@ -19,6 +19,9 @@ import mailerAPI from "./utils/nodemailerAPI";
 import {Alert } from 'reactstrap';
 import openSocket from 'socket.io-client';
 
+import "./App.css";
+
+
 import {
   Container,
 } from 'reactstrap';
@@ -177,8 +180,10 @@ class App extends Component {
   render(){
   return(
   <Router>
-      <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}}>
 
+      <div> 
+      <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}} />
+  
       <Header username = {this.state.username} role={this.state.role} />
         {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
       
