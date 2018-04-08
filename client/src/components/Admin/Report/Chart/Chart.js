@@ -24,13 +24,21 @@ const data = [
         {name: 'Day 7', dizziness: 1, sleepy: 1, headaches: 0}
 ]
 export default class Chart extends React.Component {
+
     render () {
         return (
             
             <ResponsiveContainer className="text-right" width={800} height="100%">
-                <LineChart width={800} height={500} data={data}>
-                    <Line type='monotone' dataKey='dizziness' stroke="#8884d8" />
-                    <Line type='monotone' dataKey='sleepy' stroke="#aaa4d8" />
+                <LineChart width={800} height={500} data={this.props.plotData}>
+                    <Line type='monotone' dataKey='kickin' stroke="#000000" />
+                    <Line type='monotone' dataKey='wearoff' stroke="#222222" />
+                    <Line type='monotone' dataKey='movement' stroke="#444444" />
+                    <Line type='monotone' dataKey='sleepy' stroke="#888888" />
+                    <Line type='monotone' dataKey='offtime' stroke="#aaaaaa" />
+                    <Line type='monotone' dataKey='tremor' stroke="#cccccc" />
+                    <Line type='monotone' dataKey='walking' stroke="#dddddd" />
+                    <Line type='monotone' dataKey='balance' stroke="#eeeeee" />
+                    
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
