@@ -36,31 +36,43 @@ export default class Radio extends React.Component {
     componentDidMount() {
 
     }
-
+    validateAnswer = (label, answer) => {
+        let valid = true;
+        if(!answer){
+            valid = false;
+            console.log("here");
+            this.props.getBackMessage("Question cannot be left unaswered.");
+            this.props.getBackMessageStatus("danger");
+        }else{
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid
+    }
     handleSubmit(event) {
-        // Don't perform an actual form submission
-        event.preventDefault();
-        console.log(this.state.rSelected);
-        this.setState({
-            answer : this.state.rSelected
-        }, function(){
-            console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
-            this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
-            this.props.handleQuestionCallback();
+        if(this.validateAnswer(this.props.label, this.state.rSelected)){
+            // Don't perform an actual form submission
+            event.preventDefault();
+            console.log(this.state.rSelected);
+            this.setState({
+                answer : this.state.rSelected
+            }, function(){
+                console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
+                this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
+                this.props.handleQuestionCallback();
 
-            // Scroll the window to the top of the topFocus ID
-        //     const topFocusElement = document.getElementById('topFocus');
-        //     const introsurvCardElement = document.getElementsByClassName('introsurvCard');
-        //     const navbarElement = document.getElementsByClassName('navbar');
-        //    const offsetNum = introsurvCardElement[0].clientHeight + navbarElement[0].clientHeight;
-        //     // const offsetNum = topFocusElement.offsetTop * 2;
-        //     // const offsetNum = topFocusElement.offsetTop;
-        //     // const offsetNum =introsurvCardElement + navbarElement;
-        //     console.log('RADIO: offsetNum', offsetNum);
-        //     window.scrollTo(0, offsetNum);
-        });
-        
-
+                // Scroll the window to the top of the topFocus ID
+            //     const topFocusElement = document.getElementById('topFocus');
+            //     const introsurvCardElement = document.getElementsByClassName('introsurvCard');
+            //     const navbarElement = document.getElementsByClassName('navbar');
+            //    const offsetNum = introsurvCardElement[0].clientHeight + navbarElement[0].clientHeight;
+            //     // const offsetNum = topFocusElement.offsetTop * 2;
+            //     // const offsetNum = topFocusElement.offsetTop;
+            //     // const offsetNum =introsurvCardElement + navbarElement;
+            //     console.log('RADIO: offsetNum', offsetNum);
+            //     window.scrollTo(0, offsetNum);
+            });
+        }
     }
 
     render() 

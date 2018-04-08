@@ -54,7 +54,12 @@ class Patient extends Component {
                 <Container>
                     <Row>
                         <Col size='md-12'>
-                            <PatSurvey handleIncident={this.props.handleIncident} handleFinishedCallback={this.handleFinishedCallback} />
+                            <PatSurvey 
+                                handleIncident={this.props.handleIncident} 
+                                handleFinishedCallback={this.handleFinishedCallback} 
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
+                                getBackMessage={this.props.getBackMessage}
+                                />
                         </Col>
                     </Row>
                     {

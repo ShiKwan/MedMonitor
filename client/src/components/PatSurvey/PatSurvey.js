@@ -408,6 +408,8 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
+                                    getBackMessage = {this.props.getBackMessage}
+                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QRadio>
                             :   
@@ -426,6 +428,8 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
+                                    getBackMessage = {this.props.getBackMessage}
+                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QCheckbox>
                         :

@@ -25,7 +25,7 @@ import {
 } from 'reactstrap';
 
 let countDown = (24*60);
-
+let times = []
 class PatMedDue extends Component {
     constructor(props){
         super(props)
@@ -66,16 +66,18 @@ class PatMedDue extends Component {
 
     }
     getMedTimes = () => {
-        let times = []
+        
         this.state.medication.map((x) => {
             x.times.map((time) =>{
                 if(times.includes(time)){
-                    console.log("it's in the array, don't do shit")
                 }else{
                     times.push(time);
                 }
             })
         })
+
+        this.populateDateObj()
+
         return times;
     }
 
@@ -120,26 +122,41 @@ class PatMedDue extends Component {
    const prompt = 'consent';
    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=${prompt}`;
    // Open a new window
-   const reminder = {
-'summary': `Doctor Appointment with ${this.state.physicianFirstName}, ${this.state.physicianLastName}`,
-'location': `${this.state.address} ${this.state.city}`,
-'description': `Doctor appointment`,
-'start': {
-'dateTime': `${this.state.dateTime}` ,
-'timeZone': 'America/New_York'
-},
-'end': {
-'dateTime': `${moment(this.state.dateTime).add(1, 'hour').format()}` ,
-'timeZone': 'America/New_York'
-},
-'reminders': {
-'useDefault': false,
-'overrides': [
-    { 'method': 'email', 'minutes': 24 * 60 },
-    { 'method': 'popup', 'minutes': 10 }
-]
-}
-};
+   const arrReminder = []
+   times.map( (x) =>{
+       let today = moment().format("MM-DD-YYYY");
+       let time = moment(x, "HHmm").format("h:mm a");
+       console.log(time);
+       let dateTime = moment(today + " " + time).format();
+       console.log(dateTime);
+       let remindUntil = `RRULE:FREQ=DAILY;UNTIL=${moment(this.state.next_appt).format("YYYYMMDD")}`
+        arrReminder.push(
+            {
+                'summary': `Medication Reminder`,
+                'location': `Medication Location`,
+                'description': `MedMonitor Reminder`,
+                'start': {
+                    'dateTime': `${dateTime}` ,
+                    'timeZone': 'America/New_York'
+                },
+                'end': {
+                    'dateTime': `${moment(dateTime).add(5, 'minute').format()}` ,
+                    'timeZone': 'America/New_York'
+                },
+                'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    { 'method': 'email', 'minutes': 24 * 60 },
+                    { 'method': 'popup', 'minutes': 10 }
+                ]
+                },
+                'recurrence': [
+                        remindUntil
+                ]
+            }
+        )
+        console.log(arrReminder);
+   })
 
    const win = window.open(url, 'name', 'height=600,width=450');
    if (win) win.focus();
@@ -163,8 +180,13 @@ class PatMedDue extends Component {
          console.log(result);
          localStorage.setItem("access_token", result.access_token);
          if(localStorage.getItem("access_token")){
-             console.log("event : ", reminder);
-             googleAPI.createEvent(localStorage.getItem("access_token"), reminder);
+             console.log("event : ", arrReminder);
+            // googleAPI.createEvent(localStorage.getItem("access_token"), arrReminder[0]);
+             arrReminder.map((x) =>{
+                console.log("looping through the events.. ", x);
+                googleAPI.createEvent(localStorage.getItem("access_token"), x);
+             }) 
+
          }
       
       
@@ -178,13 +200,52 @@ class PatMedDue extends Component {
    }, 100);
  }
 
+ populateDateObj = () =>{
+     console.log("here");
+     const arrReminder = []
+   times.map( (x) =>{
+       let today = moment().format("MM-DD-YYYY");
+       let time = moment(x, "HHmm").format("h:mm a");
+       console.log(time);
+       let dateTime = moment(today + " " + time).format();
+       console.log(dateTime);
+       let remindUntil = `RRULE:FREQ=DAILY;UNTIL=${moment(this.state.next_appt).format()}`
+        arrReminder.push(
+            {
+                'summary': `Medication Reminder`,
+                'location': `Medication Location`,
+                'description': `MedMonitor Reminder`,
+                'start': {
+                    'dateTime': `${dateTime}` ,
+                    'timeZone': 'America/New_York'
+                },
+                'end': {
+                    'dateTime': `${moment(dateTime).add(5, 'minute').format()}` ,
+                    'timeZone': 'America/New_York'
+                },
+                'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    { 'method': 'email', 'minutes': 24 * 60 },
+                    { 'method': 'popup', 'minutes': 10 }
+                ]
+                },
+                'recurrence': [
+                        remindUntil
+                ]
+            }
+        )
+        console.log(arrReminder);
+   })
+ }
+
     
     render(){
         return (
             <Container fluid className="patMedInfo">
     
                     <Card className="patMedInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                        <Button onClick={ () => `${console.log(this.state)}`}>Test</Button>
+                        <Button onClick={this.populateDateObj}>Test</Button>
                         <CardHeader tag="h4" className="patMedInfoHeader">MEDS DUE TIMES</CardHeader>
                         <Card className="patMedInfoBody">
                             <CardText className="patMedInfoDue"><h4>Your Next Medication(s) Is Due</h4></CardText>
@@ -202,7 +263,7 @@ class PatMedDue extends Component {
                             </br>
 
                             <div className="patMedDueRemind">
-                                <Button className="patMedRemindBtn" color="secondary" size="lg"><h4>Remind Me!</h4></Button>
+                                <Button className="patMedRemindBtn" color="secondary" size="lg" onClick={(e) =>this.handleoAuth2TokenGet(e)}><h4>Remind Me!</h4></Button>
                             </div>
                         </Card>
                     </Card>
