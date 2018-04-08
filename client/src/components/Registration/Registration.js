@@ -39,62 +39,91 @@ export default class Registration extends React.Component {
         });
         console.log([name] + ", " + event.target.value);
     };
-
+    validateAccountInfo = (user, password, confirmPassword) =>{
+        let valid = true;
+        if(!user || !password || !confirmPassword){
+            valid = false;
+            this.props.getBackMessage(`user or password field(s) cannot be empty.`);
+            this.props.getBackMessageStatus("danger");
+        }else if(password !== confirmPassword){
+            valid = false;
+            this.props.getBackMessage(`password and confirm password are not identical`);
+            this.props.getBackMessageStatus("danger");
+        }else if(password.length < 6){
+            valid = false;
+            this.props.getBackMessage(`password length has to be greater than 6 characters`);
+            this.props.getBackMessageStatus("danger");
+        }
+        return valid
+    }
     handleCreateAccount = e => {
+
         //more needs to be done here, validation of password, 
         e.preventDefault();
-        if(this.state.username && this.state.password && this.state.confirmPassword){
-            userAPI.createAccount({
-            username : this.state.username,
-            password : this.state.password,
-            email: this.state.newAccountEmail,
-            role : this.state.role,
-            patient_id : this.state.patientID ? this.state.patientID : "n/a",
-            doctor_id : this.state.doctorID ? this.state.doctorID : "n/a"
-        }).then(res => {
-            console.log(res);
-            this.props.getBackMessage(`Account created successfully! Please sign in to access to all the awesome features this application offers!`);
-            this.props.getBackMessageStatus("success");
-            if(this.state.role === "patient"){
-                mailerAPI.sendToPatient({
-                    name : this.state.username,
-                    email : this.state.newAccountEmail,
-                    message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
-                })
-                .then(res =>{
-                    console.log(res);
-                    console.log("mail man work real hard!");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-            }else{
-                mailerAPI.sendToDoctor({
-                    name : this.state.username,
-                    email : this.state.newAccountEmail,
-                    message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
-                })
-                .then(res =>{
-                    console.log(res);
-                    console.log("mail man work real hard!");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        if(this.validateAccountInfo(this.state.username, this.state.password, this.state.confirmPassword)){
+            if(this.state.username && this.state.password && this.state.confirmPassword){
+                userAPI.createAccount({
+                username : this.state.username,
+                password : this.state.password,
+                email: this.state.newAccountEmail,
+                role : this.state.role,
+                patient_id : this.state.patientID ? this.state.patientID : "n/a",
+                doctor_id : this.state.doctorID ? this.state.doctorID : "n/a"
+            }).then(res => {
+                console.log(res);
+                this.props.getBackMessage(`Account created successfully! Please sign in to access to all the awesome features this application offers!`);
+                this.props.getBackMessageStatus("success");
+                if(this.state.role === "patient"){
+                    mailerAPI.sendToPatient({
+                        name : this.state.username,
+                        email : this.state.newAccountEmail,
+                        message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
+                    })
+                    .then(res =>{
+                        console.log(res);
+                        console.log("mail man work real hard!");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                }else{
+                    mailerAPI.sendToDoctor({
+                        name : this.state.username,
+                        email : this.state.newAccountEmail,
+                        message : `Account created successfully! Please sign in to access to all the awesome features this application offers!`
+                    })
+                    .then(res =>{
+                        console.log(res);
+                        console.log("mail man work real hard!");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                }
+                
+            }).catch(err => {
+                console.log("fail");
+                console.log(err)
+                this.setState({ 
+                    messageCenter : "Something bad happened while creating your account",
+                    messageStatus : "danger"
+                });  
+            });
             }
-            
-        }).catch(err => {
-            console.log("fail");
-            console.log(err)
-            this.setState({ 
-                messageCenter : "Something bad happen while creating your account",
-                messageStatus : "danger"
-            });  
-        });
         }
+    }
+    validateEmail = (email) => {
+        let valid = true
+        if(!email){
+            valid=false;
+            this.props.getBackMessage(`Email address cannot be empty`);
+            this.props.getBackMessageStatus("danger");
+        }
+        return valid;
     }
     handleValidateEmail = (email, e) => {
         e.preventDefault();
+        if(this.validateEmail(this.state.newAccountEmail)){
         userAPI.getUserByEmail(email).then(res =>{
             console.log(res);
             if(res.data === 'email is ok for new account'){
@@ -140,8 +169,7 @@ export default class Registration extends React.Component {
                 this.props.getBackMessageStatus("danger");   
             }
         })
-
-        
+    }
     }
 
     render() {
