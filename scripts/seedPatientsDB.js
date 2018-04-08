@@ -23,7 +23,7 @@ const patient_dataSeed = [
       details: {
         patient_number: "hosp00",
         first_name:  "Cary",
-        last_name: "Garant",
+        last_name: "Grant",
         dob: "03/12/1959",
         email: "cary@microsoft.com",
         phone: "123-534-5673"
@@ -55,183 +55,121 @@ const patient_dataSeed = [
             }],
   
             record: [
-            {
-                date_time: new Date("2018-04-07T08:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {
-                    falls: false,
-                    freezing: false,
-                    choking: false,
-                    hallucination: false,
+                {
+                    date_time: new Date("2018-04-07T08:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 0, sleepy: 1, offtime: 0, tremor: 2, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                symptoms: {
-                    kickin: 3,
-                    wearoff: 4,
-                    movement: 3,
-                    sleepy: 4,
-                    offtime: 3,
-                    tremor: 4,
-                    walking: 4,
-                    balance: 4,
+                {
+                    date_time: new Date("2018-04-07T12:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 1, sleepy: 1, offtime: 1, tremor: 2, walking:1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                side_effects: {
-                    sickness: 1,
-                    dizziness: 2,
-                    headaches: 1,
-                    drymouth: 4,
+                {
+                    date_time: new Date("2018-04-07T16:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 3, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                notes: "",
-            },
-            {
-                date_time: new Date("2018-04-07T12:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {
-                    falls: false,
-                    freezing: false,
-                    choking: false,
-                    hallucination: false,
+                {
+                    date_time: new Date("2018-04-07T20:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 3, balance:3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                symptoms: {
-                    kickin: 2,
-                    wearoff: 4,
-                    movement: 3,
-                    sleepy: 4,
-                    offtime: 3,
-                    tremor: 4,
-                    walking: 4,
-                    balance: 4,
+            //
+                {
+                    date_time: new Date("2018-04-08T08:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 2, movement: 1, sleepy: 2, offtime: 0, tremor: 1, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                side_effects: {
-                    sickness: 1,
-                    dizziness: 2,
-                    headaches: 1,
-                    drymouth: 4,
+                {
+                    date_time: new Date("2018-04-08T12:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 1, sleepy: 1, offtime: 1, tremor: 2, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                notes: "",
-            },
-            {
-                date_time: new Date("2018-04-07T16:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {
-                    falls: false,
-                    freezing: false,
-                    choking: false,
-                    hallucination: false,
+                {
+                    date_time: new Date("2018-04-08T16:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 3, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                symptoms: {
-                    kickin: 4,
-                    wearoff: 4,
-                    movement: 3,
-                    sleepy: 4,
-                    offtime: 3,
-                    tremor: 4,
-                    walking: 4,
-                    balance: 4,
-                },
-                side_effects: {
-                    sickness: 1,
-                    dizziness: 2,
-                    headaches: 1,
-                    drymouth: 4,
-                },
-                notes: "",
-            },
-            {
-                date_time: new Date("2018-04-07T20:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {
-                    falls: false,
-                    freezing: false,
-                    choking: false,
-                    hallucination: false,
+                {
+                    date_time: new Date("2018-04-08T20:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 3, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 2, balance: 2},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                  },
-                symptoms: {
-                    kickin: 1,
-                    wearoff: 4,
-                    movement: 3,
-                    sleepy: 4,
-                    offtime: 3,
-                    tremor: 4,
-                    walking: 4,
-                    balance: 4,
+            //
+                {
+                    date_time: new Date("2018-04-09T08:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 0, sleepy: 1, offtime: 1, tremor: 1, walking: 0, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                side_effects: {
-                    sickness: 1,
-                    dizziness: 2,
-                    headaches: 1,
-                    drymouth: 4,
+                {
+                    date_time: new Date("2018-04-09T12:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin:1, wearoff: 2, movement: 1, sleepy: 0, offtime: 1, tremor: 2, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
                 },
-                notes: "",
-           
-            },
-            {
-                date_time: new Date("2018-04-08T08:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T12:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 4, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T16:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T20:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T08:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T12:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 4, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T16:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            },
-            {
-                date_time: new Date("2018-04-08T20:00:00.000Z"),
-                meds_taken: true,
-                // can add more detailed record of medications taken and notes here if required
-                emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
-                symptoms: {kickin: 5, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 4},
-                side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
-            }
+                {
+                    date_time: new Date("2018-04-09T16:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-09T20:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 2, balance: 2},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+            //
+                {
+                    date_time: new Date("2018-04-10T08:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 0, sleepy: 1, offtime: 1, tremor: 2, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T12:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 1, sleepy: 1, offtime: 0, tremor: 1, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T16:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T20:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 2, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 2, balance: 2},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                }
 
 
          ] // end of record array
