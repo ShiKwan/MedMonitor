@@ -526,68 +526,133 @@ class Admin extends Component {
             .catch(err => console.log(err));
     };
 
+    validateNewPhysician = (firstName, lastName, id, office, email, phone) => {
+        let valid = true;
+        if(!firstName || !lastName || !id || !office || !email || !phone){
+            valid = false;
+            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
+            this.props.getBackMessageStatus("danger");
+        }else if(phone){
+            phone = phone.replace(/-/g, "");
+            if(isNaN(phone)){
+                valid = false;
+                this.props.getBackMessage("Invalid phone number");
+                this.props.getBackMessageStatus("danger");
+            }
+        }else if(email){
+            //if email exist in our system
+            patientAPI.findDoctorEmail(email)
+                        .then((res) =>{
+                            if(res.data.length > 0){
+                                valid = false;
+                                this.props.getBackMessage("Email address exists in our system")
+                                this.props.getBackMessageStatus("danger");
+                            }
+                        })
+                        .catch(err => console.log(err));
+        }else {
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid;
+    }
+
 
      addPhysician= event => {
         event.preventDefault();
-        doctorAPI.create ({
+        if(this.validateNewPhysician(this.state.dr_firstname, this.state.dr_lastname , this.state.dr_idnum, this.state.dr_office, this.state.dr_email, this.state.dr_phone)){
+            let drFirstName = this.state.dr_firstname.charAt(0).toUpperCase() + this.state.dr_firstname.slice(1);
+            let drLastName = this.state.dr_lastname.charAt(0).toUpperCase() + this.state.dr_lastname.slice(1);
+            doctorAPI.create ({
 
-            date_added: Date(),
-            name: { 
-                first: this.state.dr_firstname, 
-                last: this.state.dr_lastname 
-            },
-            id_number:  this.state.dr_idnum,
-            office: this.state.dr_office,
-            email: this.state.dr_email,
-            phone: this.state.dr_phone,
+                date_added: Date(),
+                name: { 
+                    first: drFirstName, 
+                    last: drLastName 
+                },
+                id_number:  this.state.dr_idnum,
+                office: this.state.dr_office,
+                email: this.state.dr_email,
+                phone: this.state.dr_phone,
 
-            // timestamps: {'created_at', 'updated_at' }
-        })
-        .then(res => {
-            console.log(res.data.insertedIds[0]);
-            this.setState({addPhysicianCard: false});
-            this.setState({registerPhysicianCard: true});
-            this.setState({physician_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
-            this.setState({dr_id: res.data.insertedIds[0]})
-        })
-        .catch(err => console.log(err));
+                // timestamps: {'created_at', 'updated_at' }
+            })
+            .then(res => {
+                this.props.getBackMessage("New physician successfully enrolled.")
+                this.props.getBackMessageStatus("success");
+                console.log(res.data.insertedIds[0]);
+                this.setState({addPhysicianCard: false});
+                this.setState({registerPhysicianCard: true});
+                this.setState({physician_name: `${drFirstName} ${drLastName}`})
+                this.setState({dr_id: res.data.insertedIds[0]})
+            })
+            .catch(err => console.log(err));
+        }
+        
     };
 
-
+    validatePhysicianCreds = (username, password) =>{
+        let valid = true;
+        if(!username || !password){
+            valid = false;
+            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
+            this.props.getBackMessageStatus("danger");
+        }else if(username){
+            //username has been taken?
+            userAPI.findUserByUsername(username)
+            .then((res) =>{
+                if(res.data === 'username is ok for new account'){
+                    this.props.getBackMessage(null);
+                    this.props.getBackMessageStatus(null);
+                }else{
+                    valid = false
+                    this.props.getBackMessage("Username has been taken, try a new username")
+                    this.props.getBackMessageStatus("danger");
+                }
+                console.log(res)
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+        }
+        return valid
+    }
     registerPhysician = event => {
         event.preventDefault();
         console.log("pwd: " + this.state.dr_password + " | " + this.state.dr_username)
-        if(this.state.dr_password && this.state.dr_username){
-            userAPI.createAccount({
-                username : this.state.dr_username,
-                password : this.state.dr_password,
-                email: this.state.dr_email,
-                role : "Admin",
-                doctor_id: this.state.dr_id,
-                patient_id: "n/a"
+        if(this.validatePhysicianCreds(this.state.dr_username, this.state.dr_password)){
+            if(this.state.dr_password && this.state.dr_username){
+                userAPI.createAccount({
+                    username : this.state.dr_username,
+                    password : this.state.dr_password,
+                    email: this.state.dr_email,
+                    role : "Admin",
+                    doctor_id: this.state.dr_id,
+                    patient_id: "n/a"
 
-            })
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    messageCenter : "Account created successfully!",
-                    messageStatus: "success"
+                })
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        messageCenter : "Account created successfully!",
+                        messageStatus: "success"
+                    });
+                    this.setState({registerPhysicianCard: false});
+                    this.setState({successPhysicianCard: true});
+                    this.setState({physician_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
+                    this.setState({physician_email: this.state.dr_email})
+
+                })
+                .catch(err => {
+                    console.log("fail");
+                    console.log("setting redirect to true");
+                    console.log(err)
+                    this.setState({ 
+                        messageCenter : "Invalid input field, please change the field accordingly",
+                        messageStatus : "danger"
+                    });  
                 });
-                this.setState({registerPhysicianCard: false});
-                this.setState({successPhysicianCard: true});
-                this.setState({physician_name: `${this.state.dr_firstname} ${this.state.dr_lastname}`})
-                this.setState({physician_email: this.state.dr_email})
-
-            })
-            .catch(err => {
-                console.log("fail");
-                console.log("setting redirect to true");
-                console.log(err)
-                this.setState({ 
-                    messageCenter : "Invalid input field, please change the field accordingly",
-                    messageStatus : "danger"
-                });  
-            });
+            }
         }
     };
 
@@ -598,20 +663,35 @@ class Admin extends Component {
         this.setState({dr_id: id})
      };
 
-
+     validatePhysicianPhone = (phone) => {
+        let valid = true;
+        if(phone){
+            phone = phone.replace(/-/g, "");
+            if(isNaN(phone)){
+                valid = false;
+                this.props.getBackMessage("Invalid phone number");
+                this.props.getBackMessageStatus("danger");
+            }
+        }
+        return valid;
+     }
     updatePhysician = (id) => {
-        doctorAPI.update (id, {
-            office: this.state.dr_office ? this.state.dr_office : this.state.physician.office,
-            email: this.state.dr_email ? this.state.dr_email : this.state.physician.email,
-            phone: this.state.dr_phone ? this.state.dr_phone : this.state.physician.phone
-            // timestamps: {'created_at', 'updated_at' }
-        })
-        .then(res => {
-            this.setState({updatePhysicianCard: false});
-            this.setState({successUpdatePhysicianCard: true});
-            this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
-        })
-        .catch(err => console.log(err));
+        if(this.validatePhysicianPhone(this.state.dr_phone)){
+            doctorAPI.update (id, {
+                office: this.state.dr_office ? this.state.dr_office : this.state.physician.office,
+                email: this.state.dr_email ? this.state.dr_email : this.state.physician.email,
+                phone: this.state.dr_phone ? this.state.dr_phone : this.state.physician.phone
+                // timestamps: {'created_at', 'updated_at' }
+            })
+            .then(res => {
+                this.props.getBackMessage("Physician Details updated successfully");
+                this.props.getBackMessageStatus("success");
+                this.setState({updatePhysicianCard: false});
+                this.setState({successUpdatePhysicianCard: true});
+                this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
+            })
+            .catch(err => console.log(err));
+        }
     };
 
 
@@ -625,6 +705,8 @@ class Admin extends Component {
     removePhysician = (id) => {
         doctorAPI.remove(id)
         .then(res => {
+            this.props.getBackMessage("Physician has been removed from the system.");
+            this.props.getBackMessageStatus("success");
             this.setState({removePhysicianCard: false});
             this.setState({successRemovePhysicianCard: true});
             this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
@@ -897,7 +979,11 @@ class Admin extends Component {
                     </Row>
                 </Container>
                 <Container className="panicAlertNotice">
+                {this.state.alertIncident.length > 0? 
                     <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map( (x,index) => <label key={index}>{x}</label>)}</Alert>
+                    : 
+                    null
+                }
                 </Container>
             </Container>
         
