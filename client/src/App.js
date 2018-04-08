@@ -16,7 +16,6 @@ import Admin_Report from "./pages/Admin_Report";
 import Admin_Episode from "./pages/Admin_Episode";
 import userAPI from "./utils/userAPI";
 import mailerAPI from "./utils/nodemailerAPI";
-import {Alert } from 'reactstrap';
 import openSocket from 'socket.io-client';
 
 import "./App.css";
@@ -24,6 +23,8 @@ import "./App.css";
 
 import {
   Container,
+  Label,
+  Alert
 } from 'reactstrap';
 
 import background from "./med_b.ground.jpg";
@@ -63,7 +64,18 @@ class App extends Component {
     console.log("here getting back message")
     this.setState({
       messageCenter : messageCenter
+    },function(){
+      if(this.state.messageCenter){
+      
+      setTimeout( () => {
+        this.setState({
+          messageCenter : null,
+          messageStatus : null
+        })
+      },5000)
+    }
     })
+    
   }
 
   getBackMessageStatus(messageStatus){
@@ -79,7 +91,12 @@ class App extends Component {
     })
     console.log("Alert incident : " , this.state.alertIncident);
   }
-
+  removeMessage = () =>{
+    this.setState({
+      messageCenter : null,
+      messageStatus : null      
+    })
+  }
 
   PrivatePatientRoute = ({ component: Component, ...rest }) => (
     <Route { ...rest} render={(props) => (
@@ -185,7 +202,9 @@ class App extends Component {
       <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}} />
   
       <Header username = {this.state.username} role={this.state.role} />
-        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="text-center">{this.state.messageCenter}</Alert> : null }
+        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="msg-center text-center animation">
+          {this.state.messageCenter}  <Label onClick={() => this.removeMessage()} style={{float: "right"}}>x</Label>
+        </Alert> : null }
       
 
       <Switch>
