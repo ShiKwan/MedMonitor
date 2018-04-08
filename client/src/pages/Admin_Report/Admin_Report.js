@@ -43,15 +43,13 @@ class Admin_Report extends Component {
     };
     
 componentDidMount() {
-    this.setState({patientId: window.location.search});
-    console.log("patientId: " + this.state.patientId);
+    console.log(window.location.search.substring(4))
     this.loadPatientData();
 };
 
-
+//"5ac93b9bbddfdc49cc7e66d5"
 loadPatientData = event => {
-    event.preventDefault();
-    patientAPI.findPatientInfoForAdmin("5ac93b9bbddfdc49cc7e66d5")
+    patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
         .then(res => {
 
             console.log(res.data)
@@ -105,7 +103,7 @@ loadPatientData = event => {
 
             let i=0, j=-1;
 
-            for (i=0; i<6; i++) {
+            for (i=0; i<8; i++) {
 
                 kickin.push( [] ); 
                 wearoff.push( [] ); 
@@ -169,26 +167,26 @@ loadPatientData = event => {
 
                 obj = {
                     name: timePoints[i], 
-                    kickin: kickinAverages[i], 
-                    wearoff: wearoffAverages[i],
-                    movement: movementAverages[i], 
-                    sleepy: sleepyAverages[i],
-                    offtime: offtimeAverages[i],
-                    tremor: tremorAverages[i],
-                    walking: walkingAverages[i],
-                    balance: balanceAverages[i],
+                    kickin: Number(kickinAverages[i]), 
+                    wearoff: Number(wearoffAverages[i]),
+                    movement: Number(movementAverages[i]), 
+                    sleepy: Number(sleepyAverages[i]),
+                    offtime: Number(offtimeAverages[i]),
+                    tremor: Number(tremorAverages[i]),
+                    walking: Number(walkingAverages[i]),
+                    balance: Number(balanceAverages[i]),
 
-                    sickness: sicknessAverages[i],
-                    dozziness: dizzinessAverages[i],
-                    headache: headacheAverages[i],
-                    drymouth: drymouthAverages[i]
+                    sickness: Number(sicknessAverages[i]),
+                    dozziness: Number(dizzinessAverages[i]),
+                    headache: Number(headacheAverages[i]),
+                    drymouth: Number(drymouthAverages[i])
                     };
 
                 chartData.push(obj) 
             }
         
-            this.setState({ chartData: chartData })
 
+            this.setState({ chartData: chartData })
             console.log(chartData)
             console.log(this.state.chartData)
 
