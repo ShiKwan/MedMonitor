@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
+import moment from 'moment'
 import {
     Nav,
     Navbar,
@@ -197,7 +198,7 @@ loadPatientData = event => {
             for (i=0; i<timePoints.length; i++) {
 
                 obj = {
-                    Name: timePoints[i], 
+                    name: timePoints[i], 
                     Kickin: kickinAverages[i], 
                     Wearoff: wearoffAverages[i],
                     Movement: movementAverages[i], 
@@ -236,7 +237,7 @@ loadPatientData = event => {
                  }
 
                 obj = {
-                    name: currentRecordDate,
+                    name: moment(currentRecordDate).format('l'),
                     Falls: record.emergencies.falls ? (obj.Falls ? Number(obj.Falls)+1 : 1) : (obj.Falls ? Number(obj.Falls) : 0),
                     Choking: record.emergencies.choking ? (obj.Choking ? Number(obj.Choking)+1 : 1) : (obj.Choking ? Number(obj.Choking) : 0),
                     Freezing: record.emergencies.freezing ? (obj.Freezing ? Number(obj.Freezing)+1 : 1) : (obj.Freezing ? Number(obj.Freezing) : 0),
@@ -299,6 +300,7 @@ loadPatientData = event => {
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedCurrent()}>Current episode</Button>
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSidePrevious()}>Previous episode</Button>
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedFive()}>Last 5 episodes</Button>
+                                <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedBack()}>&nbsp;&nbsp;Back&nbsp;&nbsp;</Button>
                             </Container>
                         </Col>
 
