@@ -39,7 +39,7 @@ export default class Checkbox extends React.Component {
         } else {
             this.state.cSelected.splice(index, 1);
         }
-        this.setState({ cSelected: this.state.cSelected });
+        this.setState({ cSelected: this.state.cSelected }, function(){console.log(this.state.cSelected)});
     }
     validateAnswer = (label, answer) => {
         let valid = true;
@@ -78,7 +78,7 @@ export default class Checkbox extends React.Component {
         return(
                 this.props.firstQuestion === 1 ? 
 
-                <Card key={this.props.survHeader} className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
+                <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
                     <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}
                     </CardHeader>
                     <Card className="surveyQuestions">
@@ -88,7 +88,7 @@ export default class Checkbox extends React.Component {
                         {this.props.data_value.map((answer, index) => 
 
                             <QButton 
-                                key={this.answer}
+                                key={index}
                                 answer={this.props.answers[index]}
                                 index = {index}
                                 survHeader = {this.props.survHeader}
