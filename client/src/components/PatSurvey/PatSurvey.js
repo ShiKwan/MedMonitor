@@ -11,16 +11,7 @@ import {
     Container,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
-    CardText,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText,
     Progress
 } from 'reactstrap';
 
@@ -341,8 +332,8 @@ class PatSurvey extends Component {
             })
 
             // Scroll the window to the top of the topFocus ID
-            const topFocusElement = document.getElementById('topFocus');
-            const introsurvCardElement = document.getElementsByClassName('introsurvCard');
+            //const topFocusElement = document.getElementById('topFocus');
+            //const introsurvCardElement = document.getElementsByClassName('introsurvCard');
             const navbarElement = document.getElementsByClassName('navbar');
             const offsetNum = navbarElement[0].offsetHeight;
         

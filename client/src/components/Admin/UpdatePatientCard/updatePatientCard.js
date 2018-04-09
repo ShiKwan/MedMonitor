@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    Container, Row, Col, 
     Button, 
-    Card, CardBody, CardTitle, CardText,
-    Form, FormGroup, Label, Input, FormText,
+    Card, CardBody, CardTitle, 
+    Form, FormGroup, Label, 
 } from 'reactstrap';
-import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
-import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
 
 import '../../../pages/Admin';

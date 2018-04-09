@@ -1,27 +1,16 @@
 import React, {Component} from "react";
 import "./PatMedDue.css";
 import patientAPI from "../../utils/patientAPI"
-import Rmoment from 'react-moment';
 import moment from 'moment';
-import gapi from "gapi-client";
-import {CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
+import {CLIENT_ID } from "../../config/config.js";
 import googleAPI from "../../utils/googleAPI";
 import { 
     Container,
-    Row,
-    Col,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
     CardText,
-    Form,
-    FormGroup,
     Label,
-    Input,
-    FormText
 } from 'reactstrap';
 
 let countDown = (24*60);

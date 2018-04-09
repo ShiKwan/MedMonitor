@@ -10,13 +10,7 @@ import patientAPI from "../../utils/patientAPI";
 import moment from 'moment';
 import medicationAPI from "../../utils/medicationAPI";
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
-    Button, 
-    ListGroup, ListGroupItem,
     Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
 } from 'reactstrap';
 
 class Admin_Episode extends Component {

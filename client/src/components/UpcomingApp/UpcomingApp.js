@@ -5,14 +5,8 @@ import {
     Container,
     Card, 
     Button, 
-    CardTitle, 
     CardHeader,
-    CardText,
-    Form,
-    FormGroup,
     Label,
-    Input,
-    FormText
 } from 'reactstrap';
 
 const UpcomingApp = (props) => {

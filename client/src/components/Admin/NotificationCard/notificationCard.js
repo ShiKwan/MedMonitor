@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import {
-    Button, 
+import React from 'react';
+import { 
     Container,
-    Card, CardBody, CardTitle, CardText,
+    Card, CardBody, CardTitle,
     Table,
 } from 'reactstrap';
 import moment from "moment";
