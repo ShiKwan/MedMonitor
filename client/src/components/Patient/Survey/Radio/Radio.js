@@ -29,18 +29,18 @@ export default class Radio extends React.Component {
     }
 
     onRadioBtnClick(rSelected) {
-        console.log(rSelected);
-        this.setState({ rSelected });
-        console.log(this.state.rSelected);
+        
+        this.setState({ rSelected }, function(){
+        });
+        
     }
     componentDidMount() {
 
     }
     validateAnswer = (label, answer) => {
         let valid = true;
-        if(!answer){
+        if(answer === ''){
             valid = false;
-            console.log("here");
             this.props.getBackMessage("Question cannot be left unaswered.");
             this.props.getBackMessageStatus("danger");
         }else{
@@ -53,11 +53,9 @@ export default class Radio extends React.Component {
         if(this.validateAnswer(this.props.label, this.state.rSelected)){
             // Don't perform an actual form submission
             event.preventDefault();
-            console.log(this.state.rSelected);
             this.setState({
                 answer : this.state.rSelected
             }, function(){
-                console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
                 this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
                 this.props.handleQuestionCallback();
 
@@ -93,6 +91,7 @@ export default class Radio extends React.Component {
                                     return(
                     
                                         <QButton 
+                                            key = {this.props.answer}
                                             index = {`${index}`}
                                             answer = {this.props.answers[index]}
                                             survHeader = {this.props.survHeader}

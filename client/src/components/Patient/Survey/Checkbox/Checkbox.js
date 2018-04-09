@@ -33,7 +33,6 @@ export default class Checkbox extends React.Component {
 
     }
     onCheckboxBtnClick(selected) {
-        console.log("selected: " , selected)
         const index = this.state.cSelected.indexOf(selected);
         if (index < 0) {
             this.state.cSelected.push(selected);
@@ -41,7 +40,6 @@ export default class Checkbox extends React.Component {
             this.state.cSelected.splice(index, 1);
         }
         this.setState({ cSelected: this.state.cSelected });
-        console.log(this.state.cSelected);
     }
     validateAnswer = (label, answer) => {
         let valid = true;
@@ -66,11 +64,9 @@ export default class Checkbox extends React.Component {
         if(this.validateAnswer(this.props.label, this.state.cSelected)){
             // Don't perform an actual form submission
             event.preventDefault();
-            console.log(this.state.cSelected);
             this.setState({
                 answer : this.state.cSelected
             }, function(){
-                console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : '" + this.state.answer + "' to answered array..");
                 this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
                 this.props.handleQuestionCallback()
         
@@ -102,6 +98,7 @@ export default class Checkbox extends React.Component {
                         {this.props.data_value.map((answer, index) => 
 
                             <QButton 
+                                key={this.answer}
                                 answer={this.props.answers[index]}
                                 index = {index}
                                 survHeader = {this.props.survHeader}
