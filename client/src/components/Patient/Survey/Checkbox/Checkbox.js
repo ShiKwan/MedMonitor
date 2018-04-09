@@ -73,16 +73,12 @@ export default class Checkbox extends React.Component {
             });
         }
     }
-    populateProps(){
-        console.log(this.props)
-    }
 
     render() {
         return(
                 this.props.firstQuestion === 1 ? 
 
                 <Card className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
-                    <Button onClick={() => this.populateProps() }>Popu</Button>
                     <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}
                     </CardHeader>
                     <Card className="surveyQuestions">
