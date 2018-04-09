@@ -116,10 +116,10 @@ export default class Chart extends React.Component {
                     <Button size="sm" style={{padding: 6, margin: 6, border: '3px solid black'}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
 
                     <BarChart width={700} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
-                        <Bar dataKey='Falls' stackId="a" fill="#8884d8" />
-                        <Bar dataKey='Freezing' stackId="a" fill="#82ca92" />
-                        <Bar dataKey='Choking' stackId="a" fill="#7665d8" />
-                        <Bar dataKey='Hallucinations' stackId="a" fill="#52ac29" />
+                        <Bar dataKey='Falls' stackId="a" fill="#0080ff" />
+                        <Bar dataKey='Freezing' stackId="a" fill="#ff4000" />
+                        <Bar dataKey='Choking' stackId="a" fill="#ffcc00" />
+                        <Bar dataKey='Hallucinations' stackId="a" fill="#9900ff" />
                         <YAxis ticks={[2,4,6,8]} />
                         <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
                      {/* <Tooltip /> */}
