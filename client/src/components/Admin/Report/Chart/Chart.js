@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {LineChart, 
-        Line, 
+import {LineChart, Line, BarChart, Bar,
         XAxis, 
         YAxis, 
         Tooltip, 
@@ -14,37 +13,121 @@ import {
     Form, FormGroup, Label, Input, FormText,
 } from 'reactstrap';
 
-const data = [
-        {name: 'Day 1', dizziness: 4, sleepy: 1, headaches: 3},
-        {name: 'Day 2', dizziness: 3, sleepy: 2, headaches: 2},
-        {name: 'Day 3', dizziness: 2, sleepy: 4, headaches: 0},
-        {name: 'Day 4', dizziness: 1, sleepy: 4, headaches: 1},
-        {name: 'Day 5', dizziness: 3, sleepy: 3, headaches: 0},
-        {name: 'Day 6', dizziness: 4, sleepy: 2, headaches: 1},
-        {name: 'Day 7', dizziness: 1, sleepy: 1, headaches: 0}
-]
+
+
+
 export default class Chart extends React.Component {
+
+    state = {
+
+        symptomChart: true,
+        sideEffectChart: false,
+        alertChart: false
+    }
+
+    onClickedSymptoms(id) {
+        this.setState({symptomChart: true})
+        this.setState({sideEffectChart: false})
+        this.setState({alertChart: false})
+       
+    }
+
+    onClickedSideEffects(id) {
+        this.setState({symptomChart: false})
+        this.setState({sideEffectChart: true})
+        this.setState({alertChart: false})
+    }
+
+    onClickedAlerts(id) {
+        this.setState({symptomChart: false})
+        this.setState({sideEffectChart: false})
+        this.setState({alertChart: true})
+       
+    }
+
+    onClickedCurrent(id) {
+       
+    }
+
+    onClickedSidePrevious(id) {
+       
+    }
+
+    onClickedFive(id) {
+       
+    }
+
 
     render () {
         return (
             
-            <ResponsiveContainer className="text-right" width={800} height="100%">
-                <LineChart width={800} height={500} data={this.props.plotData}>
-                    <Line type='monotone' dataKey='kickin' stroke="#000000" />
-                    <Line type='monotone' dataKey='wearoff' stroke="#222222" />
-                    <Line type='monotone' dataKey='movement' stroke="#444444" />
-                    <Line type='monotone' dataKey='sleepy' stroke="#888888" />
-                    <Line type='monotone' dataKey='offtime' stroke="#aaaaaa" />
-                    <Line type='monotone' dataKey='tremor' stroke="#cccccc" />
-                    <Line type='monotone' dataKey='walking' stroke="#dddddd" />
-                    <Line type='monotone' dataKey='balance' stroke="#eeeeee" />
-                    
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                </LineChart>
-            </ResponsiveContainer>
+            <div  style={{height: "100%"}}>
+
+                <div   style={{border: '1px solid grey', padding: 20, display: this.state.symptomChart ? "block" : "none"}}>
+                    <h4 className="text-left">Parkinson's symptoms by time of day/medication time </h4>
+
+                    <Button size="sm" style={{padding: 6, margin: 6, border: '3px solid black'}} onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
+
+                    <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                        <Line type='monotone' dataKey='Kickin' strokeDasharray="3 4 5 2" stroke="green" />
+                        <Line type='monotone' dataKey='Wearoff' strokeDasharray="3 4 5 2" stroke="magenta" />
+                        <Line type='monotone' dataKey='Movement' strokeDasharray="3 4 5 2" stroke="yellow" />
+                        <Line type='monotone' dataKey='Tiredness' strokeDasharray="3 4 5 2" stroke="purple" />
+                        <Line type='monotone' dataKey='Offtime' strokeDasharray="3 4 5 2" stroke="red" />
+                        <Line type='monotone' dataKey='Tremor' strokeDasharray="3 4 5 2" stroke="cyan" />
+                        <Line type='monotone' dataKey='Walking' strokeDasharray="3 4 5 2" stroke="grey" />
+                        <Line type='monotone' dataKey='Balance' strokeDasharray="3 4 5 2" stroke="blue" />
+                        <Line type='monotone' dataKey='All' stroke="black" strokeWidth={5}/>
+                        
+                        <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                        {/* <Tooltip /> */}
+                        <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
+                    </LineChart>
+                </div>
+            
+                <div style={{border: '1px solid grey', padding: 20, display: this.state.sideEffectChart ? "block" : "none"}}>
+                    <h4 className="text-left">Side effects experienced by time of day/medication time </h4>
+
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6, border: '3px solid black'}} onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
+
+                    <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                        <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" />
+                        <Line type='monotone' dataKey='Dizziness' strokeDasharray="3 4 5 2" stroke="magenta" />
+                        <Line type='monotone' dataKey='Headache' strokeDasharray="3 4 5 2" stroke="yellow" />
+                        <Line type='monotone' dataKey='Drymouth' strokeDasharray="3 4 5 2" stroke="purple" />
+                        <Line type='monotone' dataKey='All' stroke="black" strokeWidth={5}/>
+                        
+                        <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                     {/* <Tooltip /> */}
+                     <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
+                    </LineChart> 
+                </div>
+
+                
+                <div style={{border: '1px solid grey', padding: 20, display: this.state.alertChart ? "block" : "none"}}>
+                    <h4 className="text-left">Emergency alerts by date. </h4>
+
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
+                    <Button size="sm" style={{padding: 6, margin: 6, border: '3px solid black'}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
+
+                    <BarChart width={700} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                        <Bar dataKey='Falls' stackId="a" fill="#8884d8" />
+                        <Bar dataKey='Freezing' stackId="a" fill="#82ca92" />
+                        <Bar dataKey='Choking' stackId="a" fill="#7665d8" />
+                        <Bar dataKey='Hallucinations' stackId="a" fill="#52ac29" />
+                        <YAxis ticks={[2,4,6,8]} />
+                        <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                     {/* <Tooltip /> */}
+                     <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
+                    </BarChart> 
+                </div>
+
+            </div>
 
         )
     }

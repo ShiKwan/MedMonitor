@@ -8,15 +8,18 @@ import {
 
 export default class PatientInfo extends React.Component {
 
+    
+    onClickedVideo() {
+       
+    }
+
     render() {
         return (
 
-            <Container className='text-right'>
+            <Container>
                 <Label>
-                    Video : this.props.video_link {this.props.video_link}
-                </Label>
-                <Label>
-                    Posted on : this.props.video_datetime {this.props.video_datetime}
+                    Patient video posted on : {this.props.video_datetime}
+                    <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo()}>View video</Button>
                 </Label>
             </Container>
 
