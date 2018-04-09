@@ -59,17 +59,24 @@ class Patient extends Component {
                                 handleFinishedCallback={this.handleFinishedCallback} 
                                 getBackMessageStatus = {this.props.getBackMessageStatus}
                                 getBackMessage={this.props.getBackMessage}
-                                />
+                            />
                         </Col>
                     </Row>
                     {
                         this.state.finishedQuestion === false ?
                             <Row>
                                 <Col size='md-6'>
-                                    <PatMedDue medication={this.state.medication} />
+                                    <PatMedDue 
+                                        medication={this.state.medication} 
+                                        getBackMessageStatus = {this.props.getBackMessageStatus}
+                                        getBackMessage={this.props.getBackMessage} 
+                                    />
                                 </Col>
                                 <Col size='md-6'>
-                                    <VideoUpload getBackMessage={this.props.getBackMessage} getBackMessageStatus = {this.props.getBackMessageStatus}/>
+                                    <VideoUpload 
+                                        getBackMessage={this.props.getBackMessage} 
+                                        getBackMessageStatus = {this.props.getBackMessageStatus}
+                                    />
                                 </Col>
                             </Row>
                         :

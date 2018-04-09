@@ -344,7 +344,7 @@ class PatSurvey extends Component {
             const introsurvCardElement = document.getElementsByClassName('introsurvCard');
             const navbarElement = document.getElementsByClassName('navbar');
             const offsetNum = navbarElement[0].offsetHeight;
-         
+        
             
             window.scrollTo(0, offsetNum);
 
@@ -353,7 +353,7 @@ class PatSurvey extends Component {
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);
             this.saveAnswersToDb();
-        }
+        }        
     }
     handleProgressBar = (answered) =>{
 
@@ -412,7 +412,7 @@ class PatSurvey extends Component {
                                 </QRadio>
                             :   
                                 <QCheckbox
-                                    key = {x.survHeader}
+                                    key = {`${i}` }
                                     label={x.label}
                                     data_value={x.value}
                                     survHeader = {x.survHeader}

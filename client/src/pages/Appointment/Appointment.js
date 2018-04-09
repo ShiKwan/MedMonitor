@@ -20,17 +20,16 @@ import {
 gapi.load('client:auth2', initClient);
 
 function initClient() {
-    console.log(CLIENT_ID);
   gapi.client.init({
     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
     clientId: CLIENT_ID,
     scope: 'https://www.googleapis.com/auth/calendar'
   }).then(function (data) {
     // do stuff with loaded APIs 
-    console.log(data);
+    //console.log(data);
     // reference : https://www.npmjs.com/package/gapi-client
  
-    console.log('it worked');
+    //console.log('it worked');
   });
 }
 class Appointment extends Component {
@@ -41,7 +40,6 @@ class Appointment extends Component {
     componentDidMount() {
         patientAPI.findPatientInfoForPatient(localStorage.getItem("userId"))
         .then((res)=>{
-            console.log(res.data);
             this.setState({
                 appointment : res.data.appointment,
                 physician : res.data.physician,
@@ -122,10 +120,8 @@ class Appointment extends Component {
            }), {});
          // Calculate when the token expires and store in the result object
          result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
-         console.log(result);
          localStorage.setItem("access_token", result.access_token);
          if(localStorage.getItem("access_token")){
-             console.log("event : ", reminder);
              googleAPI.createEvent(localStorage.getItem("access_token"), reminder);
          }
       
@@ -149,7 +145,6 @@ class Appointment extends Component {
             <Container fluid>
                 {/* <Header /> */}
                 <Container>
-                    <Button onClick={this.handleoAuth2TokenGet}>Authorize from Google and save it to patient's calendar</Button>
                     {/* <Button onClick={(e) =>this.handleCreateEvent(e)}>Show me the money and save it to my calendar </Button> */}
                     <Row>
                         <Col size='md-6'>

@@ -22,7 +22,7 @@ export default class QButton extends React.Component {
         return(
             // <Container className="survBtn">
                 <Button
-                    key={this.props.survHeader}
+                    key={this.props.key}
                     id={this.props.survHeader}
                     className={`${this.props.className[this.props.index]} survChkBtn`}
                     color={this.props.color[this.props.index]}

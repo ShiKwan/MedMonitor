@@ -68,7 +68,7 @@ export default class Radio extends React.Component {
         return(
                 this.props.firstQuestion === 1 ? 
                 
-                <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <Card key={this.props.survHeader} className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     
                         <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                         <Card className="surveyQuestions">
