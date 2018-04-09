@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from "moment";
 import {
     Container, Row, Col, Label
 } from 'reactstrap';
@@ -9,12 +10,11 @@ export default class EpisodeInfo extends React.Component {
         return (
 
             <Container className="text-right">
-                <Label>
-                    Episode Start : this.props.episodeDate {this.props.episodeDate}
-                </Label><br />
-                <Label>
-                    No Records : this.props.epidodeCount {this.props.episodeCount}
-                </Label>
+                <p>
+                    Episode Start : {moment(this.props.episodeDate).format("MMMM Do YYYY")} {moment(this.props.episodeDate).format("hh.mm a")}.
+                    <br />
+                    {this.props.episodeCount} records total over {this.props.episodeDays} days.
+                </p>
             </Container>
 
         )

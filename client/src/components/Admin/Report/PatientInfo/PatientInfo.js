@@ -12,12 +12,11 @@ export default class PatientInfo extends React.Component {
         return (
 
             <Container>
-                <Label>
-                    Patient No : this.props.patientNumber {this.props.patientNumber}
-                </Label><br />
-                <Label>
-                    Patient Name : this.props.firstName this.props.lastName {this.props.firstName}, {this.props.lastName}
-                </Label>
+                <p>
+                    Hospital No : {this.props.patientNumber}
+                    <br />
+                    Patient Name : {this.props.lastName}, {this.props.firstName}
+                </p>
             </Container>
 
         )

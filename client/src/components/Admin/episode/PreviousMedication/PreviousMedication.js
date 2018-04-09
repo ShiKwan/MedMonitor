@@ -11,6 +11,9 @@ import {
 } from 'reactstrap';
 import medicationAPI from "../../../../utils/medicationAPI";
 
+import './PreviousMedication.css';
+
+
 let medFound = {};
 let ddlPreviousDoses = [];
 let ddlDosage = [];
