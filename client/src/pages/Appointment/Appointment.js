@@ -4,14 +4,12 @@ import './Appointment.css';
 import UpcomingApp from "../../components/UpcomingApp";
 import PhysInfo from "../../components/PhysInfo";
 import patientAPI from "../../utils/patientAPI";
-import doctorAPI from "../../utils/doctorAPI";
 import moment from 'moment';
 import gapi from "gapi-client";
-import {CLIENT_ID, CLIENT_SECRET } from "../../config/config.js";
+import {CLIENT_ID} from "../../config/config.js";
 import googleAPI from "../../utils/googleAPI";
 
 import {
-    Button,
     Container,
     Row,
     Col,

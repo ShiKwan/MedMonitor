@@ -231,7 +231,6 @@ populateState = () =>{
             <div>
                 <Container fluid>
                     <Container className="clearfix">
-                        <Button onClick={this.handleLoadPatient}> Show patient info</Button>
                             <br />
                             <span  style={{fontWeight: "bold", float: "left"}}>Physician: Dr Rolando Soandso</span>
                             <span  style={{fontWeight: "bold", float: "right"}}>Monday 3rd Jun 2018</span>
@@ -291,7 +290,6 @@ populateState = () =>{
                                 />
                             </Col>
                         </Row>
-                        <Button onClick={this.populateState}>Show me state </Button>
                     </Container> 
                 </Container>
             </div>

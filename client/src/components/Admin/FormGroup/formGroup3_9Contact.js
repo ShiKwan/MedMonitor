@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Col,
-    Form, FormGroup, Label, Input, FormText,
+    FormGroup, Label, Input,
 } from 'reactstrap';
 import './formGroup.css';
 

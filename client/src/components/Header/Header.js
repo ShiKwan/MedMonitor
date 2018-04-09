@@ -54,7 +54,7 @@ export default class Header extends React.Component {
                                             :
                                             "/"}
                                     size="lg" active >
-                                    <img src={logo} className='med_logo' />
+                                    <img src={logo} className='med_logo' alt='med monitor' />
                                    
                             </Nav>
 

@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
-import Select, {Async} from 'react-select';
+import React from 'react';
+import Select from 'react-select';
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
+    Label,
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, Row, Col
 } from 'reactstrap';
-import medicationAPI from "../../../../utils/medicationAPI";
-
 import './PreviousMedication.css';
 
-
-let medFound = {};
-let ddlPreviousDoses = [];
-let ddlDosage = [];
-let selectedPreviousDoses = "";
 export default class PreviousMedication extends React.Component {
     constructor(props){
         super(props);

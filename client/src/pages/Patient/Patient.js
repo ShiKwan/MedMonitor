@@ -7,7 +7,6 @@ import patientAPI from "../../utils/patientAPI";
 import './Patient.css';
 
 import {
-    Button,
     Container,
     Row,
     Col,

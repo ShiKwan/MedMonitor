@@ -30,7 +30,7 @@ export default class SelectPatientCard extends React.Component {
 
                                 <tbody className="selectPatTBody">
                                     {this.props.patients.map(item => (
-                                            <tr className="selectPatDetail" onClick={() => this.onClicked(item._id)}>
+                                            <tr key={item._id} className="selectPatDetail" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 100}}>{item.details.patient_number}</td>
                                                     <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
                                             </tr>

@@ -3,19 +3,10 @@ import QButton from "../Button";
 import "./Checkbox.css";
 
 import { 
-    Container,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
     CardText,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText
 } from 'reactstrap';
 
 export default class Checkbox extends React.Component {

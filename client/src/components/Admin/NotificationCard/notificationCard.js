@@ -39,7 +39,7 @@ export default class confirmPatientCard extends React.Component {
                                     <tbody className="patEnrolledBody">
                                         {this.props.patientsWeekList.map(item => (
 
-                                            <tr className="patEnrolledDetail" onClick={() => this.onClicked(item._id)}>
+                                            <tr key={item._id} className="patEnrolledDetail" onClick={() => this.onClicked(item._id)}>
                                                 <td>{item.details.first_name} {item.details.last_name}</td>  
                                                 <td>{item.details.patient_number}</td>
                                                 <td>{moment(item.date_created).format("MMMM Do YYYY")} ({moment(item.date_created).format("h:mm a")}) </td> 
@@ -67,7 +67,7 @@ export default class confirmPatientCard extends React.Component {
 
                                         {this.props.apptsList.map(item => (
 
-                                        <tr className="appThisWeekDetail" onClick={() => this.onClicked(item._id)}>
+                                        <tr key={item._id} className="appThisWeekDetail" onClick={() => this.onClicked(item._id)}>
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             <td>{item.details.patient_number}</td>
                                             <td>{moment(item.appointment.next_appt).format("dddd, MMMM Do YYYY")} at  {moment(item.appointment.next_appt).format("h:mm a")}</td> 

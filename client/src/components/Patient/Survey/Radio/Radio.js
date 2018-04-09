@@ -1,22 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import QButton from "../Button";
 import "./Radio.css";
 
 import { 
-    Container,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
     CardText,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText
 } from 'reactstrap';
 
 export default class Radio extends React.Component {

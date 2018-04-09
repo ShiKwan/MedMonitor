@@ -178,8 +178,6 @@ class Home extends Component {
     
 
     render() {
-        let sendBackMessage = this.props.getBackMessage;
-        let getBackMessageStatus = this.props.getBackMessageStatus;
         
         return (
             <Container fluid>

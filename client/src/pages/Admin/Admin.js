@@ -33,7 +33,6 @@ import {
     Container, 
     Row, 
     Col, 
-    CardText, 
     Alert
 } from 'reactstrap';
 
@@ -136,13 +135,13 @@ class Admin extends Component {
 
 
     menuSelect = (menuItem) => {
-        menuItem == "dash board" ? this.setState({notificationCard: true}): this.setState({notificationCard: false});
-        menuItem == "select patient" ? this.setState({selectPatientCard: true}): this.setState({selectPatientCard: false});
-        menuItem == "add patient" ? this.setState({addPatientCard: true}) : this.setState({addPatientCard: false});
-        menuItem == "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
-        menuItem == "add physician" ? this.setState({addPhysicianCard: true}) : this.setState({addPhysicianCard: false});
-        menuItem == "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedicationCard: false});
-        menuItem == "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
+        menuItem === "dash board" ? this.setState({notificationCard: true}): this.setState({notificationCard: false});
+        menuItem === "select patient" ? this.setState({selectPatientCard: true}): this.setState({selectPatientCard: false});
+        menuItem === "add patient" ? this.setState({addPatientCard: true}) : this.setState({addPatientCard: false});
+        menuItem === "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
+        menuItem === "add physician" ? this.setState({addPhysicianCard: true}) : this.setState({addPhysicianCard: false});
+        menuItem === "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedicationCard: false});
+        menuItem === "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
         this.setState({confirmPatientCard: false});
         this.setState({addPatientsDrCard: false});
         this.setState({registerPatientCard: false});

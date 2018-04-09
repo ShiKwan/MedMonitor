@@ -30,7 +30,7 @@ export default class SelectPhysicianCard extends React.Component {
                             <Table className="selectPhysTable Table">
                                 <tbody>
                                     {this.props.physicians.map(item => (
-                                            <tr className="selectPhysDetail Details" onClick={() => this.onClicked(item._id)}>
+                                            <tr key={item._id} className="selectPhysDetail Details" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 50}}>{item.id_number}</td>
                                                     <td style={{width: 150}}>{item.name.first}&nbsp;{item.name.last}</td> 
                                                     <td style={{width: 400}}>{item.office}</td> 

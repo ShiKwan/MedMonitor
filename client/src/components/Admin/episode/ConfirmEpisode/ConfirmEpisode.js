@@ -18,7 +18,6 @@ import {
 export default class PatientConfirmEpisode extends React.Component {
     
     render () {
-        console.log(this.props);
         return (
             <Card className="confirmNewEpisTableCard TableCard" style={{display: this.props.confirmNewEpisodeDetailsCard ? "block" : "none", width: "100%"}}>
                 <CardBody className="confirmNewEpisTableBody TableBody">

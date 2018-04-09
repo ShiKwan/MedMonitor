@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
-import SK from "./pages/SK";
 import MH from "./pages/MH";
-import BS from "./pages/BS";
-import JM from "./pages/JM";
 import Appointment from "./pages/Appointment";
-import Episode from "./pages/Episode";
-import New_Patient from "./pages/New_Patient";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
 import NoMatch from "./pages/NoMatch";
@@ -22,7 +17,6 @@ import "./App.css";
 
 
 import {
-  Container,
   Label,
   Alert
 } from 'reactstrap';
@@ -122,7 +116,7 @@ class App extends Component {
   )
   PrivateAdminRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-      localStorage.getItem("role")!== null && localStorage.getItem("role").toLowerCase() === "doctor" || localStorage.getItem("role").toLowerCase() === "admin"
+      localStorage.getItem("role")!== null && (localStorage.getItem("role").toLowerCase() === "doctor" || localStorage.getItem("role").toLowerCase() === "admin")
         ? <Component {...props} alertIncident={this.state.alertIncident} getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus} />
         : (
           localStorage.setItem("messageCenter", "You do not have the proper credential to access that page."),
@@ -208,20 +202,14 @@ class App extends Component {
       
 
       <Switch>
-          <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
-          <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
-          <Route exact path="/sk" render={props => <SK alertIncident={this.state.alertIncident}>  </SK>} />
-        
+        <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
+        <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
         <Route exact path="/mh" component={MH} />
-        <Route exact path="/bs" component={BS} />
-        <Route exact path="/jm" component={JM} />
-        <this.PrivateAdminRoute exact path="/episode" component={Episode} />        
         <this.PrivatePatientRoute exact path="/patient" component={Patient} />
         <this.PrivateAdminRoute exact path="/admin" component={Admin} />
         <this.PrivateAdminRoute exact path="/admin/report" component={Admin_Report} />
         <this.PrivateAdminRoute exact path="/admin/episode" component={Admin_Episode} />
         <this.PrivatePatientRoute exact path="/appointment" component={Appointment} />
-        <this.PrivateAdminRoute exact path="/new_patient" component={New_Patient} />
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>
@@ -229,7 +217,6 @@ class App extends Component {
     </div>
   </Router>
   )
-  {/* <Route exact path="/sk" component={SK} /> */}
   }
 }
 

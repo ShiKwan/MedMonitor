@@ -1,9 +1,5 @@
 import React from "react";
-import Jumbotron from "../../components/Jumbotron";
-
 import "./NoMatch.css";
-
-
 import {
   Container,
   Row,

@@ -2,19 +2,7 @@ import React from 'react';
 import "./Button.css";
 
 import { 
-    Container,
-    Card,
-    Button,
-    ButtonGroup,
-    CardTitle,
-    CardHeader,
-    CardSubtitle,
-    CardText,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText
+    Button
 } from 'reactstrap';
 //radio = onClickHandle(this.props.data_value) and checkbox =  onClickHandle(this.props.answer)
 export default class QButton extends React.Component {

@@ -229,8 +229,6 @@ export default class PatientMedications extends React.Component {
             <Container fluid>
                 <Row>
                     <Col className='md-12'>
-                        <Button onClick={() => this.onGenerateMedications()}> </Button>
-
                         <Card className="patMedTableCard TableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
                             <CardBody className="patMedTableBody TableBody">
                                 <CardTitle className="patMedTitle Title">Enter Patient Medications</CardTitle>
@@ -241,11 +239,11 @@ export default class PatientMedications extends React.Component {
                                 <h5 className="currentMedTitle">Current Medication(s)</h5>
                                 { this.state.patientLastEpisodeMedications ?
                                     this.state.patientLastEpisodeMedications.map((x, index) => 
-                                        <Container>
+                                        <Container key={index}>
                                             <br />
                                                 <PreviousMedication 
                                                     patientLastEpisodeMedications={this.state.patientLastEpisodeMedications}
-                                                    key = {x.medication}
+                                                    key = {index}
                                                     dose = {x.dose}
                                                     form = {x.form}
                                                     label = {x.label}
