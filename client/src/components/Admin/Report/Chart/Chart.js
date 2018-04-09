@@ -79,7 +79,7 @@ export default class Chart extends React.Component {
                         <Line type='monotone' dataKey='Tremor' strokeDasharray="3 4 5 2" stroke="cyan" />
                         <Line type='monotone' dataKey='Walking' strokeDasharray="3 4 5 2" stroke="grey" />
                         <Line type='monotone' dataKey='Balance' strokeDasharray="3 4 5 2" stroke="blue" />
-                        <Line type='monotone' dataKey='All' stroke="black" strokeWidth={5}/>
+                        <Line type='monotone' dataKey='Average' stroke="black" strokeWidth={5}/>
                         
                         <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
                         {/* <Tooltip /> */}
@@ -99,7 +99,7 @@ export default class Chart extends React.Component {
                         <Line type='monotone' dataKey='Dizziness' strokeDasharray="3 4 5 2" stroke="magenta" />
                         <Line type='monotone' dataKey='Headache' strokeDasharray="3 4 5 2" stroke="yellow" />
                         <Line type='monotone' dataKey='Drymouth' strokeDasharray="3 4 5 2" stroke="purple" />
-                        <Line type='monotone' dataKey='All' stroke="black" strokeWidth={5}/>
+                        <Line type='monotone' dataKey='Average_' stroke="black" strokeWidth={5}/>
                         
                         <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
                      {/* <Tooltip /> */}

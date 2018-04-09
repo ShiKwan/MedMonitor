@@ -206,13 +206,13 @@ loadPatientData = event => {
                     Tremor: tremorAverages[i],
                     Walking: walkingAverages[i],
                     Balance: balanceAverages[i],
-                    All: averageSy[i],
+                    Average: averageSy[i],
 
                     Sickness: sicknessAverages[i],
                     Dizziness: dizzinessAverages[i],
                     Headache: headacheAverages[i],
                     Drymouth: drymouthAverages[i],
-                    All: averageSe[i]
+                    Average_: averageSe[i]
                     };
 
                 chartData.push(obj) 
