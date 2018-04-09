@@ -61,11 +61,21 @@ export default class Header extends React.Component {
                             <Nav pills className="navlogOutPills">
                                 <NavItem className="navInfo">
                                     <Container className="navGreeting">
-                                <Label className="navLogName" for="appTime"><h3 ><em>{localStorage.getItem("username") ? `Hello ${localStorage.getItem("username")}!` : `Welcome!`} </em></h3></Label>
+                                        <Label className="navLogName" for="appTime">
+                                            <h3 ><em>
+                                                {localStorage.getItem("username") ? 
+                                                    localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
+                                                    ?
+                                                        `Hello Dr. ${localStorage.getItem('lastName')}` 
+                                                    :
+                                                        `Hello ${localStorage.getItem('lastName')}`
+                                                : 
+                                                    `Welcome!`
+                                                } 
+                                            </em></h3>
+                                        </Label>
                                     </Container>
-
                                     {localStorage.getItem("username")!== "null"?
-
                                     <Container className="navBtn">
                                         <NavItem>
                                             {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null}
