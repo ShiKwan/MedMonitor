@@ -34,7 +34,8 @@ class Patient extends Component {
                     this.setState({
                         next_appt: `${res.data.appointment.next_appt}`,
                         medication: res.data.episode[0].medications,
-                        details: res.data.details
+                        details: res.data.details,
+                        physician: `${res.data.physician.name.first} ${res.data.physician.name.last}`
                     })
                     console.log(this.state);
                 })
@@ -54,6 +55,7 @@ class Patient extends Component {
                     <Row>
                         <Col size='md-12'>
                             <PatSurvey 
+                                physician ={this.state.physician}
                                 handleIncident={this.props.handleIncident} 
                                 handleFinishedCallback={this.handleFinishedCallback} 
                                 getBackMessageStatus = {this.props.getBackMessageStatus}
