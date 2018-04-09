@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import {
-    Container, Row, Col, 
-    Button, 
-    Card, CardBody, CardTitle, CardText,
-    Form, FormGroup, Label, Input, FormText,
+    Container, 
+    Row, 
+    Col, 
 } from 'reactstrap';
+
 import moment from 'moment';
 
 export default class Header extends React.Component {

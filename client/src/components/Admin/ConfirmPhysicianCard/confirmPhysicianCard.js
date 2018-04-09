@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import {
     Button, 
-    Card, CardBody, CardTitle, CardText,
+    Card, 
+    CardBody, 
+    CardTitle, 
     Table
 } from 'reactstrap';
+
 import moment from "moment";
 
 import '../../../pages/Admin';
