@@ -22,7 +22,7 @@ export default class QButton extends React.Component {
                     color={this.props.color[this.props.index]}
                     onClick={() => this.props.onClickHandle(this.props.selectionType === "checkbox" ? this.props.answer : this.props.data_value)}
                     value={this.props.data_value}
-                    active = {this.props.selectionType ==="radio" ? this.props.active === this.props.data_value : this.state.active.includes(this.props.answer) }
+                    active = {this.props.selectionType ==="radio" ? this.props.active === this.props.data_value : this.props.active.includes(this.props.answer) }
                     data_value = {this.props.data_value}
                 >
                     <h4 className="btnAnswer">{this.props.answer}</h4>

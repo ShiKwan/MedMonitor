@@ -354,6 +354,8 @@ class PatSurvey extends Component {
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);
             this.saveAnswersToDb();
+            this.props.getBackMessage("You have completed the questionaires")
+            this.props.getBackMessageStatus("success");
         }        
     }
     handleProgressBar = (answered) =>{
@@ -385,8 +387,6 @@ class PatSurvey extends Component {
                             //     {this.handleProgressBar(`${this.state.answered}`)}
                             // </div> */
                        } 
-                
-                
                 {
                     this.state.questions.map( (x,i) => {
                         return(
@@ -439,7 +439,7 @@ class PatSurvey extends Component {
                 }
             </Container>
             :
-            <Label>You have completed the questionaires</Label>
+            null
         );
     }
 }

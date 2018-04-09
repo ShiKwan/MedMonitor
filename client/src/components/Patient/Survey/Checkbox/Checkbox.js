@@ -24,13 +24,32 @@ export default class Checkbox extends React.Component {
 
     }
     onCheckboxBtnClick(selected) {
-        const index = this.state.cSelected.indexOf(selected);
-        if (index < 0) {
-            this.state.cSelected.push(selected);
-        } else {
-            this.state.cSelected.splice(index, 1);
+        console.log(selected);
+        if(selected === 'None Of These'){
+            this.setState({
+                cSelected : ['None Of These']
+            }, function() {
+                console.log(this.state.cSelected);
+            })
+            //we remove all the current state of cSelected
+        }else{
+            let newState = this.state.cSelected
+            newState = newState.filter(item => item !== 'None Of These')
+            this.setState({
+                cSelected : newState
+            }, function() {
+                const index = this.state.cSelected.indexOf(selected);
+                if (index < 0) {
+                    this.state.cSelected.push(selected);
+                } else {
+                    this.state.cSelected.splice(index, 1);
+                }
+                this.setState({ cSelected: this.state.cSelected }, function(){console.log(this.state.cSelected)});
+            })
+            
         }
-        this.setState({ cSelected: this.state.cSelected }, function(){console.log(this.state.cSelected)});
+        
+        
     }
     validateAnswer = (label, answer) => {
         let valid = true;
@@ -86,7 +105,7 @@ export default class Checkbox extends React.Component {
                                 className = {this.props.className}
                                 color = {this.props.color}
                                 onClickHandle = {this.onCheckboxBtnClick}
-                                active = {this.state.cSelected}
+                                active = {this.state.cSelected ? this.state.cSelected : null}
                                 data_value = {this.props.data_value}
                                 selectionType = {this.props.selectionType}
                             >
