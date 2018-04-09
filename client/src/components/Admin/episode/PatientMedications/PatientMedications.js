@@ -238,28 +238,31 @@ export default class PatientMedications extends React.Component {
                                 <h5 className="currentMedTitle">Current Medication(s)</h5>
                                 { this.state.patientLastEpisodeMedications ?
                                     this.state.patientLastEpisodeMedications.map((x, index) => 
-                                        <Container key={index}>
-                                            <br />
-                                                <PreviousMedication 
-                                                    patientLastEpisodeMedications={this.state.patientLastEpisodeMedications}
-                                                    key = {index}
-                                                    dose = {x.dose}
-                                                    form = {x.form}
-                                                    label = {x.label}
-                                                    medication = {x.medication}
-                                                    route = {x.route}
-                                                    times = {x.times}
-                                                    value= {x.value}
-                                                    handleNewChange = {this.handleNewChange}
-                                                    ddlDosage = {this.props.medications}
-                                                    handlePreviousTimeChange = {this.handlePreviousTimeChange}
-                                                    handleDosage = {this.handleDosage}
-                                                    allTime = {ddlTime}
-                                                    allMedications = {this.props.medications}
-                                                    handleDoseChange={this.handleDoseChange}
-                                                    handleLastMedChange={this.handleLastMedChange}
-                                                />                         
-                                        </Container>
+                                        x.medication !=="tbc" ?
+                                            <Container key={index}>
+                                                <br />
+                                                    <PreviousMedication 
+                                                        patientLastEpisodeMedications={this.state.patientLastEpisodeMedications}
+                                                        key = {index}
+                                                        dose = {x.dose}
+                                                        form = {x.form}
+                                                        label = {x.label}
+                                                        medication = {x.medication}
+                                                        route = {x.route}
+                                                        times = {x.times}
+                                                        value= {x.value}
+                                                        handleNewChange = {this.handleNewChange}
+                                                        ddlDosage = {this.props.medications}
+                                                        handlePreviousTimeChange = {this.handlePreviousTimeChange}
+                                                        handleDosage = {this.handleDosage}
+                                                        allTime = {ddlTime}
+                                                        allMedications = {this.props.medications}
+                                                        handleDoseChange={this.handleDoseChange}
+                                                        handleLastMedChange={this.handleLastMedChange}
+                                                    />                         
+                                            </Container>
+                                        :
+                                            null
                                     )
                                     : null
                                 }
