@@ -6,8 +6,8 @@
     max-width: 980px;
 }
 
-.signin-form {
-    margin: 100px auto;
+form.signin-form {
+    margin: 80px auto;
     padding: 25px;
 }
 

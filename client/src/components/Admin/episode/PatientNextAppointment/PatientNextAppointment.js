@@ -117,11 +117,12 @@ export default class PatientNextAppointment extends React.Component {
                     </Container>
 
                     <br />
-                    
-                    <Label>
-                        Notes for patient:
-                    </Label>
-                    <Input type="text" name='comments' onChange={this.handleInputChange} placeholder='reminder or notes for patient' />
+                    <Container>
+                        <Label>
+                            Notes for patient:
+                        </Label>
+                        <Input type="text" name='comments' onChange={this.handleInputChange} placeholder='reminder or notes for patient' />
+                    </Container>
 
                     <br />
 

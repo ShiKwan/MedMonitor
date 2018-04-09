@@ -38,17 +38,32 @@ class DoSomethingBtn extends Component {
         console.log(event.target.value);
         console.log(this.state);
     };
-    handleSubmit = (event) => {
-        console.log("here");
-        let objVideo = {
-            video_link: this.state.video_link,
-            patient_id : this.state.patient_id,
-            video_datetime : this.state.video_datetime
+    validateSubmit = (video_link) =>{
+        let valid = true;
+        if(!video_link){
+            valid = false
+            this.props.getBackMessage("Video link cannot be empty.");
+            this.props.getBackMessageStatus("danger");
+        }else{
+            this.props.getBackMessage("Your video has been recorded.");
+            this.props.getBackMessageStatus("success");
         }
-        console.log(objVideo);
-        videoAPI.create(objVideo)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        return valid;
+    }
+    handleSubmit = (event) => {
+        if(this.validateSubmit(this.state.video_link)){
+            console.log("here");
+            let objVideo = {
+                video_link: this.state.video_link,
+                patient_id : this.state.patient_id,
+                video_datetime : this.state.video_datetime
+            }
+            console.log(objVideo);
+            videoAPI.create(objVideo)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        }
+        
     }
     render() {
         return (
@@ -57,11 +72,13 @@ class DoSomethingBtn extends Component {
                 <Card className="uploadVideoInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="uploadVideoInfoHeader">UPLOAD EPISODE VIDEO</CardHeader>
                     <Card className="uploadVideoInfoBody">
-                        <CardText className="shareVideo"><h4>Share Your Episode Video With Your Doctor</h4></CardText>
-                        <FormGroup row className="uploadVideo">
-                            <Label size="lg">Upload Your Video Link Here</Label>
-                            <Input type="text" id="episodeVideo" onChange={this.handleInputChange} name="video_link" placeholder="video link" bsSize="lg" />
-                        </FormGroup>
+                        <CardText><h4 className="shareVideo">Share Your Episode Video With Your Doctor</h4></CardText>
+                        <Container>
+                            <FormGroup row className="uploadVideo">
+                                <Label className="uploadLinkMess" size="lg">Upload Your Video Link Here</Label>
+                                <Input type="text" id="episodeVideo" onChange={this.handleInputChange} name="video_link" placeholder="video link" bsSize="lg" />
+                            </FormGroup>
+                        </Container>
                         <Button className="submitVideo" color="secondary" size="lg" onClick={(e) => this.handleSubmit(e)}><h4>Submit Video</h4></Button>
                     </Card>
                 </Card>

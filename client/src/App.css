@@ -1,11 +1,11 @@
-.backgroundContain img {
-    /* margin-top: -400px; */
+.backgroundContain {
     position: fixed;
+    flex: 1;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
     z-index: -200;
     background-position: center;
-    opacity: .5;
+    /* opacity: .5; */
 }

@@ -29,38 +29,38 @@ export default class Radio extends React.Component {
     }
 
     onRadioBtnClick(rSelected) {
-        console.log(rSelected);
-        this.setState({ rSelected });
-        console.log(this.state.rSelected);
+        
+        this.setState({ rSelected }, function(){
+        });
+        
     }
     componentDidMount() {
 
     }
-
+    validateAnswer = (label, answer) => {
+        let valid = true;
+        if(answer === ''){
+            valid = false;
+            this.props.getBackMessage("Question cannot be left unaswered.");
+            this.props.getBackMessageStatus("danger");
+        }else{
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid
+    }
     handleSubmit(event) {
-        // Don't perform an actual form submission
-        event.preventDefault();
-        console.log(this.state.rSelected);
-        this.setState({
-            answer : this.state.rSelected
-        }, function(){
-            console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : " + this.state.answer + " to answered array..");
-            this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
-            this.props.handleQuestionCallback();
+        if(this.validateAnswer(this.props.label, this.state.rSelected)){
+            // Don't perform an actual form submission
+            event.preventDefault();
+            this.setState({
+                answer : this.state.rSelected
+            }, function(){
+                this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
+                this.props.handleQuestionCallback();
 
-            // Scroll the window to the top of the topFocus ID
-        //     const topFocusElement = document.getElementById('topFocus');
-        //     const introsurvCardElement = document.getElementsByClassName('introsurvCard');
-        //     const navbarElement = document.getElementsByClassName('navbar');
-        //    const offsetNum = introsurvCardElement[0].clientHeight + navbarElement[0].clientHeight;
-        //     // const offsetNum = topFocusElement.offsetTop * 2;
-        //     // const offsetNum = topFocusElement.offsetTop;
-        //     // const offsetNum =introsurvCardElement + navbarElement;
-        //     console.log('RADIO: offsetNum', offsetNum);
-        //     window.scrollTo(0, offsetNum);
-        });
-        
-
+            });
+        }
     }
 
     render() 
@@ -68,7 +68,7 @@ export default class Radio extends React.Component {
         return(
                 this.props.firstQuestion === 1 ? 
                 
-                <Card className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <Card key={this.props.survHeader} className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     
                         <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                         <Card className="surveyQuestions">
@@ -81,6 +81,7 @@ export default class Radio extends React.Component {
                                     return(
                     
                                         <QButton 
+                                            key = {this.props.answer}
                                             index = {`${index}`}
                                             answer = {this.props.answers[index]}
                                             survHeader = {this.props.survHeader}
@@ -100,7 +101,7 @@ export default class Radio extends React.Component {
                             </div>
                         <br>
                         </br>
-                        <Button  id="topFocus" className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4>Submit Your Answer</h4></Button>
+                        <Button  id="topFocus" className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4 className="subBtnText" >Submit Your Answer</h4></Button>
                         
                         </Card>
                     </Card>   

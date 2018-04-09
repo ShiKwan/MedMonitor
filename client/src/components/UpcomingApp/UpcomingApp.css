@@ -11,7 +11,7 @@
 
 .upcomingAppCard .appCardInfo {
     color: black;
-    padding: 10px;
+    padding: 25px;
     background-color: #f3f3f1;
 }
 
@@ -24,11 +24,26 @@
     -webkit-transition-property: background-color, color;
     -webkit-transition-duration: 1s;
     transition-property: background-color, color;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .upcomingAppCard .appRemindBtn:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
+}
+
+
+@media screen and (max-width: 769px) {
+
+}
+
+@media screen and (max-width: 376px) {
+    .upcomingAppCard .upcomingAppHeader {
+        font-size: 20px;
+    }
+    .upcomingAppCard .appRemindBtn {
+        padding: 10px 0px 10px 0px;
+        
+    }
 }

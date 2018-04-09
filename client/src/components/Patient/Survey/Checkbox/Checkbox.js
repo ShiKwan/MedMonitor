@@ -33,7 +33,6 @@ export default class Checkbox extends React.Component {
 
     }
     onCheckboxBtnClick(selected) {
-        console.log("selected: " , selected)
         const index = this.state.cSelected.indexOf(selected);
         if (index < 0) {
             this.state.cSelected.push(selected);
@@ -41,41 +40,45 @@ export default class Checkbox extends React.Component {
             this.state.cSelected.splice(index, 1);
         }
         this.setState({ cSelected: this.state.cSelected });
-        console.log(this.state.cSelected);
+    }
+    validateAnswer = (label, answer) => {
+        let valid = true;
+        if(!answer){
+            valid = false;
+            this.props.getBackMessage("Question cannot be left unaswered.");
+            this.props.getBackMessageStatus("danger");
+        }else if(label === 'emergencies'){
+            if(answer.length > 1 && answer.includes("None Of These")){
+                valid = false;
+                this.props.getBackMessage("You have selected 'None Of These' with other symptoms");
+                this.props.getBackMessageStatus("danger");
+            }
+        }else{
+            this.props.getBackMessage(null);
+            this.props.getBackMessageStatus(null);
+        }
+        return valid
     }
 
     handleSubmit(event) {
-        // Don't perform an actual form submission
-        event.preventDefault();
-        console.log(this.state.cSelected);
-        this.setState({
-            answer : this.state.cSelected
-        }, function(){
-            console.log("send question survey title '" + this.props.label.toLowerCase() + "' with answer : '" + this.state.answer + "' to answered array..");
-            this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
-            this.props.handleQuestionCallback()
-
-
-            // // Scroll the window to the top of the topFocus ID
-            // const topFocusElement = document.getElementById('topFocus');
-            // const introsurvCardElement = document.getElementsByClassName('introsurvCard');
-            // const navbarElement = document.getElementsByClassName('navbar');
-            // const offsetNum = navbarElement[0].offsetHeight;
-            // // const offsetNum = topFocusElement.offsetTop * 2;
-            // // const offsetNum = topFocusElement.offsetTop;
-            // // const offsetNum =introsurvCardElement + navbarElement;
-            // console.log('CHECKBOX: offsetNum', offsetNum);
-            // window.scrollTo(0, offsetNum);
-        });
+        if(this.validateAnswer(this.props.label, this.state.cSelected)){
+            // Don't perform an actual form submission
+            event.preventDefault();
+            this.setState({
+                answer : this.state.cSelected
+            }, function(){
+                this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
+                this.props.handleQuestionCallback()
         
-
+            });
+        }
     }
 
     render() {
         return(
                 this.props.firstQuestion === 1 ? 
 
-                <Card  className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
+                <Card key={this.props.survHeader} className="patSurveyCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
                     <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}
                     </CardHeader>
                     <Card className="surveyQuestions">
@@ -85,6 +88,7 @@ export default class Checkbox extends React.Component {
                         {this.props.data_value.map((answer, index) => 
 
                             <QButton 
+                                key={this.answer}
                                 answer={this.props.answers[index]}
                                 index = {index}
                                 survHeader = {this.props.survHeader}

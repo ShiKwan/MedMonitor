@@ -24,7 +24,7 @@ a.logOutBtn.nav-link.active {
     -webkit-transition-property: background-color, color;
     -webkit-transition-duration: 1s;
     transition-property: background-color, color;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 a.navAppBtn.nav-link:hover,
@@ -116,7 +116,7 @@ a.navLogo.nav-link.active {
     .navBtn .navAppBtn {
         margin-bottom: 5px;
         padding: 5px 10px 5px 10px;
-        font-size: 10px;
+        font-size: 8px;
     }
 
     .navGreeting .navLogName {
@@ -125,7 +125,7 @@ a.navLogo.nav-link.active {
     }
 
     em {
-        font-size: 20px;
+        font-size: 18px;
     }
     .navPills,
     .navlogOutpills {

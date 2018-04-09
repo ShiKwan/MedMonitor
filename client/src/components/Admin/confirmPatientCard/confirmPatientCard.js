@@ -65,14 +65,14 @@ export default class ConfirmPatientCard extends React.Component {
                     <br />
                     <br />
                     <a href={`/admin/Episode?id=${ this.props.patientId }`}>
-                        <Button className="reviewSelPatCreateBtn CreateBtn">Create New Episode</Button>
+                        <Button className="reviewSelPatCreateBtn">Create New Episode</Button>
                     </a>
                     <a href={`/admin/Report?id=${ this.props.patientId }`}>
-                        <Button className="reviewSelPatReportBtn ReportBtn">Report</Button>
+                        <Button className="reviewSelPatReportBtn">Report</Button>
                     </a>
-                    <Button className="reviewSelPatUpdateDetailBtn UpdateBtn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
-                    <Button className="reviewSelPatUpdateAppBtn UpdateBtn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
-                    <Button className="reviewSelPatCloseBtn CloseBtn">Close</Button>
+                    <Button className="reviewSelPatUpdateDetailBtn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
+                    <Button className="reviewSelPatUpdateAppBtn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
+                    <Button className="reviewSelPatCloseBtn">Close</Button>
 
                 </CardBody>
             </Card>

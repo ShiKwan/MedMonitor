@@ -54,17 +54,29 @@ class Patient extends Component {
                 <Container>
                     <Row>
                         <Col size='md-12'>
-                            <PatSurvey handleIncident={this.props.handleIncident} handleFinishedCallback={this.handleFinishedCallback} />
+                            <PatSurvey 
+                                handleIncident={this.props.handleIncident} 
+                                handleFinishedCallback={this.handleFinishedCallback} 
+                                getBackMessageStatus = {this.props.getBackMessageStatus}
+                                getBackMessage={this.props.getBackMessage}
+                            />
                         </Col>
                     </Row>
                     {
                         this.state.finishedQuestion === false ?
                             <Row>
                                 <Col size='md-6'>
-                                    <PatMedDue medication={this.state.medication} />
+                                    <PatMedDue 
+                                        medication={this.state.medication} 
+                                        getBackMessageStatus = {this.props.getBackMessageStatus}
+                                        getBackMessage={this.props.getBackMessage} 
+                                    />
                                 </Col>
                                 <Col size='md-6'>
-                                    <VideoUpload />
+                                    <VideoUpload 
+                                        getBackMessage={this.props.getBackMessage} 
+                                        getBackMessageStatus = {this.props.getBackMessageStatus}
+                                    />
                                 </Col>
                             </Row>
                         :

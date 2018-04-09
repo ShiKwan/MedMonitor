@@ -189,8 +189,12 @@ module.exports = {
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $set: {"details.email": req.body.email} },
-                { $set: {"details.phone": req.body.phone} }
+                { $set: 
+                    {
+                    "details.email": req.body.email, 
+                    "details.phone": req.body.phone
+                    } 
+                }
             )
             .then(update => res.json(update))
             .catch(err => {

@@ -6,14 +6,9 @@
     max-width: 980px;
 }
 
-.validation-form {
-    margin: 100px auto;
+form.validation-form {
+    margin: 80px auto;
     padding: 25px;
-}
-
-#userName,
-#userPassword {
-    margin-top: -10px;
 }
 
 .validation-form .submit-button,
@@ -32,9 +27,8 @@
 
 
 @media screen and (max-width: 376px) {
-    .signInMessage,
-    .registerMessage {
-        font-size: 21px;
+    input.Emailplaceholder {
+        font-size: 15px;
     }
     .validation-form .submit-button,
     .registration-form .submit-button {

@@ -344,10 +344,8 @@ class PatSurvey extends Component {
             const introsurvCardElement = document.getElementsByClassName('introsurvCard');
             const navbarElement = document.getElementsByClassName('navbar');
             const offsetNum = navbarElement[0].offsetHeight;
-            // const offsetNum = topFocusElement.offsetTop * 2;
-            // const offsetNum = topFocusElement.offsetTop;
-            // const offsetNum =introsurvCardElement + navbarElement;
-            console.log('CHECKBOX: offsetNum', offsetNum);
+        
+            
             window.scrollTo(0, offsetNum);
 
             
@@ -355,7 +353,7 @@ class PatSurvey extends Component {
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);
             this.saveAnswersToDb();
-        }
+        }        
     }
     handleProgressBar = (answered) =>{
 
@@ -408,11 +406,13 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
+                                    getBackMessage = {this.props.getBackMessage}
+                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QRadio>
                             :   
                                 <QCheckbox
-                                    key = {x.survHeader}
+                                    key = {`${i}` }
                                     label={x.label}
                                     data_value={x.value}
                                     survHeader = {x.survHeader}
@@ -426,6 +426,8 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
+                                    getBackMessage = {this.props.getBackMessage}
+                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QCheckbox>
                         :
