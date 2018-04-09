@@ -14,8 +14,8 @@ export default class Medication extends React.Component {
 
             <Container>
 
-                <div style={{minHeight: 476, border: '1px solid grey', padding: 20}}>
-                <p style={{fontWeight: "bold"}}>Current Medications</p>
+                <div style={{minHeight: 476, border: '1px solid grey', padding: 10}}>
+                <p style={{fontWeight: "bold"}}>{this.props.title}</p>
                 <ListGroup>
 
                      {this.props.medications.map( (med) => {
@@ -27,7 +27,7 @@ export default class Medication extends React.Component {
                                 {med.route} &nbsp;
                                 {med.form}.<br />
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;Times : &nbsp;
+                                Times : &nbsp;
                                     {
                                     med.times?
                                         med.times.map( (time) => {

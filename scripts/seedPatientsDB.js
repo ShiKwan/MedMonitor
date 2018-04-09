@@ -47,7 +47,7 @@ const patient_dataSeed = [
                 times: ["0800", "1200", "1600", "2000"]
             }, 
             {
-                medication: "Apomorphine (carbidopa/levodopa)",
+                medication: "Apokyn(apomorphine)",
                 dose: "10mg",
                 form: "tablet",
                 route: "oral",
@@ -172,9 +172,194 @@ const patient_dataSeed = [
                 }
 
 
-         ] // end of record array
-     }]
-}];
+            ] // end of record array
+
+        },
+        
+        // new episode
+
+        {
+            episode_id: "001",
+            start_date: new Date("2018-04-07T08:00:00.000Z"),
+            physician: "Dr John Heyworth",
+
+            medications: [{
+                medication: "Sinemet (carbidopa/levodopa)",
+                dose: "10mg/100mg",
+                form: "tablet",
+                route: "oral",
+                times: ["0600", "1000", "1400", "1800", "2000"]
+            }, 
+            {
+                medication: "Apokyn (apomorphine)",
+                dose: "10mg",
+                form: "tablet",
+                route: "oral",
+                times: ["0600", "1000", "1800", "1800", "2000"]
+            },
+            {
+                medication: "Cogentin (benztropine)",
+                dose: "1mg",
+                form: "tablet",
+                route: "oral",
+                times: ["1000", "1800"]
+            }
+                
+        ],
+
+            record: [
+                {
+                    date_time: new Date("2018-04-07T06:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 3, balance:3},
+                    side_effects: {sickness: 1, dizziness: 1, headaches: 1, drymouth: 2, }, notes: "",
+                },                
+                {
+                    date_time: new Date("2018-04-07T10:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: true, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 3, balance: 3},
+                    side_effects: {sickness: 0, dizziness: 2, headaches: 1, drymouth: 2, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-07T14:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 1, sleepy: 1, offtime: 1, tremor: 2, walking:1, balance: 1},
+                    side_effects: {sickness: 0, dizziness: 0, headaches: 1, drymouth: 2, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-07T18:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 0, sleepy: 1, offtime: 0, tremor: 2, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 3, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-07T22:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: true, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 3, balance: 3},
+                    side_effects: {sickness: 0, dizziness: 2, headaches: 1, drymouth: 2, }, notes: "",
+                },
+
+            //
+                {
+                    date_time: new Date("2018-04-08T06:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 3, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 2, balance: 2},
+                    side_effects: {sickness: 0, dizziness: 0, headaches: 1, drymouth: 2, }, notes: "",
+                },                
+                {
+                    date_time: new Date("2018-04-08T10:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: true, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 3, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 0, dizziness: 1, headaches: 1, drymouth: 3, }, notes: "",
+                }, 
+                {
+                    date_time: new Date("2018-04-08T14:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: true, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 1, sleepy: 1, offtime: 1, tremor: 2, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 3, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-08T18:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 2, movement: 1, sleepy: 2, offtime: 0, tremor: 1, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 0, headaches: 0, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-08T22:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: true, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 0, wearoff: 1, movement: 1, sleepy: 1, offtime: 1, tremor: 2, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 3, }, notes: "",
+                },
+
+            //    
+                {
+                    date_time: new Date("2018-04-09T06:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 3, walking: 2, balance: 2},
+                    side_effects: {sickness: 0, dizziness: 1, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-09T10:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: true, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 0, dizziness: 1, headaches: 0, drymouth: 3, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-09T14:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: true,},
+                    symptoms: {kickin:1, wearoff: 2, movement: 1, sleepy: 0, offtime: 1, tremor: 2, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 1, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-09T18:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: true, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 0, sleepy: 1, offtime: 1, tremor: 1, walking: 0, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 1, headaches: 0, drymouth: 3, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-09T22:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 0, dizziness: 1, headaches: 0, drymouth: 3, }, notes: "",
+                },
+
+            //
+                {
+                    date_time: new Date("2018-04-10T06:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 2, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 2, balance: 2},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                }, 
+                {
+                    date_time: new Date("2018-04-10T10:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: true, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T14:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 1, sleepy: 1, offtime: 0, tremor: 1, walking: 1, balance: 0},
+                    side_effects: {sickness: 1, dizziness: 0, headaches: 0, drymouth: 2, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T18:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: true, choking: false, hallucination: false,},
+                    symptoms: {kickin: 1, wearoff: 1, movement: 0, sleepy: 1, offtime: 1, tremor: 2, walking: 1, balance: 1},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 3, }, notes: "",
+                },
+                {
+                    date_time: new Date("2018-04-10T22:00:00.000Z"),
+                    meds_taken: true,
+                    emergencies: {falls: false, freezing: false, choking: false, hallucination: false,},
+                    symptoms: {kickin: 2, wearoff: 4, movement: 3, sleepy: 4, offtime: 3, tremor: 4, walking: 4, balance: 3},
+                    side_effects: {sickness: 1, dizziness: 2, headaches: 1, drymouth: 4, }, notes: "",
+                }
+
+            ] // end of record array
+
+        }] // end of episode 2
+
+    }];
 
 
 
