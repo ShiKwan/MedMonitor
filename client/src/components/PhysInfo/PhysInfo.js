@@ -4,16 +4,9 @@ import "./PhysInfo.css";
 import { 
     Container,
     Card,
-    Button,
     CardTitle,
     CardHeader,
-    CardSubtitle,
-    CardText,
-    Form,
-    FormGroup,
     Label,
-    Input,
-    FormText
 } from 'reactstrap';
 
 const PhysInfo = (props) => {

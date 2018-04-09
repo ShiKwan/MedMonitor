@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import {
-    Button, 
-    Card, CardBody, CardTitle, CardText,
+import React from 'react';
+import { 
+    Container,
+    Card, CardBody, CardTitle,
     Table,
 } from 'reactstrap';
 import moment from "moment";
 import './notificationCard.css';
 
 import '../../../pages/Admin';
+import alertAPI from '../../../utils/alertAPI';
 
 
 
@@ -15,6 +16,20 @@ export default class confirmPatientCard extends React.Component {
 
     onClicked(id) {
         this.props.confirmPatient(id);
+    }
+    state =({
+        emergencies : []
+    })
+
+    componentDidMount(){
+        alertAPI.findAll()
+        .then((res) =>{
+            console.log(res.data);
+            this.setState({
+                emergencies : res.data
+            })
+        })
+        .catch((err) => console.log(err))
     }
 
 
@@ -90,19 +105,38 @@ export default class confirmPatientCard extends React.Component {
                                 </tr>
                             </thead>
                             <tbody className="emerNotifPat">
-                                <tr className="emergNotifDetail" onClick={() => this.onClicked()}>
-                                    <td> name</td>
-                                    <td> hospnumber</td>
-                                    <td> alert</td>
-                                    <td> date</td>
-                                    <td> time</td>
-                                         {/* <td>{moment(item............).format("dddd, MMMM Do YYYY")}</td> 
-                                         <td>{moment(item.............).format("h:mm a")}</td> */}
-                                    <td>Dr. Physician</td>
-                                </tr>
+                            {this.state.emergencies ? 
+                                this.state.emergencies.map((emergency) =>{
+                                    return(
+                                        (moment(emergency.alert_datetime).isAfter(moment().add(-7, 'day'))) && (emergency.alert_type[0].choking || emergency.alert_type[0].fall || emergency.alert_type[0].freezing || emergency.alert_type[0].hallucination) ?
+                                        <tr key={emergency._id} className="emergNotifDetail" onClick={() => this.onClicked(emergency.alert_patient_id)}>        
+                                            <td> {emergency.alert_firstname} {emergency.alert_lastname} </td>
+                                            <td> {emergency.alert_hospnum}</td>
+                                            <td> 
+                                                <Container>
+                                                    {emergency.alert_type[0].choking ? <Container><label>{emergency.alert_type[0].choking}</label></Container>: null}
+                                                    {emergency.alert_type[0].fall ? <Container><label>{emergency.alert_type[0].fall}</label></Container> : null}
+                                                    {emergency.alert_type[0].freezing ? <Container><label>{emergency.alert_type[0].freezing}</label></Container> : null}
+                                                    {emergency.alert_type[0].hallucination ? <Container><label>{emergency.alert_type[0].hallucination}</label></Container> : null}
+                                                </Container>
+                                                
+                                            </td>
+                                            <td> {moment(emergency.alert_datetime).format('dddd, MMMM Do YYYY')}</td>
+                                            <td> {moment(emergency.alert_datetime).format("h:mm a")}</td>
+                                                {/* <td>{moment(item............).format("dddd, MMMM Do YYYY")}</td> 
+                                                <td>{moment(item.............).format("h:mm a")}</td> */}
+                                            <td>{emergency.alert_physician ? `Dr. ${emergency.alert_physician}` : null}</td>
+                                        </tr>
+                                        :
+                                        null                                         
+                                    )
+                                })    
+                            : null
+                            }
                             </tbody>
+                                
+                            
                         </Table>
-                        
                 </CardBody>
             </Card>
         )

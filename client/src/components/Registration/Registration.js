@@ -5,10 +5,6 @@ import userAPI from "../../utils/userAPI";
 import mailerAPI from "../../utils/nodemailerAPI";
 import "./Registration.css";
 import {
-    Nav,
-    Navbar,
-    NavItem,
-    NavLink,
     Input,
     Form,
     FormGroup,

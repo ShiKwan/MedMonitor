@@ -15,7 +15,7 @@ const Patient_alertSchema = new Schema({
     }],
     alert_datetime: {type: Date, required: true },
     alert_physician: String,
-
+    alert_patient_id : String
 });
 
 var Patient_alert = mongoose.model("Patient_alert", Patient_alertSchema);

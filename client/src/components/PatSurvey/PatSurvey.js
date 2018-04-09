@@ -11,16 +11,7 @@ import {
     Container,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
-    CardText,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText,
     Progress
 } from 'reactstrap';
 
@@ -280,7 +271,8 @@ class PatSurvey extends Component {
                         hallucination: newAnswer[3] === 1 ? "hallucination" : null
                     },
                     alert_datetime : moment(),
-                    alert_physician : ""
+                    alert_physician : this.props.physician,
+                    alert_patient_id : localStorage.getItem("userId")
                 }
                 //TODO: 
                 alertAPI.create(emergencyObj)
@@ -340,8 +332,8 @@ class PatSurvey extends Component {
             })
 
             // Scroll the window to the top of the topFocus ID
-            const topFocusElement = document.getElementById('topFocus');
-            const introsurvCardElement = document.getElementsByClassName('introsurvCard');
+            //const topFocusElement = document.getElementById('topFocus');
+            //const introsurvCardElement = document.getElementsByClassName('introsurvCard');
             const navbarElement = document.getElementsByClassName('navbar');
             const offsetNum = navbarElement[0].offsetHeight;
         
@@ -353,6 +345,8 @@ class PatSurvey extends Component {
             this.props.handleFinishedCallback();
             console.log("Done with question: ", this.state.completed);
             this.saveAnswersToDb();
+            this.props.getBackMessage("You have completed the questionaires")
+            this.props.getBackMessageStatus("success");
         }        
     }
     handleProgressBar = (answered) =>{
@@ -369,6 +363,7 @@ class PatSurvey extends Component {
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">
+                <Button onClick={()=>console.log(this.state)}>Test</Button>
                     {this.state.questions.length === 14 ?
 
                 <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
@@ -383,8 +378,6 @@ class PatSurvey extends Component {
                             //     {this.handleProgressBar(`${this.state.answered}`)}
                             // </div> */
                        } 
-                
-                
                 {
                     this.state.questions.map( (x,i) => {
                         return(
@@ -437,7 +430,7 @@ class PatSurvey extends Component {
                 }
             </Container>
             :
-            <Label>You have completed the questionaires</Label>
+            null
         );
     }
 }

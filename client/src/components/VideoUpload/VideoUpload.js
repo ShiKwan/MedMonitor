@@ -4,20 +4,13 @@ import videoAPI from '../../utils/videoAPI';
 import moment from 'moment';
 import {
     Container,
-    Row,
-    Col,
     Card,
     Button,
-    ButtonGroup,
-    CardTitle,
     CardHeader,
-    CardSubtitle,
     CardText,
-    Form,
     FormGroup,
     Label,
     Input,
-    FormText
 } from 'reactstrap';
 
 
