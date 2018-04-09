@@ -23,20 +23,27 @@ export default class PreviousMedication extends React.Component {
     }
     componentDidMount(newProp){
         //first we need to assign doses value to the state
-        const datavalue = this.props.allMedications.filter(x => x.name === this.props.medication)
-        const labelvalue = datavalue[0].doses.filter(y => y.label === this.props.label)
-        this.setState({
-            medication : this.props.medication,
-            times : this.props.times,
-            allMedications : this.props.allMedications,
-            allTime : this.props.allTime,
-            value: labelvalue[0] && labelvalue[0].value? labelvalue[0].value : 0,
-            label : this.props.label,
-            dose : this.props.dose,
-            form : this.props.form,
-            route : this.props.route,
-            patientLastEpisodeMedications: this.props.patientLastEpisodeMedications
-         })
+        console.log("current med : ", this.props.medication);
+        if(this.props.medication !== "tbc"){
+            const datavalue = this.props.allMedications.filter(x => x.name === this.props.medication)
+            if(datavalue[0]){
+                const labelvalue = datavalue[0].doses.filter(y => y.label === this.props.label)
+                this.setState({
+                    medication : this.props.medication,
+                    times : this.props.times,
+                    allMedications : this.props.allMedications,
+                    allTime : this.props.allTime,
+                    value: labelvalue[0] && labelvalue[0].value? labelvalue[0].value : 0,
+                    label : this.props.label,
+                    dose : this.props.dose,
+                    form : this.props.form,
+                    route : this.props.route,
+                    patientLastEpisodeMedications: this.props.patientLastEpisodeMedications
+                })
+            }
+            
+        }
+        
     }
 
     removeMedicine = (e) =>{

@@ -122,8 +122,16 @@ createNewEpisode= () => {
 }
 
 handleMedCallback = (lastEpiMeds) => {
+    console.log("LastEpiMeds: " , lastEpiMeds);
+    let newEpiMeds = [];
+    for(let i=0 ; i< lastEpiMeds.length; i++){
+        if(lastEpiMeds[i].medication !=='tbc'){
+            newEpiMeds.push(lastEpiMeds[i]);
+        }
+    }
+    console.log("New Epi Meds, after filter out tbc: " , newEpiMeds)
     this.setState({
-        newEpisode: lastEpiMeds
+        newEpisode: newEpiMeds
     });
 }
 
