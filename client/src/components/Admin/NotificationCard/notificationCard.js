@@ -58,7 +58,11 @@ export default class confirmPatientCard extends React.Component {
                                                 <td>{item.details.first_name} {item.details.last_name}</td>  
                                                 <td>{item.details.patient_number}</td>
                                                 <td>{moment(item.date_created).format("MMMM Do YYYY")} ({moment(item.date_created).format("h:mm a")}) </td> 
+                                                {item.physician ?
                                                 <td>{`Dr. ${item.physician.name.first} ${item.physician.name.last}`}</td>
+                                                :
+                                                null
+                                                }
                                             </tr>
                                         ))}
                                     </tbody>
@@ -86,7 +90,11 @@ export default class confirmPatientCard extends React.Component {
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             <td>{item.details.patient_number}</td>
                                             <td>{moment(item.appointment.next_appt).format("dddd, MMMM Do YYYY")} at  {moment(item.appointment.next_appt).format("h:mm a")}</td> 
-                                            <td>{`Dr. ${item.physician.name.first} ${item.physician.name.last}`}</td>
+                                            {item.physician ?
+                                                <td>{`Dr. ${item.physician.name.first} ${item.physician.name.last}`}</td>
+                                                : 
+                                                null
+                                            }
                                         </tr>
                                     ))}
                                 </tbody>
