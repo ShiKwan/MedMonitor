@@ -6,6 +6,9 @@ import {
 
 import '../../../pages/Admin';
 
+import './selectPhysicianCard.css';
+
+
 
 export default class SelectPhysicianCard extends React.Component {
 

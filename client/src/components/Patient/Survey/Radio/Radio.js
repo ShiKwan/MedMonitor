@@ -61,16 +61,6 @@ export default class Radio extends React.Component {
                 this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
                 this.props.handleQuestionCallback();
 
-                // Scroll the window to the top of the topFocus ID
-            //     const topFocusElement = document.getElementById('topFocus');
-            //     const introsurvCardElement = document.getElementsByClassName('introsurvCard');
-            //     const navbarElement = document.getElementsByClassName('navbar');
-            //    const offsetNum = introsurvCardElement[0].clientHeight + navbarElement[0].clientHeight;
-            //     // const offsetNum = topFocusElement.offsetTop * 2;
-            //     // const offsetNum = topFocusElement.offsetTop;
-            //     // const offsetNum =introsurvCardElement + navbarElement;
-            //     console.log('RADIO: offsetNum', offsetNum);
-            //     window.scrollTo(0, offsetNum);
             });
         }
     }
@@ -112,7 +102,7 @@ export default class Radio extends React.Component {
                             </div>
                         <br>
                         </br>
-                        <Button  id="topFocus" className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4>Submit Your Answer</h4></Button>
+                        <Button  id="topFocus" className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4 className="subBtnText" >Submit Your Answer</h4></Button>
                         
                         </Card>
                     </Card>   

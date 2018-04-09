@@ -182,11 +182,13 @@ export default class Registration extends React.Component {
                         <Container>
                             <h2 className="signInMessage">Email Address Validation</h2>
                         </Container>
-                        <FormGroup row className="signInName">
-                            <Label size="lg">Email address</Label>
-                            <Input type="text" name="newAccountEmail" placeholder="Please enter your email address here.. " bsSize="lg" value={this.state.newAccountEmail} onChange={this.handleInputChange} />
-                        </FormGroup>
-                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleValidateEmail(this.state.newAccountEmail, event)}> VALIDATE EMAIL</Button>{' '}
+                        <Container>
+                            <FormGroup row className="signInName">
+                                <Label size="lg">Email address</Label>
+                                <Input className="Emailplaceholder" type="text" name="newAccountEmail" placeholder="Please enter email address here.. " bsSize="lg" value={this.state.newAccountEmail} onChange={this.handleInputChange} />
+                            </FormGroup>
+                            <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleValidateEmail(this.state.newAccountEmail, event)}> VALIDATE EMAIL</Button>{' '}
+                        </Container>
                     </Form>
                 )
                 :(
@@ -194,19 +196,21 @@ export default class Registration extends React.Component {
                         <Container>
                             <h2 className="registerMessage">Register Your Account</h2>
                         </Container>
-                        <FormGroup row className="RegisterUserName">
-                            <Label size="lg">User Name</Label>
-                            <Input type="text" name="username" id="enterUser" placeholder="user name" bsSize="lg" value={this.state.username} onChange={this.handleInputChange} />
-                        </FormGroup>
-                        <FormGroup row className="registerPassword">
-                            <Label className="register-label" size="lg">Password</Label>
-                            <Input type="password" name="password" placeholder="password" bsSize="lg" value={this.state.password} onChange={this.handleInputChange} />
-                        </FormGroup>
-                        <FormGroup row className="registerPassword">
-                            <Label className="register-label" size="lg">Confirm Password</Label>
-                            <Input type="password" name="confirmPassword" placeholder="password" bsSize="lg" value={this.state.confirmPassword} onChange={this.handleInputChange} />
-                        </FormGroup>
-                        <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleCreateAccount(event)}> SUBMIT</Button>{' '}
+                        <Container>
+                            <FormGroup row className="RegisterUserName">
+                                <Label size="lg">User Name</Label>
+                                <Input type="text" name="username" id="enterUser" placeholder="user name" bsSize="lg" value={this.state.username} onChange={this.handleInputChange} />
+                            </FormGroup>
+                            <FormGroup row className="registerPassword">
+                                <Label className="register-label" size="lg">Password</Label>
+                                <Input type="password" name="password" placeholder="password" bsSize="lg" value={this.state.password} onChange={this.handleInputChange} />
+                            </FormGroup>
+                            <FormGroup row className="registerPassword">
+                                <Label className="register-label" size="lg">Confirm Password</Label>
+                                <Input type="password" name="confirmPassword" placeholder="password" bsSize="lg" value={this.state.confirmPassword} onChange={this.handleInputChange} />
+                            </FormGroup>
+                            <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleCreateAccount(event)}> SUBMIT</Button>{' '}
+                        </Container>
                     </Form>
                 )}
             </Container>
