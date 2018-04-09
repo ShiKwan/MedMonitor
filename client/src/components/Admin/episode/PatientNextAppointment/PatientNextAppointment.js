@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import DatetimePicker from 'react-datetime';
+
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
+    Label, 
+    Input, 
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, 
+    Card, 
+    CardBody, 
+    CardTitle, 
+    CardText,
 } from 'reactstrap';
+
 import './PatientNextAppointment.css';
 import moment from "moment";
 import mailerAPI from "../../../../utils/nodemailerAPI";
-import { Value } from 'react-select';
 
 import '../../../../pages/Admin';
 

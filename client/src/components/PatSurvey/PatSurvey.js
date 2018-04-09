@@ -48,7 +48,7 @@ var questions = [{
     answers: ['Falls', 'Freezing Of Gait', 'Choking On Food', 'Hallucinations', 'None Of These'],
     color: ['red', 'red', 'red', 'red', 'green'],
     value: [0, 0, 0, 0, 0],
-    className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnGreen'],
+    className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed','survChkBtnGreen'],
     selectionType: "checkbox",
     answered : '',
     label: "emergencies",

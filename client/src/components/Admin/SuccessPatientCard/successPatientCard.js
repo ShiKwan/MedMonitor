@@ -6,8 +6,6 @@ import {
 
 import '../../../pages/Admin';
 
-
-
 export default class SuccessPatientCard extends React.Component {
 
     render () {

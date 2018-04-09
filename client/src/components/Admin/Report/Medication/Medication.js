@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import {
-    Container, Row, Col, 
-    Button, 
-    Card, CardBody, CardTitle, CardText,
-    Form, FormGroup, Label, Input, FormText,
-    ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText,
+    Container, 
+    Label, 
+    ListGroup, 
 } from 'reactstrap';
 
 export default class Medication extends React.Component {

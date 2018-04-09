@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from 'moment';
 import '../../../../pages/Admin';
 
-
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
-    Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, 
+    Card, 
+    CardBody, 
+    CardTitle, 
+    CardText,
+    Button 
 } from 'reactstrap';
 
 export default class PatientDetails extends React.Component {

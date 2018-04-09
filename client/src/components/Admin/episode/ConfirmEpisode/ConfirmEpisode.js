@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import '../../../../pages/Admin';
 import "./ConfirmEpisode.css";
 
-
-import moment from 'moment';
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
+    Label, 
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, 
+    Card, 
+    CardBody, 
+    CardTitle, 
+    CardText,
 } from 'reactstrap';
 
 export default class PatientConfirmEpisode extends React.Component {

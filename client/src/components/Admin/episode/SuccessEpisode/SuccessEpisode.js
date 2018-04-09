@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import '../../../../pages/Admin';
 
-
-import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
+import { 
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, 
+    Card, 
+    CardBody, 
+    CardTitle, 
+    CardText,
 } from 'reactstrap';
 
 export default class SuccessEpisode extends React.Component {

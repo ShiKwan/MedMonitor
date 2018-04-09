@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import moment from "moment";
+
 import {
-    Container, Row, Col, Label
+    Container
 } from 'reactstrap';
 
 export default class EpisodeInfo extends React.Component {

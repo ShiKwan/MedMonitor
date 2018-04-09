@@ -1,8 +1,12 @@
 import React from 'react';
+
 import {
     Col,
-    FormGroup, Label, Input,
+    FormGroup, 
+    Label, 
+    Input,
 } from 'reactstrap';
+
 import './formGroup.css';
 
 

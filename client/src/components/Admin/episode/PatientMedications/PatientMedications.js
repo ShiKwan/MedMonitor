@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Select, {Async} from 'react-select';
+import React from 'react';
+import Select from 'react-select';
 import medicationAPI from "../../../../utils/medicationAPI"
 import 'react-select/dist/react-select.css';
 import PreviousMedication from "../PreviousMedication"
@@ -7,17 +7,16 @@ import './PatientMedications.css';
 
 import '../../../../pages/Admin';
 
-
-
 import {
-    Nav, Navbar, NavItem, NavLink, 
-    Form, FormGroup, Label, Input, FormText,
     Button, 
-    ListGroup, ListGroupItem,
-    Container, Row, Col, 
-    Card, CardBody, CardTitle, CardSubtitle, CardText,
-    Table
+    Container, 
+    Row, Col, 
+    Card, 
+    CardBody, 
+    CardTitle, 
+    CardText,
 } from 'reactstrap';
+
 let ddlSelectedDoses = [];
 const ddlTime = [
     {value: '0000', label: '12:00am'},
