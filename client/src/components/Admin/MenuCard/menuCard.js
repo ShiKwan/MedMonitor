@@ -22,7 +22,7 @@ export default class MenuCard extends React.Component {
             <CardBody className="actionTableBody TableBody">
                 <CardTitle className="actionTableTitle Title">Actions</CardTitle>
 
-                    <div style={{fontWeight: this.props.notificationCard ? "bold" : ""}}><a onClick={() => this.onClicked("dash board")}>Dashboard</a></div>
+                    <div className="actTableDashboard" style={{fontWeight: this.props.notificationCard ? "bold" : ""}}><a onClick={() => this.onClicked("dash board")}>Dashboard</a></div>
 
                     <hr />
                     <div className="actTableSelPat" style={{fontWeight: this.props.selectPatientCard || this.props.confirmPatientCard || this.props.updatePatientCard || this.props.successUpdatePatientCard || this.props.changeAppointmentCard || this.props.successChangeAppointmentCard ? "bold" : ""}}><a onClick={() => this.onClicked("select patient")}>Select patient</a></div>
