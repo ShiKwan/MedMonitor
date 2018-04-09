@@ -344,10 +344,8 @@ class PatSurvey extends Component {
             const introsurvCardElement = document.getElementsByClassName('introsurvCard');
             const navbarElement = document.getElementsByClassName('navbar');
             const offsetNum = navbarElement[0].offsetHeight;
-            // const offsetNum = topFocusElement.offsetTop * 2;
-            // const offsetNum = topFocusElement.offsetTop;
-            // const offsetNum =introsurvCardElement + navbarElement;
-            console.log('CHECKBOX: offsetNum', offsetNum);
+         
+            
             window.scrollTo(0, offsetNum);
 
             

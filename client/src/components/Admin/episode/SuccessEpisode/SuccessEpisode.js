@@ -23,9 +23,11 @@ export default class SuccessEpisode extends React.Component {
                     <CardText>
                         A new episode has been successfully created for this patient
                         <br /><br />
-                        The patient has been emailed with details
-                        <br /><br />
-                        Offer to place medication reminders in pts google calander
+                        <Container>
+                            The patient has been emailed with details
+                            <br /><br />
+                            Offer to place medication reminders in pts google calander
+                        </Container>
                     </CardText>
 
                     <br /><br />

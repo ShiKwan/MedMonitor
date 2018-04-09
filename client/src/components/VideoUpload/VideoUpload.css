@@ -7,7 +7,8 @@ div.uploadVideoInfo {
 }
 
 div.uploadVideoInfoCard {
-    margin-bottom: 25px;}
+    margin-bottom: 25px;
+}
 
 .uploadVideoInfoCard .uploadVideoInfoHeader {
     text-align: center;
@@ -38,4 +39,30 @@ button.submitVideo:hover {
     color: #2d5366;
     background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
+}
+
+@media screen and (max-width: 769px) {
+    h4.shareVideo {
+        font-size: 25px;
+        margin-top: -15px;
+    }
+    .uploadVideo .uploadLinkMess {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    button.submitVideo {
+        padding: 10px 20px 10px 20px;
+    }
+    .uploadVideo .uploadLinkMess {
+        font-size: 15px;
+    }
+    h4.shareVideo {
+        font-size: 18px;
+        margin-top: -15px;
+    }
+    .uploadVideoInfoCard .uploadVideoInfoHeader {
+        font-size: 20px;
+    }
 }

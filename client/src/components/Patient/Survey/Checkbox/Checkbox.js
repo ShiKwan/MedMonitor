@@ -70,16 +70,6 @@ export default class Checkbox extends React.Component {
                 this.props.handleCompletedCallback(this.props.label.toLowerCase(), this.state.answer);
                 this.props.handleQuestionCallback()
         
-            // // Scroll the window to the top of the topFocus ID
-            // const topFocusElement = document.getElementById('topFocus');
-            // const introsurvCardElement = document.getElementsByClassName('introsurvCard');
-            // const navbarElement = document.getElementsByClassName('navbar');
-            // const offsetNum = navbarElement[0].offsetHeight;
-            // // const offsetNum = topFocusElement.offsetTop * 2;
-            // // const offsetNum = topFocusElement.offsetTop;
-            // // const offsetNum =introsurvCardElement + navbarElement;
-            // console.log('CHECKBOX: offsetNum', offsetNum);
-            // window.scrollTo(0, offsetNum);
             });
         }
     }

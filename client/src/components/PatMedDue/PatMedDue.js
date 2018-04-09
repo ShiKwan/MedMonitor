@@ -248,7 +248,7 @@ class PatMedDue extends Component {
                         <Button onClick={this.populateDateObj}>Test</Button>
                         <CardHeader tag="h4" className="patMedInfoHeader">MEDS DUE TIMES</CardHeader>
                         <Card className="patMedInfoBody">
-                            <CardText className="patMedInfoDue"><h4>Your Next Medication(s) Is Due</h4></CardText>
+                            <CardText><h4 className="patMedInfoDue">Your Next Medication(s) Is Due</h4></CardText>
                             <br>
                             </br>
                             <Label className="text-center patMedDueHours">

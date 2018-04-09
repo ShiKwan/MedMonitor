@@ -72,11 +72,13 @@ class DoSomethingBtn extends Component {
                 <Card className="uploadVideoInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     <CardHeader tag="h4" className="uploadVideoInfoHeader">UPLOAD EPISODE VIDEO</CardHeader>
                     <Card className="uploadVideoInfoBody">
-                        <CardText className="shareVideo"><h4>Share Your Episode Video With Your Doctor</h4></CardText>
-                        <FormGroup row className="uploadVideo">
-                            <Label size="lg">Upload Your Video Link Here</Label>
-                            <Input type="text" id="episodeVideo" onChange={this.handleInputChange} name="video_link" placeholder="video link" bsSize="lg" />
-                        </FormGroup>
+                        <CardText><h4 className="shareVideo">Share Your Episode Video With Your Doctor</h4></CardText>
+                        <Container>
+                            <FormGroup row className="uploadVideo">
+                                <Label className="uploadLinkMess" size="lg">Upload Your Video Link Here</Label>
+                                <Input type="text" id="episodeVideo" onChange={this.handleInputChange} name="video_link" placeholder="video link" bsSize="lg" />
+                            </FormGroup>
+                        </Container>
                         <Button className="submitVideo" color="secondary" size="lg" onClick={(e) => this.handleSubmit(e)}><h4>Submit Video</h4></Button>
                     </Card>
                 </Card>
