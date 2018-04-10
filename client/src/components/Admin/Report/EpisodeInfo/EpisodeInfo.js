@@ -6,16 +6,35 @@ import {
 
 export default class EpisodeInfo extends React.Component {
 
-        render () {
+    render () {
+
         return (
 
+            this.props.episodeDate.indexOf("to") < 0 ?
+
+                <Container className="text-right">
+                
+                
+                    <p>
+                        Episode Start : {moment(this.props.episodeDate).format("MMMM Do YYYY")} {moment(this.props.episodeDate).format("hh.mm a")}.
+                        <br />
+                        Episode Data: {this.props.episodeCount} records total over {this.props.episodeDays} days.
+                    </p>
+                </Container>
+
+                :
+
             <Container className="text-right">
+
                 <p>
-                    Episode Start : {moment(this.props.episodeDate).format("MMMM Do YYYY")} {moment(this.props.episodeDate).format("hh.mm a")}.
+                    Period : {this.props.episodeDate}
                     <br />
-                    Episode Data: {this.props.episodeCount} records total over {this.props.episodeDays} days.
+                    Period Data: {this.props.episodeCount} records total.
                 </p>
             </Container>
+
+
+
 
         )
     }

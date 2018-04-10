@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
+import videoAPI from "../../utils/videoAPI";
 import moment from 'moment'
 import {
     Nav,
@@ -38,7 +39,14 @@ class Admin_Report extends Component {
         lineChartData: [],
         barChartData: [],
 
+        chartOne: true,
+        chartMany: false,
+        showMeds: true,
+
         medsBoxTitle: "",
+
+        videoDateTime: "",
+        videoLink: "",
     };
     
     componentDidMount() {
@@ -47,7 +55,6 @@ class Admin_Report extends Component {
     };
 
 
-    //"5ac93b9bbddfdc49cc7e66d5"
     loadPatientData = event => {
         patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
             .then(res => {
@@ -58,6 +65,7 @@ class Admin_Report extends Component {
                 this.setState({patient: res.data});
                 this.setState({patientDetails: this.state.patient.details});
                 this.setState({patientAppt: this.state.patient.appointment});
+                this.setState({patientNumEpisodes: this.state.patient.episode.length});
 
                 chartData = this.processEpisode(this.state.patient, 1);
 
@@ -68,7 +76,15 @@ class Admin_Report extends Component {
                 this.setState({ lineChartData: chartData[4] });
                 this.setState({ barChartData: chartData[5] });
 
+                this.setState({ showMeds: true})
                 this.setState({medsBoxTitle: "Current Medications"})
+
+                videoAPI.findOne(window.location.search.substring(4))
+                    .then(res => {
+                        console.log(res.data)
+                        this.setState({videoDateTime: res.data[0].video_datetime})
+                        this.setState({videoLink: res.data[0].video_link})
+                    })
   
             })
             .catch(err => console.log(err));
@@ -88,8 +104,11 @@ class Admin_Report extends Component {
         this.setState({ lineChartData: chartData[4] });
         this.setState({ barChartData: chartData[5] });
 
+        this.setState({ chartOne: true })
+        this.setState({ chartMany: false })
+        this.setState({ showMeds: true })
+
         this.setState({medsBoxTitle: "Current Medications"})
- 
     }
 
 
@@ -106,11 +125,32 @@ class Admin_Report extends Component {
         this.setState({ lineChartData: chartData[4] });
         this.setState({ barChartData: chartData[5] });
 
-        this.setState({medsBoxTitle: "Previous Medications"})
+        this.setState({ chartOne: true })
+        this.setState({ chartMany: false })
+        this.setState({ showMeds: true })
 
+        this.setState({medsBoxTitle: "Previous Medications"})
     }
 
+
     onClickedFive = () => {
+
+        let chartData = [];
+
+        chartData = this.processFiveEpisodes(this.state.patient)
+
+        this.setState({ patientEpisodeStart: chartData[0] });
+        //this.setState({ patientEpisodeMeds: chartData[1] });
+        this.setState({ patientEpisodeNumRecords: chartData[2] })
+        this.setState({ lineChartData: chartData[3] });
+        this.setState({ barChartData: chartData[4] });
+
+        this.setState({ chartOne: false })
+        this.setState({ chartMany: true })
+        this.setState({ showMeds: false })
+
+        this.setState({medsBoxTitle: "lastfive"})
+
 
     }
 
@@ -308,7 +348,156 @@ class Admin_Report extends Component {
 
         return data;
 
-    }
+    } // end function
+
+
+    processFiveEpisodes = (patient) => {
+
+        const patientEpisodes = patient.episode;
+        const patientNumEpisodes = patientEpisodes.length; 
+        const episodeCount = patientNumEpisodes > 5 ? 5 : patientNumEpisodes
+
+        let record = [];
+        let currentRecordDate = "";
+        let previousRecordDate = "";
+        let recordTime = "";
+
+        let lineChartData = [];
+        let barChartData = [];
+        let patientEpisodesAllMeds = [];
+        let patientEpisodesAllStart = "";
+        let patientEpisodesAllEnd = "";
+
+        let patientEpisodesAllNumRecords = 0;
+
+        let kickin = 0; 
+        let wearoff = 0; 
+        let movement = 0;
+        let sleepy = 0;
+        let offtime = 0;
+        let tremor = 0;
+        let walking = 0;
+        let balance = 0;
+        let sickness = 0;
+        let dizziness = 0;
+        let headache = 0;
+        let drymouth = 0;
+        let timePoint = 0;
+
+        let falls = 0;
+        let choking = 0;
+        let freezing = 0;
+        let hallucinations = 0;
+
+        let i=0, j=0;
+
+        for (i=0; i<episodeCount; i++) {
+
+            let j=0;
+            let objSymptoms = {};
+            let objAlerts = {};
+
+            let patientEpisode =  patientEpisodes[patientNumEpisodes - (i+1)];
+
+            let patientEpisodeMeds = patientEpisode.medications;
+            let patientEpisodeRecords = patientEpisode.record;
+            let patientEpisodeNumRecords = patientEpisodeRecords.length;  
+            
+            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
+
+            let patientEpisodeStart = patientEpisode.start_date;
+            let patientEpisodeEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;
+
+            for (j=0; j<patientEpisodeNumRecords; j++) {
+                record = patientEpisodeRecords[j];
+                
+                kickin += record.symptoms.kickin;
+                wearoff += record.symptoms.wearoff;
+                movement += record.symptoms.movement;
+                sleepy += record.symptoms.sleepy;
+                offtime += record.symptoms.offtime;
+                tremor += record.symptoms.tremor;
+                walking += record.symptoms.walking;
+                balance += record.symptoms.balance;
+
+                sickness += record.side_effects.sickness;
+                dizziness += record.side_effects.dizziness;
+                headache += record.side_effects.headaches;
+                drymouth += record.side_effects.drymouth;
+
+                falls += record.emergencies.falls ? 1 : 0;
+                choking += record.emergencies.choking ? 1 : 0;
+                freezing += record.emergencies.freezing ? 1 : 0;
+                hallucinations += record.emergencies.hallucination ? 1 : 0;
+            }
+
+            objSymptoms = {
+                name: `${moment(patientEpisodeStart).format('MM/DD')} - ${moment(patientEpisodeEnd).format('MM/DD')}`,
+                Kickin: Number((kickin/patientEpisodeNumRecords).toFixed(1)),
+                Wearoff: Number((wearoff/patientEpisodeNumRecords).toFixed(1)),
+                Movement: Number((movement/patientEpisodeNumRecords).toFixed(1)),
+                Tiredness: Number((sleepy/patientEpisodeNumRecords).toFixed(1)),
+                Offtime: Number((offtime/patientEpisodeNumRecords).toFixed(1)),
+                Tremor: Number((tremor/patientEpisodeNumRecords).toFixed(1)),
+                Walking: Number((walking/patientEpisodeNumRecords).toFixed(1)),
+                Balance: Number((balance/patientEpisodeNumRecords).toFixed(1)),
+
+                Sickness: Number((sickness/patientEpisodeNumRecords).toFixed(1)),
+                Dizziness: Number((dizziness/patientEpisodeNumRecords).toFixed(1)),
+                Headache: Number((headache/patientEpisodeNumRecords).toFixed(1)),
+                Drymouth: Number((drymouth/patientEpisodeNumRecords).toFixed(1)),
+
+            }
+
+            objAlerts = {
+                name: `${moment(patientEpisodeStart).format('MM/DD')} - ${moment(patientEpisodeEnd).format('MM/DD')}`,
+                Falls: Number(falls),
+                Choking: Number(choking),
+                Freezing: Number(freezing),
+                Hallucination: Number(hallucinations),
+            }
+            
+            lineChartData.unshift(objSymptoms);
+            barChartData.unshift(objAlerts);
+            
+            patientEpisodesAllMeds.push(patientEpisode.meds)
+            patientEpisodesAllStart = patientEpisode.start_date;
+            if (i == 0) {patientEpisodesAllEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;}
+
+            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
+
+            kickin = 0; 
+            wearoff = 0; 
+            movement = 0;
+            sleepy = 0;
+            offtime = 0;
+            tremor = 0;
+            walking = 0;
+            balance = 0;
+            sickness = 0;
+            dizziness = 0;
+            headache = 0;
+            drymouth = 0;
+            timePoint = 0;
+    
+            falls = 0;
+            choking = 0;
+            freezing = 0;
+            hallucinations = 0;
+
+        }
+
+            let data=[];
+            data.push(`${moment(patientEpisodesAllStart).format('l')} to ${moment(patientEpisodesAllEnd).format('l')}`);
+            data.push(patientEpisodesAllMeds);
+            data.push(patientEpisodesAllNumRecords);
+            data.push(lineChartData);
+            data.push(barChartData);
+
+            console.log(data)
+            return data;
+
+    } // end function
 
 
     render() {
@@ -340,10 +529,10 @@ class Admin_Report extends Component {
                     <Row>
 
                         <Col md='6'>
-                            <Container className="text-left">
-                                Patient video posted on : {this.props.video_datetime}
-                                <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo()}>View video</Button>
-                            </Container>
+                            <Video className="text-left"
+                                videoDateTime = {moment(this.state.videoDateTime).format('L')}
+                                videoLink = {this.state.videoLink}
+                            />
                         </Col>
 
                         <Col md='6'>                     
@@ -351,27 +540,48 @@ class Admin_Report extends Component {
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedCurrent()}>Current episode</Button>
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedPrevious()}>Previous episode</Button>
                                 <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedFive()}>Last 5 episodes</Button>
-                                <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedBack()}>&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</Button>
+                                <a href="/admin">
+                                    <Button size="sm" style={{padding: 6, margin: 6}}>&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</Button>
+                                </a>
                             </Container>
                         </Col>
 
                     </Row>
 
-                    <Row>
-                        <Col md='4'>
-                            <Medication
-                                medications = {this.state.patientEpisodeMeds}
-                                title = {this.state.medsBoxTitle}
-                            />
-                            
-                        </Col>
-                        <Col md='8'>
-                            <Chart 
-                                lineChartData = {this.state.lineChartData}
-                                barChartData =  {this.state.barChartData}
-                            />
-                        </Col>
-                    </Row>
+                    <div style={{display: this.state.showMeds ? "block" : "none"}}>
+                        <Row>
+                            <Col md="4"> 
+                                <Medication
+                                    medications = {this.state.patientEpisodeMeds}
+                                    title = {this.state.medsBoxTitle}
+                                    showMeds = {this.state.showMeds}
+                                />
+                            </Col>
+                            <Col md="8">
+                                <Chart 
+                                    lineChartData = {this.state.lineChartData}
+                                    barChartData =  {this.state.barChartData}
+                                    chartOne = {this.state.chartOne}
+                                    chartMany = {this.state.chartMany}
+                                />
+                            </Col>
+                        </Row>
+                    </div>
+
+                    <div style={{display: this.state.showMeds ? "none" : "block"}}>
+
+                        <Row>
+                            <Col md="12">
+                                <Chart 
+                                    lineChartData = {this.state.lineChartData}
+                                    barChartData =  {this.state.barChartData}
+                                    chartOne = {this.state.chartOne}
+                                    chartMany = {this.state.chartMany}
+                                />
+                            </Col>
+                        </Row>
+                    </div>
+
                 </Container>
             </Container>
         )

@@ -12,42 +12,45 @@ export default class Medication extends React.Component {
         render () {
         return (
 
-            <Container>
+            this.props.showMeds ? 
 
-                <div style={{minHeight: 476, border: '1px solid grey', padding: 10}}>
-                <p style={{fontWeight: "bold"}}>{this.props.title}</p>
-                <ListGroup>
+                <Container>
 
-                     {this.props.medications.map( (med) => {
-                         return (
+                    <div style={{minHeight: 476, border: '1px solid grey', padding: 10}}>
+                    <p style={{fontWeight: "bold"}}>{this.props.title}</p>
+                    <ListGroup>
 
-                            <p> <span style={{fontWeight: "bold"}}> {med.medication.slice(0,    med.medication.indexOf("("))} </span>
-                                &nbsp;
-                                {med.dose} &nbsp;
-                                {med.route} &nbsp;
-                                {med.form}.<br />
+                        {this.props.medications.map( (med) => {
+                            return (
 
-                                Times : &nbsp;
-                                    {
-                                    med.times?
-                                        med.times.map( (time) => {
-                                            return (
-                                            <Label>{time}, &nbsp;</Label>
-                                            )
-                                        })
-                                    : 
-                                    null
-                                    }
-                            </p>
+                                <p> <span style={{fontWeight: "bold"}}> {med.medication.slice(0,    med.medication.indexOf("("))} </span>
+                                    &nbsp;
+                                    {med.dose} &nbsp;
+                                    {med.route} &nbsp;
+                                    {med.form}.<br />
 
-     
-                        )
-                    })}
-                       
+                                    Times : &nbsp;
+                                        {
+                                        med.times?
+                                            med.times.map( (time) => {
+                                                return (
+                                                <Label>{time}, &nbsp;</Label>
+                                                )
+                                            })
+                                        : 
+                                        null
+                                        }
+                                </p>
+                            )
+                        })}
         
-                </ListGroup>
-                </div>
-            </Container>
+                    </ListGroup>
+                    </div>
+                </Container>
+
+            :
+
+            null
         )
     }
 }           
