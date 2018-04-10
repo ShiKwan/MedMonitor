@@ -1,13 +1,18 @@
-require('dotenv').config();
+const dotEnv = require('dotenv').load();
 
 const nodemailer = require('nodemailer');
 const config = require('./config');
+console.log("Process.env.dev user : " + dotEnv.REACT_APP_DEV_USER);
+const env = require ('../.env');
+console.log("env :", env);
+        /* user: 'bscwruproject2@gmail.com',
+        pass : 'Bootcamp123' */
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     secure: false,
     auth: {
-        user: process.env.USER,
-        pass: process.env.PASS
+        user: dotEnv.REACT_APP_DEV_USER,
+        pass: dotEnv.REACT_APP_DEV_PASS
     },
     tls: {
         rejectUnauthorized: false
