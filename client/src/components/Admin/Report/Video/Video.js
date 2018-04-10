@@ -6,6 +6,9 @@ import {
     Label, 
 } from 'reactstrap';
 
+import './Video.css';
+
+
 export default class Video extends React.Component {
 
     
@@ -17,9 +20,9 @@ export default class Video extends React.Component {
         return (
 
             <Container>
-                <Label>
+                <Label className="patVidPost">
                     Patient video posted : {this.props.videoDateTime}&nbsp;&nbsp;
-                    <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo(this.props.videoLink)}>View video</Button>
+                    <Button className="videoBtn" color="primary" size="sm" onClick = {() => this.onClickedVideo(this.props.videoLink)}>View Video</Button>
                 </Label>
             </Container>
 

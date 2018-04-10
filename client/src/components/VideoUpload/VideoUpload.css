@@ -6,6 +6,10 @@ div.uploadVideoInfo {
     max-width: 850px;
 }
 
+.uploadVideoInfo {
+    margin-top: 25px;
+}
+
 div.uploadVideoInfoCard {
     margin-bottom: 25px;
 }

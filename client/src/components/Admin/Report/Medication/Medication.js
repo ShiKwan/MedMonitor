@@ -4,7 +4,14 @@ import {
     Container, 
     Label, 
     ListGroup, 
+    CardTitle, 
+    CardBody, 
+    Card, 
+    CardTable
 } from 'reactstrap';
+
+import '../../../../pages/Admin';
+
 
 export default class Medication extends React.Component {
 
@@ -13,10 +20,13 @@ export default class Medication extends React.Component {
 
             this.props.showMeds ? 
 
-                <Container>
+            <Card className='TableCard'>
+                <CardBody className='TableBody'>
+                    <CardTitle className='actionTableTitle Title'>
+                            {this.props.title}
+                    </CardTitle>
+            
 
-                    <div style={{minHeight: 476, border: '1px solid grey', padding: 10}}>
-                    <p style={{fontWeight: "bold"}}>{this.props.title}</p>
                     <ListGroup>
 
                         {this.props.medications.map( (med) => {
@@ -44,8 +54,8 @@ export default class Medication extends React.Component {
                         })}
         
                     </ListGroup>
-                    </div>
-                </Container>
+                </CardBody>
+            </Card>
 
             :
 
