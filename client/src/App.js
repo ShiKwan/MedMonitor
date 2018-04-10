@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
-import MH from "./pages/MH";
 import Appointment from "./pages/Appointment";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";

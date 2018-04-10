@@ -13,7 +13,6 @@ import {
     Container,
     Row,
     Col,
-    Button
 } from 'reactstrap';
 
 gapi.load('client:auth2', initClient);

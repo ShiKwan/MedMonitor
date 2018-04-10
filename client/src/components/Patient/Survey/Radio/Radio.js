@@ -81,7 +81,6 @@ export default class Radio extends React.Component {
                                             onClickHandle = {this.onRadioBtnClick}
                                             active = {this.state.rSelected}
                                             data_value={this.props.data_value[index]}
-                                            selectionType = {this.props.selectionType}
                                         >
                                         </QButton>
             

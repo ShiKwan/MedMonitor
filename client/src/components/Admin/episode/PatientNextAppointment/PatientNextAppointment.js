@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     Label, 
@@ -31,10 +31,6 @@ export default class PatientNextAppointment extends React.Component {
             this.setState({
                 next_appt : moment(this.state.date + " " + this.state.time).format("dddd, MMMM Do YYYY h:mm a")
             },function(){
-                const objAppointment = {
-                    next_appt : this.state.next_appt,
-                    comments : this.state.comments
-                };
                 this.props.handleApptCallback(this.state);
                 this.props.confirmNewEpisodeDetails();
                 mailerAPI.sendToPatient({
@@ -58,7 +54,8 @@ export default class PatientNextAppointment extends React.Component {
                         `
                 })
                     .then(res => {
-                        console.log(res);
+                        this.props.getBackMessage("Appointment has been scheduled.")
+                        this.props.getBackMessageStatus("Success")
                     })
                     .catch(err => {
                         console.log(err);
@@ -69,13 +66,10 @@ export default class PatientNextAppointment extends React.Component {
     validateDate = (date, time) => {
         let valid = true
         if(date && time){
-            console.log("Date and time : " , date, time)
             if(moment(date).isAfter(moment())){
-                console.log("date is later than today. ")
                 this.setState({
                     next_appt : moment(date + " " + time).format("dddd, MMMM Do YYYY h:mm a")
                 }, function() {
-                    console.log("state in next appointment : ", this.state);
                     this.props.getBackMessage(null)
                     this.props.getBackMessageStatus(null)
                 })
@@ -98,7 +92,7 @@ export default class PatientNextAppointment extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log(event.target.value);
+        //console.log(event.target.value);
     };
 
     render () {

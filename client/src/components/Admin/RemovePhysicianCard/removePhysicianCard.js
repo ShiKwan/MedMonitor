@@ -9,13 +9,7 @@ import {
     FormGroup, 
     Label, 
 } from 'reactstrap';
-
-import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
-import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
-import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
-
 import '../../../pages/Admin';
-
 
 
 export default class RemovePhysicianCard extends React.Component {
