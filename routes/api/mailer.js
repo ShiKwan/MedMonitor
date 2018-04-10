@@ -27,7 +27,7 @@ router.route("/sendToPatient")
             mailer.sendToPatient({email, name, text:message, subject}).then( () => {
                 res.status(200).send("message sent successfully!");
             }).catch( (err) => {
-                res.status(422).send("failed sending message");
+                res.status(422).send(err);
             })
         })
 

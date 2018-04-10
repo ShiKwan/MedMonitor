@@ -1,9 +1,11 @@
 
-require('dotenv').config();
-
 const nodemailer = require('nodemailer');
-const config = require('./config');
-console.log("Process.env.dev user : " + process.env.REACT_APP_DEV_USER);
+var config = require('config');
+var user = config.get('NodeMailer.USER');
+var pass = config.get('NodeMailer.PASS');
+
+console.log("user: " + user);
+console.log("pass: " + pass);
 
         /* user: 'bscwruproject2@gmail.com',
         pass : 'Bootcamp123' */
@@ -11,8 +13,8 @@ const transporter = nodemailer.createTransport({
     service: 'Gmail',
     secure: false,
     auth: {
-        user: process.env.REACT_APP_DEV_USER,
-        pass: process.env.REACT_APP_DEV_PASS
+        user: user,
+        pass: pass
     },
     tls: {
         rejectUnauthorized: false
