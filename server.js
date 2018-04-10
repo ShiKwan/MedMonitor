@@ -17,7 +17,7 @@ const http = require('http');
 const cors = require('cors');
 const socketIO = require('socket.io', { transports: ['websocket'] });
 
-require('dotenv').config();
+var config = require('config');
 
 app.use(cors());
 // Configure body parser for AJAX requests
@@ -25,8 +25,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+let secret = config.get("SESSION_SECRET");
+
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: secret,
   saveUninitialized: false,
   resave: false,
   cookie: {_expires: 600000000 }
