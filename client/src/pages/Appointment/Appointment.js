@@ -30,15 +30,19 @@ class Appointment extends Component {
                 address : "2447 Imagine Ln",
                 city : "Cleveland, OH 44113",
                 officePhone : "216-115-55088",
-                dateTime : moment(this.state.appointment.next_appt).format()
+                
             }, function(){
-                console.log(this.state);
+                
                 if(this.state.physician){
                     this.setState({
                         physicianFirstName : res.data.physician.name.first,
-                        physicianLastName : res.data.physician.name.last
+                        physicianLastName : res.data.physician.name.last,
+                        dateTime : moment(this.state.appointment.next_appt, "YYYY-MM-DDTHH:mm:ssZ").format()
+                    }, function() {
+                        console.log(this.state);
                     })
                 }                
+                
             })
         })
         .catch((err) =>{console.log("err", err)})
@@ -61,6 +65,9 @@ class Appointment extends Component {
 
    handleoAuth2TokenGet = event => {
        event.preventDefault();
+       console.log(this.state.dateTime);
+       console.log(moment(this.state.dateTime, "YYYY-MM-DDTHH:mm:ssZ"));
+       console.log(moment(this.state.dateTime, "YYYY-MM-DDTHH:mm:ssZ").add(1, "hour").format());
    // TODO: First try to get the token from sessionStorage here
    // Build the oauth request url
    const responseType = 'token';
@@ -79,7 +86,7 @@ class Appointment extends Component {
 'timeZone': 'America/New_York'
 },
 'end': {
-'dateTime': `${moment(this.state.dateTime).add(1, 'hour').format()}` ,
+'dateTime': `${moment(this.state.dateTime, "YYYY-MM-DDTHH:mm:ssZ").add(1, "hour").format()}` ,
 'timeZone': 'America/New_York'
 },
 'reminders': {
