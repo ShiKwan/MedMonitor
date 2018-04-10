@@ -6,10 +6,10 @@ import {
     Label, 
 } from 'reactstrap';
 
-export default class PatientInfo extends React.Component {
+export default class Video extends React.Component {
 
     
-    onClickedVideo() {
+    onClickedVideo(videoLink) {
        
     }
 
@@ -18,8 +18,8 @@ export default class PatientInfo extends React.Component {
 
             <Container>
                 <Label>
-                    Patient video posted on : {this.props.video_datetime}
-                    <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo()}>View video</Button>
+                    Patient video posted : {this.props.videoDateTime}&nbsp;&nbsp;
+                    <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo(this.props.videoLink)}>View video</Button>
                 </Label>
             </Container>
 
