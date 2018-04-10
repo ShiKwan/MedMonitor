@@ -171,8 +171,6 @@ class App extends Component {
                 })
                 .then(res =>{
                     console.log(res);
-                    this.getBackMessage("Your physician has been notified about your worrying symptomps");
-                    this.getBackMessageStatus("warning");
                 })
                 .catch(err => {
                     console.log(err);

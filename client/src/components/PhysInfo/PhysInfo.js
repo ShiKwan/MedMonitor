@@ -34,7 +34,7 @@ const PhysInfo = (props) => {
                     <Label className="patDocPhNum" for="patDocPhNum">Day: {props.doctorLastName ? props.officeDay : `TBD`}</Label>
                     <br>
                     </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.doctorLasteName ? props.officeHour : `TBD`} </Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.officeHour} </Label>
                 </Card>
             </Card>
         </Container>

@@ -22,9 +22,9 @@ export default class SuccessEpisode extends React.Component {
                         A new episode has been successfully created for this patient
                         <br /><br />
                         <Container>
-                            The patient has been emailed with details
+                            The patient has been emailed with medication and appointment details.
                             <br /><br />
-                            Offer to place medication reminders in pts google calander
+                            Please remind patient to log on to the application to setup their medication and appointment reminder to their calendar. 
                         </Container>
                     </CardText>
 

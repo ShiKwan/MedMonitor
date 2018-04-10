@@ -15,21 +15,6 @@ import {
     Col,
 } from 'reactstrap';
 
-gapi.load('client:auth2', initClient);
-
-function initClient() {
-  gapi.client.init({
-    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-    clientId: CLIENT_ID,
-    scope: 'https://www.googleapis.com/auth/calendar'
-  }).then(function (data) {
-    // do stuff with loaded APIs 
-    //console.log(data);
-    // reference : https://www.npmjs.com/package/gapi-client
- 
-    //console.log('it worked');
-  });
-}
 class Appointment extends Component {
     state = {
         appointment : {},
@@ -38,16 +23,23 @@ class Appointment extends Component {
     componentDidMount() {
         patientAPI.findPatientInfoForPatient(localStorage.getItem("userId"))
         .then((res)=>{
+            console.log(res);
             this.setState({
                 appointment : res.data.appointment,
-                physician : `${res.data.physician? res.data.physician : null  }`,
-                physicianFirstName : `${res.data.physician? res.data.physician.first : ""  }`,
-                physicianLastName : `${res.data.physician? res.data.physician.last : ""  }`,
+                physician : res.data.physician,
                 address : "2447 Imagine Ln",
                 city : "Cleveland, OH 44113",
                 officePhone : "216-115-55088",
                 dateTime : moment(this.state.appointment.next_appt).format()
-})
+            }, function(){
+                console.log(this.state);
+                if(this.state.physician){
+                    this.setState({
+                        physicianFirstName : res.data.physician.name.first,
+                        physicianLastName : res.data.physician.name.last
+                    })
+                }                
+            })
         })
         .catch((err) =>{console.log("err", err)})
 
@@ -143,6 +135,7 @@ class Appointment extends Component {
                             <UpcomingApp 
                                 date={moment(this.state.appointment.next_appt).format("dddd, MMMM Do YYYY")} 
                                 time={moment(this.state.appointment.next_appt).format("h:mm a")} 
+                                comments = {this.state.appointment.comments}
                                 doctorFirstName= {this.state.physicianFirstName}
                                 doctorLastName = {this.state.physicianLastName}
                                 address = "2447 Imagine Ln"

@@ -22,7 +22,7 @@ export default class PatientConfirmEpisode extends React.Component {
                     <CardTitle className="confirmNewEpisTitle Title">Confirm New Episode</CardTitle>
                 
                     <CardText>
-                        Review new episode details and click submit to creat a new episode
+                        Review new episode details and click submit to create a new episode
                         <br />
                     </CardText>
                     <Container className="listGroup">
@@ -49,7 +49,7 @@ export default class PatientConfirmEpisode extends React.Component {
                                             Name : {med.medication}
                                             </CardText>
                                             <CardText>
-                                            Label : {med.label}
+                                            Dosage : {med.label}
                                             </CardText>
                                             Time : {med.times ? 
                                                 med.times.map( (time,index) => {

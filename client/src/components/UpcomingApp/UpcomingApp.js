@@ -32,6 +32,11 @@ const UpcomingApp = (props) => {
                         <br>
                         </br>
                         <Label className="appNum" for="appPhNum">Phone Number: {props.officePhone}</Label>
+                        <br>
+                        </br>
+                        <Label className="appComment" for="appComment">Comments : </Label>
+                        <Container>{props.comments}</Container>
+                        <br />
 
                         <Button className="appRemindBtn" size="lg" onClick={(e) => props.remindHandler(e)}>Remind Me!</Button>{' '}
                     </Card>
