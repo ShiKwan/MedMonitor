@@ -58,7 +58,7 @@ export default class PatientNextAppointment extends React.Component {
                         this.props.getBackMessageStatus("Success")
                     })
                     .catch(err => {
-                        console.log(err);
+                        console.log(err.response);
                     });
                 })
         }

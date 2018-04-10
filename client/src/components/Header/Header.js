@@ -49,7 +49,7 @@ export default class Header extends React.Component {
                                     <NavLink href={localStorage.getItem("role") === "patient"
                                         ? "/patient"
                                         :
-                                        localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor"
+                                        (localStorage.getItem("role")) && (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor")
                                             ? "/admin"
                                             :
                                             "/"}

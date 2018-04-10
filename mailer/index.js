@@ -1,13 +1,13 @@
+require('dotenv').config();
+
 const nodemailer = require('nodemailer');
-
 const config = require('./config');
-
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     secure: false,
     auth: {
-        user: config.USER,
-        pass: config.PASS
+        user: process.env.USER,
+        pass: process.env.PASS
     },
     tls: {
         rejectUnauthorized: false

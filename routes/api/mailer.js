@@ -19,6 +19,11 @@ router.route("/contact")
 router.route("/sendToPatient")
         .post((req, res) =>{
             const{email = '', name = '', message = '', subject =''} = req.body
+            console.log("sending email to patient... ")
+            console.log(req.body.email);
+            console.log(req.body.name);
+            console.log(req.body.message);
+            console.log(req.body.subject);
             mailer.sendToPatient({email, name, text:message, subject}).then( () => {
                 res.status(200).send("message sent successfully!");
             }).catch( (err) => {
