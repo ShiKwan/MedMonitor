@@ -22,7 +22,7 @@ const UpcomingApp = (props) => {
                         <Label className="appTime" for="appTime">Time: {props.time}</Label>
                         <br>
                         </br>
-                        <Label className="appDoctorName" for="appDocName">Doctor: Dr. {props.doctorLastName} {props.doctorFirstName}</Label>
+                        <Label className="appDoctorName" for="appDocName">Doctor: {props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD`} </Label>
                         <br>
                         </br>
                         <Label className="appAddress" for="appAddress">Address: {props.address}</Label>

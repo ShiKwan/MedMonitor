@@ -10,7 +10,6 @@ import moment from 'moment';
 import { 
     Container,
     Card,
-    Button,
     CardHeader,
     Progress
 } from 'reactstrap';
@@ -363,14 +362,11 @@ class PatSurvey extends Component {
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">
-                <Button onClick={()=>console.log(this.state)}>Test</Button>
-                    {this.state.questions.length === 14 ?
+                {this.state.questions.length === 14 ?
 
-                <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
-                    
-                            <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
-                  
-                </Card>
+                    <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
+                    </Card>
 
                 : 
                             null

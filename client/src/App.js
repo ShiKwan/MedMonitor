@@ -44,18 +44,15 @@ class App extends Component {
     socket.on("alertAdmin", message =>{
         const newAlertIncident = this.state.alertIncident;
         newAlertIncident.push(message);
-        console.log(newAlertIncident);
         this.setState({
             alertIncident : newAlertIncident
         })
-        console.log(this.state.alertIncident);
     })
 
 
 
   }
   getBackMessage(messageCenter){
-    console.log("here getting back message")
     this.setState({
       messageCenter : messageCenter
     },function(){
@@ -79,11 +76,9 @@ class App extends Component {
   }
 
   getBackAlertIncident(alertIncident){
-    console.log("getting back alert incident");
     this.setState({
       alertIncident : alertIncident
     })
-    console.log("Alert incident : " , this.state.alertIncident);
   }
   removeMessage = () =>{
     this.setState({
@@ -94,7 +89,6 @@ class App extends Component {
 
   PrivatePatientRoute = ({ component: Component, ...rest }) => (
     <Route { ...rest} render={(props) => (
-      console.log(localStorage.getItem("role")),
       localStorage.getItem("role")!== null && localStorage.getItem("role").toLowerCase() === "patient"
         ? (
           localStorage.removeItem("messageCenter"),
@@ -134,7 +128,6 @@ class App extends Component {
   
   componentDidMount(){
     userAPI.isLoggedIn().then( res => {
-      console.log(res);
       if(res.user){
         localStorage.setItem("username", res.user.username);
         localStorage.setItem("role", res.user.role);
@@ -144,7 +137,6 @@ class App extends Component {
           role: res.user.role,
           email: res.user.email});
       }
-      console.log(this.state);
     })
     .catch(err => {
       console.log(err.response);
@@ -160,7 +152,6 @@ class App extends Component {
   }
   
   handleIncident =  (emergencies, patientNumber) => {
-      console.log("socket io fired");
       //get rid of the dangling comma
       emergencies = emergencies.slice(0,-1);
       socket.emit('alertAdmin', {'name' : localStorage.getItem("firstName") +  " " + localStorage.getItem("lastName"),
@@ -181,7 +172,8 @@ class App extends Component {
                 })
                 .then(res =>{
                     console.log(res);
-                    console.log("mail man work real hard!");
+                    this.getBackMessage("Your physician has been notified about your worrying symptomps");
+                    this.getBackMessageStatus("warning");
                 })
                 .catch(err => {
                     console.log(err);
@@ -204,7 +196,6 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
         <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
-        <Route exact path="/mh" component={MH} />
         <this.PrivatePatientRoute exact path="/patient" component={Patient} />
         <this.PrivateAdminRoute exact path="/admin" component={Admin} />
         <this.PrivateAdminRoute exact path="/admin/report" component={Admin_Report} />

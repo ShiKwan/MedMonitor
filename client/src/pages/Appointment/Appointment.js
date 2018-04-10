@@ -13,6 +13,7 @@ import {
     Container,
     Row,
     Col,
+    Button
 } from 'reactstrap';
 
 gapi.load('client:auth2', initClient);
@@ -40,9 +41,9 @@ class Appointment extends Component {
         .then((res)=>{
             this.setState({
                 appointment : res.data.appointment,
-                physician : res.data.physician,
-                physicianFirstName : res.data.physician.name.first,
-                physicianLastName : res.data.physician.name.last,
+                physician : `${res.data.physician? res.data.physician : null  }`,
+                physicianFirstName : `${res.data.physician? res.data.physician.first : ""  }`,
+                physicianLastName : `${res.data.physician? res.data.physician.last : ""  }`,
                 address : "2447 Imagine Ln",
                 city : "Cleveland, OH 44113",
                 officePhone : "216-115-55088",
@@ -133,17 +134,11 @@ class Appointment extends Component {
      }
    }, 100);
  }
-
-
-    populateState = () =>{
-        console.log("In appt : ", this.state);
-    }
     render() {
         return (
             <Container fluid>
                 {/* <Header /> */}
                 <Container>
-                    {/* <Button onClick={(e) =>this.handleCreateEvent(e)}>Show me the money and save it to my calendar </Button> */}
                     <Row>
                         <Col size='md-6'>
                             <UpcomingApp 

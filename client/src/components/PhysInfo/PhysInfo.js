@@ -17,24 +17,24 @@ const PhysInfo = (props) => {
             {/* <Card className="physInfoCard" body outline color="info"> */}
                 <CardHeader tag="h4"  className="physInfoHeader">Physician Information</CardHeader>
                 <Card className="docCardInfo">
-                    <Label className="patDoc" for="patDoc">Doctor: Dr. {props.doctorLastName} {props.doctorFirstName}</Label>
+                    <Label className="patDoc" for="patDoc">Doctor: {props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD` }</Label>
                     <br>
                     </br>
-                    <Label className="patDocAddress" for="patDocAddress">Office: {props.office}</Label>
+                    <Label className="patDocAddress" for="patDocAddress">Office: {props.office ? `${props.office}` : `TBD`}</Label>
                     <br>
                     </br>
-                    <Label className="patDocCity" for="patDocCity">Email: {props.email}</Label>
+                    <Label className="patDocCity" for="patDocCity">Email: {props.email ? `${props.email}` : `TBD`}</Label>
                     <br>
                     </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Phone Number: {props.phone}</Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Phone Number: {props.phone ? `${props.phone}` : `TBD`}</Label>
                     <hr>
                     </hr>
                     <CardTitle className="physInfoHours">Office Hours</CardTitle>
                 
-                    <Label className="patDocPhNum" for="patDocPhNum">Day: {props.officeDay}</Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Day: {props.doctorLastName ? props.officeDay : `TBD`}</Label>
                     <br>
                     </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.officeHour} </Label>
+                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.doctorLasteName ? props.officeHour : `TBD`} </Label>
                 </Card>
             </Card>
         </Container>

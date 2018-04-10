@@ -45,16 +45,17 @@ export default class Header extends React.Component {
         return (
                 <Navbar color="navbar" light expand="md">
                     <Container>
-                            <Nav pills className="navLogo" alt={"logo"}
-                                    href={localStorage.getItem("role") === "patient"
+                            <Nav pills className="navLogo" alt={"logo"} size="lg" active>
+                                    <NavLink href={localStorage.getItem("role") === "patient"
                                         ? "/patient"
                                         :
                                         localStorage.getItem("role") === "admin" || localStorage.getItem("role") === "doctor"
                                             ? "/admin"
                                             :
                                             "/"}
-                                    size="lg" active >
-                                    <img src={logo} className='med_logo' alt='med monitor' />
+                                    >
+                                        <img src={logo} className='med_logo' alt='med monitor' />
+                                    </NavLink>
                                    
                             </Nav>
 
@@ -66,9 +67,9 @@ export default class Header extends React.Component {
                                                 {localStorage.getItem("username") ? 
                                                     localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
                                                     ?
-                                                        `Hello Dr. ${localStorage.getItem('lastName')}` 
+                                                        `Hello, Dr. ${localStorage.getItem('lastName')}` 
                                                     :
-                                                        `Hello ${localStorage.getItem('lastName')}`
+                                                        `Hello, ${localStorage.getItem('lastName')}`
                                                 : 
                                                     `Welcome!`
                                                 } 

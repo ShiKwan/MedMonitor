@@ -24,7 +24,6 @@ export default class confirmPatientCard extends React.Component {
     componentDidMount(){
         alertAPI.findAll()
         .then((res) =>{
-            console.log(res.data);
             this.setState({
                 emergencies : res.data
             })
@@ -116,7 +115,7 @@ export default class confirmPatientCard extends React.Component {
                             {this.state.emergencies ? 
                                 this.state.emergencies.map((emergency) =>{
                                     return(
-                                        (moment(emergency.alert_datetime).isAfter(moment().add(-7, 'day'))) && (emergency.alert_type[0].choking || emergency.alert_type[0].fall || emergency.alert_type[0].freezing || emergency.alert_type[0].hallucination) ?
+                                        (moment(emergency.alert_datetime).isAfter(moment().add(-7, 'day')))&&(emergency.alert_patient_id) && (emergency.alert_type[0].choking || emergency.alert_type[0].fall || emergency.alert_type[0].freezing || emergency.alert_type[0].hallucination) ?
                                         <tr key={emergency._id} className="emergNotifDetail" onClick={() => this.onClicked(emergency.alert_patient_id)}>        
                                             <td> {emergency.alert_firstname} {emergency.alert_lastname} </td>
                                             <td> {emergency.alert_hospnum}</td>

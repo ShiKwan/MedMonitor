@@ -16,7 +16,6 @@ import {
 class Patient extends Component {
     constructor(props){
         super(props);
-        console.log(props.test);
         this.state = {
             finishedQuestion : false,
             next_appt : '',
@@ -26,18 +25,15 @@ class Patient extends Component {
 
     }
     componentDidMount() {
-        console.log("user id : " + localStorage.getItem("userId"));
         if(localStorage.getItem("userId")){
             patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
                 .then(res => {
-                    console.log("data for patient: ", res.data)
                     this.setState({
                         next_appt: `${res.data.appointment.next_appt}`,
                         medication: res.data.episode[0].medications,
                         details: res.data.details,
                         physician: `${res.data.physician.name.first} ${res.data.physician.name.last}`
                     })
-                    console.log(this.state);
                 })
                 .catch(err => console.log(err));
         }
