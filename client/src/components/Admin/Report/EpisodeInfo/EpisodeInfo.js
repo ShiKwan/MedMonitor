@@ -6,6 +6,9 @@ import {
     Container
 } from 'reactstrap';
 
+import './EpisodeInfo.css';
+
+
 export default class EpisodeInfo extends React.Component {
 
     render () {
@@ -17,11 +20,12 @@ export default class EpisodeInfo extends React.Component {
                 <Container className="text-right">
                 
                 
-                    <p>
+                    <p className="episodeInfo">
                         Episode Start : {moment(this.props.episodeDate).format("MMMM Do YYYY")} {moment(this.props.episodeDate).format("hh.mm a")}.
                         <br />
                         Episode Data: {this.props.episodeCount} records total over {this.props.episodeDays} days.
                     </p>
+                    <hr />
                 </Container>
 
                 :

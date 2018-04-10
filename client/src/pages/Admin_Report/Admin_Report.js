@@ -24,6 +24,9 @@ import ReportHeader from "../../components/Admin/Report/Header";
 import Medication from "../../components/Admin/Report/Medication";
 import PatientInfo from "../../components/Admin/Report/PatientInfo";
 
+import './Admin_Report.css';
+
+
 class Admin_Report extends Component {
     state = { 
         patientId: "",
@@ -524,31 +527,32 @@ class Admin_Report extends Component {
                             />
                             
                         </Col>
+                        <hr />
                     </Row>
 
                     <Row>
 
                         <Col md='6'>
-                            <Video className="text-left"
-                                videoDateTime = {moment(this.state.videoDateTime).format('L')}
-                                videoLink = {this.state.videoLink}
-                            />
+                                <Video className="text-left"
+                                    videoDateTime = {moment(this.state.videoDateTime).format('L')}
+                                    videoLink = {this.state.videoLink}
+                                />
                         </Col>
 
-                        <Col md='6'>                     
-                            <Container className="text-right">
-                                <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedCurrent()}>Current episode</Button>
-                                <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedPrevious()}>Previous episode</Button>
-                                <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedFive()}>Last 5 episodes</Button>
+                        <Col md='6' className="chartBtnGroup">                     
+                            <Container className="adminBtnGroup">
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent()}>Current Episode</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>Previous Episode</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedFive()}>Last 5 Episodes</Button>
                                 <a href="/admin">
-                                    <Button size="sm" style={{padding: 6, margin: 6}}>&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</Button>
+                                    <Button className="adminReportBtn" color="primary" size="sm">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</Button>
                                 </a>
                             </Container>
                         </Col>
 
                     </Row>
 
-                    <div style={{display: this.state.showMeds ? "block" : "none"}}>
+                    <Container style={{display: this.state.showMeds ? "block" : "none"}}>
                         <Row>
                             <Col md="4"> 
                                 <Medication
@@ -566,9 +570,9 @@ class Admin_Report extends Component {
                                 />
                             </Col>
                         </Row>
-                    </div>
+                    </Container>
 
-                    <div style={{display: this.state.showMeds ? "none" : "block"}}>
+                    <Container style={{display: this.state.showMeds ? "none" : "block"}}>
 
                         <Row>
                             <Col md="12">
@@ -580,7 +584,7 @@ class Admin_Report extends Component {
                                 />
                             </Col>
                         </Row>
-                    </div>
+                    </Container>
 
                 </Container>
             </Container>

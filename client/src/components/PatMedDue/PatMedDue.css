@@ -2,6 +2,10 @@ div.patMedInfo {
     max-width: 850px;
 }
 
+.patMedInfo {
+    margin-top: 25px;
+}
+
 .patMedInfoCard {
     margin-bottom: 25px;
 }

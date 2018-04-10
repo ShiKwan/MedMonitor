@@ -4,8 +4,7 @@ import {
     Button, 
 } from 'reactstrap';
 
-
-
+import './toggleButton.css';
 
 export default class ToggleButton extends React.Component {
 
