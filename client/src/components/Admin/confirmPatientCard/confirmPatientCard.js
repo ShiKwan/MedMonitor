@@ -72,7 +72,7 @@ export default class ConfirmPatientCard extends React.Component {
                     </a>
                     <Button className="reviewSelPatUpdateDetailBtn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
                     <Button className="reviewSelPatUpdateAppBtn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
-                    <Button className="reviewSelPatCloseBtn">Close</Button>
+                    <a href="/admin"><Button className="reviewSelPatCloseBtn">Close</Button></a>
 
                 </CardBody>
             </Card>

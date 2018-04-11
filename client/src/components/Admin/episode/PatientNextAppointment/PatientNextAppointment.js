@@ -31,6 +31,7 @@ export default class PatientNextAppointment extends React.Component {
             this.setState({
                 next_appt : moment(this.state.date + " " + this.state.time).format("dddd, MMMM Do YYYY h:mm a")
             },function(){
+                console.log("Current state: ", this.state);
                 this.props.handleApptCallback(this.state);
                 this.props.confirmNewEpisodeDetails();
                 mailerAPI.sendToPatient({
@@ -40,10 +41,11 @@ export default class PatientNextAppointment extends React.Component {
                     message:
                         `
                         Dear ${this.props.first_name} ${this.props.last_name},
-                        We have scheduled an appointment for you with ${this.props.patientLastEpisode.doctor} on ${moment(this.state.next_appt).format()}. 
+                        We have scheduled an appointment for you on ${this.state.next_appt} with Dr ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}. 
+
                         These are the comment from your doctor: 
                         
-                        ${this.state.comments}
+                                ${this.state.comments}
 
                         As we are progressing through your health wealthness, we would like to remind you to keep track of your wellness frequently with our application.
                         If you need a reminder for medication time for current episode and appointment time, please visit the application. 

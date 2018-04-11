@@ -3,7 +3,8 @@ import React from 'react';
 import {
     Container, 
     Button,
-    Label, 
+    Label,
+    Link,
 } from 'reactstrap';
 
 import './Video.css';
@@ -11,18 +12,16 @@ import './Video.css';
 
 export default class Video extends React.Component {
 
-    
-    onClickedVideo(videoLink) {
-       
-    }
-
     render() {
         return (
 
             <Container>
                 <Label className="patVidPost">
                     Patient video posted : {this.props.videoDateTime}&nbsp;&nbsp;
-                    <Button className="videoBtn" color="primary" size="sm" onClick = {() => this.onClickedVideo(this.props.videoLink)}>View Video</Button>
+                    <a href={this.props.videoLink} target="_blank">
+                        <Button className="videoBtn" color="primary" size="sm" style={{display: this.props.videoLink ? "inline" : "none"}}>View Video</Button>
+                    </a>
+                        
                 </Label>
             </Container>
 

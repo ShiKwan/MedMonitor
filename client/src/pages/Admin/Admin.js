@@ -3,6 +3,7 @@ import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import userAPI from "../../utils/userAPI";
+import mailerAPI from "../../utils/nodemailerAPI";
 
 import MenuCard from "../../components/Admin/MenuCard";
 import DataMenuCard from "../../components/Admin/DataMenuCard";
@@ -325,10 +326,37 @@ class Admin extends Component {
                 this.props.getBackMessage("Patient successfully enrolled into our system")
                 this.props.getBackMessageStatus("success");
                 console.log(res.data.insertedIds[0]);
-                this.setState({addPatientCard: false});
-                this.setState({addPatientsDrCard: true});
-                this.setState({patient_name: `${patFirstName} ${patLastName}`})
-                this.setState({pt_id: res.data.insertedIds[0]})
+                this.setState({
+                    pt_id: res.data.insertedIds[0],
+                    addPatientCard: false,
+                    addPatientsDrCard: true,
+                    patient_name: `${patFirstName} ${patLastName}`
+                }, function(){
+                    mailerAPI.sendToPatient({
+                        subject : "MedMonitor - Physician Account Created",
+                        name: `${this.state.patient_name}`,
+                        email: `${this.state.pt_email}`,
+                        message:
+                            `
+                            Dear  ${this.state.patient_name},
+                                Welcome to MedMonitor, we have created an account for you, if you already have login credential set up please login to the application, 
+                                otherwise you have to set up a new username and password in the registration in the homepage.
+
+                                https://med-monitor.herokuapp.com
+
+                                Thank you for using MedMonitor!
+                            From:
+
+                            MedMonitor
+                            `
+                    })
+                    .then(res => {
+                    })
+                    .catch(err => {
+                        console.log(err.response);
+                    });
+
+                })
 
             })
             .catch(err => console.log(err));
@@ -507,7 +535,36 @@ class Admin extends Component {
                 this.props.getBackMessageStatus("success");
                 this.setState({changeAppointmentCard: false});
                 this.setState({successChangeAppointmentCard: true});
-                this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
+                this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`}, function(){
+                    mailerAPI.sendToPatient({
+                        subject : "MedMonitor - Appointment Created",
+                        name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`,
+                        email: this.state.patientDetails.email,
+                        message:
+                            `
+                            Dear ${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name},
+                            We have scheduled an appointment for you on ${moment(newAppt, "YYYY-MM-DDTHH:mm:ssZ").format("dddd, MMMM Do YYYY")}. with Dr ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}. 
+
+                            These are the comment from your doctor: 
+                            
+                                    ${this.state.pt_nextApptComment}
+
+                            As we are progressing through your health wealthness, we would like to remind you to keep track of your wellness frequently with our application.
+                            If you need a reminder for medication time for current episode and appointment time, please visit the application. 
+                            
+                            From:
+
+                            MedMonitor
+                            `
+                    })
+                    .then(res => {
+                        this.props.getBackMessage("Appointment has been scheduled.")
+                        this.props.getBackMessageStatus("Success")
+                    })
+                    .catch(err => {
+                        console.log(err.response);
+                    });
+                })
             })
             .catch(err => console.log(err));
         }
@@ -580,10 +637,38 @@ class Admin extends Component {
                 this.props.getBackMessage("New physician successfully enrolled.")
                 this.props.getBackMessageStatus("success");
                 console.log(res.data.insertedIds[0]);
-                this.setState({addPhysicianCard: false});
-                this.setState({registerPhysicianCard: true});
-                this.setState({physician_name: `${drFirstName} ${drLastName}`})
-                this.setState({dr_id: res.data.insertedIds[0]})
+                
+                this.setState({
+                    addPhysicianCard: false,
+                    registerPhysicianCard: true,
+                    physician_name: `${drFirstName} ${drLastName}`,
+                    dr_id: res.data.insertedIds[0]
+                }, function() {
+                    mailerAPI.sendToPatient({
+                        subject : "MedMonitor - Physician Account Created",
+                        name: `${this.state.physician_name}`,
+                        email: `${this.state.dr_email}`,
+                        message:
+                            `
+                            Dear Dr. ${this.state.physician_name},
+                                Welcome to MedMonitor, we have created an account for you, if you already have login credential set up please login to the application, 
+                                otherwise you have to set up a new username and password in the registration in the homepage.
+
+                                https://med-monitor.herokuapp.com
+
+                                Thank you for using MedMonitor!
+                            From:
+
+                            MedMonitor
+                            `
+                    })
+                    .then(res => {
+                    })
+                    .catch(err => {
+                        console.log(err.response);
+                    });
+                });
+                
             })
             .catch(err => console.log(err));
         }

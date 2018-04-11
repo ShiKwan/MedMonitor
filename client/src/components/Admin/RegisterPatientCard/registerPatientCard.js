@@ -55,7 +55,7 @@ export default class registerPatientCard extends React.Component {
 
                             <br />
                             <Button className="registNewPatRegisterBtn RegisterBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
-                            <Button className="registNewPatCanelBtn CancelBtn">Cancel</Button>
+                            <a href="/admin"><Button className="registNewPatCanelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                 
                 </CardBody>
