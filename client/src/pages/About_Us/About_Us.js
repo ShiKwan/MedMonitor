@@ -48,8 +48,8 @@ export default class Header extends React.Component {
                         <Row>
                             <Col md='4' className='text-center'>
                             <img src={MHHeadShot} className='portrait text-center' alt='Dr. Mathew Hall' /><br/>
-                            <a className='hypOut' href='https://github.com/mathewhall100' target='_blank'><img src={Github} alt="github" /></a>
-                            <a className='hypOut' href='http://www.linkedin.com/in/mathew-hall-100' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                            <a className='hypOut' href='https://github.com/mathewhall100' target='_blank' rel="noopener noreferrer" ><img src={Github} alt="github" /></a>
+                            <a className='hypOut' href='http://www.linkedin.com/in/mathew-hall-100' target='_blank' rel="noopener noreferrer" ><img src={LinkedIn} alt="LinkedIn" /></a>
                                     
                             </Col>
                             <Col md='8'>
@@ -75,26 +75,39 @@ export default class Header extends React.Component {
                                 and hoping to eventually dabble in the world of software development.</p>
                             </Col>
                             <Col md='4' className='text-center'>
-                                <a className='hypOut' href='https://github.com/joemalov' target='_blank'><img src={Github} alt="github" /></a>
-                                <a className='hypOut' href='https://www.linkedin.com/in/joe-malovasic-195808146/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                                <a className='hypOut' href='https://github.com/joemalov' target='_blank' rel="noopener noreferrer" ><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/joe-malovasic-195808146/' target='_blank' rel="noopener noreferrer" ><img src={LinkedIn} alt="LinkedIn" /></a>
                             </Col>
                         </Row>
                     </Container>
                     <hr/>
                     <Container className="dev-container">
                         <Row>
-                            <Col><h2>Bradley Schaeman</h2></Col>
+                            <Col><h2>Bradley Schmaeman</h2></Col>
                         </Row>
                         <Row>
                             <Col md='4' className='text-center'>
-                                <img  src={BSHeadShot} className='portrait bs' alt='Bradley Schaeman' /><br />
-                                <a className='hypOut' href='https://github.com/bradwayne' target='_blank'><img src={Github} alt="github" /></a>
-                                <a className='hypOut' href='https://www.linkedin.com/in/bradley-schmaeman/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                                <img  src={BSHeadShot} className='portrait bs' alt='Bradley Schmaeman' /><br />
+                                <a className='hypOut' href='https://github.com/bradwayne' target='_blank' rel="noopener noreferrer" ><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/bradley-schmaeman/' target='_blank' rel="noopener noreferrer" ><img src={LinkedIn} alt="LinkedIn" /></a>
                             </Col>
                             <Col md='8'>
                                 <Container>
                                 <p>
-                                    SK's favorite front end guy in this bootcamp!
+                                    Bradley’s passion in web development is the front-end. 
+                                    He brings over 15 years experience in the graphic design field. 
+                                </p>
+                                <p>
+                                    Always looking for new outside the box ideas and concepts 
+                                    to create eye popping and artistic flavor to his layouts.
+                                    Bradley continues looking to improve his skills and tools 
+                                    to become a better programmer and designer every day.
+                                </p>
+                                <p>
+                                    With this new found web coding knowledge and past experience 
+                                    he is relishing the opportunity to help small and/or new 
+                                    up-and-coming businesses visually compete with the big boys 
+                                    with their online presence. 
                                 </p>
                                 </Container>
                             </Col>
@@ -121,8 +134,8 @@ export default class Header extends React.Component {
                             </Col>
                             <Col md='4' className='text-center'>
                                 <img src={SKHeadShot} className='portrait text-center' alt='Shi-Kwan (SK) Tan' /><br/>
-                                <a className='hypOut' href='https://github.com/ShiKwan' target='_blank'><img src={Github} alt="github" /></a>
-                                <a className='hypOut' href='https://www.linkedin.com/in/shi-kwan-tan/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                                <a className='hypOut' href='https://github.com/ShiKwan' target='_blank' rel="noopener noreferrer" ><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/shi-kwan-tan/' target='_blank' rel="noopener noreferrer" ><img src={LinkedIn} alt="LinkedIn" /></a>
                             </Col>
                         </Row>
                     </Container>

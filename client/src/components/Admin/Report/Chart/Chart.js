@@ -109,7 +109,7 @@ export default class Chart extends React.Component {
                                 <Line type='monotone' dataKey='Walking' strokeDasharray="6 6" stroke="grey" fill="grey" strokeWidth={1.5} style={{display: this.state.grey ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Balance' strokeDasharray="6 6" stroke="blue" fill="blue" strokeWidth={1.5} style={{display: this.state.blue ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Average' stroke="black" strokeWidth={5} style={{display: this.state.black? "block" : "none" }}/>
-                                
+                                <YAxis ticks={[2,4]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
                                 {/* <Tooltip /> */}
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
@@ -142,7 +142,7 @@ export default class Chart extends React.Component {
                                 <Line type='monotone' dataKey='Headache' strokeDasharray="3 4 5 2" stroke="orange" fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Drymouth' strokeDasharray="3 4 5 2" stroke="purple" fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Average_' stroke="black" strokeWidth={5} style={{display: this.state.black ? "block" : "none" }}/>
-                                
+                                <YAxis ticks={[2,4]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
                             {/* <Tooltip /> */}
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />

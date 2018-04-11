@@ -333,7 +333,7 @@ class Admin extends Component {
                     patient_name: `${patFirstName} ${patLastName}`
                 }, function(){
                     mailerAPI.sendToPatient({
-                        subject : "MedMonitor - Physician Account Created",
+                        subject : "MedMonitor - Patient Account Created",
                         name: `${this.state.patient_name}`,
                         email: `${this.state.pt_email}`,
                         message:
