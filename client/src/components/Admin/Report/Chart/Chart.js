@@ -180,7 +180,7 @@ export default class Chart extends React.Component {
 
                 <Card className="TableCard" style={{display: this.state.symptomChart && this.props.chartMany? "block" : "none"}}>
                     <CardBody className="TableBody">
-                        <CardTitle className="Title">Trends in parkinson's symptoms last five episodes. </CardTitle>
+                        <CardTitle className="Title">Trends in Parkinson's symptoms last five episodes. </CardTitle>
 
                             <Button  className="symptomChart" color="info" size="sm" style={{border: '3px solid black'}} onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
                             <Button  className="symptomChart" color="info" size="sm" onClick = {() => this.onClickedSideEffects()}>Side Effects</Button>

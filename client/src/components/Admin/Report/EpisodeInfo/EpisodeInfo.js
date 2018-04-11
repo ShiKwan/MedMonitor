@@ -30,14 +30,14 @@ export default class EpisodeInfo extends React.Component {
 
                 :
 
-            <Container className="text-right">
+                <Container className="text-right">
 
-                <p>
-                    Period : {this.props.episodeDate}
-                    <br />
-                    Period Data: {this.props.episodeCount} records total.
-                </p>
-            </Container>
+                    <p className="periodInfo">
+                        Period : {this.props.episodeDate}
+                        <br />
+                        Period Data: {this.props.episodeCount} records total.
+                    </p>
+                </Container>
 
 
 

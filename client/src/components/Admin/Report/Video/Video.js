@@ -19,7 +19,7 @@ export default class Video extends React.Component {
                 <Label className="patVidPost">
                     Patient video posted : {this.props.videoDateTime}&nbsp;&nbsp;
                     <a href={this.props.videoLink} target="_blank">
-                        <Button size="sm" style={{padding: 6, display: this.props.videoLink ? "inline" : "none"}}>View video</Button>
+                        <Button className="videoBtn" color="primary" size="sm" style={{display: this.props.videoLink ? "inline" : "none"}}>View Video</Button>
                     </a>
                         
                 </Label>

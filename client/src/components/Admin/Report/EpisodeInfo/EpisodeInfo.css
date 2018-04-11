@@ -1,3 +1,4 @@
-p.episodeInfo {
+p.episodeInfo,
+p.periodInfo {
     font-weight: bold;
 }
