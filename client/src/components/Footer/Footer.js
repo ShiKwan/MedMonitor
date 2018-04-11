@@ -14,12 +14,15 @@ import {
 export default class Header extends React.Component {
     render(){
         return(
-            <Container style={{ position: 'fixed', bottom: 0, backgroundColor: '#f2e1a6', borderTop: '8px solid #2d5366' }}>
+            <Container className="footer text-center" fluid style={{backgroundColor: '#f2e1a6', borderTop: '8px solid #2d5366'}}>
                 <Label>
                     Copyright &copy; {moment().format("YYYY")} All right reserved. 
                 </Label>
-                <Label>
+                <Label style={{float: "right" ,paddingRight : "20px"}}>
                     <Link to="/About_Us" >About Us</Link>
+                </Label>
+                <Label style={{float: "right",paddingRight : "20px" }}>
+                    <Link to="https://github.com/ShiKwan/project3">Git Hub</Link>
                 </Label>
             </Container>
         )

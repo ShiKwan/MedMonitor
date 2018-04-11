@@ -18,6 +18,7 @@ import "./App.css";
 
 
 import {
+  Container,
   Label,  
   Alert
 } from 'reactstrap';
@@ -191,7 +192,7 @@ class App extends Component {
           {this.state.messageCenter}  <Label onClick={() => this.removeMessage()} style={{float: "right"}}>x</Label>
         </Alert> : null }
       
-
+      <Container className="wrapper" >
       <Switch>
         <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
         <Route exact path="/home" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />
@@ -204,9 +205,11 @@ class App extends Component {
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>
-      <Footer />
-        
+      <Container style={{height : '155px'}}></Container>
+      </Container>
+      <Footer />    
     </div>
+    
   </Router>
   )
   }
