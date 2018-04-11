@@ -27,7 +27,7 @@ export default class Chart extends React.Component {
 
         green: true,
         magenta: true,
-        yellow: true,
+        orange: true,
         purple: true,
         red: true,
         cyan: true,
@@ -60,7 +60,7 @@ export default class Chart extends React.Component {
     onClickedToggleAll(toggle) {
         this.setState({ green: toggle })
         this.setState({ magenta: toggle})
-        this.setState({ yellow: toggle})
+        this.setState({ orange: toggle})
         this.setState({ purple: toggle})
         this.setState({ red: toggle})
         this.setState({ cyan: toggle})
@@ -87,7 +87,7 @@ export default class Chart extends React.Component {
                             
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "green"}} onClick = {() => this.setState({green: this.state.green ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "magenta"}} onClick = {() => this.setState({magenta: this.state.magenta ? false : true})}>&nbsp;&nbsp;</Button>
-                            <Button className="chartBtn" size="sm" style={{backgroundColor: "yellow"}} onClick = {() => this.setState({yellow: this.state.yellow ? false : true})}>&nbsp;&nbsp;</Button>
+                            <Button className="chartBtn" size="sm" style={{backgroundColor: "orange"}} onClick = {() => this.setState({orange: this.state.orange ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "red"}} onClick = {() => this.setState({red: this.state.red ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "cyan"}} onClick = {() => this.setState({cyan: this.state.cyan ? false : true})}>&nbsp;&nbsp;</Button>
@@ -102,7 +102,7 @@ export default class Chart extends React.Component {
                             <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Line type='monotone' dataKey='Kickin' strokeDasharray="6 6" stroke="green"  fill="green" strokeWidth={1.5} style={{display: this.state.green ? "block" : "none" }}/> 
                                 <Line type='monotone' dataKey='Wearoff' strokeDasharray="6 6" stroke="magenta" fill="magenta" strokeWidth={1.5} style={{display: this.state.magenta ? "block" : "none" }}/>
-                                <Line type='monotone' dataKey='Movement' strokeDasharray="6 6" stroke="yellow" fill="yellow" strokeWidth={1.5} style={{display: this.state.yellow ? "block" : "none" }} />
+                                <Line type='monotone' dataKey='Movement' strokeDasharray="6 6" stroke="orange" fill="orange" strokeWidth={1.5} style={{display: this.state.orange ? "block" : "none" }} />
                                 <Line type='monotone' dataKey='Tiredness' strokeDasharray="6 6" stroke="purple" fill="purple" strokeWidth={1.5} style={{display: this.state.purple ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Offtime' strokeDasharray="6 6" stroke="red" fill="red" strokeWidth={1.5} style={{display: this.state.red ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Tremor' strokeDasharray="6 6" stroke="cyan" fill="cyan" strokeWidth={1.5} style={{display: this.state.cyan ? "block" : "none" }}/>
@@ -129,7 +129,7 @@ export default class Chart extends React.Component {
                             <span style={{fontWeight: "bold"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toggle: </span>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "green"}} onClick = {() => this.setState({green: this.state.green ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "magenta"}} onClick = {() => this.setState({magenta: this.state.magenta ? false : true})}>&nbsp;&nbsp;</Button>
-                            <Button className="chartBtn" size="sm" style={{backgroundColor: "yellow"}} onClick = {() => this.setState({yellow: this.state.yellow ? false : true})}>&nbsp;&nbsp;</Button>
+                            <Button className="chartBtn" size="sm" style={{backgroundColor: "orange"}} onClick = {() => this.setState({orange: this.state.orange ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
@@ -139,7 +139,7 @@ export default class Chart extends React.Component {
                             <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Dizziness' strokeDasharray="3 4 5 2" stroke="magenta" fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
-                                <Line type='monotone' dataKey='Headache' strokeDasharray="3 4 5 2" stroke="yellow" fill="yellow" style={{display: this.state.yellow ? "block" : "none" }}/>
+                                <Line type='monotone' dataKey='Headache' strokeDasharray="3 4 5 2" stroke="orange" fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Drymouth' strokeDasharray="3 4 5 2" stroke="purple" fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <Line type='monotone' dataKey='Average_' stroke="black" strokeWidth={5} style={{display: this.state.black ? "block" : "none" }}/>
                                 
@@ -166,7 +166,7 @@ export default class Chart extends React.Component {
                             <BarChart width={700} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" />
                                 <Bar dataKey='Freezing' stackId="a" fill="magenta" />
-                                <Bar dataKey='Choking' stackId="a" fill="yellow" />
+                                <Bar dataKey='Choking' stackId="a" fill="orange" />
                                 <Bar dataKey='Hallucinations' stackId="a" fill="red" />
                                 <YAxis ticks={[2,4,6,8]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
@@ -189,7 +189,7 @@ export default class Chart extends React.Component {
                             <span style={{fontWeight: "bold"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toggle: </span>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "green"}} onClick = {() => this.setState({green: this.state.green ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "magenta"}} onClick = {() => this.setState({magenta: this.state.magenta ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
-                            <Button className="chartBtn" size="sm" style={{backgroundColor: "yellow"}} onClick = {() => this.setState({yellow: this.state.yellow ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
+                            <Button className="chartBtn" size="sm" style={{backgroundColor: "orange"}} onClick = {() => this.setState({orange: this.state.orange ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "red"}} onClick = {() => this.setState({red: this.state.red ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "cyan"}} onClick = {() => this.setState({cyan: this.state.cyan ? false : true})}>&nbsp;&nbsp;&nbsp;</Button>
@@ -203,7 +203,7 @@ export default class Chart extends React.Component {
                             <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Kickin' fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Wearoff' fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
-                                <Bar dataKey='Movement' fill="yellow" style={{display: this.state.yellow ? "block" : "none" }}/>
+                                <Bar dataKey='Movement' fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Bar dataKey='Tiredness' fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <Bar dataKey='Offtime' fill="red" style={{display: this.state.red? "block" : "none" }}/>
                                 <Bar dataKey='Tremor' fill="cyan" style={{display: this.state.cyan ? "block" : "none" }}/>
@@ -219,7 +219,7 @@ export default class Chart extends React.Component {
 
 
 
-                <Card className="TableCard" style={{ padding: 20, display: this.state.sideEffectChart && this.props.chartMany? "block" : "none"}}>
+                <Card className="TableCard" style={{display: this.state.sideEffectChart && this.props.chartMany? "block" : "none"}}>
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Trends in side effects last 5 episodes </CardTitle>
 
@@ -230,7 +230,7 @@ export default class Chart extends React.Component {
                             <span style={{fontWeight: "bold"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toggle: </span>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "green"}} onClick = {() => this.setState({green: this.state.green ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "magenta"}} onClick = {() => this.setState({magenta: this.state.magenta ? false : true})}>&nbsp;&nbsp;</Button>
-                            <Button className="chartBtn" size="sm" style={{backgroundColor: "yellow"}} onClick = {() => this.setState({yellow: this.state.yellow ? false : true})}>&nbsp;&nbsp;</Button>
+                            <Button className="chartBtn" size="sm" style={{backgroundColor: "orange"}} onClick = {() => this.setState({orange: this.state.orange ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
@@ -240,7 +240,7 @@ export default class Chart extends React.Component {
                             <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Sickness' fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Dizziness' fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
-                                <Bar dataKey='Headache' fill="yellow" style={{display: this.state.yellow ? "block" : "none" }}/>
+                                <Bar dataKey='Headache' fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Bar dataKey='Drymouth' fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <YAxis ticks={[2,4,6,8]} />
                                 <XAxis dataKey="name" padding={{left: 10, right: 10}}/>
@@ -256,14 +256,14 @@ export default class Chart extends React.Component {
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Emergency alerts by date. </CardTitle>
 
-                            <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
-                            <Button size="sm" style={{padding: 6, margin: 6}} onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
-                            <Button size="sm" style={{padding: 6, margin: 6, border: '3px solid black'}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
+                            <Button size="sm" className="symptomChart" color="info" onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
+                            <Button size="sm" className="symptomChart" color="info" onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
+                            <Button size="sm" className="symptomChart" color="info" style={{border: '3px solid black'}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
 
                             <span style={{fontWeight: "bold"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toggle: </span>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "green"}} onClick = {() => this.setState({green: this.state.green ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "magenta"}} onClick = {() => this.setState({magenta: this.state.magenta ? false : true})}>&nbsp;&nbsp;</Button>
-                            <Button className="chartBtn" size="sm" style={{backgroundColor: "yellow"}} onClick = {() => this.setState({yellow: this.state.yellow ? false : true})}>&nbsp;&nbsp;</Button>
+                            <Button className="chartBtn" size="sm" style={{backgroundColor: "orange"}} onClick = {() => this.setState({orange: this.state.orange ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
@@ -273,7 +273,7 @@ export default class Chart extends React.Component {
                             <BarChart width={1000} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Freezing' stackId="a" fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
-                                <Bar dataKey='Choking' stackId="a" fill="yellow" style={{display: this.state.yellow ? "block" : "none" }}/>
+                                <Bar dataKey='Choking' stackId="a" fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Bar dataKey='Hallucination' stackId="a" fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <YAxis ticks={[2,4,6,8,10]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
