@@ -13,14 +13,16 @@ import {
 } from 'reactstrap';
 import SKHeadShot from "./SK.jpg";
 import MHHeadShot from "./MH.png";
-import BSHeadShot from "./BS.jpg";
+import BSHeadShot from "./BS2.png";
+import Github from "./icons8-github-50.png";
+import LinkedIn from "./icons8-linkedin-50.png";
 import './about_us.css';
 
 export default class Header extends React.Component {
     render() {
         return (
             <div>
-                <Container className='text-left'>
+                <Container className='text-left AboutMedMonitor'>
                     <h2>About MedMonitor</h2>
                     <Container>
                     <p>Inspired by neurologists and their movement disorder patients, MedMonitor is a unique application designed to improve patient care through targeted data analytics.
@@ -39,108 +41,91 @@ export default class Header extends React.Component {
                     </Container>
                 </Container>
                 <Container className='text-left'>
-                    <Row>
-                        <Col><h2>Dr. Mathew Hall </h2></Col>
-                    </Row>
-                    <Row>
-                        <Col md='4'>
-                        <img src={MHHeadShot} className='' alt='Dr. Mathew Hall' />
-                        </Col>
-                        <Col md='8'>
-                            <p>Mathew is a full stack web developer with a background in medicine, biomedical research and medical education, 
-                            looking to make a real difference through technology innovation in the medical and biomedical fields.</p>
+                    <Container className="dev-container">
+                        <Row>
+                            <Col><h2>Dr. Mathew Hall </h2></Col>
+                        </Row>
+                        <Row>
+                            <Col md='4' className='text-center'>
+                            <img src={MHHeadShot} className='portrait text-center' alt='Dr. Mathew Hall' /><br/>
+                            <a className='hypOut' href='https://github.com/mathewhall100' target='_blank'><img src={Github} alt="github" /></a>
+                            <a className='hypOut' href='http://www.linkedin.com/in/mathew-hall-100' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                                    
+                            </Col>
+                            <Col md='8'>
+                                <p>Mathew is a full stack web developer with a background in medicine, biomedical research and medical education, 
+                                looking to make a real difference through technology innovation in the medical and biomedical fields.</p>
 
-                            <p>With a demonstrable track record of lifelong learning, effective communication and entrepreneurship 
-                            Mathew’s problem-solving skills are proven over a wide variety of platforms. </p>
-                            <p>In summary, he describes himself as a tech polymath always looking for a great next project. </p>
-                            <Container>
-                            <Row>
-                                <Col className="text-center">
-                                    <a href='https://github.com/mathewhall100' target='_blank'><i className="fab fa-git"></i></a>
-                                </Col>
-                                <Col className="text-center">
-                                    <a href='http://www.linkedin.com/in/mathew-hall-100' target='_blank'><i className="fab fa-linkedin-in"></i></a>
-                                </Col>
-                            </Row>
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col><h2>Joe Malovasic</h2></Col>
-                    </Row>
-                    <Row>
-                        <Col md='4'>
-
-                        </Col>
-                        <Col md='8'>
-                            <p>Joe is a 26 year old aspiring developer from the Cleveland area. 
-                            After the CWRU bootcamp, he is looking forward to continuing his self education in various programming languages, 
-                            and hoping to eventually dabble in the world of software development.</p>
-                            <Container>
-                            <Row>
-                                <Col className="text-center">
-                                    <a href='#' target='_blank'><i className="fab fa-git"></i></a>
-                                </Col>
-                                <Col className="text-center">
-                                    <a href='#' target='_blank'><i className="fab fa-linkedin-in"></i></a>
-                                </Col>
-                            </Row>
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col><h2>Bradley Schaeman</h2></Col>
-                    </Row>
-                    <Row>
-                        <Col md='4'>
-                            <img src={BSHeadShot} className='' alt='Bradley Schaeman' />
-                        </Col>
-                        <Col md='8'>
-                            <Container>
-                            <p>
-                                SK's favorite front end guy in this bootcamp!
-
-                            </p>
-                            <Row>
-                                <Col className="text-center">
-                                    <a href='#' target='_blank'><i className="fab fa-git"></i></a>
-                                </Col>
-                                <Col className="text-center">
-                                    <a href='#' target='_blank'><i className="fab fa-linkedin-in"></i></a>
-                                </Col>
-                            </Row>
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col><h2>Shi-Kwan (SK) Tan</h2></Col>
-                    </Row>
-                    <Row>
-                        <Col md='4'>
-                            <img src={SKHeadShot} className='' alt='Shi-Kwan (SK) Tan' />
-                        </Col>
-                        <Col md='8'>
-                            <Container>
-                            <p>
-                                Full stack application developer graduated from University of Kentucky with B.S. in Computer Science and M.S. in Natural Resources Economics. 
-                            </p>
-                            <p>
-                                A team player that equipped with problem solving skill and eager to learn about the latest technology and incorporate them into web applications.
-                            </p>
-                            <p>
-                                His main goal in tech world is to develop application with great UX and bring positive impacts to the society. 
-                            </p>
-                            <Row>
-                                <Col className="text-center">
-                                    <a href='https://github.com/ShiKwan' target='_blank'><i className="fab fa-git"></i></a>
-                                </Col>
-                                <Col className="text-center">
-                                    <a href='https://www.linkedin.com/in/shi-kwan-tan/' target='_blank'><i className="fab fa-linkedin-in"></i></a>
-                                </Col>
-                            </Row>
-                            </Container>
-                        </Col>
-                    </Row>
+                                <p>With a demonstrable track record of lifelong learning, effective communication and entrepreneurship 
+                                Mathew’s problem-solving skills are proven over a wide variety of platforms. </p>
+                                <p>In summary, he describes himself as a tech polymath always looking for a great next project. </p>
+                                
+                            </Col>
+                        </Row>
+                    </Container>
+                    <hr/>
+                    <Container className="dev-container">
+                        <Row className="text-right">
+                            <Col><h2>Joe Malovasic</h2></Col>
+                        </Row>
+                        <Row>
+                            <Col md='8'>
+                                <p>Joe is a 26 year old aspiring developer from the Cleveland area. 
+                                After the CWRU bootcamp, he is looking forward to continuing his self education in various programming languages, 
+                                and hoping to eventually dabble in the world of software development.</p>
+                            </Col>
+                            <Col md='4' className='text-center'>
+                                <a className='hypOut' href='https://github.com/joemalov' target='_blank'><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/joe-malovasic-195808146/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <hr/>
+                    <Container className="dev-container">
+                        <Row>
+                            <Col><h2>Bradley Schaeman</h2></Col>
+                        </Row>
+                        <Row>
+                            <Col md='4' className='text-center'>
+                                <img  src={BSHeadShot} className='portrait bs' alt='Bradley Schaeman' /><br />
+                                <a className='hypOut' href='https://github.com/bradwayne' target='_blank'><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/bradley-schmaeman/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                            </Col>
+                            <Col md='8'>
+                                <Container>
+                                <p>
+                                    SK's favorite front end guy in this bootcamp!
+                                </p>
+                                </Container>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <hr/>
+                    <Container className="dev-container">
+                        <Row  className="text-right">
+                            <Col><h2>Shi-Kwan (SK) Tan</h2></Col>
+                        </Row>
+                        <Row>
+                            <Col md='8'>
+                                <Container>
+                                <p>
+                                    Full stack application developer graduated from University of Kentucky with B.S. in Computer Science and M.S. in Natural Resources Economics. 
+                                </p>
+                                <p>
+                                    A team player that equipped with problem solving skill and eager to learn about the latest technology and incorporate them into web applications.
+                                </p>
+                                <p>
+                                    His main goal in tech world is to develop application with great UX and bring positive impacts to the society. 
+                                </p>
+                                </Container>
+                            </Col>
+                            <Col md='4' className='text-center'>
+                                <img src={SKHeadShot} className='portrait text-center' alt='Shi-Kwan (SK) Tan' /><br/>
+                                <a className='hypOut' href='https://github.com/ShiKwan' target='_blank'><img src={Github} alt="github" /></a>
+                                <a className='hypOut' href='https://www.linkedin.com/in/shi-kwan-tan/' target='_blank'><img src={LinkedIn} alt="LinkedIn" /></a>
+                            </Col>
+                        </Row>
+                    </Container>
                 </Container>
             </div>
         )
