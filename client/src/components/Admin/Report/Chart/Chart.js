@@ -1,31 +1,13 @@
 import React, { Component } from 'react';
-
-import {
-    LineChart, 
-    Line, 
-    BarChart, 
-    Bar,
-    XAxis, 
-    YAxis, 
-    Tooltip, 
-    Legend,
-    ResponsiveContainer
-} from 'recharts';
-
+import {LineChart, Line, BarChart, Bar,
+        XAxis, 
+        YAxis, 
+        Tooltip, 
+        Legend,
+    } from 'recharts';
 import {
     Container, 
-    Row, 
-    Col, 
     Button, 
-    Card, 
-    CardBody, 
-    CardTitle, 
-    CardText,
-    Form, 
-    FormGroup, 
-    Label,
-    Input, 
-    FormText,
 } from 'reactstrap';
 
 import ToggleButton from "../ToggleButton/toggleButton"
@@ -33,8 +15,6 @@ import ToggleButton from "../ToggleButton/toggleButton"
 import '../../../../pages/Admin';
 
 import './Chart.css';
-
-
 
 export default class Chart extends React.Component {
 
@@ -116,6 +96,8 @@ export default class Chart extends React.Component {
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
 
+                            <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
+
                             <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Line type='monotone' dataKey='Kickin' strokeDasharray="6 6" stroke="green"  fill="green" strokeWidth={1.5} style={{display: this.state.green ? "block" : "none" }}/> 
                                 <Line type='monotone' dataKey='Wearoff' strokeDasharray="6 6" stroke="magenta" fill="magenta" strokeWidth={1.5} style={{display: this.state.magenta ? "block" : "none" }}/>
@@ -134,8 +116,6 @@ export default class Chart extends React.Component {
                     </CardBody>
                 </Card>
             
-
-
             
                 <Card className="TableCard" style={{display: this.state.sideEffectChart && this.props.chartOne ? "block" : "none"}}>
                     <CardBody className="TableBody">
@@ -152,6 +132,8 @@ export default class Chart extends React.Component {
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
+
+                            <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
 
                             <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" fill="green" style={{display: this.state.green ? "block" : "none" }}/>
@@ -177,6 +159,8 @@ export default class Chart extends React.Component {
                             <Button  className="symptomChart" color="info" size="sm" onClick = {() => this.onClickedSymptoms()}>Symptoms</Button>
                             <Button  className="symptomChart" color="info" size="sm" onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
                             <Button  className="symptomChart" color="info" size="sm" style={{border: '3px solid black'}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
+
+                            <div style={{display: this.props.barChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
 
                             <BarChart width={700} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" />
@@ -213,6 +197,8 @@ export default class Chart extends React.Component {
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
 
+                            <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
+
                             <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Kickin' fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Wearoff' fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
@@ -248,6 +234,8 @@ export default class Chart extends React.Component {
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
 
+                            <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
+
                             <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Sickness' fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Dizziness' fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
@@ -278,6 +266,8 @@ export default class Chart extends React.Component {
                             <Button className="chartBtn" size="sm" style={{backgroundColor: "purple"}} onClick = {() => this.setState({purple: this.state.purple ? false : true})}>&nbsp;&nbsp;</Button>
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
+
+                            <div style={{display: this.props.barChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
                             
                             <BarChart width={1000} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" style={{display: this.state.green ? "block" : "none" }}/>
