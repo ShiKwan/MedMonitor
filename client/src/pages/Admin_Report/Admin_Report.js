@@ -4,14 +4,6 @@ import patientAPI from "../../utils/patientAPI";
 import videoAPI from "../../utils/videoAPI";
 import moment from 'moment'
 import {
-    Nav,
-    Navbar,
-    NavItem,
-    NavLink,
-    Input,
-    Form,
-    FormGroup,
-    Label,
     Button,
     Container,
     Row, 
@@ -67,6 +59,7 @@ class Admin_Report extends Component {
                 this.setState({patientAppt: this.state.patient.appointment});
                 this.setState({patientNumEpisodes: this.state.patient.episode.length});
 
+
                 chartData = this.processEpisode(this.state.patient, 1);
 
                 this.setState({ patientEpisodeStart: chartData[0] });
@@ -82,8 +75,8 @@ class Admin_Report extends Component {
                 videoAPI.findOne(window.location.search.substring(4))
                     .then(res => {
                         console.log(res.data)
-                        this.setState({videoDateTime: res.data[0].video_datetime})
-                        this.setState({videoLink: res.data[0].video_link})
+                        this.setState({videoDateTime: res.data[0] ? moment(res.data[0].video_datetime).format('L') : "No video uploads."})
+                        this.setState({videoLink: res.data[0] ? res.data[0].video_link : null})
                     })
   
             })
@@ -318,7 +311,7 @@ class Admin_Report extends Component {
             currentRecordDate = record.date_time.slice(0,10); 
             recordTime = record.date_time.slice(11,16);
 
-            if (i>1 && currentRecordDate != previousRecordDate) { 
+            if (i>1 && currentRecordDate !== previousRecordDate) { 
                 barChartData.push(obj);
                 obj = {} 
             }
@@ -358,9 +351,6 @@ class Admin_Report extends Component {
         const episodeCount = patientNumEpisodes > 5 ? 5 : patientNumEpisodes
 
         let record = [];
-        let currentRecordDate = "";
-        let previousRecordDate = "";
-        let recordTime = "";
 
         let lineChartData = [];
         let barChartData = [];
@@ -382,14 +372,13 @@ class Admin_Report extends Component {
         let dizziness = 0;
         let headache = 0;
         let drymouth = 0;
-        let timePoint = 0;
 
         let falls = 0;
         let choking = 0;
         let freezing = 0;
         let hallucinations = 0;
 
-        let i=0, j=0;
+        let i=0;
 
         for (i=0; i<episodeCount; i++) {
 
@@ -462,7 +451,7 @@ class Admin_Report extends Component {
             
             patientEpisodesAllMeds.push(patientEpisode.meds)
             patientEpisodesAllStart = patientEpisode.start_date;
-            if (i == 0) {patientEpisodesAllEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;}
+            if (i === 0) {patientEpisodesAllEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;}
 
             patientEpisodesAllNumRecords += patientEpisodeNumRecords;
 
@@ -478,7 +467,6 @@ class Admin_Report extends Component {
             dizziness = 0;
             headache = 0;
             drymouth = 0;
-            timePoint = 0;
     
             falls = 0;
             choking = 0;
@@ -530,7 +518,7 @@ class Admin_Report extends Component {
 
                         <Col md='6'>
                             <Video className="text-left"
-                                videoDateTime = {moment(this.state.videoDateTime).format('L')}
+                                videoDateTime = {this.state.videoDateTime}
                                 videoLink = {this.state.videoLink}
                             />
                         </Col>

@@ -3,15 +3,11 @@ import React from 'react';
 import {
     Container, 
     Button,
-    Label, 
+    Label,
+    Link,
 } from 'reactstrap';
 
 export default class Video extends React.Component {
-
-    
-    onClickedVideo(videoLink) {
-       
-    }
 
     render() {
         return (
@@ -19,7 +15,10 @@ export default class Video extends React.Component {
             <Container>
                 <Label>
                     Patient video posted : {this.props.videoDateTime}&nbsp;&nbsp;
-                    <Button size="sm" style={{padding: 6}} onClick = {() => this.onClickedVideo(this.props.videoLink)}>View video</Button>
+                    <a href={this.props.videoLink} target="_blank">
+                        <Button size="sm" style={{padding: 6, display: this.props.videoLink ? "inline" : "none"}}>View video</Button>
+                    </a>
+                        
                 </Label>
             </Container>
 
