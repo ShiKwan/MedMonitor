@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
 }
 
@@ -22,10 +22,13 @@ html {
 body {
     margin-bottom: 50px;
 }
-.footer{
-    position: absolute;
-    bottom : 0;
-    height: 50px;
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
 }
 
+.panicAlertMessage{
+    margin: 20px 0 20px 0;
+}

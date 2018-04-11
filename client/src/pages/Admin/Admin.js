@@ -1058,13 +1058,16 @@ class Admin extends Component {
                                 physician_name = {this.state.physician_name}
                                 physician_email = {this.state.physician_email}
                             /> 
-
                         </Col>
                     </Row>
                 </Container>
                 <Container className="panicAlertNotice">
                 {this.state.alertIncident.length > 0? 
-                    <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map( (x,index) => <label key={index}>{x}</label>)}</Alert>
+                    this.state.alertIncident.map((x,index) =>{
+                        return(
+                        <Alert key={index} className="panicAlertMessage" color="danger">{x}</Alert>
+                        )
+                    })
                     : 
                     null
                 }

@@ -13,6 +13,7 @@ import Admin_Episode from "./pages/Admin_Episode";
 import userAPI from "./utils/userAPI";
 import mailerAPI from "./utils/nodemailerAPI";
 import openSocket from 'socket.io-client';
+import moment from 'moment';
 
 import "./App.css";
 
@@ -159,7 +160,7 @@ class App extends Component {
       socket.emit('alertAdmin', {'name' : localStorage.getItem("firstName") +  " " + localStorage.getItem("lastName"),
                                   'hospitalNum' : patientNumber,
                                   'emergencies' : emergencies,
-                                  'date' : Date.now()
+                                  'date' : moment().format("dddd, MMMM Do YYYY hh:mm A")
                                 });
       //send email to doctor
       mailerAPI.sendToDoctor({
