@@ -8,6 +8,7 @@ import {LineChart, Line, BarChart, Bar,
 import {
     Container, 
     Button, 
+    Card, CardBody, CardTitle,
 } from 'reactstrap';
 
 import ToggleButton from "../ToggleButton/toggleButton"
