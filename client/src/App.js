@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, Link} from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Appointment from "./pages/Appointment";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
+import AboutUs from "./pages/About_Us";
 import NoMatch from "./pages/NoMatch";
 import Admin_Report from "./pages/Admin_Report";
 import Admin_Episode from "./pages/Admin_Episode";
@@ -16,7 +18,7 @@ import "./App.css";
 
 
 import {
-  Label,
+  Label,  
   Alert
 } from 'reactstrap';
 
@@ -198,9 +200,11 @@ class App extends Component {
         <this.PrivateAdminRoute exact path="/admin/report" component={Admin_Report} />
         <this.PrivateAdminRoute exact path="/admin/episode" component={Admin_Episode} />
         <this.PrivatePatientRoute exact path="/appointment" component={Appointment} />
+        <Route exact path="/about_us" component={AboutUs} />
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
         
     </div>
   </Router>
