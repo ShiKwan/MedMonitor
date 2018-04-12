@@ -25,7 +25,6 @@ export default class Registration extends React.Component {
             password : "",
             confirmPassword : ""
         }
-        console.log("state in registration : " , this.state);
         
     };
     handleInputChange = event => {
@@ -33,7 +32,6 @@ export default class Registration extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log([name] + ", " + event.target.value);
     };
     validateAccountInfo = (user, password, confirmPassword) =>{
         let valid = true;
@@ -66,7 +64,6 @@ export default class Registration extends React.Component {
                 patient_id : this.state.patientID ? this.state.patientID : "n/a",
                 doctor_id : this.state.doctorID ? this.state.doctorID : "n/a"
             }).then(res => {
-                console.log(res);
                 this.props.getBackMessage(`Account created successfully! Please sign in to access to all the awesome features this application offers!`);
                 this.props.getBackMessageStatus("success");
                 if(this.state.role === "patient"){
@@ -77,7 +74,6 @@ export default class Registration extends React.Component {
                     })
                     .then(res =>{
                         console.log(res);
-                        console.log("mail man work real hard!");
                     })
                     .catch(err => {
                         console.log(err);
@@ -90,7 +86,6 @@ export default class Registration extends React.Component {
                     })
                     .then(res =>{
                         console.log(res);
-                        console.log("mail man work real hard!");
                     })
                     .catch(err => {
                         console.log(err);
@@ -98,7 +93,6 @@ export default class Registration extends React.Component {
                 }
                 
             }).catch(err => {
-                console.log("fail");
                 console.log(err)
                 this.setState({ 
                     messageCenter : "Something bad happened while creating your account",
@@ -121,14 +115,10 @@ export default class Registration extends React.Component {
         e.preventDefault();
         if(this.validateEmail(this.state.newAccountEmail)){
         userAPI.getUserByEmail(email).then(res =>{
-            console.log(res);
             if(res.data === 'email is ok for new account'){
                 if(this.state.newAccountEmail){
                     patientAPI.findPatientEmail(email,{}).then(res =>{
-                        console.log("check for patient")
-                        console.log(res);
                         if(res.data.length > 0){
-                            console.log("found patient email!");
                             this.setState({
                                 patientID: res.data[0]._id,
                                 newAccountEmail : res.data[0].details.email,
@@ -136,14 +126,10 @@ export default class Registration extends React.Component {
                             })
                             this.props.getBackMessage(`Found email address '${this.state.newAccountEmail}' !`);
                             this.props.getBackMessageStatus("success");
-                            console.log(this.state);
                         }else{
                             //provide to find doctor.. 
                             doctorAPI.findDoctorEmail(email, {}).then(res => {
-                                console.log("check for doctor");
-                                console.log(res);
                                 if(res.data.length > 0){
-                                    console.log("found doctor email!");
                                     this.setState({
                                         doctorID : res.data[0]._id,
                                         newAccountEmail : res.data[0].email,
@@ -151,7 +137,6 @@ export default class Registration extends React.Component {
                                     })
                                     this.props.getBackMessage(`Found email address '${this.state.newAccountEmail}' !`);
                                     this.props.getBackMessageStatus("success");
-                                    console.log(this.state);
                                 }else{
                                     this.props.getBackMessage("Sorry, we couldn't find your email address from our system, please contact the admin for more information");
                                     this.props.getBackMessageStatus("danger");        
@@ -170,7 +155,6 @@ export default class Registration extends React.Component {
 
     render() {
         const role = this.state.role;
-        console.log(role);
         return (
             <Container>
                 {!role ? (

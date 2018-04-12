@@ -122,11 +122,9 @@ class Admin extends Component {
     };
 
     getBackAlertIncident(alertIncident){
-        console.log("getting back alert incident");
         this.setState({
             alertIncident : alertIncident
         })
-        console.log("Alert incident : " , this.state.alertIncident);
     }
 
     // Call function to fetch data required for admin page when Admin component mounts
@@ -279,8 +277,6 @@ class Admin extends Component {
     enrollPatient = event => {
         //hospitalNum, firstName, lastName, dob, email, phone
         event.preventDefault();
-        console.log(this.state.hospnum);
-        console.log(this.state.firstname);
 
         if(this.validateNewPatientField(this.state.pt_hospnum, this.state.pt_firstname, this.state.pt_lastname, this.state.pt_dob, this.state.pt_email, this.state.pt_phone)){
             //capitalize the first letter of both first and last name.
@@ -325,7 +321,6 @@ class Admin extends Component {
             .then(res => {
                 this.props.getBackMessage("Patient successfully enrolled into our system")
                 this.props.getBackMessageStatus("success");
-                console.log(res.data.insertedIds[0]);
                 this.setState({
                     pt_id: res.data.insertedIds[0],
                     addPatientCard: false,
@@ -367,8 +362,6 @@ class Admin extends Component {
 
     enrollPatientWithDr = event => {
         event.preventDefault();
-        console.log("1pt: " + this.state.pt_id)
-        console.log("1phys: " + this.state.pt_physician)
         if(this.state.pt_physician) {
             patientAPI.updatePatientsDr(this.state.pt_id, {
                 physician : this.state.pt_physician
@@ -376,7 +369,6 @@ class Admin extends Component {
             .then(res => {
                 this.props.getBackMessage("A primary physician has been appointed to this patient")
                 this.props.getBackMessageStatus("success");
-                console.log(res.data);
                 this.setState({addPatientsDrCard: false});
                 this.setState({registerPatientCard: true});
             })
@@ -415,7 +407,6 @@ class Admin extends Component {
 
     registerPatient = event => {
         event.preventDefault();
-        console.log("pwd: " + this.state.pt_password + " | " + this.state.pt_username)
         if(this.validatePatientCredential(this.state.pt_password, this.state.pt_username)) {
             userAPI.createAccount({
                 username : this.state.pt_username,
@@ -426,7 +417,6 @@ class Admin extends Component {
                 doctor_id: "n/a"
             })
             .then(res => {
-                console.log(res);
                 this.setState({
                     messageCenter : "Account created successfully!",
                     messageStatus: "success"
@@ -437,8 +427,6 @@ class Admin extends Component {
                 this.setState({patient_email: this.state.pt_email})
             })
             .catch(err => {
-                console.log("fail");
-                console.log("setting redirect to true");
                 console.log(err)
                 this.setState({ 
                     messageCenter : "Invalid input field, please change the field accordingly",
@@ -470,8 +458,6 @@ class Admin extends Component {
         return valid
     }
     updatePatient = (id) => {
-        console.log("if there is a value in pt_email : " , this.state.pt_email);
-        console.log("if there is a value in pt_phone : " , this.state.pt_phone);
         if(this.validatePatientInput(this.state.pt_email, this.state.pt_phone)){
             patientAPI.updateContact(id, {
                 email: this.state.pt_email ? this.state.pt_email : this.state.patientDetails.email,
@@ -498,8 +484,6 @@ class Admin extends Component {
      };
 
      validateAppt = (apptDateTime, apptDate, apptTime) => {
-         console.log("in validate appointment:");
-         console.log((String(apptDateTime._i)));
          apptDateTime = String(apptDateTime._i);
          let valid = true;
          if(!apptDate || !apptTime){
@@ -518,13 +502,7 @@ class Admin extends Component {
      };
 
     updateAppointment = (id) => {
-        console.log("a " + this.state.pt_newApptDate)
-        console.log("b " + this.state.pt_newApptTime)
-        console.log("id" + id)
-        console.log("c " + `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`)
         const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
-        console.log("d " + newAppt)
-        console.log("e " + this.state.pt_nextApptComment)
         if(this.validateAppt(moment(newAppt), this.state.pt_newApptDate, this.state.pt_newApptTime)){
             patientAPI.updateAppointment(id, {
                 next_appt: newAppt,
@@ -636,7 +614,6 @@ class Admin extends Component {
             .then(res => {
                 this.props.getBackMessage("New physician successfully enrolled.")
                 this.props.getBackMessageStatus("success");
-                console.log(res.data.insertedIds[0]);
                 
                 this.setState({
                     addPhysicianCard: false,
@@ -703,7 +680,6 @@ class Admin extends Component {
     }
     registerPhysician = event => {
         event.preventDefault();
-        console.log("pwd: " + this.state.dr_password + " | " + this.state.dr_username)
         if(this.validatePhysicianCreds(this.state.dr_username, this.state.dr_password)){
             if(this.state.dr_password && this.state.dr_username){
                 userAPI.createAccount({
@@ -728,8 +704,6 @@ class Admin extends Component {
 
                 })
                 .catch(err => {
-                    console.log("fail");
-                    console.log("setting redirect to true");
                     console.log(err)
                     this.setState({ 
                         messageCenter : "Invalid input field, please change the field accordingly",

@@ -50,7 +50,6 @@ class Home extends Component {
         }
     }
     getBackEmail(newAccountEmail, patientID){
-        console.log("here getting back message")
         this.setState({
         newAccountEmail : newAccountEmail,
         patientID : patientID
@@ -78,14 +77,12 @@ class Home extends Component {
                 password: this.state.password
             })
             .then(res => {
-                console.log(res);
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
                 if(res.data.patient_id && res.data.role.toLowerCase() === 'patient'){
                     localStorage.setItem("userId", res.data.patient_id);
                 }else if(res.data.doctor_id && (res.data.role.toLowerCase() === 'admin' || res.data.role.toLowerCase() === 'doctor')){
-                    console.log("here");
                     localStorage.setItem("userId", res.data.doctor_id);
                 }
                 this.setState({
@@ -97,16 +94,12 @@ class Home extends Component {
                     if(this.state.role.toLowerCase()==="patient"){
                         patientAPI.findPatientInfoForPatient(this.state.id)
                         .then(res => {
-                            console.log("patient info:");
-                            console.log(res);
                             localStorage.setItem("firstName", res.data.details.first_name);
                             localStorage.setItem("lastName", res.data.details.last_name);
                             localStorage.setItem("patient_number", res.data.details.patient_number);
                             localStorage.setItem("patient_phone", res.data.details.phone);
                             this.props.getBackMessage(this.state.messageCenter);
                             this.props.getBackMessageStatus(this.state.messageStatus);
-                            console.log("username : ", this.state.username);
-                            console.log("local storage: ", localStorage.getItem("username"));
                             if(localStorage.getItem("role").toLowerCase()==="patient"){
                                 this.props.history.push('/patient');      
                             } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
@@ -118,16 +111,12 @@ class Home extends Component {
                     }else if(this.state.role.toLowerCase()==="admin" || this.state.role.toLower() ==="doctor"){
                         doctorAPI.findOne(this.state.id)
                         .then(res => {
-                            console.log("doctor info:");
-                            console.log(res)
                             localStorage.setItem("firstName", res.data.name.first);
                             localStorage.setItem("lastName", res.data.name.last);
                             localStorage.setItem("office", res.data.office);
                             localStorage.setItem("phone", res.data.phone);
                             this.props.getBackMessage(this.state.messageCenter);
                             this.props.getBackMessageStatus(this.state.messageStatus);
-                            console.log("username : ", this.state.username);
-                            console.log("local storage: ", localStorage.getItem("username"));
                             if(localStorage.getItem("role").toLowerCase()==="patient"){
                                 this.props.history.push('/patient');      
                             } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
@@ -157,10 +146,8 @@ class Home extends Component {
         this.setState({
             [name]: value
         });
-        console.log([name] + ", " + event.target.value);
     };
     getBackRegisterMessage = messageCenter => {
-        console.log("here getting back message")
         this.setState({
         messageCenter : messageCenter
         })
@@ -172,7 +159,6 @@ class Home extends Component {
         this.setState({
         messageStatus : messageStatus
         })
-        console.log("state right now : ", this.state);
         this.props.getBackMessageStatus(this.state.messageStatus);
     }
     

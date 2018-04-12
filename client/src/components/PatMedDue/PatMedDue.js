@@ -135,7 +135,6 @@ class PatMedDue extends Component {
                 ]
             }
         )
-        console.log(arrReminder);
    })
 
    const win = window.open(url, 'name', 'height=600,width=450');

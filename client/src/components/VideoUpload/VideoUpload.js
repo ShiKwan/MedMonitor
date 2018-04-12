@@ -28,8 +28,7 @@ class DoSomethingBtn extends Component {
         this.setState({
             [name]: value
         });
-        console.log(event.target.value);
-        console.log(this.state);
+
     };
     validateSubmit = (video_link) =>{
         let valid = true;
@@ -45,13 +44,11 @@ class DoSomethingBtn extends Component {
     }
     handleSubmit = (event) => {
         if(this.validateSubmit(this.state.video_link)){
-            console.log("here");
             let objVideo = {
                 video_link: this.state.video_link,
                 patient_id : this.state.patient_id,
                 video_datetime : this.state.video_datetime
             }
-            console.log(objVideo);
             videoAPI.create(objVideo)
             .then(res => console.log(res))
             .catch(err => console.log(err));

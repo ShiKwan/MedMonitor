@@ -42,7 +42,6 @@ class Patient extends Component {
         this.setState({
             finishedQuestion : true
         })
-        console.log(this.state.finishedQuestion)
     }
     render(){
         return (

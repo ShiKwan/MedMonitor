@@ -77,11 +77,9 @@ export default class PatientMedications extends React.Component {
     }
 
     populateDoses = (item) => {
-        console.log("item: ", item);
         medicationAPI
             .findOne(item)
             .then(med => {
-                console.log("populate doses :", med);
                 return med.data;
             })
             .catch(err => {
@@ -91,7 +89,6 @@ export default class PatientMedications extends React.Component {
     }
 
     handleChange = (item) => {
-        console.log("selected item", item);
         this.setState({selectedOption: item.label},function(){
             this.setState({
                 drugDoses : item.doses,
@@ -111,8 +108,6 @@ export default class PatientMedications extends React.Component {
                     })
                 : null
             })
-            console.log(`Selected: ${item.label}`);
-            console.log("selected med state: " , this.state)
             
         });
         
@@ -121,26 +116,18 @@ export default class PatientMedications extends React.Component {
         this.setState({
             selectedOption: `${selectedOption.label}`
         });
-        console.log(`Selected: ${selectedOption.label}`);
-        console.log("selected med state: " , this.state.selectedOption)
     }
     handleTimeChange = (selectedOption) => {
-        console.log("selectedOption : " , selectedOption);
         this.setState({ selectedTime : selectedOption });
-        console.log("new selected time: ", this.state.selectedTime);
     }
     handlePreviousTimeChange = (selectedOption) => {
-        console.log("selectedOption : " , selectedOption);
         this.setState({ selectedTime : selectedOption });
-        console.log("new selected time: ", this.state.selectedTime);
     }
     handleDosage = (selectedOption) =>{
-        console.log("selectedOption : " , selectedOption);
         this.setState({ 
             selectedDosage : `${selectedOption.value}`,
             selectedDosageLabel : `${selectedOption.label}`
         });
-        console.log("new selected time: ", this.state.selectedDosage);
     }
     validateNewMed = (medication, dosage, times) =>{
         let valid = true;
@@ -189,33 +176,23 @@ export default class PatientMedications extends React.Component {
             this.setState({
                 patientLastEpisodeMedications : newPatientMedications
             })
-            console.log("new patient medications :", this.state.patientLastEpisodeMedications)
-
-            console.log(objNewMed);
         }
     }
     handleLastMedChange = (lastEpiMeds) =>{
-        console.log("new med list: ", lastEpiMeds);
         this.setState({
             patientLastEpisodeMedications : lastEpiMeds
         });
-        console.log("changes: new patient last episode medications : ", this.state.patientLastEpisodeMedications );
     }
     handleDoseChange = (dose, medName, lastEpiMeds) => {
-        console.log("here getting back message")
-        console.log(lastEpiMeds);
         let newMedList = lastEpiMeds;
         newMedList.map( (x,index) => {
             if(x.name === medName){
                 newMedList[index].item = dose;
-                console.log(newMedList[index].item);
             }
         });
-        console.log(newMedList);
         this.setState({
             patientLastEpisodeMedications: newMedList
         })
-        console.log("new state: ", this.state.patientLastEpisodeMedications);
     }
     handleNextButton = () =>{
         this.props.handleMedCallback(this.state.patientLastEpisodeMedications);

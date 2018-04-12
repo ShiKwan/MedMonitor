@@ -77,7 +77,6 @@ class Admin_Report extends Component {
 
                 videoAPI.findOne(window.location.search.substring(4))
                     .then(res => {
-                        console.log(res.data)
                         this.setState({videoDateTime: res.data[0] ? moment(res.data[0].video_datetime).format('L') : "No video uploads."})
                         this.setState({videoLink: res.data[0] ? res.data[0].video_link : null})
                     })

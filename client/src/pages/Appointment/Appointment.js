@@ -23,7 +23,6 @@ class Appointment extends Component {
     componentDidMount() {
         patientAPI.findPatientInfoForPatient(localStorage.getItem("userId"))
         .then((res)=>{
-            console.log(res);
             this.setState({
                 appointment : res.data.appointment,
                 physician : res.data.physician,
@@ -39,7 +38,6 @@ class Appointment extends Component {
                         physicianLastName : res.data.physician.name.last,
                         dateTime : moment(this.state.appointment.next_appt, "YYYY-MM-DDTHH:mm:ssZ").format()
                     }, function() {
-                        console.log(this.state);
                     })
                 }                
                 
@@ -65,9 +63,6 @@ class Appointment extends Component {
 
    handleoAuth2TokenGet = event => {
        event.preventDefault();
-       console.log(this.state.dateTime);
-       console.log(moment(this.state.dateTime, "YYYY-MM-DDTHH:mm:ssZ"));
-       console.log(moment(this.state.dateTime, "YYYY-MM-DDTHH:mm:ssZ").add(1, "hour").format());
    // TODO: First try to get the token from sessionStorage here
    // Build the oauth request url
    const responseType = 'token';
