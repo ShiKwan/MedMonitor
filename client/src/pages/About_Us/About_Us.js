@@ -1,15 +1,8 @@
 import React from 'react';
-import moment from 'moment';
-import { Link } from "react-router-dom";
 import {
     Col,
     Row,
     Container,
-    Nav,
-    Navbar,
-    NavItem,
-    NavLink,
-    Label
 } from 'reactstrap';
 import SKHeadShot from "./SK.jpg";
 import MHHeadShot from "./MH.png";

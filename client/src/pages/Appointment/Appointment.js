@@ -5,7 +5,6 @@ import UpcomingApp from "../../components/UpcomingApp";
 import PhysInfo from "../../components/PhysInfo";
 import patientAPI from "../../utils/patientAPI";
 import moment from 'moment';
-import gapi from "gapi-client";
 import {CLIENT_ID} from "../../config/config.js";
 import googleAPI from "../../utils/googleAPI";
 
