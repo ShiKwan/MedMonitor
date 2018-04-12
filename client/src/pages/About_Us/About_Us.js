@@ -14,6 +14,7 @@ import {
 import SKHeadShot from "./SK.jpg";
 import MHHeadShot from "./MH.png";
 import BSHeadShot from "./BS2.png";
+import JMHeadShot from "./JM.JPG";
 import Github from "./icons8-github-50.png";
 import LinkedIn from "./icons8-linkedin-50.png";
 import './about_us.css';
@@ -75,6 +76,7 @@ export default class Header extends React.Component {
                                 and hoping to eventually dabble in the world of software development.</p>
                             </Col>
                             <Col md='4' className='text-center'>
+                                <img  src={JMHeadShot} className='portrait bs' alt='Joe Malovasic' /><br />
                                 <a className='hypOut' href='https://github.com/joemalov' target='_blank' rel="noopener noreferrer" ><img src={Github} alt="github" /></a>
                                 <a className='hypOut' href='https://www.linkedin.com/in/joe-malovasic-195808146/' target='_blank' rel="noopener noreferrer" ><img src={LinkedIn} alt="LinkedIn" /></a>
                             </Col>
