@@ -52,7 +52,7 @@ module.exports = {
             res.status(422).json(err);
         })
     },
-
+    
     // Validate email input by user
     validateEmail: function(req, res){
         db.Patient_data
