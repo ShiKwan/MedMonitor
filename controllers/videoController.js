@@ -28,7 +28,6 @@ module.exports = {
         db.Patient_video.collection
             .insert(req.body)
             .then(video => {
-                console.log("video :", video)
                 res.json(video)})
             .catch(err => {
                 console.log('CONTROLLER ERROR video create: ${err}');

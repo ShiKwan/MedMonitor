@@ -234,11 +234,8 @@ class PatSurvey extends Component {
     }
     
     handleCompletedCallback = (label, answer) => {
-        console.log("Survey header : " + label);
-        console.log("Answer : ", answer);
         
         if(label === 'emergencies'){
-            console.log(questions[0]);
             let newAnswer = [0,0,0,0];
             for(let i =0; i< answer.length; i++){
                 if(answer[i] === questions[0].answers[0]){
@@ -278,7 +275,6 @@ class PatSurvey extends Component {
                         .then(res => console.log(res))
                         .catch(err => console.log(err));
             }
-            console.log("new answer : " + newAnswer);
             answer = newAnswer;
         }
         let newCompleted = this.state.completed;
@@ -315,7 +311,6 @@ class PatSurvey extends Component {
                 drymouth : this.state.completed.drymouth,
             }
         }
-        console.log("objAnswers: ", objAnswers)
         patientAPI.createNewRecord(localStorage.getItem("userId"), objAnswers)
             .then(res => console.log(res))
             .catch(err => console.log(err));
@@ -342,7 +337,6 @@ class PatSurvey extends Component {
             
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
-            console.log("Done with question: ", this.state.completed);
             this.saveAnswersToDb();
             this.props.getBackMessage("You have completed the questionaires")
             this.props.getBackMessageStatus("success");

@@ -26,7 +26,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 let secret = config.get("SESSION_SECRET");
-console.log("secret .. " + secret);
 app.use(session({
   secret: secret,
   saveUninitialized: false,

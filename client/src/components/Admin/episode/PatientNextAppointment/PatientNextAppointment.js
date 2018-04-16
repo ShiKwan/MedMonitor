@@ -31,7 +31,6 @@ export default class PatientNextAppointment extends React.Component {
             this.setState({
                 next_appt : moment(this.state.date + " " + this.state.time).format("dddd, MMMM Do YYYY h:mm a")
             },function(){
-                console.log("Current state: ", this.state);
                 this.props.handleApptCallback(this.state);
                 this.props.confirmNewEpisodeDetails();
                 mailerAPI.sendToPatient({

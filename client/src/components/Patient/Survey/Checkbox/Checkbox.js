@@ -24,7 +24,6 @@ export default class Checkbox extends React.Component {
 
     }
     onCheckboxBtnClick(selected) {
-        console.log(selected);
         if(selected === 'None Of These'){
             this.setState({
                 cSelected : ['None Of These']

@@ -4,9 +4,6 @@ var config = require('config');
 var user = config.get('NodeMailer.USER');
 var pass = config.get('NodeMailer.PASS');
 
-console.log("user: " + user);
-console.log("pass: " + pass);
-
         /* user: 'bscwruproject2@gmail.com',
         pass : 'Bootcamp123' */
 const transporter = nodemailer.createTransport({

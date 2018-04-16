@@ -45,7 +45,6 @@ handleLoadPatient = (e) => {
     e.preventDefault();
 
     this.loadPatient();
-    console.log("current state in admin episode : ", this.state);
 }
 loadPatient = () => {
     // find patient data by id for Admin 
@@ -122,14 +121,12 @@ createNewEpisode= () => {
 }
 
 handleMedCallback = (lastEpiMeds) => {
-    console.log("LastEpiMeds: " , lastEpiMeds);
     let newEpiMeds = [];
     for(let i=0 ; i< lastEpiMeds.length; i++){
         if(lastEpiMeds[i].medication !=='tbc'){
             newEpiMeds.push(lastEpiMeds[i]);
         }
     }
-    console.log("New Epi Meds, after filter out tbc: " , newEpiMeds)
     this.setState({
         newEpisode: newEpiMeds
     });
@@ -174,12 +171,10 @@ prepDataToSave = () =>{
         patientAPI.createNewEpisode(window.location.search.substring(4),
             objToSubmit)
             .then(res => {
-                console.log(res)
                 let objAppointment = {
                     next_appt: moment(this.state.newAppt.next_appt, "dddd, MMMM Do YYYY h:mm a").format(),
                     comments: this.state.pt_nextApptComment 
                 }
-                console.log(objAppointment);
                 patientAPI.updateAppointment(window.location.search.substring(4), 
                     objAppointment)
                     .then(res => {
@@ -194,7 +189,6 @@ prepDataToSave = () =>{
 }
 
 populateState = () =>{
-    console.log("admin episode state: ", this.state);
     this.setState({
         newObj : this.state.newEpisode
     }, function(){

@@ -30,7 +30,6 @@ module.exports = {
          db.User
         .find({username: req.params.username})
         .then(user => {
-            console.log("user: ", user);
             if(user.length > 0){
                 res.send("user found in our system");
             }else{

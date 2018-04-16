@@ -23,7 +23,6 @@ export default class PreviousMedication extends React.Component {
     }
     componentDidMount(newProp){
         //first we need to assign doses value to the state
-        console.log("current med : ", this.props.medication);
         if(this.props.medication !== "tbc"){
             const datavalue = this.props.allMedications.filter(x => x.name === this.props.medication)
             if(datavalue[0]){
@@ -49,12 +48,9 @@ export default class PreviousMedication extends React.Component {
     removeMedicine = (e) =>{
         e.preventDefault();
         let newPatientLastEpisodeMedications = this.state.patientLastEpisodeMedications;
-        console.log("this medication is going to be removed : " , this.state.medication);
-        console.log("from this list : ", newPatientLastEpisodeMedications);
         newPatientLastEpisodeMedications.map((med, index) =>{
             if(med.medication === this.state.medication){
                 newPatientLastEpisodeMedications.splice(index, 1);
-                console.log("removed that med from the list")
             }
         })
         
@@ -63,7 +59,6 @@ export default class PreviousMedication extends React.Component {
             patientLastEpisodeMedications : newPatientLastEpisodeMedications
         });
         this.props.handleLastMedChange(newPatientLastEpisodeMedications);
-        console.log(this.state);
     }
     editMedicine = (e) => {
         e.preventDefault();
