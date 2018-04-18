@@ -7,7 +7,8 @@ Some other features:
 - Let patient record video and the video links to the physician, so that physician has better information during the appointment to better diagnose the symptoms. 
 - Those symptoms that patients filled in will be visualize in a javascript charting package. 
 
-##Technologies integrated inthis application
+##Technologies integrated inthis application 
+
   NodeMailer
   SocketIO
   Google Calendar 
