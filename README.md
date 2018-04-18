@@ -9,11 +9,11 @@ Some other features:
 
 ## Technologies integrated in this application 
 
-   NodeMailer
-   SocketIO
-   Google Calendar 
-   Google OAuth2.0
-   ReChart (Javascript Charting Package)
-   ReactStrap (Framework)
-   MomentJS
-   PassportJS
+    NodeMailer
+    SocketIO
+    Google Calendar 
+    Google OAuth2.0
+    ReChart (Javascript Charting Package)
+    ReactStrap (Framework)
+    MomentJS
+    PassportJS
