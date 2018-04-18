@@ -49,7 +49,7 @@ export default class PreviousMedication extends React.Component {
         e.preventDefault();
         let newPatientLastEpisodeMedications = this.state.patientLastEpisodeMedications;
         newPatientLastEpisodeMedications.map((med, index) =>{
-            if(med.medication === this.state.medication){
+            if(med.medication === this.props.medication){
                 newPatientLastEpisodeMedications.splice(index, 1);
             }
         })
@@ -76,7 +76,7 @@ export default class PreviousMedication extends React.Component {
         });
         let newMedList = this.state.patientLastEpisodeMedications;
         newMedList.map((x,index) =>{
-            if(newMedList[index].medication === this.state.medication){
+            if(newMedList[index].medication === this.props.medication){
                 newMedList[index].value = `${selectedOption.value}`;
                 newMedList[index].label = `${selectedOption.label}`;
                 newMedList[index].dose = itemToSplit[0];
@@ -94,7 +94,7 @@ export default class PreviousMedication extends React.Component {
         })
         let newMedList = this.state.patientLastEpisodeMedications;
         newMedList.map((x, index) => {
-            if (newMedList[index].medication === this.state.medication) {
+            if (newMedList[index].medication === this.props.medication) {
                 newMedList[index].times = newSelectedOption;
             }
         })
@@ -127,25 +127,25 @@ export default class PreviousMedication extends React.Component {
                 <Container>
                     <Row>
                         <Col size="md-4">
-                            {this.state.medication} 
+                            {this.props.medication} 
                         </Col>
 
                         <Col size="md-4">
                             <Label>Dose | Form | Route</Label>
 
                             <Select 
-                                key = {this.state.medication}
-                                name= {this.state.medication}
+                                key = {this.props.medication}
+                                name= {this.props.medication}
                                 value = {this.state.value}
                                 placeholder = 'previous medication doses'
                                 onChange = {this.handleDosage}
-                                options= {this.populateDropDown(this.state.medication)}
+                                options= {this.populateDropDown(this.props.medication)}
                             />
                         </Col>
                         <Col size="md-4">
                             <Label>Medication intake time:</Label>
                             <Select 
-                                name= {`${this.state.medication}-times`}
+                                name= {`${this.props.medication}-times`}
                                 value = {this.state.times}
                                 placeholder = 'previous medication intake time'
                                 onChange = {this.handlePreviousTimeChange}

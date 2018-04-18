@@ -128,7 +128,8 @@ handleMedCallback = (lastEpiMeds) => {
         }
     }
     this.setState({
-        newEpisode: newEpiMeds
+        newEpisode: newEpiMeds,
+        patientLastEpisodeMedications : newEpiMeds
     });
 }
 
