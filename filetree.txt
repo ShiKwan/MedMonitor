@@ -88,7 +88,7 @@ Project 3
             seedDB.js
             start-client.js
     .gitignore
-    LICENSE
+    LICENSE HOTFIX HERE
     nodemon.json
     package.json
     Procfile
